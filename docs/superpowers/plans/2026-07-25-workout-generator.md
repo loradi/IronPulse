@@ -22,10 +22,19 @@
   xcodebuild -project IronPulse.xcodeproj -scheme IronPulse -destination 'generic/platform=iOS Simulator' build 2>&1 | grep -E "error:|BUILD" | sort -u
   ```
   Correr desde `/Users/diego/Documents/IRONPULSE/IronPulse`.
-- **Tests:**
+- **Tests:** usar `-only-testing:IronPulseTests` para saltear los UI tests
+  (tardan +20s cada uno y no aportan nada a esta fase). Ojo con el grep:
+  `xcodebuild` imprime `Test case` con "c" **minúscula**.
   ```bash
-  xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse -destination 'platform=iOS Simulator,name=iPhone 17e' 2>&1 | grep -E "Test Case|error:|TEST" | sort -u
+  xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse \
+    -destination 'platform=iOS Simulator,name=iPhone 17e' \
+    -only-testing:IronPulseTests 2>&1 \
+    | grep -E "\*\* TEST|Test case.*(passed|failed)|error:" | sort -u
   ```
+  Verificado antes de empezar: el scheme corre tests correctamente. Si
+  aparece un `DVTAssertionHandler`/`launchSession should not be nil` en el
+  medio del output pero los tests igual corren, es ruido conocido del
+  simulador — mirar el veredicto `** TEST SUCCEEDED **`/`** TEST FAILED **`.
 
 ---
 
@@ -228,7 +237,10 @@ struct WorkoutGeneratorServiceTests {
 
 ```bash
 cd /Users/diego/Documents/IRONPULSE/IronPulse
-xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse -destination 'platform=iOS Simulator,name=iPhone 17e' 2>&1 | grep -E "error:|cannot find" | sort -u
+xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse \
+  -destination 'platform=iOS Simulator,name=iPhone 17e' \
+  -only-testing:IronPulseTests 2>&1 \
+  | grep -E "error:|cannot find" | sort -u
 ```
 Esperado: FALLA con `cannot find 'WorkoutGeneratorService' in scope`.
 
@@ -286,7 +298,10 @@ enum WorkoutGeneratorService {
 
 ```bash
 cd /Users/diego/Documents/IRONPULSE/IronPulse
-xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse -destination 'platform=iOS Simulator,name=iPhone 17e' 2>&1 | grep -E "Test Case.*(passed|failed)|TEST" | sort -u
+xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse \
+  -destination 'platform=iOS Simulator,name=iPhone 17e' \
+  -only-testing:IronPulseTests 2>&1 \
+  | grep -E "\*\* TEST|Test case.*(passed|failed)" | sort -u
 ```
 Esperado: los 6 tests pasan, `** TEST SUCCEEDED **`.
 
@@ -497,7 +512,10 @@ Agregar a `IronPulseTests/WorkoutGeneratorServiceTests.swift`, dentro del `struc
 
 ```bash
 cd /Users/diego/Documents/IRONPULSE/IronPulse
-xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse -destination 'platform=iOS Simulator,name=iPhone 17e' 2>&1 | grep -E "error:|cannot find" | sort -u
+xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse \
+  -destination 'platform=iOS Simulator,name=iPhone 17e' \
+  -only-testing:IronPulseTests 2>&1 \
+  | grep -E "error:|cannot find" | sort -u
 ```
 Esperado: FALLA con `type 'WorkoutGeneratorService' has no member 'prescription'`.
 
@@ -590,7 +608,10 @@ Agregar dentro del `enum WorkoutGeneratorService` en `IronPulse/Services/Workout
 
 ```bash
 cd /Users/diego/Documents/IRONPULSE/IronPulse
-xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse -destination 'platform=iOS Simulator,name=iPhone 17e' 2>&1 | grep -E "Test Case.*(passed|failed)|TEST" | sort -u
+xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse \
+  -destination 'platform=iOS Simulator,name=iPhone 17e' \
+  -only-testing:IronPulseTests 2>&1 \
+  | grep -E "\*\* TEST|Test case.*(passed|failed)" | sort -u
 ```
 Esperado: los 18 tests pasan, `** TEST SUCCEEDED **`.
 
@@ -1000,7 +1021,10 @@ Esperado: `** BUILD SUCCEEDED **`, sin errores.
 
 ```bash
 cd /Users/diego/Documents/IRONPULSE/IronPulse
-xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse -destination 'platform=iOS Simulator,name=iPhone 17e' 2>&1 | grep -E "Test Case.*(passed|failed)|TEST" | sort -u
+xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse \
+  -destination 'platform=iOS Simulator,name=iPhone 17e' \
+  -only-testing:IronPulseTests 2>&1 \
+  | grep -E "\*\* TEST|Test case.*(passed|failed)" | sort -u
 ```
 Esperado: los 18 tests siguen pasando, `** TEST SUCCEEDED **`.
 
