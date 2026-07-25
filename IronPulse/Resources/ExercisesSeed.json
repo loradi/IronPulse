@@ -907,7 +907,7 @@
       "Regresa extendiendo la cadera y apretando los gluteos."
     ],
     "gifFileName": "ex_piernas_peso_muerto_rumano_con_mancuernas.gif",
-    "gifRemoteURLString": null
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stiff-Legged_Dumbbell_Deadlift/0.jpg"
   },
   {
     "id": "ex_053_zancadas_caminando_con_mancuernas",
@@ -924,7 +924,7 @@
       "Alterna las piernas manteniendo el torso erguido durante todo el recorrido."
     ],
     "gifFileName": "ex_piernas_zancadas_caminando_con_mancuernas.gif",
-    "gifRemoteURLString": null
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges/0.jpg"
   },
   {
     "id": "ex_054_extension_de_piernas_en_maquina",
@@ -990,7 +990,7 @@
       "Empuja hacia arriba para volver a la posicion inicial."
     ],
     "gifFileName": "ex_piernas_sentadilla_bulgara_con_mancuernas.gif",
-    "gifRemoteURLString": null
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Split_Squat_with_Dumbbells/0.jpg"
   },
   {
     "id": "ex_058_sentadilla_sissy",
@@ -1007,7 +1007,7 @@
       "Sube contrayendo el cuadriceps hasta la posicion inicial."
     ],
     "gifFileName": "ex_piernas_sentadilla_sissy.gif",
-    "gifRemoteURLString": null
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Weighted_Sissy_Squat/0.jpg"
   },
   {
     "id": "ex_059_zancada_con_barra",
@@ -1246,7 +1246,7 @@
       "Regresa controladamente a la posicion inicial sin soltar el peso."
     ],
     "gifFileName": "ex_piernas_abduccion_de_cadera_en_maquina.gif",
-    "gifRemoteURLString": null
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Thigh_Abductor/0.jpg"
   },
   {
     "id": "ex_073_aduccion_de_cadera_en_polea",
@@ -1332,7 +1332,7 @@
       "Regresa contrayendo el gluteo de la pierna de apoyo hasta quedar erguido."
     ],
     "gifFileName": "ex_piernas_peso_muerto_a_una_pierna_con_mancuerna.gif",
-    "gifRemoteURLString": null
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kettlebell_One-Legged_Deadlift/0.jpg"
   },
   {
     "id": "ex_078_press_militar_barra",
@@ -1566,7 +1566,7 @@
       "Regresa de forma controlada a la posicion inicial."
     ],
     "gifFileName": "ex_hombros_aperturas_posteriores_maquina.gif",
-    "gifRemoteURLString": null
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Machine_Flyes/0.jpg"
   },
   {
     "id": "ex_092_face_pull_polea",
@@ -2386,7 +2386,7 @@
       "Mantén la zona lumbar pegada al suelo durante todo el ejercicio."
     ],
     "gifFileName": "ex_core_crunch_bicicleta.gif",
-    "gifRemoteURLString": null
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Air_Bike/0.jpg"
   },
   {
     "id": "ex_142_abdominales_con_peso",
@@ -2436,7 +2436,7 @@
       "Mantén la posicion isometrica sin dejar de respirar."
     ],
     "gifFileName": "ex_core_plancha_hueca.gif",
-    "gifRemoteURLString": null
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cocoons/0.jpg"
   },
   {
     "id": "ex_145_plancha_lateral",
@@ -2454,7 +2454,7 @@
       "Sostén el tiempo indicado y repite al lado contrario."
     ],
     "gifFileName": "ex_core_plancha_lateral.gif",
-    "gifRemoteURLString": null
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Bridge/0.jpg"
   },
   {
     "id": "ex_146_dead_bug",

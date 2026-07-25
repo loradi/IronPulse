@@ -25,7 +25,7 @@ struct ExerciseListView: View {
 
                         VStack(alignment: .leading, spacing: 6) {
                             Text(exercise.name).font(.headline)
-                            Text(exercise.cleanedDescription).font(.caption).lineLimit(2).foregroundStyle(.ironTextSecondary)
+                            Text(exercise.cleanedDescription).font(.caption).lineLimit(2).foregroundStyle(Color.ironTextSecondary)
                         }
                     }
                     .padding(.vertical, 8)

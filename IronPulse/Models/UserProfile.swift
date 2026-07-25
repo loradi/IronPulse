@@ -23,6 +23,10 @@ final class UserProfile {
     @Relationship(deleteRule: .cascade, inverse: \WorkoutLog.profile)
     var workoutLogs: [WorkoutLog]
 
+    var activeRoutine: WorkoutRoutine? {
+        routines.first { $0.isActive }
+    }
+
     init(
         id: UUID = UUID(),
         name: String,

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F10F519C30105ADD005C2775 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F10F519A30105AD8005C2775 /* HealthKit.framework */; };
-		F10F519D30105ADD005C2775 /* HealthKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F10F519A30105AD8005C2775 /* HealthKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +33,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F10F519D30105ADD005C2775 /* HealthKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,7 +43,6 @@
 		F10F515930105658005C2775 /* IronPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IronPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10F51683010565A005C2775 /* IronPulseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronPulseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10F51723010565A005C2775 /* IronPulseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronPulseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F10F519A30105AD8005C2775 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.5.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -72,7 +68,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F10F519C30105ADD005C2775 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +128,6 @@
 		F10F519930105AD8005C2775 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F10F519A30105AD8005C2775 /* HealthKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

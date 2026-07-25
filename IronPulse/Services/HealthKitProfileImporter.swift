@@ -92,16 +92,11 @@ final class HealthKitProfileImporter {
             profile.heightCm = heightCm
         }
 
-        if let dateOfBirth = snapshot.dateOfBirth {
-            profile.birthDate = dateOfBirth
+        if let dateOfBirth = snapshot.dateOfBirth,
+           let years = Calendar.current.dateComponents([.year], from: dateOfBirth, to: Date()).year,
+           years > 0 {
+            profile.age = years
         }
-
-        if snapshot.biologicalSex != .notSet {
-            profile.biologicalSex = snapshot.biologicalSex
-        }
-
-        profile.syncsWithHealth = true
-        profile.updateTimestamp()
     }
 
     private func readBiologicalSex() -> BiologicalSex {

@@ -5,10 +5,12 @@ Reconstruccion de IronPulse hacia "IRON & PULSE" (SwiftUI + SwiftData, iOS 17+,
 Todo el trabajo vive en el branch `dev` (repo: https://github.com/loradi/IronPulse),
 `main` es un checkpoint estable separado.
 
-## Estado: Fase 1 y 2 completas y commiteadas en `dev`
+## Estado: Fase 1 y 2 completas, proyecto compila y corre limpio
 
 - `006cf59` — Fase 1: sistema de diseno neon + `GIFImageView`
 - `d39dfaa` — Fase 2: modelos SwiftData nuevos + seeder de 150 ejercicios
+- (siguiente commit) — recableado post-Fase 2: 0 errores de compilacion,
+  0 `gifRemoteURLString` en null
 
 ## Fase 1 — Tokens de diseno y GIFImageView
 
@@ -43,33 +45,59 @@ Todo el trabajo vive en el branch `dev` (repo: https://github.com/loradi/IronPul
   animados de ejercicios (wger no tiene, ExerciseDB/WorkoutX son de pago o
   con rate-limit), `gifRemoteURLString` apunta a fotos JPG estaticas reales
   y verificadas de `github.com/yuhonas/free-exercise-db` (dominio publico)
-  como placeholder — no son GIFs animados, son fotos fijas. 140 de 150
-  tienen match real verificado, 10 quedaron en `null` por no tener match
-  confiable. Pendiente: conseguir/generar GIFs animados reales para
-  reemplazar esto cuando se defina una fuente.
+  como placeholder — no son GIFs animados, son fotos fijas. Pendiente:
+  conseguir/generar GIFs animados reales cuando se defina una fuente.
 - `IronPulseApp.swift` registra el nuevo schema y llama al seeder al crear
   el `ModelContainer`.
 - Fix trivial: `import Combine` faltante en `ExerciseListView.swift`.
 
-### Ruptura esperada (documentada, no corregida en Fase 2)
+## Recableado post-Fase 2 (ruptura ya cerrada)
 
-Estos 3 archivos NO compilan hasta que la Fase 3/4 los recableen contra el
-modelo nuevo (7 errores de compilacion, todos "cannot find type X in scope"):
+La ruptura que la Fase 2 dejo documentada ya esta resuelta. `xcodebuild` da
+**BUILD SUCCEEDED** y la app arranca en simulador sembrando 150 ejercicios.
+El alcance real era mas amplio que los 3 archivos previstos: Swift solo
+reporta la primera tanda de errores por archivo, asi que al arreglar las
+firmas aparecieron los errores de los cuerpos.
 
-- `Views/Workouts/AIRoutineGenerator.swift` — usa `FitnessGoal`, `wgerExerciseID`,
-  `WgerExercise`/`WgerAPIService`, init viejo de `RoutineExercise`.
-- `Views/Workouts/ActiveWorkoutView.swift` — tipado contra `WorkoutSession`/
-  `WorkoutLogSet` (renombrados).
-- `ContentView.swift` — usa `FitnessGoal.allCases`, `profile.fitnessGoal`,
-  `profile.trainingDaysPerWeek`, y los nombres viejos en su schema local.
-
-`ProfileSelectionView.swift` y `DashboardView.swift` tambien referencian
-campos/nombres viejos pero, sorprendentemente, compilaron limpio en el build
-real — revisar de todos modos al entrar a Fase 3/4 por si el compilador no
-alcanzo a chequearlos a fondo.
+- **Borrado** `Services/AIRoutineGenerator.swift` — obsoleto entero (wger +
+  `FitnessGoal` + init viejo de `RoutineExercise`). La Fase 3 lo reemplaza
+  con `WorkoutGeneratorService`, no tenia sentido recablearlo para tirarlo.
+- `ContentView.swift` — init nuevo de `UserProfile`, `primaryGoal`/
+  `workoutDaysPerWeek`, schema del `#Preview` actualizado. El sexo biologico
+  ahora se lee del ultimo `HealthSnapshot` (ya no vive en `UserProfile`);
+  se cayeron el toggle `syncsWithHealth` y el stepper de duracion de sesion
+  porque esos campos ya no existen en el modelo.
+- `ActiveWorkoutView.swift` — reescrito contra `WorkoutLog`/`SetLog`. El
+  nombre del ejercicio se resuelve con un `@Query` sobre `Exercise` mapeado
+  por id (`SetLog` guarda `exerciseId: String`, no una relacion). Se
+  engancharon `HapticFeedback.setCompleted()` y `.restFinished()`.
+- `DashboardView.swift` — recableado a `splitType`/`dayNumber`/`targetSets`/
+  `targetRepsMin-Max`/`ex.exercise.name`. El boton "Generar rutina con IA"
+  se quito hasta la Fase 3; queda un `ContentUnavailableView` que lo dice.
+- `ProfileSelectionView.swift` — el modelo nuevo no tiene `isActive` en
+  `UserProfile`, la seleccion es local a la vista.
+- `HealthKitProfileImporter.swift` — `apply()` escribia 4 campos que ya no
+  existen (`birthDate`, `biologicalSex`, `syncsWithHealth`,
+  `updateTimestamp()`); ahora solo actualiza peso, altura y deriva `age`
+  desde la fecha de nacimiento.
+- `Models/UserProfile.swift` — se agrego `activeRoutine` (la rutina con
+  `isActive`), que usan Dashboard y usara la Fase 3.
+- `Components/GIFImageView.swift` — bug real de la Fase 1 que no se habia
+  visto porque el build moria antes: dentro de un `UIView`, `ContentMode`
+  sin calificar resuelve a `UIView.ContentMode`. Se calificó a
+  `SwiftUI.ContentMode`.
+- `Theme/CustomColor.swift` — se agrego `ironTextSecondary` (faltaba y lo
+  usaban 4 vistas). Los tokens muertos de las vistas viejas se renombraron
+  a los de la Fase 1: `ironPrimary`→`ironAccent`, `ironSurface`→`ironCard`,
+  `redGlow()`→`neonGlow(color: .ironDanger)`.
+- `IronPulse.xcodeproj` — HealthKit estaba a la vez enlazada y **embebida**
+  como framework, con la ruta del SDK iOS 26.5 hardcodeada; eso rompia el
+  empaquetado ("did not contain an Info.plist"). Se quitaron ambas
+  referencias: Swift la autolinkea desde `import HealthKit` (verificado con
+  `otool -L` sobre `IronPulse.debug.dylib`).
 
 `Views/Exercises/ExerciseListView.swift` sigue usando `WgerExercise`/
-`WgerAPIService` sin tocar (fuera de alcance de Fase 2) — compila bien.
+`WgerAPIService`; la Fase 4 decide si se borran.
 
 ## Siguientes pasos (Fase 3 en adelante)
 
@@ -84,9 +112,11 @@ alcanzo a chequearlos a fondo.
    cuando conviene decidir si `WgerAPIService`/`WgerModels.swift` se borran
    del todo (ya no deberian ser necesarios una vez el catalogo local este
    en uso).
-3. **Fase 5 — Modo entrenamiento activo**: recablear `ActiveWorkoutView`
-   contra `WorkoutLog`/`SetLog`, temporizador de descanso con
-   `HapticFeedback.restFinished()`.
+3. **Fase 5 — Modo entrenamiento activo**: `ActiveWorkoutView` ya esta
+   recableada y con haptics, pero falta lo de verdad: que una rutina genere
+   el `WorkoutLog` con sus `SetLog`, y que el descanso salga del
+   `RoutineExercise.restSeconds` en vez de los 60s fijos que hay hoy
+   (marcado con un comentario `ponytail:` en el archivo).
 4. **Recablear navegacion**: desde la exploracion inicial del proyecto,
    `DashboardView`/`ActiveWorkoutView`/`ExerciseListView`/`ProfileSelectionView`
    estaban huerfanas (sin `NavigationLink` real entre ellas) — esto sigue
@@ -94,6 +124,34 @@ alcanzo a chequearlos a fondo.
 5. Definir fuente real de GIFs animados (o aceptar las fotos JPG de
    free-exercise-db como definitivas) antes de pulir la Fase 4.
 6. Sin tests todavia — ningun archivo de test cubre modelos/seeder/generator.
+7. **4 ejercicios duplicados en el seed** (mismo ejercicio dado de alta dos
+   veces bajo dos grupos musculares, herencia de los 7 subagentes en
+   paralelo): `Encogimientos con barra` (back/shoulders), `Face pull en
+   polea` (back/shoulders), `Fondos en banco` (chest/triceps), `Fondos en
+   paralelas` (chest/triceps). Los ids son unicos asi que el seeder inserta
+   los 8; en la biblioteca de la Fase 4 van a salir repetidos. Decidir si se
+   fusionan usando `secondaryMuscles` o se dejan.
+
+### Verificacion de imagenes
+
+`ExercisesSeed.json`: **0 de 150** con `gifRemoteURLString` en null. Los 10
+que faltaban se completaron contra free-exercise-db:
+
+| ejercicio | imagen usada |
+|---|---|
+| Peso muerto rumano con mancuernas | `Stiff-Legged_Dumbbell_Deadlift` |
+| Zancadas caminando con mancuernas | `Dumbbell_Lunges` |
+| Sentadilla bulgara con mancuernas | `Split_Squat_with_Dumbbells` |
+| Sentadilla sissy | `Weighted_Sissy_Squat` |
+| Abduccion de cadera en maquina | `Thigh_Abductor` |
+| Peso muerto a una pierna con mancuerna | `Kettlebell_One-Legged_Deadlift` (kettlebell, no mancuerna) |
+| Aperturas posteriores en maquina | `Reverse_Machine_Flyes` |
+| Crunch de bicicleta | `Air_Bike` |
+| Plancha hueca | `Cocoons` (aproximacion, no hay hollow hold en la db) |
+| Plancha lateral | `Side_Bridge` |
+
+Las 145 URLs unicas (150 entradas, 5 comparten imagen por los duplicados de
+arriba) devuelven HTTP 200 — verificado una por una con `curl -I`.
 
 ## Notas de contexto
 

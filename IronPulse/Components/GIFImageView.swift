@@ -143,7 +143,8 @@ internal final class GIFPlayerUIView: UIView {
         imageView.frame = bounds
     }
 
-    func apply(contentMode: ContentMode) {
+    // dentro de un UIView, `ContentMode` sin calificar resuelve a UIView.ContentMode
+    func apply(contentMode: SwiftUI.ContentMode) {
         imageView.contentMode = contentMode == .fill ? .scaleAspectFill : .scaleAspectFit
     }
 

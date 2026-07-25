@@ -13,13 +13,13 @@ struct ProfileSelectionView: View {
                     HStack {
                         VStack(alignment: .leading) {
                             Text(profile.name).font(.headline)
-                            Text("\(profile.experienceLevel.displayName) • \(profile.fitnessGoal.displayName)").font(.caption).foregroundStyle(.ironTextSecondary)
+                            Text("\(profile.experienceLevel.displayName) • \(profile.primaryGoal.displayName)").font(.caption).foregroundStyle(Color.ironTextSecondary)
                         }
                         Spacer()
-                        if profile.isActive { Image(systemName: "star.fill").foregroundStyle(.ironPrimary) }
+                        if profile.id == selection { Image(systemName: "star.fill").foregroundStyle(Color.ironAccent) }
                     }
                     .contentShape(Rectangle())
-                    .onTapGesture { activate(profile) }
+                    .onTapGesture { selection = profile.id }
                 }
             }
             .navigationTitle("Perfiles")
@@ -30,14 +30,8 @@ struct ProfileSelectionView: View {
     }
 
     private func addProfile() {
-        let p = UserProfile(name: "Perfil \(profiles.count + 1)", experienceLevel: .beginner, fitnessGoal: .maintenance, trainingDaysPerWeek: 3, sessionDurationMinutes: 60)
+        let p = UserProfile(name: "Perfil \(profiles.count + 1)", age: 30, weightKg: 70, heightCm: 170)
         modelContext.insert(p)
-        try? modelContext.save()
-    }
-
-    private func activate(_ profile: UserProfile) {
-        for p in profiles { p.isActive = false }
-        profile.isActive = true
         try? modelContext.save()
     }
 }

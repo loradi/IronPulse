@@ -60,6 +60,7 @@ extension Color {
     // light-mode border wasn't specified in the spec; reuse a neutral light-gray in the same family as ironBackground
     static let ironBorder = dynamic(light: "E4E4E7", dark: "1F2838")
     static let ironTextPrimary = dynamic(light: "0D1117", dark: "F2F4F8")
+    static let ironTextSecondary = dynamic(light: "56606E", dark: "8A94A6")
 }
 
 extension Font {

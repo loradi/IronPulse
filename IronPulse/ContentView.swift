@@ -42,14 +42,11 @@ struct ContentView: View {
 
     private func addProfile() {
         withAnimation {
-            let shouldBeActive = profiles.isEmpty
             let profile = UserProfile(
                 name: "Perfil \(profiles.count + 1)",
-                experienceLevel: .beginner,
-                fitnessGoal: .maintenance,
-                trainingDaysPerWeek: 3,
-                sessionDurationMinutes: 60,
-                isActive: shouldBeActive
+                age: 30,
+                weightKg: 70,
+                heightCm: 170
             )
 
             modelContext.insert(profile)
@@ -70,18 +67,10 @@ private struct ProfileRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            HStack {
-                Text(profile.name)
-                    .font(.headline)
+            Text(profile.name)
+                .font(.headline)
 
-                if profile.isActive {
-                    Text("Activo")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
-
-            Text("\(profile.experienceLevel.displayName) • \(profile.fitnessGoal.displayName) • \(profile.trainingDaysPerWeek) dias/semana")
+            Text("\(profile.experienceLevel.displayName) • \(profile.primaryGoal.displayName) • \(profile.workoutDaysPerWeek) dias/semana")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
@@ -97,6 +86,10 @@ private struct ProfileDetailView: View {
     @State private var isImportingHealthData = false
     @State private var healthImportMessage: String?
 
+    private var latestSnapshot: HealthSnapshot? {
+        profile.healthSnapshots.max { $0.capturedAt < $1.capturedAt }
+    }
+
     var body: some View {
         Form {
             Section("Perfil") {
@@ -108,26 +101,23 @@ private struct ProfileDetailView: View {
                     }
                 }
 
-                Picker("Objetivo", selection: $profile.fitnessGoal) {
-                    ForEach(FitnessGoal.allCases) { goal in
+                Picker("Objetivo", selection: $profile.primaryGoal) {
+                    ForEach(PrimaryGoal.allCases) { goal in
                         Text(goal.displayName).tag(goal)
                     }
                 }
 
-                Stepper("\(profile.trainingDaysPerWeek) dias por semana", value: $profile.trainingDaysPerWeek, in: 1...7)
-                Stepper("\(profile.sessionDurationMinutes) min por sesion", value: $profile.sessionDurationMinutes, in: 30...120, step: 15)
+                Stepper("\(profile.workoutDaysPerWeek) dias por semana", value: $profile.workoutDaysPerWeek, in: 1...7)
             }
 
             Section("Datos fisicos") {
-                LabeledContent("Edad", value: profile.age.map(String.init) ?? "Sin dato")
-                LabeledContent("Sexo", value: profile.biologicalSex.displayName)
+                Stepper("\(profile.age) anos", value: $profile.age, in: 14...99)
+                LabeledContent("Sexo", value: latestSnapshot?.biologicalSex.displayName ?? BiologicalSex.notSet.displayName)
                 LabeledContent("Altura", value: formatted(profile.heightCm, suffix: "cm"))
                 LabeledContent("Peso", value: formatted(profile.weightKg, suffix: "kg"))
             }
 
             Section("Salud") {
-                Toggle("Sincronizar con Salud", isOn: $profile.syncsWithHealth)
-
                 Button {
                     importHealthData()
                 } label: {
@@ -137,7 +127,7 @@ private struct ProfileDetailView: View {
                         Label("Importar datos de Salud", systemImage: "heart.text.square")
                     }
                 }
-                .disabled(isImportingHealthData || !profile.syncsWithHealth)
+                .disabled(isImportingHealthData)
 
                 if let healthImportMessage {
                     Text(healthImportMessage)
@@ -182,10 +172,11 @@ private struct ProfileDetailView: View {
         .modelContainer(for: [
             UserProfile.self,
             HealthSnapshot.self,
+            Exercise.self,
             WorkoutRoutine.self,
             RoutineDay.self,
             RoutineExercise.self,
-            WorkoutSession.self,
-            WorkoutLogSet.self,
+            WorkoutLog.self,
+            SetLog.self,
         ], inMemory: true)
 }
