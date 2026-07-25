@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 extension Color {
     init(hex: String) {
@@ -43,28 +44,51 @@ extension Color {
         )
     }
 
-    static let ironBackground = Color(hex: "09090B")
-    static let ironSurface = Color(hex: "18181B")
-    static let ironBorder = Color(hex: "27272A")
-    static let ironPrimary = Color(hex: "FF1E27")
-    static let ironSecondary = Color(hex: "B91C1C")
-    static let ironTextSecondary = Color(hex: "A1A1AA")
-    static let ironLightBackground = Color(hex: "F4F4F6")
-    static let ironLightBorder = Color(hex: "E4E4E7")
-    static let ironLightPrimary = Color(hex: "D3121B")
+    private static func dynamic(light: String, dark: String) -> Color {
+        Color(uiColor: UIColor { traits in
+            traits.userInterfaceStyle == .dark ? UIColor(Color(hex: dark)) : UIColor(Color(hex: light))
+        })
+    }
+
+    static let neonGreen = Color(hex: "00FF66")
+    static let neonOrange = Color(hex: "FF3300")
+    static let ironAccent = neonGreen
+    static let ironDanger = neonOrange
+
+    static let ironBackground = dynamic(light: "F2F4F8", dark: "090C10")
+    static let ironCard = dynamic(light: "FFFFFF", dark: "131822")
+    // light-mode border wasn't specified in the spec; reuse a neutral light-gray in the same family as ironBackground
+    static let ironBorder = dynamic(light: "E4E4E7", dark: "1F2838")
+    static let ironTextPrimary = dynamic(light: "0D1117", dark: "F2F4F8")
+}
+
+extension Font {
+    static var ironTitle: Font { .system(.title, design: .rounded).weight(.black) }
+
+    static func metricDisplay(_ style: Font.TextStyle = .largeTitle) -> Font {
+        .system(style, design: .rounded).weight(.black).monospacedDigit()
+    }
+}
+
+enum HapticFeedback {
+    static func setCompleted() {
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+    }
+
+    static func restFinished() {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+    }
 }
 
 struct IronCardModifier: ViewModifier {
-    @Environment(\.colorScheme) private var colorScheme
-
     func body(content: Content) -> some View {
         content
             .padding(16)
-            .background(colorScheme == .dark ? Color.ironSurface : .white)
+            .background(Color.ironCard)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .overlay {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .stroke(colorScheme == .dark ? Color.ironBorder : Color.ironLightBorder, lineWidth: 1)
+                    .stroke(Color.ironBorder, lineWidth: 1)
             }
     }
 }
@@ -74,8 +98,8 @@ extension View {
         modifier(IronCardModifier())
     }
 
-    func redGlow(active: Bool = true) -> some View {
-        shadow(color: active ? Color.ironPrimary.opacity(0.38) : .clear, radius: active ? 18 : 0, x: 0, y: 0)
+    func neonGlow(color: Color = .ironAccent, active: Bool = true) -> some View {
+        shadow(color: active ? color.opacity(0.3) : .clear, radius: active ? 6 : 0)
     }
 }
 
@@ -83,11 +107,12 @@ struct PrimarySportButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.system(.headline, design: .rounded).weight(.black))
-            .foregroundStyle(.white)
+            // dark text reads better than white on a bright neon-green fill
+            .foregroundStyle(Color.ironBackground)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 14)
-            .background(Color.ironPrimary.opacity(configuration.isPressed ? 0.72 : 1))
+            .background(Color.ironAccent.opacity(configuration.isPressed ? 0.72 : 1))
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-            .redGlow(active: !configuration.isPressed)
+            .neonGlow(active: !configuration.isPressed)
     }
 }
