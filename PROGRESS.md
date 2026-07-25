@@ -134,6 +134,36 @@ grep). Era el punto 4 que ya estaba anotado como pendiente.
   ejercicios con thumbnail cargando de free-exercise-db, busqueda en vivo
   ("sentadilla" filtra correctamente incluidas las que tenian null antes).
 
+## Dos bugs post-navegacion: import de Salud y tocar un ejercicio
+
+Reportados por el usuario despues de probar la app: el boton "Importar
+datos de Salud" no hacia nada, y tocar una fila de `ExerciseListView`
+tampoco.
+
+- **Import de Salud**: el proyecto nunca tuvo la entitlement de HealthKit
+  ni las claves `NSHealthShareUsageDescription`/`NSHealthUpdateUsageDescription`
+  en Info.plist — ninguna de las dos existia desde el commit original.
+  Sin la entitlement + esas claves, `HKHealthStore.requestAuthorization`
+  no muestra ningun error observable (no crashea con esta config del SDK,
+  simplemente no hace nada). Se agrego
+  `IronPulse/IronPulse.entitlements` (`com.apple.developer.healthkit`) y
+  las dos claves `INFOPLIST_KEY_NSHealth*UsageDescription` en el
+  `project.pbxproj` (Debug y Release). Verificado en simulador: ahora el
+  sistema muestra la hoja real de "Health Access", se puede dar permiso, y
+  el import corre (en el simulador da "No data available for the
+  specified predicate" porque no hay datos de Salud cargados ahi, eso es
+  esperado, no un bug).
+- **Tocar un ejercicio**: `ExerciseListView` nunca envolvia las filas en un
+  `NavigationLink` — se agrego, con una `ExerciseDetailView` nueva (imagen
+  grande via `GIFImageView`, musculos secundarios, instrucciones
+  numeradas).
+- Nota de debugging: `print()` no aparece en `xcrun simctl spawn log
+  show/stream` en este simulador (se confirmo con un boton que **si**
+  funciona — `print()` nunca aparecio en el log a pesar de que la accion
+  se ejecutaba). Para verificar que un tap realmente llega a un control,
+  la senal confiable es la linea `(UIKitCore) send control actions` en
+  `log stream`, no los prints de la app.
+
 ## Siguientes pasos (Fase 3 en adelante)
 
 1. **Fase 3 — `WorkoutGeneratorService`**: reemplaza `AIRoutineGenerator`.
