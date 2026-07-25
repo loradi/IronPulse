@@ -7,6 +7,7 @@ private struct ExerciseSeedDTO: Codable {
     let muscleGroup: MuscleGroup
     let secondaryMuscles: [MuscleGroup]
     let equipment: EquipmentType
+    let isCompound: Bool
     let instructions: [String]
     let gifFileName: String
     let gifRemoteURLString: String?
@@ -18,6 +19,7 @@ private struct ExerciseSeedDTO: Codable {
             muscleGroup: muscleGroup,
             secondaryMuscles: secondaryMuscles,
             equipment: equipment,
+            isCompound: isCompound,
             instructions: instructions,
             gifFileName: gifFileName,
             gifRemoteURLString: gifRemoteURLString,

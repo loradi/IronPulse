@@ -15,7 +15,8 @@
       "Empuja hacia arriba sin bloquear los codos por completo."
     ],
     "gifFileName": "ex_pecho_press_plano_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Bench_Press_-_Medium_Grip/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Bench_Press_-_Medium_Grip/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_002_press_inclinado_barra",
@@ -33,7 +34,8 @@
       "Empuja hacia arriba y hacia atras sin bloquear los codos."
     ],
     "gifFileName": "ex_pecho_press_inclinado_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Bench_Press_-_Medium_Grip/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Bench_Press_-_Medium_Grip/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_003_press_declinado_barra",
@@ -50,7 +52,8 @@
       "Empuja hacia arriba de forma controlada sin bloquear los codos."
     ],
     "gifFileName": "ex_pecho_press_declinado_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Barbell_Bench_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Barbell_Bench_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_004_press_plano_mancuernas",
@@ -68,7 +71,8 @@
       "Manten el core firme durante todo el movimiento."
     ],
     "gifFileName": "ex_pecho_press_plano_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bench_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bench_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_005_press_inclinado_mancuernas",
@@ -86,7 +90,8 @@
       "Evita arquear excesivamente la espalda baja."
     ],
     "gifFileName": "ex_pecho_press_inclinado_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_006_press_declinado_mancuernas",
@@ -103,7 +108,8 @@
       "Baja lentamente hasta la posicion inicial."
     ],
     "gifFileName": "ex_pecho_press_declinado_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Bench_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Bench_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_007_press_mancuerna_un_brazo",
@@ -121,7 +127,8 @@
       "Baja controladamente y repite antes de cambiar de brazo."
     ],
     "gifFileName": "ex_pecho_press_mancuerna_un_brazo.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One_Arm_Dumbbell_Bench_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One_Arm_Dumbbell_Bench_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_008_aperturas_mancuernas_plano",
@@ -138,7 +145,8 @@
       "Junta las mancuernas de nuevo arriba en un movimiento de arco."
     ],
     "gifFileName": "ex_pecho_aperturas_mancuernas_plano.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Flyes/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Flyes/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_009_aperturas_inclinadas_mancuernas",
@@ -155,7 +163,8 @@
       "Sube las mancuernas juntandolas en un movimiento de arco."
     ],
     "gifFileName": "ex_pecho_aperturas_inclinadas_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Flyes/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Flyes/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_010_aperturas_declinadas_mancuernas",
@@ -172,7 +181,8 @@
       "Sube las mancuernas juntandolas en un movimiento controlado."
     ],
     "gifFileName": "ex_pecho_aperturas_declinadas_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Flyes/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Flyes/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_011_cruces_poleas_altas",
@@ -189,7 +199,8 @@
       "Regresa controladamente a la posicion inicial sin perder la tension."
     ],
     "gifFileName": "ex_pecho_cruces_poleas_altas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Crossover/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Crossover/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_012_cruces_poleas_bajas",
@@ -206,7 +217,8 @@
       "Regresa lentamente a la posicion inicial controlando el peso."
     ],
     "gifFileName": "ex_pecho_cruces_poleas_bajas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Low_Cable_Crossover/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Low_Cable_Crossover/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_013_aperturas_polea_inclinada",
@@ -223,7 +235,8 @@
       "Baja controladamente hasta sentir el estiramiento en el pecho."
     ],
     "gifFileName": "ex_pecho_aperturas_polea_inclinada.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Cable_Flye/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Cable_Flye/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_014_aperturas_polea_plano",
@@ -240,7 +253,8 @@
       "Junta las manos de nuevo en un movimiento de arco controlado."
     ],
     "gifFileName": "ex_pecho_aperturas_polea_plano.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Flat_Bench_Cable_Flyes/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Flat_Bench_Cable_Flyes/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_015_press_pecho_maquina",
@@ -258,7 +272,8 @@
       "Regresa controladamente a la posicion inicial."
     ],
     "gifFileName": "ex_pecho_press_pecho_maquina.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bench_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bench_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_016_press_pecho_polea_de_pie",
@@ -276,7 +291,8 @@
       "Regresa controladamente sin dejar que el cable te jale hacia atras."
     ],
     "gifFileName": "ex_pecho_press_pecho_polea_de_pie.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Cable_Chest_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Cable_Chest_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_017_press_banca_smith_plano",
@@ -293,7 +309,8 @@
       "Empuja hacia arriba sin bloquear los codos por completo."
     ],
     "gifFileName": "ex_pecho_press_banca_smith_plano.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Bench_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Bench_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_018_press_banca_smith_inclinado",
@@ -311,7 +328,8 @@
       "Empuja hacia arriba sin bloquear los codos por completo."
     ],
     "gifFileName": "ex_pecho_press_banca_smith_inclinado.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Incline_Bench_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Incline_Bench_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_019_fondos_paralelas",
@@ -329,7 +347,8 @@
       "Empuja hacia arriba hasta extender los brazos por completo."
     ],
     "gifFileName": "ex_pecho_fondos_paralelas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Parallel_Bar_Dip/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Parallel_Bar_Dip/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_020_fondos_banco",
@@ -346,7 +365,8 @@
       "Empuja hacia arriba hasta extender los brazos sin bloquear los codos."
     ],
     "gifFileName": "ex_pecho_fondos_banco.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_021_flexiones_pecho",
@@ -364,7 +384,8 @@
       "Empuja hacia arriba hasta extender los brazos por completo."
     ],
     "gifFileName": "ex_pecho_flexiones_pecho.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_022_flexiones_inclinadas",
@@ -382,7 +403,8 @@
       "Empuja hacia arriba hasta extender los brazos por completo."
     ],
     "gifFileName": "ex_pecho_flexiones_inclinadas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Push-Up/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Push-Up/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_023_dominadas_pronadas",
@@ -400,7 +422,8 @@
       "Baja de forma controlada hasta la extension completa de los brazos."
     ],
     "gifFileName": "ex_espalda_dominadas_pronadas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_024_dominadas_supinadas",
@@ -417,7 +440,8 @@
       "Desciende con control hasta estirar completamente los brazos."
     ],
     "gifFileName": "ex_espalda_dominadas_supinadas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chin-Up/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chin-Up/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_025_dominadas_asistidas_banda",
@@ -435,7 +459,8 @@
       "Baja lentamente controlando el descenso."
     ],
     "gifFileName": "ex_espalda_dominadas_asistidas_banda.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Band_Assisted_Pull-Up/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Band_Assisted_Pull-Up/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_026_remo_barra_inclinado",
@@ -453,7 +478,8 @@
       "Baja la barra de forma controlada sin perder la postura de la espalda."
     ],
     "gifFileName": "ex_espalda_remo_barra_inclinado.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Barbell_Row/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Barbell_Row/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_027_remo_sentado_polea",
@@ -470,7 +496,8 @@
       "Regresa lentamente sin redondear la espalda baja."
     ],
     "gifFileName": "ex_espalda_remo_sentado_polea.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Cable_Rows/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Cable_Rows/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_028_jalon_pecho_agarre_ancho",
@@ -488,7 +515,8 @@
       "Sube la barra con control hasta extender los brazos."
     ],
     "gifFileName": "ex_espalda_jalon_pecho_agarre_ancho.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_029_jalon_pecho_agarre_cerrado",
@@ -505,7 +533,8 @@
       "Regresa de forma controlada hasta la extension completa."
     ],
     "gifFileName": "ex_espalda_jalon_pecho_agarre_cerrado.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Front_Lat_Pulldown/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Front_Lat_Pulldown/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_030_remo_mancuerna_un_brazo",
@@ -523,7 +552,8 @@
       "Baja con control hasta extender el brazo por completo."
     ],
     "gifFileName": "ex_espalda_remo_mancuerna_un_brazo.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Dumbbell_Row/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Dumbbell_Row/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_031_peso_muerto_convencional",
@@ -541,7 +571,8 @@
       "Extiende caderas y rodillas hasta quedar completamente erguido."
     ],
     "gifFileName": "ex_espalda_peso_muerto_convencional.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Deadlift/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Deadlift/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_032_peso_muerto_rumano",
@@ -559,7 +590,8 @@
       "Vuelve a la posicion inicial extendiendo la cadera."
     ],
     "gifFileName": "ex_espalda_peso_muerto_rumano.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_033_remo_posterior_polea_cuerda",
@@ -576,7 +608,8 @@
       "Regresa lentamente controlando la tension del cable."
     ],
     "gifFileName": "ex_espalda_remo_posterior_polea_cuerda.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rope_Rear-Delt_Rows/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rope_Rear-Delt_Rows/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_034_pullover_mancuerna",
@@ -594,7 +627,8 @@
       "Regresa la mancuerna a la posicion inicial contrayendo el dorsal."
     ],
     "gifFileName": "ex_espalda_pullover_mancuerna.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent-Arm_Dumbbell_Pullover/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent-Arm_Dumbbell_Pullover/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_035_remo_t_tumbado",
@@ -611,7 +645,8 @@
       "Baja el peso con control hasta la extension completa."
     ],
     "gifFileName": "ex_espalda_remo_t_tumbado.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_T-Bar_Row/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_T-Bar_Row/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_036_remo_t_manija",
@@ -629,7 +664,8 @@
       "Baja el peso de forma controlada sin redondear la espalda."
     ],
     "gifFileName": "ex_espalda_remo_t_manija.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/T-Bar_Row_with_Handle/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/T-Bar_Row_with_Handle/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_037_encogimientos_barra",
@@ -646,7 +682,8 @@
       "Baja los hombros con control hasta la posicion inicial."
     ],
     "gifFileName": "ex_espalda_encogimientos_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shrug/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shrug/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_038_hiperextensiones_lumbares",
@@ -664,7 +701,8 @@
       "Evita hiperextender la zona lumbar en la parte superior del movimiento."
     ],
     "gifFileName": "ex_espalda_hiperextensiones_lumbares.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hyperextensions_Back_Extensions/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hyperextensions_Back_Extensions/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_039_remo_invertido",
@@ -682,7 +720,8 @@
       "Baja con control hasta extender completamente los brazos."
     ],
     "gifFileName": "ex_espalda_remo_invertido.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inverted_Row/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inverted_Row/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_040_jalon_brazos_rectos_polea",
@@ -699,7 +738,8 @@
       "Regresa la barra lentamente a la posicion inicial."
     ],
     "gifFileName": "ex_espalda_jalon_brazos_rectos_polea.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight-Arm_Pulldown/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight-Arm_Pulldown/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_041_remo_kettlebell_un_brazo",
@@ -717,7 +757,8 @@
       "Baja con control hasta estirar el brazo por completo."
     ],
     "gifFileName": "ex_espalda_remo_kettlebell_un_brazo.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Kettlebell_Row/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Kettlebell_Row/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_042_superman",
@@ -735,7 +776,8 @@
       "Mantén la posicion un segundo y baja con control."
     ],
     "gifFileName": "ex_espalda_superman.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Superman/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Superman/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_043_peso_muerto_sumo",
@@ -753,7 +795,8 @@
       "Extiende caderas y rodillas hasta quedar completamente erguido."
     ],
     "gifFileName": "ex_espalda_peso_muerto_sumo.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sumo_Deadlift/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sumo_Deadlift/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_044_remo_alto_maquina_palanca",
@@ -770,7 +813,8 @@
       "Regresa el peso de forma controlada hasta la extension completa."
     ],
     "gifFileName": "ex_espalda_remo_alto_maquina_palanca.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_High_Row/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_High_Row/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_045_face_pull_polea",
@@ -787,7 +831,8 @@
       "Regresa con control a la posicion inicial."
     ],
     "gifFileName": "ex_espalda_face_pull_polea.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Face_Pull/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Face_Pull/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_046_remo_arrodillado_polea_alta",
@@ -804,7 +849,8 @@
       "Extiende los brazos con control para regresar a la posicion inicial."
     ],
     "gifFileName": "ex_espalda_remo_arrodillado_polea_alta.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kneeling_High_Pulley_Row/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kneeling_High_Pulley_Row/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_047_jalon_tras_nuca_agarre_ancho",
@@ -822,7 +868,8 @@
       "Sube la barra con control hasta extender los brazos por completo."
     ],
     "gifFileName": "ex_espalda_jalon_tras_nuca_agarre_ancho.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Pulldown_Behind_The_Neck/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Pulldown_Behind_The_Neck/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_048_sentadilla_trasera_con_barra",
@@ -839,7 +886,8 @@
       "Empuja el suelo con los talones para volver a la posicion inicial."
     ],
     "gifFileName": "ex_piernas_sentadilla_trasera_con_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Squat/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Squat/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_049_sentadilla_frontal_con_barra",
@@ -856,7 +904,8 @@
       "Sube empujando con fuerza a traves de los talones."
     ],
     "gifFileName": "ex_piernas_sentadilla_frontal_con_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Barbell_Squat/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Barbell_Squat/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_050_prensa_de_piernas_45_grados",
@@ -873,7 +922,8 @@
       "Empuja la plataforma sin bloquear por completo las rodillas."
     ],
     "gifFileName": "ex_piernas_prensa_de_piernas_45_grados.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_051_peso_muerto_rumano_con_barra",
@@ -890,7 +940,8 @@
       "Vuelve a la posicion inicial contrayendo los gluteos."
     ],
     "gifFileName": "ex_piernas_peso_muerto_rumano_con_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_052_peso_muerto_rumano_con_mancuernas",
@@ -907,7 +958,8 @@
       "Regresa extendiendo la cadera y apretando los gluteos."
     ],
     "gifFileName": "ex_piernas_peso_muerto_rumano_con_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stiff-Legged_Dumbbell_Deadlift/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stiff-Legged_Dumbbell_Deadlift/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_053_zancadas_caminando_con_mancuernas",
@@ -924,7 +976,8 @@
       "Alterna las piernas manteniendo el torso erguido durante todo el recorrido."
     ],
     "gifFileName": "ex_piernas_zancadas_caminando_con_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_054_extension_de_piernas_en_maquina",
@@ -939,7 +992,8 @@
       "Baja el peso de forma controlada sin dejarlo caer."
     ],
     "gifFileName": "ex_piernas_extension_de_piernas_en_maquina.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_055_curl_femoral_tumbado",
@@ -956,7 +1010,8 @@
       "Baja controladamente hasta extender por completo las piernas."
     ],
     "gifFileName": "ex_piernas_curl_femoral_tumbado.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_056_curl_femoral_sentado",
@@ -973,7 +1028,8 @@
       "Regresa lentamente a la posicion inicial sin soltar el peso."
     ],
     "gifFileName": "ex_piernas_curl_femoral_sentado.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Leg_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Leg_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_057_sentadilla_bulgara_con_mancuernas",
@@ -990,7 +1046,8 @@
       "Empuja hacia arriba para volver a la posicion inicial."
     ],
     "gifFileName": "ex_piernas_sentadilla_bulgara_con_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Split_Squat_with_Dumbbells/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Split_Squat_with_Dumbbells/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_058_sentadilla_sissy",
@@ -1007,7 +1064,8 @@
       "Sube contrayendo el cuadriceps hasta la posicion inicial."
     ],
     "gifFileName": "ex_piernas_sentadilla_sissy.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Weighted_Sissy_Squat/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Weighted_Sissy_Squat/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_059_zancada_con_barra",
@@ -1024,7 +1082,8 @@
       "Alterna las piernas manteniendo el torso estable."
     ],
     "gifFileName": "ex_piernas_zancada_con_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Lunge/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Lunge/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_060_sentadilla_goblet_con_mancuerna",
@@ -1041,7 +1100,8 @@
       "Empuja el suelo con los pies para volver a la posicion inicial."
     ],
     "gifFileName": "ex_piernas_sentadilla_goblet_con_mancuerna.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Goblet_Squat/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Goblet_Squat/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_061_step_up_con_mancuernas",
@@ -1058,7 +1118,8 @@
       "Baja controladamente y repite alternando la pierna guia."
     ],
     "gifFileName": "ex_piernas_step_up_con_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Step_Ups/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Step_Ups/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_062_sentadilla_hack_en_maquina",
@@ -1075,7 +1136,8 @@
       "Empuja a traves de los talones para regresar a la posicion inicial."
     ],
     "gifFileName": "ex_piernas_sentadilla_hack_en_maquina.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hack_Squat/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hack_Squat/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_063_sentadilla_en_maquina_smith",
@@ -1092,7 +1154,8 @@
       "Empuja con los talones para volver a la posicion inicial."
     ],
     "gifFileName": "ex_piernas_sentadilla_en_maquina_smith.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Squat/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Squat/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_064_peso_muerto_sumo_con_barra",
@@ -1110,7 +1173,8 @@
       "Baja la barra controladamente hasta el suelo repitiendo el movimiento."
     ],
     "gifFileName": "ex_piernas_peso_muerto_sumo_con_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sumo_Deadlift/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sumo_Deadlift/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_065_elevacion_de_talones_de_pie",
@@ -1127,7 +1191,8 @@
       "Baja de forma controlada y repite el movimiento."
     ],
     "gifFileName": "ex_piernas_elevacion_de_talones_de_pie.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_066_elevacion_de_talones_sentado",
@@ -1144,7 +1209,8 @@
       "Repite el movimiento de forma controlada."
     ],
     "gifFileName": "ex_piernas_elevacion_de_talones_sentado.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_067_elevacion_de_talones_en_prensa_de_piernas",
@@ -1161,7 +1227,8 @@
       "Regresa controladamente flexionando el tobillo para estirar la pantorrilla."
     ],
     "gifFileName": "ex_piernas_elevacion_de_talones_en_prensa_de_piernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Calf_Press_On_The_Leg_Press_Machine/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Calf_Press_On_The_Leg_Press_Machine/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_068_empuje_de_cadera_con_barra",
@@ -1178,7 +1245,8 @@
       "Baja controladamente sin tocar el suelo con la cadera."
     ],
     "gifFileName": "ex_piernas_empuje_de_cadera_con_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_069_puente_de_gluteos_con_barra",
@@ -1195,7 +1263,8 @@
       "Baja lentamente sin dejar caer la cadera al suelo."
     ],
     "gifFileName": "ex_piernas_puente_de_gluteos_con_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Glute_Bridge/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Glute_Bridge/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_070_puente_de_gluteos_a_una_pierna",
@@ -1212,7 +1281,8 @@
       "Baja controladamente y completa las repeticiones antes de cambiar de lado."
     ],
     "gifFileName": "ex_piernas_puente_de_gluteos_a_una_pierna.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single_Leg_Glute_Bridge/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single_Leg_Glute_Bridge/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_071_patada_de_gluteo_en_polea",
@@ -1229,7 +1299,8 @@
       "Regresa controladamente a la posicion inicial sin balancear el cuerpo."
     ],
     "gifFileName": "ex_piernas_patada_de_gluteo_en_polea.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Legged_Cable_Kickback/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Legged_Cable_Kickback/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_072_abduccion_de_cadera_en_maquina",
@@ -1246,7 +1317,8 @@
       "Regresa controladamente a la posicion inicial sin soltar el peso."
     ],
     "gifFileName": "ex_piernas_abduccion_de_cadera_en_maquina.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Thigh_Abductor/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Thigh_Abductor/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_073_aduccion_de_cadera_en_polea",
@@ -1263,7 +1335,8 @@
       "Regresa controladamente a la posicion inicial."
     ],
     "gifFileName": "ex_piernas_aduccion_de_cadera_en_polea.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Hip_Adduction/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Hip_Adduction/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_074_elevacion_de_cadera_en_maquina_smith",
@@ -1280,7 +1353,8 @@
       "Baja controladamente sin perder la tension en los gluteos."
     ],
     "gifFileName": "ex_piernas_elevacion_de_cadera_en_maquina_smith.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Hip_Raise/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Hip_Raise/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_075_hiperextension_gluteo_isquiotibial",
@@ -1297,7 +1371,8 @@
       "Baja controladamente repitiendo el movimiento."
     ],
     "gifFileName": "ex_piernas_hiperextension_gluteo_isquiotibial.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Ham_Raise/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Ham_Raise/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_076_sentadilla_sumo_con_mancuerna",
@@ -1314,7 +1389,8 @@
       "Empuja el suelo con los pies contrayendo los gluteos para subir."
     ],
     "gifFileName": "ex_piernas_sentadilla_sumo_con_mancuerna.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plie_Dumbbell_Squat/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plie_Dumbbell_Squat/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_077_peso_muerto_a_una_pierna_con_mancuerna",
@@ -1332,7 +1408,8 @@
       "Regresa contrayendo el gluteo de la pierna de apoyo hasta quedar erguido."
     ],
     "gifFileName": "ex_piernas_peso_muerto_a_una_pierna_con_mancuerna.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kettlebell_One-Legged_Deadlift/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kettlebell_One-Legged_Deadlift/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_078_press_militar_barra",
@@ -1350,7 +1427,8 @@
       "Baja la barra de forma controlada hasta la posicion inicial."
     ],
     "gifFileName": "ex_hombros_press_militar_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shoulder_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shoulder_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_079_press_militar_sentado_barra",
@@ -1367,7 +1445,8 @@
       "Desciende la barra de forma controlada hasta el punto de partida."
     ],
     "gifFileName": "ex_hombros_press_militar_sentado_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Barbell_Military_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Barbell_Military_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_080_press_hombros_mancuernas",
@@ -1384,7 +1463,8 @@
       "Baja lentamente hasta la posicion inicial."
     ],
     "gifFileName": "ex_hombros_press_hombros_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shoulder_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shoulder_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_081_press_arnold",
@@ -1402,7 +1482,8 @@
       "Invierte el movimiento rotando las munecas al bajar."
     ],
     "gifFileName": "ex_hombros_press_arnold.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arnold_Dumbbell_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arnold_Dumbbell_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_082_press_hombros_sentado_mancuernas",
@@ -1419,7 +1500,8 @@
       "Baja de forma controlada hasta la posicion inicial."
     ],
     "gifFileName": "ex_hombros_press_hombros_sentado_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Dumbbell_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Dumbbell_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_083_press_hombros_maquina",
@@ -1436,7 +1518,8 @@
       "Regresa a la posicion inicial de forma controlada."
     ],
     "gifFileName": "ex_hombros_press_hombros_maquina.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_084_press_hombros_polea",
@@ -1453,7 +1536,8 @@
       "Baja controladamente hasta la posicion inicial."
     ],
     "gifFileName": "ex_hombros_press_hombros_polea.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Shoulder_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Shoulder_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_085_elevaciones_laterales_mancuernas",
@@ -1468,7 +1552,8 @@
       "Baja lentamente hasta la posicion inicial."
     ],
     "gifFileName": "ex_hombros_elevaciones_laterales_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_086_elevaciones_laterales_polea",
@@ -1483,7 +1568,8 @@
       "Regresa lentamente a la posicion inicial."
     ],
     "gifFileName": "ex_hombros_elevaciones_laterales_polea.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Seated_Lateral_Raise/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Seated_Lateral_Raise/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_087_elevaciones_frontales_mancuernas",
@@ -1500,7 +1586,8 @@
       "Baja las mancuernas de forma controlada."
     ],
     "gifFileName": "ex_hombros_elevaciones_frontales_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Dumbbell_Raise/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Dumbbell_Raise/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_088_elevaciones_frontales_polea",
@@ -1515,7 +1602,8 @@
       "Regresa lentamente a la posicion inicial."
     ],
     "gifFileName": "ex_hombros_elevaciones_frontales_polea.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Cable_Raise/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Cable_Raise/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_089_aperturas_posteriores_mancuernas",
@@ -1532,7 +1620,8 @@
       "Baja las mancuernas de forma controlada."
     ],
     "gifFileName": "ex_hombros_aperturas_posteriores_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Bent-Over_Rear_Delt_Raise/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Bent-Over_Rear_Delt_Raise/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_090_aperturas_posteriores_polea",
@@ -1549,7 +1638,8 @@
       "Regresa lentamente a la posicion inicial."
     ],
     "gifFileName": "ex_hombros_aperturas_posteriores_polea.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rear_Delt_Fly/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rear_Delt_Fly/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_091_aperturas_posteriores_maquina",
@@ -1566,7 +1656,8 @@
       "Regresa de forma controlada a la posicion inicial."
     ],
     "gifFileName": "ex_hombros_aperturas_posteriores_maquina.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Machine_Flyes/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Machine_Flyes/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_092_face_pull_polea",
@@ -1583,7 +1674,8 @@
       "Regresa lentamente a la posicion inicial."
     ],
     "gifFileName": "ex_hombros_face_pull_polea.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Face_Pull/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Face_Pull/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_093_remo_menton_barra",
@@ -1600,7 +1692,8 @@
       "Baja la barra de forma controlada hasta la posicion inicial."
     ],
     "gifFileName": "ex_hombros_remo_menton_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Upright_Barbell_Row/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Upright_Barbell_Row/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_094_remo_menton_mancuernas",
@@ -1617,7 +1710,8 @@
       "Baja de forma controlada hasta la posicion inicial."
     ],
     "gifFileName": "ex_hombros_remo_menton_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Dumbbell_Upright_Row/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Dumbbell_Upright_Row/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_095_encogimientos_barra",
@@ -1634,7 +1728,8 @@
       "Baja los hombros de forma controlada hasta la posicion inicial."
     ],
     "gifFileName": "ex_hombros_encogimientos_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shrug/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shrug/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_096_encogimientos_mancuernas",
@@ -1651,7 +1746,8 @@
       "Baja los hombros de forma controlada."
     ],
     "gifFileName": "ex_hombros_encogimientos_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shrug/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shrug/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_097_press_cubano",
@@ -1668,7 +1764,8 @@
       "Invierte el movimiento en el mismo orden hasta la posicion inicial."
     ],
     "gifFileName": "ex_hombros_press_cubano.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cuban_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cuban_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_098_curl_barra_recta",
@@ -1685,7 +1782,8 @@
       "Baja de forma controlada hasta la extension completa."
     ],
     "gifFileName": "ex_biceps_barra_recta.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_099_curl_barra_z",
@@ -1702,7 +1800,8 @@
       "Desciende lentamente sin balancear el cuerpo."
     ],
     "gifFileName": "ex_biceps_barra_z.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/EZ-Bar_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/EZ-Bar_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_100_curl_alterno_mancuernas",
@@ -1720,7 +1819,8 @@
       "Alterna el brazo en cada repeticion."
     ],
     "gifFileName": "ex_biceps_alterno_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Alternate_Bicep_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Alternate_Bicep_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_101_curl_martillo_mancuernas",
@@ -1737,7 +1837,8 @@
       "Baja con control hasta la posicion inicial."
     ],
     "gifFileName": "ex_biceps_martillo_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hammer_Curls/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hammer_Curls/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_102_curl_predicador_barra_z",
@@ -1754,7 +1855,8 @@
       "Desciende lentamente controlando el estiramiento."
     ],
     "gifFileName": "ex_biceps_predicador_barra_z.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Preacher_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Preacher_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_103_curl_predicador_maquina",
@@ -1771,7 +1873,8 @@
       "Regresa de forma controlada sin soltar la tension."
     ],
     "gifFileName": "ex_biceps_predicador_maquina.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Preacher_Curls/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Preacher_Curls/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_104_curl_concentrado",
@@ -1788,7 +1891,8 @@
       "Baja lentamente estirando el biceps por completo."
     ],
     "gifFileName": "ex_biceps_concentrado.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Concentration_Curls/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Concentration_Curls/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_105_curl_polea_baja",
@@ -1805,7 +1909,8 @@
       "Extiende los brazos con control hasta la posicion inicial."
     ],
     "gifFileName": "ex_biceps_polea_baja.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Biceps_Cable_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Biceps_Cable_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_106_curl_inclinado_mancuernas",
@@ -1823,7 +1928,8 @@
       "Baja lentamente aprovechando el estiramiento del biceps."
     ],
     "gifFileName": "ex_biceps_inclinado_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_107_curl_arana",
@@ -1840,7 +1946,8 @@
       "Desciende de forma controlada hasta la extension total."
     ],
     "gifFileName": "ex_biceps_arana.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Spider_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Spider_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_108_curl_drag",
@@ -1857,7 +1964,8 @@
       "Baja la barra por la misma trayectoria de forma controlada."
     ],
     "gifFileName": "ex_biceps_drag.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Drag_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Drag_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_109_curl_martillo_cuerda_polea",
@@ -1874,7 +1982,8 @@
       "Regresa lentamente hasta extender los brazos."
     ],
     "gifFileName": "ex_biceps_martillo_cuerda_polea.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Hammer_Curls_-_Rope_Attachment/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Hammer_Curls_-_Rope_Attachment/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_110_curl_agarre_cerrado",
@@ -1891,7 +2000,8 @@
       "Baja de forma controlada sin balancear el torso."
     ],
     "gifFileName": "ex_biceps_agarre_cerrado.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Standing_Barbell_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Standing_Barbell_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_111_curl_zottman",
@@ -1908,7 +2018,8 @@
       "Baja las mancuernas con agarre prono de forma controlada."
     ],
     "gifFileName": "ex_biceps_zottman.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Zottman_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Zottman_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_112_curl_polea_alta",
@@ -1925,7 +2036,8 @@
       "Extiende los brazos con control regresando a la posicion inicial."
     ],
     "gifFileName": "ex_biceps_polea_alta.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/High_Cable_Curls/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/High_Cable_Curls/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_113_curl_inverso_barra",
@@ -1942,7 +2054,8 @@
       "Baja lentamente controlando el descenso de la barra."
     ],
     "gifFileName": "ex_biceps_inverso_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Barbell_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Barbell_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_114_curl_maquina",
@@ -1959,7 +2072,8 @@
       "Regresa de forma controlada sin soltar la tension."
     ],
     "gifFileName": "ex_biceps_maquina.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bicep_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bicep_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_115_curl_cruzado_martillo",
@@ -1976,7 +2090,8 @@
       "Alterna el brazo cruzando en cada repeticion."
     ],
     "gifFileName": "ex_biceps_cruzado_martillo.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cross_Body_Hammer_Curl/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cross_Body_Hammer_Curl/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_116_press_frances_barra_ez",
@@ -1990,7 +2105,8 @@
       "Extiende los codos para volver a la posicion inicial sin mover los hombros."
     ],
     "gifFileName": "ex_triceps_press_frances_barra_ez.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/EZ-Bar_Skullcrusher/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/EZ-Bar_Skullcrusher/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_117_pushdown_polea_cuerda",
@@ -2004,7 +2120,8 @@
       "Vuelve controladamente a la posicion inicial sin mover los codos hacia adelante."
     ],
     "gifFileName": "ex_triceps_pushdown_polea_cuerda.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_118_pushdown_polea_barra_recta",
@@ -2018,7 +2135,8 @@
       "Regresa lentamente sin dejar que los codos se despeguen del cuerpo."
     ],
     "gifFileName": "ex_triceps_pushdown_polea_barra_recta.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_119_fondos_banco",
@@ -2035,7 +2153,8 @@
       "Empuja con los triceps para subir hasta extender los codos por completo."
     ],
     "gifFileName": "ex_triceps_fondos_banco.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_120_extension_mancuernas_dos_manos_sobre_cabeza",
@@ -2051,7 +2170,8 @@
       "Extiende los brazos para volver a la posicion inicial sin abrir los codos."
     ],
     "gifFileName": "ex_triceps_extension_mancuernas_dos_manos_sobre_cabeza.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Dumbbell_Triceps_Extension/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Dumbbell_Triceps_Extension/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_121_patada_triceps_mancuerna",
@@ -2067,7 +2187,8 @@
       "Vuelve a flexionar el codo controlando el movimiento sin mover el hombro."
     ],
     "gifFileName": "ex_triceps_patada_triceps_mancuerna.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Tricep_Dumbbell_Kickback/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Tricep_Dumbbell_Kickback/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_122_press_banca_agarre_cerrado",
@@ -2084,7 +2205,8 @@
       "Empuja la barra hacia arriba extendiendo los brazos por completo."
     ],
     "gifFileName": "ex_triceps_press_banca_agarre_cerrado.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Barbell_Bench_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Barbell_Bench_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_123_flexiones_diamante",
@@ -2101,7 +2223,8 @@
       "Empuja con los brazos para volver a la posicion inicial manteniendo el core firme."
     ],
     "gifFileName": "ex_triceps_flexiones_diamante.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Push-Ups_-_Close_Triceps_Position/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Push-Ups_-_Close_Triceps_Position/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_124_fondos_maquina",
@@ -2118,7 +2241,8 @@
       "Regresa lentamente a la posicion inicial controlando el peso."
     ],
     "gifFileName": "ex_triceps_fondos_maquina.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dip_Machine/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dip_Machine/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_125_extension_polea_una_mano",
@@ -2132,7 +2256,8 @@
       "Vuelve a la posicion inicial de forma controlada sin mover el codo."
     ],
     "gifFileName": "ex_triceps_extension_polea_una_mano.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_One_Arm_Tricep_Extension/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_One_Arm_Tricep_Extension/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_126_press_frances_mancuernas",
@@ -2146,7 +2271,8 @@
       "Extiende los codos para volver a la posicion inicial manteniendo los brazos fijos."
     ],
     "gifFileName": "ex_triceps_press_frances_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Dumbbell_Tricep_Extension/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Dumbbell_Tricep_Extension/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_127_extension_mancuerna_una_mano_sobre_cabeza",
@@ -2162,7 +2288,8 @@
       "Extiende el codo para volver a la posicion inicial sin mover el hombro."
     ],
     "gifFileName": "ex_triceps_extension_mancuerna_una_mano_sobre_cabeza.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_One-Arm_Dumbbell_Triceps_Extension/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_One-Arm_Dumbbell_Triceps_Extension/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_128_extension_polea_cuerda_tras_nuca",
@@ -2178,7 +2305,8 @@
       "Regresa controladamente flexionando los codos sin mover los hombros."
     ],
     "gifFileName": "ex_triceps_extension_polea_cuerda_tras_nuca.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rope_Overhead_Triceps_Extension/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rope_Overhead_Triceps_Extension/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_129_fondos_paralelas",
@@ -2195,7 +2323,8 @@
       "Empuja hacia arriba extendiendo los codos hasta volver a la posicion inicial."
     ],
     "gifFileName": "ex_triceps_fondos_paralelas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dips_-_Triceps_Version/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dips_-_Triceps_Version/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_130_press_cerrado_mancuernas",
@@ -2211,7 +2340,8 @@
       "Empuja hacia arriba extendiendo los brazos hasta la posicion inicial."
     ],
     "gifFileName": "ex_triceps_press_cerrado_mancuernas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Dumbbell_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Dumbbell_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_131_extension_polea_inclinada",
@@ -2225,7 +2355,8 @@
       "Vuelve a la posicion inicial controlando el peso sin mover los hombros."
     ],
     "gifFileName": "ex_triceps_extension_polea_inclinada.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Incline_Triceps_Extension/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Incline_Triceps_Extension/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_132_press_jm",
@@ -2241,7 +2372,8 @@
       "Empuja la barra hacia arriba extendiendo los codos hasta la posicion inicial."
     ],
     "gifFileName": "ex_triceps_press_jm.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/JM_Press/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/JM_Press/0.jpg",
+    "isCompound": true
   },
   {
     "id": "ex_133_extension_triceps_maquina",
@@ -2255,7 +2387,8 @@
       "Regresa controladamente a la posicion inicial sin soltar la tension."
     ],
     "gifFileName": "ex_triceps_extension_triceps_maquina.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Triceps_Extension/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Triceps_Extension/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_134_crunch_polea_alta",
@@ -2270,7 +2403,8 @@
       "Vuelve controladamente a la posicion inicial sin perder la tension abdominal."
     ],
     "gifFileName": "ex_core_crunch_polea_alta.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Crunch/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Crunch/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_135_elevacion_piernas_colgado",
@@ -2288,7 +2422,8 @@
       "Mantén el core activado durante toda la repeticion."
     ],
     "gifFileName": "ex_core_elevacion_piernas_colgado.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hanging_Leg_Raise/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hanging_Leg_Raise/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_136_rollout_rueda_abdominal",
@@ -2305,7 +2440,8 @@
       "Contrae el abdomen para regresar a la posicion inicial."
     ],
     "gifFileName": "ex_core_rollout_rueda_abdominal.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Roller/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Roller/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_137_plancha_frontal",
@@ -2322,7 +2458,8 @@
       "No dejes que la espalda baja se hunda ni que la cadera suba en exceso."
     ],
     "gifFileName": "ex_core_plancha_frontal.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_138_giros_rusos",
@@ -2337,7 +2474,8 @@
       "Mantén los pies elevados para mayor dificultad si el nivel lo permite."
     ],
     "gifFileName": "ex_core_giros_rusos.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Russian_Twist/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Russian_Twist/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_139_lenador_polea",
@@ -2354,7 +2492,8 @@
       "Regresa controladamente y repite el mismo numero de veces al otro lado."
     ],
     "gifFileName": "ex_core_lenador_polea.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Cable_Wood_Chop/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Cable_Wood_Chop/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_140_vacio_abdominal",
@@ -2369,7 +2508,8 @@
       "Suelta poco a poco y repite varias veces."
     ],
     "gifFileName": "ex_core_vacio_abdominal.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stomach_Vacuum/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stomach_Vacuum/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_141_crunch_bicicleta",
@@ -2386,7 +2526,8 @@
       "Mantén la zona lumbar pegada al suelo durante todo el ejercicio."
     ],
     "gifFileName": "ex_core_crunch_bicicleta.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Air_Bike/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Air_Bike/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_142_abdominales_con_peso",
@@ -2401,7 +2542,8 @@
       "Desciende de forma controlada hasta la posicion inicial."
     ],
     "gifFileName": "ex_core_abdominales_con_peso.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Weighted_Crunches/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Weighted_Crunches/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_143_escaladores",
@@ -2419,7 +2561,8 @@
       "Mantén el core contraido durante todo el ejercicio."
     ],
     "gifFileName": "ex_core_escaladores.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Mountain_Climbers/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Mountain_Climbers/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_144_plancha_hueca",
@@ -2436,7 +2579,8 @@
       "Mantén la posicion isometrica sin dejar de respirar."
     ],
     "gifFileName": "ex_core_plancha_hueca.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cocoons/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cocoons/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_145_plancha_lateral",
@@ -2454,7 +2598,8 @@
       "Sostén el tiempo indicado y repite al lado contrario."
     ],
     "gifFileName": "ex_core_plancha_lateral.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Bridge/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Bridge/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_146_dead_bug",
@@ -2471,7 +2616,8 @@
       "Mantén la zona lumbar pegada al suelo durante todo el movimiento."
     ],
     "gifFileName": "ex_core_dead_bug.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dead_Bug/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dead_Bug/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_147_crunch_inverso",
@@ -2488,7 +2634,8 @@
       "Baja las piernas de forma controlada sin balancear el impulso."
     ],
     "gifFileName": "ex_core_crunch_inverso.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Crunch/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Crunch/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_148_crunch_maquina",
@@ -2503,7 +2650,8 @@
       "Regresa lentamente a la posicion inicial sin soltar la tension."
     ],
     "gifFileName": "ex_core_crunch_maquina.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_149_crunch_obliquo_declinado",
@@ -2520,7 +2668,8 @@
       "Alterna el lado en cada repeticion manteniendo el control."
     ],
     "gifFileName": "ex_core_crunch_obliquo_declinado.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Oblique_Crunch/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Oblique_Crunch/0.jpg",
+    "isCompound": false
   },
   {
     "id": "ex_150_abdominales_banco_declinado",
@@ -2537,6 +2686,7 @@
       "Desciende de forma controlada hasta la posicion inicial."
     ],
     "gifFileName": "ex_core_abdominales_banco_declinado.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Crunch/0.jpg"
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Crunch/0.jpg",
+    "isCompound": false
   }
 ]
