@@ -12,7 +12,13 @@ import SwiftData
 struct IronPulseApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            UserProfile.self,
+            HealthSnapshot.self,
+            WorkoutRoutine.self,
+            RoutineDay.self,
+            RoutineExercise.self,
+            WorkoutSession.self,
+            WorkoutLogSet.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
