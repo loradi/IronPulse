@@ -3,6 +3,7 @@ import SwiftData
 
 struct DashboardView: View {
     @Bindable var profile: UserProfile
+    let healthImporter: HealthKitProfileImporter
 
     var body: some View {
         ScrollView {
@@ -17,7 +18,25 @@ struct DashboardView: View {
             }
             .padding()
         }
+        .scrollContentBackground(.hidden)
+        .background(Color.ironBackground)
         .navigationTitle(profile.name)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                NavigationLink {
+                    ExerciseListView()
+                } label: {
+                    Label("Ejercicios", systemImage: "figure.strengthtraining.traditional")
+                }
+            }
+            ToolbarItem(placement: .primaryAction) {
+                NavigationLink {
+                    ProfileDetailView(profile: profile, healthImporter: healthImporter)
+                } label: {
+                    Label("Editar perfil", systemImage: "pencil.circle")
+                }
+            }
+        }
     }
 
     private var header: some View {

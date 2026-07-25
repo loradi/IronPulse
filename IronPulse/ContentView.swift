@@ -17,18 +17,22 @@ struct ContentView: View {
                             systemImage: "person.crop.circle.badge.plus",
                             description: Text("Crea un perfil para generar rutinas y registrar progreso.")
                         )
+                        .listRowBackground(Color.clear)
                     } else {
                         ForEach(profiles) { profile in
                             NavigationLink {
-                                ProfileDetailView(profile: profile, healthImporter: healthImporter)
+                                DashboardView(profile: profile, healthImporter: healthImporter)
                             } label: {
                                 ProfileRow(profile: profile)
                             }
+                            .listRowBackground(Color.ironCard)
                         }
                         .onDelete(perform: deleteProfiles)
                     }
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(Color.ironBackground)
             .navigationTitle("IronPulse")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -38,6 +42,7 @@ struct ContentView: View {
                 }
             }
         }
+        .tint(Color.ironAccent)
     }
 
     private func addProfile() {
@@ -72,13 +77,13 @@ private struct ProfileRow: View {
 
             Text("\(profile.experienceLevel.displayName) • \(profile.primaryGoal.displayName) • \(profile.workoutDaysPerWeek) dias/semana")
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Color.ironTextSecondary)
         }
         .padding(.vertical, 4)
     }
 }
 
-private struct ProfileDetailView: View {
+struct ProfileDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var profile: UserProfile
     let healthImporter: HealthKitProfileImporter

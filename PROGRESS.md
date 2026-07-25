@@ -99,6 +99,41 @@ firmas aparecieron los errores de los cuerpos.
 `Views/Exercises/ExerciseListView.swift` sigue usando `WgerExercise`/
 `WgerAPIService`; la Fase 4 decide si se borran.
 
+## Navegacion real + tema visible (post-recableado)
+
+El recableado de arriba solo arreglaba la compilacion; al correr la app se
+veia una lista de perfiles con estilo iOS de fabrica, sin ningun color neon
+y sin forma de llegar a ejercicios. Causa real: `ContentView` (root de
+`IronPulseApp.swift`) nunca aplicaba los tokens del tema, y `DashboardView`/
+`ActiveWorkoutView`/`ExerciseListView` estaban huerfanas — ni una tenia un
+solo `NavigationLink` real hacia ellas en todo el proyecto (confirmado con
+grep). Era el punto 4 que ya estaba anotado como pendiente.
+
+- `ContentView.swift`: la fila de perfil ahora navega a `DashboardView`
+  (antes iba directo al form de edicion). `ironBackground` de fondo,
+  `ironCard` en las filas, `.tint(.ironAccent)` en el `NavigationStack`
+  (tiene que ir ahi y no en el `List` interno, si no el toolbar no hereda
+  el tint). `ProfileDetailView` paso de `private` a `internal` para que
+  `DashboardView` la pueda referenciar desde su toolbar.
+- `DashboardView.swift`: toolbar con 2 botones — uno a `ExerciseListView`
+  (catalogo), otro a `ProfileDetailView` (editar perfil / import de Salud).
+- `ExerciseListView.swift` — **reescrita entera**: ya no llama a
+  `WgerAPIService`/wger.de, hace `@Query` directo sobre el catalogo local
+  `Exercise` (los 150 sembrados). El thumbnail usa `GIFImageView` (el
+  componente de la Fase 1) en vez de `AsyncImage` — reutiliza el decoder
+  frame-a-frame que ya soporta bundle local + remoto con cache, y funciona
+  igual de bien con las fotos JPG estaticas actuales que con GIFs reales el
+  dia que se reemplacen.
+- **Borrados** `Services/WgerAPIService.swift` y `DTOs/WgerModels.swift`:
+  quedaron sin un solo caller en todo el proyecto en cuanto
+  `ExerciseListView` dejo de usarlos — la pregunta que la Fase 2 dejaba
+  abierta ("se borran cuando el catalogo local este en uso") ya tiene
+  respuesta.
+- Verificado en simulador real (no solo build): perfil nuevo con card neon,
+  Dashboard con el glow verde y el placeholder de "Fase 3", los 150
+  ejercicios con thumbnail cargando de free-exercise-db, busqueda en vivo
+  ("sentadilla" filtra correctamente incluidas las que tenian null antes).
+
 ## Siguientes pasos (Fase 3 en adelante)
 
 1. **Fase 3 — `WorkoutGeneratorService`**: reemplaza `AIRoutineGenerator`.

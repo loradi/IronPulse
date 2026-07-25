@@ -1,73 +1,49 @@
 import SwiftUI
-import Combine
+import SwiftData
 
 struct ExerciseListView: View {
-    @StateObject private var vm = ExerciseListViewModel()
+    @Query(sort: \Exercise.name) private var exercises: [Exercise]
     @State private var searchText: String = ""
 
-    var body: some View {
-        NavigationStack {
-            List(vm.filteredExercises(search: searchText), id: \ .id) { exercise in
-                NavigationLink(value: exercise) {
-                    HStack(spacing: 12) {
-                        AsyncImage(url: exercise.imageURL) { phase in
-                            switch phase {
-                            case .empty:
-                                Color.ironBorder.frame(width: 72, height: 56).cornerRadius(8)
-                            case .success(let image):
-                                image.resizable().scaledToFill().frame(width: 72, height: 56).clipped().cornerRadius(8)
-                            case .failure:
-                                Color.gray.frame(width: 72, height: 56).cornerRadius(8)
-                            @unknown default:
-                                EmptyView()
-                            }
-                        }
+    private var filtered: [Exercise] {
+        guard !searchText.trimmingCharacters(in: .whitespaces).isEmpty else { return exercises }
+        let term = searchText.lowercased()
+        return exercises.filter { $0.name.lowercased().contains(term) }
+    }
 
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text(exercise.name).font(.headline)
-                            Text(exercise.cleanedDescription).font(.caption).lineLimit(2).foregroundStyle(Color.ironTextSecondary)
-                        }
-                    }
-                    .padding(.vertical, 8)
+    var body: some View {
+        List(filtered) { exercise in
+            HStack(spacing: 12) {
+                GIFImageView(
+                    localName: exercise.gifFileName,
+                    remoteURL: exercise.gifRemoteURLString.flatMap(URL.init(string:)),
+                    contentMode: .fill
+                )
+                .frame(width: 72, height: 56)
+                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(exercise.name).font(.headline)
+                    Text("\(exercise.muscleGroup.displayName) • \(exercise.equipment.displayName)")
+                        .font(.caption)
+                        .foregroundStyle(Color.ironTextSecondary)
                 }
             }
-            .navigationTitle("Ejercicios")
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
-            .refreshable {
-                await vm.reload()
-            }
-            .task {
-                await vm.reload()
-            }
+            .padding(.vertical, 8)
+            .listRowBackground(Color.ironCard)
         }
-    }
-}
-
-@MainActor
-final class ExerciseListViewModel: ObservableObject {
-    @Published private(set) var exercises: [WgerExercise] = []
-    private let service = WgerAPIService()
-
-    func reload() async {
-        do {
-            let items = try await service.fetchExercises()
-            self.exercises = items
-        } catch {
-            // Silently ignore for now; production should surface
-            print("Failed loading exercises: \(error)")
-        }
-    }
-
-    func filteredExercises(search: String) -> [WgerExercise] {
-        guard !search.trimmingCharacters(in: .whitespaces).isEmpty else { return exercises }
-        let term = search.lowercased()
-        return exercises.filter { $0.name.lowercased().contains(term) || $0.cleanedDescription.lowercased().contains(term) }
+        .scrollContentBackground(.hidden)
+        .background(Color.ironBackground)
+        .navigationTitle("Ejercicios")
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
     }
 }
 
 struct ExerciseListView_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseListView()
-            .preferredColorScheme(.dark)
+        NavigationStack {
+            ExerciseListView()
+        }
+        .preferredColorScheme(.dark)
     }
 }
