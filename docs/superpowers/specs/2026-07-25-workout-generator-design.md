@@ -51,6 +51,14 @@ varias aperturas.
     en maquina Smith` a compuesto (son movimientos de cadera
     multi-articulares que ningún keyword simple captura sin
     falsos positivos).
+  - El keyword `press` también hace falso positivo en sentido contrario:
+    matchea `"Press frances"` (nombre coloquial en español del skull
+    crusher), que es aislamiento de tríceps de una sola articulación
+    (codo) — el brazo superior queda fijo. `Press frances con barra EZ`
+    y `Press frances con mancuernas` se reclasifican manualmente a
+    aislamiento sobre el resultado del keyword matching.
+  - Resultado final tras todos los overrides manuales: 72 compuestos /
+    78 aislamiento sobre los 150 registros.
 - `Services/ExerciseDatabaseSeeder.swift` decodifica el campo nuevo.
 - Como es una propiedad no-opcional nueva en un `@Model` de SwiftData sin
   plan de migración, aplica el mismo workaround ya documentado en

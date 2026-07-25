@@ -2106,7 +2106,7 @@
     ],
     "gifFileName": "ex_triceps_press_frances_barra_ez.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/EZ-Bar_Skullcrusher/0.jpg",
-    "isCompound": true
+    "isCompound": false
   },
   {
     "id": "ex_117_pushdown_polea_cuerda",
@@ -2272,7 +2272,7 @@
     ],
     "gifFileName": "ex_triceps_press_frances_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Dumbbell_Tricep_Extension/0.jpg",
-    "isCompound": true
+    "isCompound": false
   },
   {
     "id": "ex_127_extension_mancuerna_una_mano_sobre_cabeza",

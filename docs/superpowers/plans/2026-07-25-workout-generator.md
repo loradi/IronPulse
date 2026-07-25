@@ -73,7 +73,7 @@ Y la asignación en el cuerpo del init, después de `self.equipment = equipment`
 
 - [ ] **Step 2: Clasificar los 150 ejercicios del JSON**
 
-Correr este script desde `/Users/diego/Documents/IRONPULSE/IronPulse`. Ya fue probado en seco contra el catálogo real: produce 74 compuestos / 76 aislamiento.
+Correr este script desde `/Users/diego/Documents/IRONPULSE/IronPulse`. Ya fue probado en seco contra el catálogo real: produce 72 compuestos / 78 aislamiento.
 
 ```bash
 python3 -c "
@@ -93,13 +93,24 @@ MANUAL_COMPOUND_OVERRIDES = {
     'ex_074_elevacion_de_cadera_en_maquina_smith',
 }
 
+# El keyword 'press' hace falso positivo en 'Press frances', nombre coloquial en
+# espanol del skull crusher: aislamiento de triceps de una sola articulacion (codo),
+# el brazo superior queda fijo. Gana sobre el match de keyword.
+MANUAL_ISOLATION_OVERRIDES = {
+    'ex_116_press_frances_barra_ez',
+    'ex_126_press_frances_mancuernas',
+}
+
 path = 'IronPulse/Resources/ExercisesSeed.json'
 with open(path) as f:
     data = json.load(f)
 
 for ex in data:
     name = strip_accents(ex['name'].lower())
-    ex['isCompound'] = any(kw in name for kw in COMPOUND_KEYWORDS) or ex['id'] in MANUAL_COMPOUND_OVERRIDES
+    if ex['id'] in MANUAL_ISOLATION_OVERRIDES:
+        ex['isCompound'] = False
+    else:
+        ex['isCompound'] = any(kw in name for kw in COMPOUND_KEYWORDS) or ex['id'] in MANUAL_COMPOUND_OVERRIDES
 
 with open(path, 'w') as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
@@ -110,7 +121,7 @@ print(f'Total: {len(data)}, compound: {compound}, isolation: {len(data) - compou
 "
 ```
 
-Esperado: `Total: 150, compound: 74, isolation: 76`
+Esperado: `Total: 150, compound: 72, isolation: 78`
 
 - [ ] **Step 3: Verificar la clasificación con casos conocidos**
 
@@ -164,7 +175,7 @@ DB=$(find ~/Library/Developer/CoreSimulator/Devices/$D/data/Containers/Data/Appl
 sqlite3 "$DB" "select count(*) from ZEXERCISE;"
 sqlite3 "$DB" "select count(*) from ZEXERCISE where ZISCOMPOUND = 1;"
 ```
-Esperado: `150` y `74`.
+Esperado: `150` y `72`.
 
 - [ ] **Step 6: Commit**
 
