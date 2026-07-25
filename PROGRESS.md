@@ -164,38 +164,145 @@ tampoco.
   la senal confiable es la linea `(UIKitCore) send control actions` en
   `log stream`, no los prints de la app.
 
-## Siguientes pasos (Fase 3 en adelante)
+## Fase 3 EN CURSO — generador de rutinas (inteligente + manual)
 
-1. **Fase 3 — `WorkoutGeneratorService`**: reemplaza `AIRoutineGenerator`.
-   Logica local (sin red) que arma splits (Full Body / Upper-Lower / PPL)
-   segun `workoutDaysPerWeek`, seleccionando `Exercise` reales del catalogo
-   sembrado (compuestos primero, aislamiento despues, core al final), y
-   aplica reglas de series/reps/descanso segun `primaryGoal`.
-2. **Fase 4 — Biblioteca de ejercicios UI**: buscador + filtros por
-   `MuscleGroup`/`EquipmentType` sobre el catalogo `Exercise` real (ya no
-   `WgerAPIService`), vista de detalle con `GIFImageView`. Esto es tambien
-   cuando conviene decidir si `WgerAPIService`/`WgerModels.swift` se borran
-   del todo (ya no deberian ser necesarios una vez el catalogo local este
-   en uso).
-3. **Fase 5 — Modo entrenamiento activo**: `ActiveWorkoutView` ya esta
+Se esta ejecutando con el flujo Subagent-Driven Development de superpowers:
+un subagente implementador por tarea, un reviewer despues de cada una, y un
+review final de toda la rama al terminar.
+
+**Documentos que gobiernan esta fase (leer estos primero al retomar):**
+
+| Que | Ruta |
+|---|---|
+| Spec de diseno (el "que" y el "por que") | `docs/superpowers/specs/2026-07-25-workout-generator-design.md` |
+| Plan de implementacion (6 tareas con codigo completo y comandos) | `docs/superpowers/plans/2026-07-25-workout-generator.md` |
+| Ledger de progreso SDD (commits por tarea, hallazgos, decisiones) | `.superpowers/sdd/2026-07-25-workout-generator/progress.md` |
+| Briefs y reportes por tarea | `.superpowers/sdd/2026-07-25-workout-generator/task-N-{brief,report}.md` |
+
+El ledger es la fuente de verdad de que tareas estan hechas. Una tarea con
+linea `Task N: complete` NO se vuelve a ejecutar.
+
+### Alcance decidido con el usuario (2026-07-25)
+
+- **Dos flujos**, no uno: "Rutina inteligente" (heuristica local) y "Crear
+  rutina manual" (armador desde cero, el usuario elige cada ejercicio).
+  Ambos activan la rutina con el mismo helper `UserProfile.activate(_:in:)`.
+- **Sin la palabra "IA"** en ningun texto visible: es heuristica
+  determinista. Nombre de rutina generada:
+  `"Rutina personalizada - \(primaryGoal.displayName)"`.
+- **`preferredEquipment` NO se usa** en esta fase (decision explicita).
+- **Fuera de alcance, van en un spec aparte**: selector de idioma
+  (espanol / ingles / frances) y foto por perfil. Son subsistemas
+  independientes (i18n cross-cutting + almacenamiento de imagen); el
+  usuario acepto separarlos para no inflar este spec.
+
+### Estado tarea por tarea
+
+- [x] **Task 1 — `Exercise.isCompound`** (`2cdf1b8` + fix `e931dc2`).
+      Campo nuevo en el modelo + los 150 registros clasificados + seeder
+      actualizado. **72 compuestos / 78 aislamiento.**
+      Hallazgo del review, corregido: el keyword `press` clasificaba mal
+      "Press frances" (skull crusher), que es aislamiento de triceps de una
+      sola articulacion. Se agrego `MANUAL_ISOLATION_OVERRIDES` al script.
+      Los otros press de triceps (`ex_122` agarre cerrado, `ex_130` cerrado
+      con mancuernas, `ex_132` press JM) SI son compuestos y quedaron en
+      `true` — verificado. Las hiperextensiones quedan como aislamiento por
+      decision del usuario.
+- [x] **Task 2 — split y estructura de dias** (`b1f1836`).
+      `WorkoutGeneratorService.splitType(for:)` y `.dayTemplates(split:dayCount:)`,
+      6 tests pasando. Review aprobado sin hallazgos bloqueantes.
+- [ ] **Task 3 — prescripcion y seleccion de ejercicios.**
+      `prescription(goal:level:)`, `exercisesPerDay(for:)`,
+      `generateRoutine(for:catalog:)` + 12 tests mas (18 en total).
+      El brief ya esta generado en `task-3-brief.md`.
+- [ ] **Task 4 — helper de activacion + boton "Rutina inteligente"** en el
+      Dashboard. OJO: esta tarea termina con el build ROTO a proposito
+      (`cannot find 'RoutineBuilderView' in scope`), porque esa vista llega
+      en la Task 5. Esta documentado en el plan, no es un error.
+- [ ] **Task 5 — `ExercisePickerSheet` + `RoutineBuilderView`** (armador
+      manual). Aca vuelve a compilar.
+- [ ] **Task 6 — verificacion en simulador + actualizar este PROGRESS.md.**
+- [ ] **Review final de toda la rama** (paso obligatorio del flujo SDD, va
+      despues de la Task 6, con el modelo mas capaz).
+
+### Minors diferidos (para el review final, no bloquean)
+
+- Task 2: `dayCount <= 0` cae a 1 dia por el `max(1, dayCount)`, sin test
+  que documente esa decision.
+- Task 2: ningun test cubre `DayTemplate.muscleGroups`, solo `.title` — un
+  typo de grupo muscular pasaria los 6 tests igual.
+
+## Fase 4 — practicamente completa ya (adelantada sin querer)
+
+La Fase 4 original ("biblioteca de ejercicios UI") se hizo casi entera
+durante el recableado de navegacion, antes de arrancar la Fase 3:
+
+- [x] `ExerciseListView` lee el catalogo local con `@Query` (ya no
+      `WgerAPIService`), con buscador por nombre.
+- [x] Vista de detalle (`ExerciseDetailView`) con imagen grande via
+      `GIFImageView`, musculos secundarios e instrucciones numeradas.
+- [x] `WgerAPIService.swift` y `WgerModels.swift` **borrados** — quedaron
+      con 0 callers. La pregunta que la Fase 2 dejaba abierta ya tiene
+      respuesta.
+- [ ] **Lo unico que falta de la Fase 4**: filtros por `MuscleGroup` y
+      `EquipmentType` (hoy solo hay busqueda por texto libre).
+
+## Siguientes pasos (despues de la Fase 3)
+
+1. Terminar Fase 3: tareas 3 a 6 + review final (ver arriba).
+2. Cerrar Fase 4: agregar los filtros por `MuscleGroup`/`EquipmentType` a
+   `ExerciseListView`.
+3. **Spec nuevo — idioma + foto de perfil**: selector espanol/ingles/frances
+   (i18n de toda la app) y foto por `UserProfile`. Ya acordado con el
+   usuario que van en un documento aparte, no en el de la Fase 3.
+4. **Fase 5 — Modo entrenamiento activo**: `ActiveWorkoutView` ya esta
    recableada y con haptics, pero falta lo de verdad: que una rutina genere
    el `WorkoutLog` con sus `SetLog`, y que el descanso salga del
    `RoutineExercise.restSeconds` en vez de los 60s fijos que hay hoy
    (marcado con un comentario `ponytail:` en el archivo).
-4. **Recablear navegacion**: desde la exploracion inicial del proyecto,
-   `DashboardView`/`ActiveWorkoutView`/`ExerciseListView`/`ProfileSelectionView`
-   estaban huerfanas (sin `NavigationLink` real entre ellas) — esto sigue
-   pendiente independientemente de las fases de arriba.
 5. Definir fuente real de GIFs animados (o aceptar las fotos JPG de
-   free-exercise-db como definitivas) antes de pulir la Fase 4.
-6. Sin tests todavia — ningun archivo de test cubre modelos/seeder/generator.
-7. **4 ejercicios duplicados en el seed** (mismo ejercicio dado de alta dos
+   free-exercise-db como definitivas).
+6. **4 ejercicios duplicados en el seed** (mismo ejercicio dado de alta dos
    veces bajo dos grupos musculares, herencia de los 7 subagentes en
    paralelo): `Encogimientos con barra` (back/shoulders), `Face pull en
    polea` (back/shoulders), `Fondos en banco` (chest/triceps), `Fondos en
    paralelas` (chest/triceps). Los ids son unicos asi que el seeder inserta
-   los 8; en la biblioteca de la Fase 4 van a salir repetidos. Decidir si se
-   fusionan usando `secondaryMuscles` o se dejan.
+   los 8; en la biblioteca salen repetidos. Decidir si se fusionan usando
+   `secondaryMuscles` o se dejan.
+7. `ProfileSelectionView.swift` sigue huerfana y duplica lo que ya hace
+   `ContentView` (listar perfiles + crear). Evaluar si se borra.
+
+## Gotchas del entorno (cuestan horas si se redescubren)
+
+- **Tests**: SIEMPRE pasar `-only-testing:IronPulseTests`. Sin eso corre
+  tambien el suite de UI tests y `testLaunchPerformance` solo tarda **420
+  segundos**. Ademas `xcodebuild` imprime `Test case` con **c minuscula**,
+  un grep con `"Test Case"` no matchea nada.
+  ```
+  xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse \
+    -destination 'platform=iOS Simulator,name=iPhone 17e' \
+    -only-testing:IronPulseTests 2>&1 \
+    | grep -E "\*\* TEST|Test case.*(passed|failed)" | sort -u
+  ```
+- **`print()` NO aparece** en `xcrun simctl spawn log show/stream` en este
+  simulador — se confirmo con un boton que si funcionaba. Para saber si un
+  tap realmente llego a un control, la senal confiable es la linea
+  `(UIKitCore) send control actions` en `log stream`.
+- **SwiftData sin migracion**: cualquier propiedad no-opcional nueva en un
+  `@Model` rompe el store viejo. Hay que
+  `xcrun simctl uninstall <device> com.BERNU.IronPulse` antes de reinstalar.
+  No se implemento `VersionedSchema` a proposito (no hay usuarios reales).
+- **Los diagnosticos de SourceKit mienten** en este proyecto: reporta
+  constantemente `Cannot find type 'X' in scope` / `No such module 'UIKit'`
+  para tipos que existen. Es falta de contexto del target, no errores
+  reales. La verdad la dice `xcodebuild`.
+- **`.foregroundStyle(.ironTextSecondary)` no compila** — la forma corta no
+  resuelve contra `ShapeStyle` con colores custom. Escribir siempre
+  `.foregroundStyle(Color.ironTextSecondary)`.
+- **Simulador de referencia**: iPhone 17e, UDID
+  `B93C823F-AAD5-46AF-B830-8A8390325C5F`, bundle id `com.BERNU.IronPulse`.
+- **Xcode usa file-system-synchronized groups**: los archivos `.swift`
+  nuevos se toman solos, NO hay que editar `project.pbxproj`.
 
 ### Verificacion de imagenes
 
