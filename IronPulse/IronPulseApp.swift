@@ -14,16 +14,19 @@ struct IronPulseApp: App {
         let schema = Schema([
             UserProfile.self,
             HealthSnapshot.self,
+            Exercise.self,
             WorkoutRoutine.self,
             RoutineDay.self,
             RoutineExercise.self,
-            WorkoutSession.self,
-            WorkoutLogSet.self,
+            WorkoutLog.self,
+            SetLog.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            ExerciseDatabaseSeeder.seedIfNeeded(context: container.mainContext)
+            return container
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }

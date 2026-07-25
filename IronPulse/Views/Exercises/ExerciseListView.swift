@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 struct ExerciseListView: View {
     @StateObject private var vm = ExerciseListViewModel()

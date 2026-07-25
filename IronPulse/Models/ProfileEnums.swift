@@ -19,24 +19,40 @@ enum ExperienceLevel: String, Codable, CaseIterable, Identifiable {
     }
 }
 
-enum FitnessGoal: String, Codable, CaseIterable, Identifiable {
-    case muscleGain
-    case fatLoss
+enum PrimaryGoal: String, Codable, CaseIterable, Identifiable {
+    case hypertrophy
     case strength
-    case maintenance
+    case fatLoss
 
     var id: String { rawValue }
 
     var displayName: String {
         switch self {
-        case .muscleGain:
-            return "Volumen"
-        case .fatLoss:
-            return "Definicion"
+        case .hypertrophy:
+            return "Hipertrofia"
         case .strength:
             return "Fuerza"
-        case .maintenance:
-            return "Mantenimiento"
+        case .fatLoss:
+            return "Perdida de grasa"
+        }
+    }
+}
+
+enum SplitType: String, Codable, CaseIterable, Identifiable {
+    case fullBody
+    case upperLower
+    case pushPullLegs
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .fullBody:
+            return "Cuerpo completo"
+        case .upperLower:
+            return "Torso / Pierna"
+        case .pushPullLegs:
+            return "Empuje / Tiron / Pierna"
         }
     }
 }
