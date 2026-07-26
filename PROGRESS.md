@@ -211,10 +211,22 @@ linea `Task N: complete` NO se vuelve a ejecutar.
 - [x] **Task 2 — split y estructura de dias** (`b1f1836`).
       `WorkoutGeneratorService.splitType(for:)` y `.dayTemplates(split:dayCount:)`,
       6 tests pasando. Review aprobado sin hallazgos bloqueantes.
-- [ ] **Task 3 — prescripcion y seleccion de ejercicios.**
+- [~] **Task 3 — prescripcion y seleccion de ejercicios** (`48336be`,
+      **implementada, review PENDIENTE** — se interrumpio por una caida
+      temporal de la API justo despues de generar el review package).
       `prescription(goal:level:)`, `exercisesPerDay(for:)`,
-      `generateRoutine(for:catalog:)` + 12 tests mas (18 en total).
-      El brief ya esta generado en `task-3-brief.md`.
+      `generateRoutine(for:catalog:)`. **18/18 tests pasando** (19/19 con
+      el placeholder `example()`), 4 corridas consecutivas
+      `** TEST SUCCEEDED **`. Desviacion menor documentada en el reporte:
+      el fixture de test tuvo que reordenar el parametro `isCompound` para
+      matchear el orden real del init de `Exercise` de la Task 1 — es un
+      fix de compilacion, no un cambio semantico.
+      **Para retomar**: correr
+      `scripts/review-package docs/superpowers/plans/2026-07-25-workout-generator.md b1f1836e79ff5d78617d94854a53e7a9962356d6 HEAD`
+      (BASE=`b1f1836`, el commit de la Task 2) y despachar el task-reviewer
+      con ese diff + `task-3-brief.md` + `task-3-report.md`. Recien
+      despues de que ese review salga limpio (o el fix loop lo cierre) se
+      arranca la Task 4.
 - [ ] **Task 4 — helper de activacion + boton "Rutina inteligente"** en el
       Dashboard. OJO: esta tarea termina con el build ROTO a proposito
       (`cannot find 'RoutineBuilderView' in scope`), porque esa vista llega
@@ -303,6 +315,13 @@ durante el recableado de navegacion, antes de arrancar la Fase 3:
   `B93C823F-AAD5-46AF-B830-8A8390325C5F`, bundle id `com.BERNU.IronPulse`.
 - **Xcode usa file-system-synchronized groups**: los archivos `.swift`
   nuevos se toman solos, NO hay que editar `project.pbxproj`.
+- **La API de Anthropic tuvo caidas transitorias durante esta sesion**
+  (error 529 "Overloaded", dos veces: una interrumpio un fix a mitad de
+  camino, otra interrumpio justo despues de generar un review package). No
+  es nada del proyecto. El flujo SDD esta pensado para esto: el ledger en
+  `.superpowers/sdd/2026-07-25-workout-generator/progress.md` y los
+  commits en git son la fuente de verdad, asi que al reintentar no hay que
+  repetir trabajo — solo retomar en el punto exacto que diga el ledger.
 
 ### Verificacion de imagenes
 
