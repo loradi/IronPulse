@@ -5,12 +5,13 @@ struct RoutineTabView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var catalog: [Exercise]
     @Bindable var profile: UserProfile
+    @State private var activeLog: WorkoutLog?
 
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
                 if let active = profile.activeRoutine {
-                    RoutineCard(routine: active)
+                    RoutineCard(routine: active, onStartDay: startWorkout)
                 } else {
                     ContentUnavailableView(
                         "Sin rutina activa",
@@ -46,16 +47,28 @@ struct RoutineTabView: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
+        .navigationDestination(item: $activeLog) { log in
+            ActiveWorkoutView(log: log)
+        }
     }
 
     private func generateRoutine() {
         let routine = WorkoutGeneratorService.generateRoutine(for: profile, catalog: catalog)
         profile.activate(routine, in: modelContext)
     }
+
+    private func startWorkout(_ day: RoutineDay) {
+        guard let routine = profile.activeRoutine else { return }
+        let log = WorkoutLogGenerator.generate(for: day, routineName: routine.name, profile: profile)
+        modelContext.insert(log)
+        try? modelContext.save()
+        activeLog = log
+    }
 }
 
 private struct RoutineCard: View {
     let routine: WorkoutRoutine
+    let onStartDay: (RoutineDay) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -68,7 +81,13 @@ private struct RoutineCard: View {
 
             ForEach(routine.days.sorted { $0.dayNumber < $1.dayNumber }) { day in
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(day.title).font(.subheadline).bold()
+                    HStack {
+                        Text(day.title).font(.subheadline).bold()
+                        Spacer()
+                        Button("Empezar") { onStartDay(day) }
+                            .font(.caption.weight(.bold))
+                            .foregroundStyle(Color.ironAccent)
+                    }
                     ForEach(day.exercises.sorted { $0.orderIndex < $1.orderIndex }) { ex in
                         NavigationLink {
                             ExerciseDetailView(exercise: ex.exercise)
