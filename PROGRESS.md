@@ -5,7 +5,7 @@ Reconstruccion de IronPulse hacia "IRON & PULSE" (SwiftUI + SwiftData, iOS 17+,
 Todo el trabajo vive en el branch `dev` (repo: https://github.com/loradi/IronPulse),
 `main` es un checkpoint estable separado.
 
-## Estado (2026-07-25): Fases 1-3 completas, Fase 4 casi completa
+## Estado (2026-07-26): Fases 1-3 completas, navegacion por tabs, Fase 4 casi completa
 
 - `006cf59` — Fase 1: sistema de diseno neon + `GIFImageView`
 - `d39dfaa` — Fase 2: modelos SwiftData nuevos + seeder de 150 ejercicios
@@ -15,6 +15,10 @@ Todo el trabajo vive en el branch `dev` (repo: https://github.com/loradi/IronPul
 - `6f48c97`..`e1578a4` — **Fase 3 completa**: generador de rutinas
   inteligente + armador manual, con un bug Critico encontrado en el
   review final y corregido (ver seccion "Fase 3 COMPLETA" abajo)
+- `82104fa` — **Navegacion reestructurada a tab bar** (Dashboard/Rutina/
+  Ejercicios/Perfil), primer paso hacia adoptar la referencia de
+  `MOCKUPS/` — ver seccion propia abajo. Solo arquitectura de navegacion,
+  el tema visual (verde/naranja) no cambio.
 - Fase 4 (biblioteca de ejercicios) casi entera, adelantada sin querer
   durante el recableado — falta solo el filtro por musculo/equipo
 - Nueva referencia visual sin implementar en `MOCKUPS/` (rebrand +
@@ -406,6 +410,43 @@ limpio (`simctl uninstall` + reinstall del build actual, commit `37eb698`).
 - Ningun screenshot mostro contenido faltante o incorrecto frente a lo
   esperado por el brief.
 
+## Navegacion por tabs — COMPLETA (2026-07-26)
+
+Primer paso hacia adoptar la arquitectura de `MOCKUPS/` (ver seccion de
+abajo): se decidio separar la navegacion (tab bar) del reskin visual
+completo (Kinetic Onyx) — esto es solo lo primero. Spec:
+`docs/superpowers/specs/2026-07-26-tab-navigation-design.md`. Se
+implemento directo (sin el aparato de subagentes de la Fase 3, cambio
+chico y bien acotado), commit `82104fa`.
+
+**Decisiones**: multi-perfil se mantiene (`ContentView` sigue siendo la
+pantalla raiz de lista de perfiles; al elegir uno se entra a un
+`TabView` para ESE perfil, no se colapsa a un solo usuario como asume el
+mockup). El tab "Rutina" (sin mockup dedicado) se definio en la charla:
+la `RoutineCard` completa + los dos botones de creacion. El tab "Perfil"
+por ahora es el `ProfileDetailView` de siempre, sin las metricas de
+volumen/racha del mockup (dependen de `WorkoutLog`, Fase 5).
+
+- [x] `Views/MainTabView.swift` (nuevo) — `TabView` de 4 tabs, cada uno
+      con su propio `NavigationStack`: Dashboard, Rutina, Ejercicios,
+      Perfil.
+- [x] `Views/Workouts/RoutineTabView.swift` (nuevo) — contenido movido
+      tal cual desde `DashboardView`: la `RoutineCard`, los botones
+      "Rutina inteligente"/"Crear rutina manual", `generateRoutine()`.
+- [x] `DashboardView.swift` — se achico a header + una linea de resumen
+      (`"<nombre rutina> · N dias"`) si hay rutina activa. Perdio el
+      `@Query` del catalogo, el toolbar de 2 botones, y el parametro
+      `healthImporter` (ya no lo usa).
+- [x] `ContentView.swift` — el `NavigationLink` de cada perfil apunta a
+      `MainTabView` en vez de `DashboardView`.
+- [x] Verificado en simulador: los 4 tabs navegan, cada uno con su
+      propio historial de push (confirmado empujando el detalle de un
+      ejercicio dentro del tab Ejercicios y volviendo). Los 19 tests de
+      `WorkoutGeneratorServiceTests` siguen pasando (sin logica nueva,
+      es reorganizacion de vistas).
+- Sin hallazgos — no se toco ningun flujo de negocio, solo donde se
+  montan las vistas existentes.
+
 ## MOCKUPS/ — referencia visual nueva, SIN implementar (2026-07-25)
 
 El usuario agrego una carpeta `MOCKUPS/` en la raiz del repo (no versionada
@@ -483,37 +524,38 @@ explicita (flujo `finishing-a-development-branch`).
 
 Pendientes reales, en orden sugerido:
 
-1. **Decidir que hacer con `MOCKUPS/`** (ver seccion arriba). Es la
-   pieza mas grande pendiente: rebrand posible + tab bar + sistema de
-   diseno "Kinetic Onyx" completo. Necesita su propia sesion de
-   brainstorming antes de tocar codigo — no es un ajuste chico.
-2. Cerrar Fase 4: agregar los filtros por `MuscleGroup`/`EquipmentType` a
-   `ExerciseListView` (hoy solo hay busqueda por texto libre).
-3. **Spec nuevo — idioma + foto de perfil**: selector espanol/ingles/frances
+1. ~~Navegacion por tabs~~ — completa, ver seccion arriba.
+2. **Fase 4 EN CURSO**: agregar los filtros por `MuscleGroup`/
+   `EquipmentType` a `ExerciseListView` (hoy solo hay busqueda por texto
+   libre).
+3. El resto de `MOCKUPS/` (rebrand "Watt + Weight" + reskin visual
+   "Kinetic Onyx" completo) sigue pendiente de su propia sesion de
+   brainstorming — el tab bar era la primera pieza, ya resuelta.
+4. **Spec nuevo — idioma + foto de perfil**: selector espanol/ingles/frances
    (i18n de toda la app) y foto por `UserProfile`. Ya acordado con el
    usuario que van en un documento aparte, no en el de la Fase 3.
-4. **Fase 5 — Modo entrenamiento activo**: `ActiveWorkoutView` ya esta
+5. **Fase 5 — Modo entrenamiento activo**: `ActiveWorkoutView` ya esta
    recableada y con haptics, pero falta lo de verdad: que una rutina genere
    el `WorkoutLog` con sus `SetLog`, y que el descanso salga del
    `RoutineExercise.restSeconds` en vez de los 60s fijos que hay hoy
    (marcado con un comentario `ponytail:` en el archivo). Ojo con el
    `dayNumber` con huecos del armador manual (arriba, "declinados por el
    usuario") antes de asumir dias consecutivos.
-5. **Limpieza chica pendiente de la Fase 3** (todos Minor, ver
+6. **Limpieza chica pendiente de la Fase 3** (todos Minor, ver
    "Minors diferidos" arriba): 4 sitios de "1 dias" sin singularizar,
    `isGeneratedByAI` muerto, nombres de rutina inconsistentes entre
    flujos, guard contra catalogo vacio en `activate`, step del
    `restSeconds` manual que no divide el default de `fatLoss`.
-6. Definir fuente real de GIFs animados (o aceptar las fotos JPG de
+7. Definir fuente real de GIFs animados (o aceptar las fotos JPG de
    free-exercise-db como definitivas).
-7. **4 ejercicios duplicados en el seed** (mismo ejercicio dado de alta dos
+8. **4 ejercicios duplicados en el seed** (mismo ejercicio dado de alta dos
    veces bajo dos grupos musculares, herencia de los 7 subagentes en
    paralelo): `Encogimientos con barra` (back/shoulders), `Face pull en
    polea` (back/shoulders), `Fondos en banco` (chest/triceps), `Fondos en
    paralelas` (chest/triceps). Los ids son unicos asi que el seeder inserta
    los 8; en la biblioteca salen repetidos. Decidir si se fusionan usando
    `secondaryMuscles` o se dejan.
-8. `ProfileSelectionView.swift` sigue huerfana y duplica lo que ya hace
+9. `ProfileSelectionView.swift` sigue huerfana y duplica lo que ya hace
    `ContentView` (listar perfiles + crear). Evaluar si se borra.
 
 ## Gotchas del entorno (cuestan horas si se redescubren)
@@ -545,6 +587,16 @@ Pendientes reales, en orden sugerido:
   `.foregroundStyle(Color.ironTextSecondary)`.
 - **Simulador de referencia**: iPhone 17e, UDID
   `B93C823F-AAD5-46AF-B830-8A8390325C5F`, bundle id `com.BERNU.IronPulse`.
+- **Coordenadas de tap para tab bars**: el espacio de tap del control del
+  simulador es 390x844 puntos. Para un `TabView` de N tabs, cada tab
+  ocupa `390/N` puntos de ancho — para 4 tabs, centros aprox en x=49,
+  146, 244, 341. El eje Y de la tab bar esta cerca de `y=810` (no calcular
+  a partir del porcentaje visual de un screenshot, da resultados muy
+  lejos del real — cuesta varios intentos fallidos si se hace asi).
+- **Simctl a veces devuelve "Unable to lookup in current state: Shutdown"**
+  o un timeout de "simulator likely rebooted" en medio de una sesion larga.
+  Se soluciona con `xcrun simctl boot <UDID>` +
+  `xcrun simctl bootstatus <UDID> -b` antes de reinstalar/lanzar.
 - **Xcode usa file-system-synchronized groups**: los archivos `.swift`
   nuevos se toman solos, NO hay que editar `project.pbxproj`.
 - **La API de Anthropic tuvo caidas transitorias durante esta sesion**
