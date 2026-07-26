@@ -5,12 +5,21 @@ Reconstruccion de IronPulse hacia "IRON & PULSE" (SwiftUI + SwiftData, iOS 17+,
 Todo el trabajo vive en el branch `dev` (repo: https://github.com/loradi/IronPulse),
 `main` es un checkpoint estable separado.
 
-## Estado: Fase 1 y 2 completas, proyecto compila y corre limpio
+## Estado (2026-07-25): Fases 1-3 completas, Fase 4 casi completa
 
 - `006cf59` — Fase 1: sistema de diseno neon + `GIFImageView`
 - `d39dfaa` — Fase 2: modelos SwiftData nuevos + seeder de 150 ejercicios
-- (siguiente commit) — recableado post-Fase 2: 0 errores de compilacion,
+- `90b8c94`..`0628067` — recableado post-Fase 2 + navegacion real + fix de
+  import de Salud y detalle de ejercicio: 0 errores de compilacion,
   0 `gifRemoteURLString` en null
+- `6f48c97`..`e1578a4` — **Fase 3 completa**: generador de rutinas
+  inteligente + armador manual, con un bug Critico encontrado en el
+  review final y corregido (ver seccion "Fase 3 COMPLETA" abajo)
+- Fase 4 (biblioteca de ejercicios) casi entera, adelantada sin querer
+  durante el recableado — falta solo el filtro por musculo/equipo
+- Nueva referencia visual sin implementar en `MOCKUPS/` (rebrand +
+  sistema de diseno "Kinetic Onyx" + tab bar) — ver seccion propia abajo,
+  pendiente de decision del usuario
 
 ## Fase 1 — Tokens de diseno y GIFImageView
 
@@ -231,11 +240,57 @@ linea `Task N: complete` NO se vuelve a ejecutar.
       aprobado sin hallazgos bloqueantes.
 - [x] **Task 6 — verificacion en simulador + cierre de este documento.**
       Ver "Verificado en simulador" mas abajo.
-- [ ] **Review final de toda la rama** (paso obligatorio del flujo SDD,
-      con el modelo mas capaz). Se hace despues de cerrar esta tarea.
+- [x] **Review final de toda la rama** (modelo mas capaz, sobre las 6
+      tareas juntas). Encontro **1 bug Critico real** que ningun review
+      por tarea podia ver — ver seccion siguiente.
 
-**18 tests** en `IronPulseTests/WorkoutGeneratorServiceTests.swift` cubren
-split/dias/prescripcion/seleccion — todos pasando en cada tarea.
+**19 tests** en `IronPulseTests/WorkoutGeneratorServiceTests.swift` cubren
+split/dias/prescripcion/seleccion (18 de las tareas + 1 del fix del bug
+critico) — todos pasando.
+
+### Bug Critico encontrado en el review final, corregido
+
+El review final (el que mira las 6 tareas juntas, no cada diff por
+separado) encontro que **`selectExercises` nunca elegia biceps ni core en
+ninguna rutina generada, nunca**. Causa: el algoritmo original armaba 3
+buckets (compuesto/aislamiento/core), los concatenaba, y cortaba a los
+primeros N. Como el bucket de compuestos por si solo ya tiene 20+
+ejercicios en cualquier dia real, `prefix(N)` nunca llegaba a aislamiento
+ni a core. Y como **biceps y core no tienen NINGUN ejercicio compuesto en
+todo el catalogo** (18 y 17 ejercicios respectivamente, todos aislamiento),
+esos dos grupos musculares quedaban afuera de toda rutina generada, siempre
+— un dia "Tiron" (espalda+biceps) salia 100% espalda. Confirmado
+simulando 3000 rutinas contra el catalogo real: cero ejercicios de
+aislamiento o core seleccionados, nunca.
+
+Es un bug del algoritmo del spec (mio), no una desviacion del implementer
+— el codigo matcheaba el spec al pie de la letra.
+
+**Fix** (commit `e1578a4`): `selectExercises` reescrito a round-robin por
+grupo muscular — arma un pool por cada grupo del template del dia, y elige
+de a un ejercicio por grupo por ronda (ronda 0 = el primero de cada grupo,
+ronda 1 = el segundo de los grupos que aun tengan, etc.) hasta llegar al
+limite o agotar los pools. Esto garantiza que todo grupo del dia tenga
+turno antes de que ningun grupo repita. Despues de elegir el conjunto, se
+reordena para mostrar (compuesto -> aislamiento -> core), preservando
+exactamente los invariantes que ya probaban los tests viejos.
+
+Tambien en el mismo fix: 2 tests que eran vacuos (`if let` sobre un
+resultado que podia no existir, pasaban sin verificar nada si no
+encontraban el elemento buscado — eso fue lo que dejo pasar el bug sin que
+ningun test lo agarrara) ahora tienen precondicion que falla si el bucket
+viene vacio; y se agrego 1 test nuevo que corre `generateRoutine` contra
+el catalogo REAL de 150 ejercicios (no el fixture sintetico de 16) en
+todas las combinaciones de split/nivel, verificando que cada grupo
+muscular del template del dia aparezca al menos una vez.
+
+Re-review scoped confirmo: el fix arregla el bug de verdad (RED contra el
+algoritmo viejo, GREEN contra el nuevo), sin roturas nuevas. Un Minor
+quedo parqueado: el test nuevo no cubre el template "Cuerpo completo"
+(fullBody) en ningun nivel porque tiene 7 grupos musculares y el limite
+maximo es 6 — el guard que evita falsos negativos del test lo saltea
+siempre en ese caso. No bloquea: el algoritmo en si es correcto, solo la
+cobertura de ese test especifico es mas angosta de lo ideal.
 
 ### Minors diferidos (para el review final, no bloquean)
 
@@ -257,6 +312,63 @@ split/dias/prescripcion/seleccion — todos pasando en cada tarea.
 - Task 5: `ExercisePickerSheet` indexa `draftDays[target.dayIndex]` sin
   bounds check; hoy es inalcanzable porque la presentacion de la hoja es
   modal, pero es fragil si eso cambia (ej. presentacion no-modal en iPad).
+- Fix del bug critico: el test nuevo `todosLosGruposDelTemplateAparecenConElCatalogoReal`
+  no cubre el template "Cuerpo completo" (fullBody) en ningun nivel — su
+  guard salta templates con mas grupos musculares (7) que el limite maximo
+  de ejercicios por dia (6).
+
+### Del review final — declinados o parqueados por decision del usuario
+
+- **`RoutineBuilderView.save()` genera `dayNumber` con huecos** (Important,
+  plan-mandated). Si el usuario llena el Dia 1 y el Dia 3 pero deja el Dia
+  2 vacio, la rutina guardada tiene `dayNumber` 1 y 3 — sin el 2. La rutina
+  generada siempre es consecutiva (1,2,3...). El usuario decidio **no
+  arreglarlo ahora** — anotado porque la Fase 5 (conectar rutina con
+  `WorkoutLog`) probablemente va a asumir dias consecutivos. Fix cuando se
+  toque ese archivo: `for (index, draft) in draftDays.filter({ !$0.items.isEmpty }).enumerated()`
+  en vez de filtrar despues de enumerar.
+- **`isGeneratedByAI` queda permanentemente en `false`** — tanto el flujo
+  generado como el manual pasan `false`, asi que el campo nunca distingue
+  una rutina generada de una manual en el historial (`isActive == false`).
+  El nombre del campo choca con la regla de "no usar IA en texto visible"
+  (eso es sobre texto, no sobre nombres de campos internos). Si se quiere
+  distinguir, renombrar a `isAutoGenerated` y setear `true` en
+  `generateRoutine`.
+- **Nombres de rutina inconsistentes entre los dos flujos**: la generada
+  varia por objetivo (`"Rutina personalizada - Hipertrofia"`), la manual
+  es constante por perfil (`"Rutina manual - Perfil 1"`) — toda rutina
+  manual de un mismo perfil se llama igual, dificil distinguir en el
+  historial. Considerar `"Rutina manual - \(splitType.displayName)"` o
+  una fecha.
+- **Comentario de "solo lado coleccion" no matchea `UserProfile.activate`**:
+  el comentario en `WorkoutGeneratorService.swift`/`RoutineBuilderView.swift`
+  dice que solo se asigna el lado coleccion de la relacion, pero
+  `UserProfile.activate` si asigna `routine.profile = self` (el lado
+  inverso del edge profile<->rutina). Funciona igual por como SwiftData
+  mantiene el inverso, pero es confuso para quien lea el comentario
+  literal. Acotar el comentario a los edges dia/ejercicio, o alinear el
+  helper.
+- **`restSeconds` del stepper manual no divide el default de `fatLoss`**:
+  el `Stepper` usa `step: 15` pero `fatLoss` prescribe 40s — desde 40 nunca
+  se llega a 30, 45, 60 ni al piso de 15. Bajar el step a 5, o cambiar el
+  default de fatLoss a 45.
+- **Mas sitios de "1 dias" sin singularizar** (ademas de
+  `DashboardView.swift:96` y `RoutineBuilderView.swift:55`, ya trackeados
+  en la Fase 3): `ContentView.swift:78` y el stepper de perfil en
+  `ContentView.swift:115`. Arreglar los 4 juntos, idealmente con un
+  helper compartido en vez de 4 ternarios sueltos.
+- **Sin guard contra activar una rutina sin ejercicios**:
+  `DashboardView.swift` llama `activate` sin chequear que `catalog` no
+  este vacio. Hoy es inalcanzable (el seeder corre sincronico al crear el
+  `ModelContainer`), pero un `guard !catalog.isEmpty else { return }`
+  cuesta una linea y cierra la clase de problema entera.
+- **`MuscleGroup.arms/.calves/.fullBody` sin cobertura en ningun
+  template**: el catalogo actual no usa esos 3 casos, pero si algun
+  ejercicio futuro se agrega bajo esos grupos, queda silenciosamente
+  imposible de seleccionar — sin senal en compilacion ni en runtime.
+- **Nota vieja sobre "1 dias" en la seccion "Verificado en simulador" de
+  abajo estaba mal**: decia "no es bug". El review final SI lo confirmo
+  como bug real (menor, cosmetico) — ver el punto de arriba.
 
 ### Verificado en simulador
 
@@ -285,12 +397,66 @@ limpio (`simctl uninstall` + reinstall del build actual, commit `37eb698`).
   verde**. Se agrego un segundo ejercicio ("Remo al menton con barra") al
   mismo dia y se toco "Guardar": vuelve al Dashboard con la `RoutineCard`
   `"Rutina manual - Perfil 1"` y los dos ejercicios elegidos.
-- Nota (no es bug): la tarjeta manual mostro "1 dias" porque solo se
-  cargaron ejercicios en el Dia 1 — los dias 2 y 3 sin ejercicios no se
-  persisten como `RoutineDay` vacios. Es coherente con que el spec no pide
-  dias vacios en la rutina guardada.
+- Nota corregida por el review final: la tarjeta manual mostro "1 dias".
+  Que los dias 2 y 3 sin ejercicios no se persistan como `RoutineDay`
+  vacios **si es el comportamiento correcto** (el spec no pide dias
+  vacios). Pero el texto "1 dias" en si (sin singularizar) **es un bug
+  real, aunque menor** — confirmado por el review final, ver "Minors
+  diferidos" arriba.
 - Ningun screenshot mostro contenido faltante o incorrecto frente a lo
   esperado por el brief.
+
+## MOCKUPS/ — referencia visual nueva, SIN implementar (2026-07-25)
+
+El usuario agrego una carpeta `MOCKUPS/` en la raiz del repo (no versionada
+todavia — es nueva, no confundir con parte del codigo actual) con
+referencia de diseno para toda la app. **No se implemento nada de esto
+todavia**, queda documentado para cuando se decida abordarlo.
+
+Contenido:
+
+- **`kinetic_onyx/DESIGN.md`** — sistema de diseno completo con nombre
+  propio ("Kinetic Onyx"): negro puro (`#000000`/`#121212` para
+  superficies) + lima electrico `#D4FF00` como unico acento, tipografia
+  Inter (texto) + JetBrains Mono (numeros: reps/series/pesos/timers), sin
+  sombras (profundidad via bordes de 1px `#222222` y capas de superficie),
+  esquinas redondeadas 1rem en cards, botones pill. **Distinto del tema
+  actual de la app** (`Theme/CustomColor.swift`: verde neon `#00FF66` +
+  naranja `#FF3300`, sin fuente monoespaciada para datos).
+- **`logo/screen.png`** — logo real de marca: circulo negro, borde y
+  rayo+mancuerna en lima electrico, texto **"WATT + WEIGHT"**. Sugiere que
+  el usuario esta considerando un rebrand del nombre actual ("IRON &
+  PULSE") a "Watt + Weight" — no confirmado, no preguntado todavia.
+- **7 mockups de pantalla** (`screen.png` + `code.html` con la
+  implementacion HTML/CSS de referencia en cada carpeta): `mi_rutina`
+  (dashboard con calendario semanal Lun-Dom, tarjeta de "sesion de hoy"
+  con foto de fondo, tab bar inferior Dashboard/Routine/Exercises/Profile
+  — la app actual no tiene tab bar, es todo `NavigationStack` con push),
+  `biblioteca_de_ejercicios`, `perfil_de_usuario`,
+  `configuracion_de_perfil`, `detalle_de_ejercicio`, `sesion_en_curso`,
+  `sesion_en_curso_con_guia`.
+- **`professional_3d_medical_illustration_.../screen.png`** — arte de
+  referencia (ilustracion 3D de alguien haciendo press banca), probable
+  imagen hero.
+- **`swift_workoutgeneratorservice_specification.md`** — un spec/codigo
+  Swift de referencia para `WorkoutGeneratorService`, aparentemente
+  externo o de una sesion anterior a que se implementara el real. Modelo
+  de datos mas simple que el actual (`UserProfile.availableDays`, sin
+  `RoutineDay`, usa `WorkoutSession`/`ScheduledExercise`, splits con
+  limites de dias distintos: `1...3` full body en vez de `1...2`).
+  Interesante: su algoritmo de seleccion (`generateSession`) elige **un
+  compuesto Y un aislamiento por grupo muscular**, en espiritu igual al
+  round-robin-por-grupo al que se termino llegando arreglando el bug
+  critico de arriba — coincidencia util, no una contradiccion. No es
+  literalmente lo que hay que implementar (el modelo de datos ya no
+  matchea la app real), pero vale la pena mirarlo si se revisita el
+  algoritmo.
+
+**No hay ninguna decision tomada todavia sobre si/como adoptar esto.**
+Antes de tocar UI para alinearla con estos mockups hace falta una sesion
+de brainstorming propia (alcance grande: rebrand + nueva IA de navegacion
+con tab bar + sistema de diseno completo nuevo) — no es un ajuste chico
+que se cuela en otra fase.
 
 ## Fase 4 — practicamente completa ya (adelantada sin querer)
 
@@ -307,12 +473,22 @@ durante el recableado de navegacion, antes de arrancar la Fase 3:
 - [ ] **Lo unico que falta de la Fase 4**: filtros por `MuscleGroup` y
       `EquipmentType` (hoy solo hay busqueda por texto libre).
 
-## Siguientes pasos (despues de la Fase 3)
+## Siguientes pasos
 
-1. Review final de toda la rama de la Fase 3 (el unico paso que falta,
-   ver arriba).
+**Fase 3 esta 100% completa**: 6 tareas + review final + el bug critico
+que ese review encontro, ya corregido y re-verificado. Falta una sola
+decision del usuario, no tecnica: si integrar la rama `dev` (merge/PR) o
+seguir trabajando encima — no se ejecuta solo, se espera instruccion
+explicita (flujo `finishing-a-development-branch`).
+
+Pendientes reales, en orden sugerido:
+
+1. **Decidir que hacer con `MOCKUPS/`** (ver seccion arriba). Es la
+   pieza mas grande pendiente: rebrand posible + tab bar + sistema de
+   diseno "Kinetic Onyx" completo. Necesita su propia sesion de
+   brainstorming antes de tocar codigo — no es un ajuste chico.
 2. Cerrar Fase 4: agregar los filtros por `MuscleGroup`/`EquipmentType` a
-   `ExerciseListView`.
+   `ExerciseListView` (hoy solo hay busqueda por texto libre).
 3. **Spec nuevo — idioma + foto de perfil**: selector espanol/ingles/frances
    (i18n de toda la app) y foto por `UserProfile`. Ya acordado con el
    usuario que van en un documento aparte, no en el de la Fase 3.
@@ -320,17 +496,24 @@ durante el recableado de navegacion, antes de arrancar la Fase 3:
    recableada y con haptics, pero falta lo de verdad: que una rutina genere
    el `WorkoutLog` con sus `SetLog`, y que el descanso salga del
    `RoutineExercise.restSeconds` en vez de los 60s fijos que hay hoy
-   (marcado con un comentario `ponytail:` en el archivo).
-5. Definir fuente real de GIFs animados (o aceptar las fotos JPG de
+   (marcado con un comentario `ponytail:` en el archivo). Ojo con el
+   `dayNumber` con huecos del armador manual (arriba, "declinados por el
+   usuario") antes de asumir dias consecutivos.
+5. **Limpieza chica pendiente de la Fase 3** (todos Minor, ver
+   "Minors diferidos" arriba): 4 sitios de "1 dias" sin singularizar,
+   `isGeneratedByAI` muerto, nombres de rutina inconsistentes entre
+   flujos, guard contra catalogo vacio en `activate`, step del
+   `restSeconds` manual que no divide el default de `fatLoss`.
+6. Definir fuente real de GIFs animados (o aceptar las fotos JPG de
    free-exercise-db como definitivas).
-6. **4 ejercicios duplicados en el seed** (mismo ejercicio dado de alta dos
+7. **4 ejercicios duplicados en el seed** (mismo ejercicio dado de alta dos
    veces bajo dos grupos musculares, herencia de los 7 subagentes en
    paralelo): `Encogimientos con barra` (back/shoulders), `Face pull en
    polea` (back/shoulders), `Fondos en banco` (chest/triceps), `Fondos en
    paralelas` (chest/triceps). Los ids son unicos asi que el seeder inserta
    los 8; en la biblioteca salen repetidos. Decidir si se fusionan usando
    `secondaryMuscles` o se dejan.
-7. `ProfileSelectionView.swift` sigue huerfana y duplica lo que ya hace
+8. `ProfileSelectionView.swift` sigue huerfana y duplica lo que ya hace
    `ContentView` (listar perfiles + crear). Evaluar si se borra.
 
 ## Gotchas del entorno (cuestan horas si se redescubren)
