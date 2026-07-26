@@ -57,3 +57,17 @@ final class UserProfile {
         self.workoutLogs = workoutLogs
     }
 }
+
+extension UserProfile {
+    /// Unico punto de activacion de rutinas: lo usan tanto el generador como el armador manual.
+    /// Las rutinas viejas quedan con isActive = false a modo de historial, no se borran.
+    func activate(_ routine: WorkoutRoutine, in context: ModelContext) {
+        for existing in routines {
+            existing.isActive = false
+        }
+        routine.isActive = true
+        routine.profile = self
+        context.insert(routine)
+        try? context.save()
+    }
+}

@@ -2,6 +2,8 @@ import SwiftUI
 import SwiftData
 
 struct DashboardView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var catalog: [Exercise]
     @Bindable var profile: UserProfile
     let healthImporter: HealthKitProfileImporter
 
@@ -13,7 +15,30 @@ struct DashboardView: View {
                 if let active = profile.activeRoutine {
                     RoutineCard(routine: active)
                 } else {
-                    ContentUnavailableView("Sin rutina activa", systemImage: "bolt.slash", description: Text("El generador de rutinas llega en la Fase 3."))
+                    ContentUnavailableView(
+                        "Sin rutina activa",
+                        systemImage: "bolt.slash",
+                        description: Text("Genera una rutina automatica o arma la tuya ejercicio por ejercicio.")
+                    )
+                }
+
+                VStack(spacing: 12) {
+                    Button("Rutina inteligente", action: generateRoutine)
+                        .buttonStyle(PrimarySportButtonStyle())
+
+                    NavigationLink {
+                        RoutineBuilderView(profile: profile)
+                    } label: {
+                        Text("Crear rutina manual")
+                            .font(.system(.headline, design: .rounded).weight(.bold))
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
+                            .foregroundStyle(Color.ironAccent)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                    .stroke(Color.ironAccent, lineWidth: 1.5)
+                            }
+                    }
                 }
             }
             .padding()
@@ -37,6 +62,11 @@ struct DashboardView: View {
                 }
             }
         }
+    }
+
+    private func generateRoutine() {
+        let routine = WorkoutGeneratorService.generateRoutine(for: profile, catalog: catalog)
+        profile.activate(routine, in: modelContext)
     }
 
     private var header: some View {
