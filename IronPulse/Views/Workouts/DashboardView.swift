@@ -196,10 +196,7 @@ struct DashboardView: View {
 
     private func startTodaysSession() {
         guard let routine = profile.activeRoutine, let day = todaysDay else { return }
-        let log = WorkoutLogGenerator.generate(for: day, routineName: routine.name, profile: profile)
-        modelContext.insert(log)
-        try? modelContext.save()
-        activeLog = log
+        activeLog = WorkoutLogGenerator.startSession(for: day, routineName: routine.name, profile: profile, in: modelContext)
     }
 }
 

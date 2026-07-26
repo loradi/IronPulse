@@ -1,6 +1,22 @@
 import Foundation
+import SwiftData
 
 enum WorkoutLogGenerator {
+    /// Generates a log for `day`, inserts it into `context`, and saves — the shared
+    /// "start a session" behavior used by both DashboardView and RoutineTabView.
+    @MainActor
+    static func startSession(
+        for day: RoutineDay,
+        routineName: String,
+        profile: UserProfile,
+        in context: ModelContext
+    ) -> WorkoutLog {
+        let log = generate(for: day, routineName: routineName, profile: profile)
+        context.insert(log)
+        try? context.save()
+        return log
+    }
+
     static func generate(for day: RoutineDay, routineName: String, profile: UserProfile) -> WorkoutLog {
         let log = WorkoutLog(
             routineName: routineName,
