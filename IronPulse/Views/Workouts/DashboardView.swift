@@ -14,6 +14,21 @@ struct DashboardView: View {
                         .font(.subheadline)
                         .foregroundStyle(Color.ironTextSecondary)
                 }
+
+                NavigationLink {
+                    WorkoutHistoryView()
+                } label: {
+                    HStack {
+                        Text("Ver historial de entrenamientos")
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                    }
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(Color.ironAccent)
+                    .padding()
+                    .background(Color.ironCard)
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                }
             }
             .padding()
         }
