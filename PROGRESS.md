@@ -164,7 +164,7 @@ tampoco.
   la senal confiable es la linea `(UIKitCore) send control actions` en
   `log stream`, no los prints de la app.
 
-## Fase 3 EN CURSO — generador de rutinas (inteligente + manual)
+## Fase 3 COMPLETA — generador de rutinas (inteligente + manual)
 
 Se esta ejecutando con el flujo Subagent-Driven Development de superpowers:
 un subagente implementador por tarea, un reviewer despues de cada una, y un
@@ -211,31 +211,31 @@ linea `Task N: complete` NO se vuelve a ejecutar.
 - [x] **Task 2 — split y estructura de dias** (`b1f1836`).
       `WorkoutGeneratorService.splitType(for:)` y `.dayTemplates(split:dayCount:)`,
       6 tests pasando. Review aprobado sin hallazgos bloqueantes.
-- [~] **Task 3 — prescripcion y seleccion de ejercicios** (`48336be`,
-      **implementada, review PENDIENTE** — se interrumpio por una caida
-      temporal de la API justo despues de generar el review package).
+- [x] **Task 3 — prescripcion y seleccion de ejercicios** (`48336be`).
       `prescription(goal:level:)`, `exercisesPerDay(for:)`,
-      `generateRoutine(for:catalog:)`. **18/18 tests pasando** (19/19 con
-      el placeholder `example()`), 4 corridas consecutivas
-      `** TEST SUCCEEDED **`. Desviacion menor documentada en el reporte:
-      el fixture de test tuvo que reordenar el parametro `isCompound` para
-      matchear el orden real del init de `Exercise` de la Task 1 — es un
-      fix de compilacion, no un cambio semantico.
-      **Para retomar**: correr
-      `scripts/review-package docs/superpowers/plans/2026-07-25-workout-generator.md b1f1836e79ff5d78617d94854a53e7a9962356d6 HEAD`
-      (BASE=`b1f1836`, el commit de la Task 2) y despachar el task-reviewer
-      con ese diff + `task-3-brief.md` + `task-3-report.md`. Recien
-      despues de que ese review salga limpio (o el fix loop lo cierre) se
-      arranca la Task 4.
-- [ ] **Task 4 — helper de activacion + boton "Rutina inteligente"** en el
-      Dashboard. OJO: esta tarea termina con el build ROTO a proposito
-      (`cannot find 'RoutineBuilderView' in scope`), porque esa vista llega
-      en la Task 5. Esta documentado en el plan, no es un error.
-- [ ] **Task 5 — `ExercisePickerSheet` + `RoutineBuilderView`** (armador
-      manual). Aca vuelve a compilar.
-- [ ] **Task 6 — verificacion en simulador + actualizar este PROGRESS.md.**
-- [ ] **Review final de toda la rama** (paso obligatorio del flujo SDD, va
-      despues de la Task 6, con el modelo mas capaz).
+      `generateRoutine(for:catalog:)`. Orden compuestos -> aislamiento ->
+      core al final, series/reps/descanso segun `primaryGoal` (con caso
+      especial `.advanced` + `.strength` = 5 series). Review aprobado sin
+      hallazgos bloqueantes.
+- [x] **Task 4 — helper de activacion + boton "Rutina inteligente"**
+      (`1b70fd1`). `UserProfile.activate(_:in:)` desactiva las rutinas
+      viejas (quedan de historial, no se borran) y activa la nueva; lo usan
+      tanto el flujo generado como el manual. Review aprobado sin hallazgos
+      bloqueantes.
+- [x] **Task 5 — `ExercisePickerSheet` + `RoutineBuilderView`** (`37eb698`).
+      Armador manual: split/dias precargados desde el perfil pero
+      editables, una seccion por dia, buscador tap-to-select que marca los
+      ya agregados con check verde, steppers de series/reps/descanso
+      editables. Los "drafts" viven en memoria (structs, no SwiftData)
+      hasta tocar "Guardar" — cancelar no deja basura en el store. Review
+      aprobado sin hallazgos bloqueantes.
+- [x] **Task 6 — verificacion en simulador + cierre de este documento.**
+      Ver "Verificado en simulador" mas abajo.
+- [ ] **Review final de toda la rama** (paso obligatorio del flujo SDD,
+      con el modelo mas capaz). Se hace despues de cerrar esta tarea.
+
+**18 tests** en `IronPulseTests/WorkoutGeneratorServiceTests.swift` cubren
+split/dias/prescripcion/seleccion — todos pasando en cada tarea.
 
 ### Minors diferidos (para el review final, no bloquean)
 
@@ -243,6 +243,54 @@ linea `Task N: complete` NO se vuelve a ejecutar.
   que documente esa decision.
 - Task 2: ningun test cubre `DayTemplate.muscleGroups`, solo `.title` — un
   typo de grupo muscular pasaria los 6 tests igual.
+- Task 3: no hay test de truncacion que corte especificamente dentro del
+  bucket de `core` (el fixture de test nunca fuerza ese caso).
+- Task 3: ningun test verifica variedad real entre corridas del
+  `.shuffled()` (solo se testean invariantes, no la aleatoriedad en si).
+- Task 5: `RoutineBuilderView.swift` tiene 4 `Stepper` con bindings de
+  subscript anidado (`$draftDays[dayIndex].items[itemIndex].X`) — si la
+  vista crece, extraer un `DraftItemRow` reduciria la carga del
+  type-checker.
+- Task 5: cambiar el split o la cantidad de dias borra todos los
+  ejercicios ya agregados sin confirmar (es el comportamiento tal cual lo
+  pide el brief, no un bug del implementer) — mejora de UX a futuro.
+- Task 5: `ExercisePickerSheet` indexa `draftDays[target.dayIndex]` sin
+  bounds check; hoy es inalcanzable porque la presentacion de la hoja es
+  modal, pero es fragil si eso cambia (ej. presentacion no-modal en iPad).
+
+### Verificado en simulador
+
+Simulador iPhone 17e (`B93C823F-AAD5-46AF-B830-8A8390325C5F`), store
+limpio (`simctl uninstall` + reinstall del build actual, commit `37eb698`).
+
+- Instalacion limpia: lista de perfiles vacia, tema neon visible desde el
+  arranque.
+- Perfil nuevo creado con el boton "+" (`Perfil 1`, Principiante /
+  Hipertrofia / 3 dias por defecto). Dashboard entra en estado "Sin rutina
+  activa" con los dos botones ("Rutina inteligente" / "Crear rutina
+  manual") visibles.
+- **Flujo inteligente**: primer tap en "Rutina inteligente" genera una
+  `RoutineCard` con nombre `"Rutina personalizada - Hipertrofia"`, 3 dias
+  (Torso/Pierna/Torso), cada dia con 4 ejercicios reales en formato
+  `3x8-12`. Segundo tap regenera: la lista de ejercicios cambia
+  (confirmado — "Press cubano"/"Peso muerto rumano"... paso a "Press
+  inclinado con mancuernas"/"Zancadas caminando"...), sigue habiendo
+  **una sola** `RoutineCard` (reemplazo, no duplicado).
+- **Flujo manual**: "Crear rutina manual" abre `RoutineBuilderView` con
+  split preseleccionado en "Torso / Pierna", 3 dias por semana, y 3
+  secciones (Dia 1 — Torso, Dia 2 — Pierna, Dia 3 — Torso). Buscador
+  "press" filtra en vivo; se agrego "Press Arnold" al Dia 1 y aparecio con
+  sus steppers (3 series, 8-12 reps, 75s descanso). Reabrir el picker del
+  Dia 1 y buscar "arnold" muestra la fila **deshabilitada con check
+  verde**. Se agrego un segundo ejercicio ("Remo al menton con barra") al
+  mismo dia y se toco "Guardar": vuelve al Dashboard con la `RoutineCard`
+  `"Rutina manual - Perfil 1"` y los dos ejercicios elegidos.
+- Nota (no es bug): la tarjeta manual mostro "1 dias" porque solo se
+  cargaron ejercicios en el Dia 1 — los dias 2 y 3 sin ejercicios no se
+  persisten como `RoutineDay` vacios. Es coherente con que el spec no pide
+  dias vacios en la rutina guardada.
+- Ningun screenshot mostro contenido faltante o incorrecto frente a lo
+  esperado por el brief.
 
 ## Fase 4 — practicamente completa ya (adelantada sin querer)
 
@@ -261,7 +309,8 @@ durante el recableado de navegacion, antes de arrancar la Fase 3:
 
 ## Siguientes pasos (despues de la Fase 3)
 
-1. Terminar Fase 3: tareas 3 a 6 + review final (ver arriba).
+1. Review final de toda la rama de la Fase 3 (el unico paso que falta,
+   ver arriba).
 2. Cerrar Fase 4: agregar los filtros por `MuscleGroup`/`EquipmentType` a
    `ExerciseListView`.
 3. **Spec nuevo — idioma + foto de perfil**: selector espanol/ingles/frances
