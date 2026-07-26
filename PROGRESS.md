@@ -640,6 +640,29 @@ o son de alcance mayor (no son fixes directos):
 6. `RoutineBuilderView.save()` genera `dayNumber` con huecos — declinado
    explicitamente por el usuario, no tocar salvo que lo pida (ver "Del
    review final — declinados o parqueados" arriba).
+7. **Rediseño de la pantalla de perfil: tendencias + dia actual + sesion
+   guiada con auto-avance** (pedido por el usuario el 2026-07-26, alcance
+   grande, probablemente necesita su propia sesion de brainstorming/spec
+   antes de tocar codigo — toca `ProfileDetailView`/`DashboardView`,
+   `ActiveWorkoutView` y probablemente un concepto nuevo de "que dia de la
+   rutina toca hoy" que hoy no existe). Tal como lo describio el usuario:
+   - Al tocar un perfil, hoy solo se llega al historial de entrenamientos
+     terminados. La idea es que ahi tambien se vean **tendencias y todos
+     los datos de sus ejercicios** (progreso de peso/reps a lo largo del
+     tiempo, no solo la lista de sesiones).
+   - Debe poder ver **el dia en el que esta** (que dia de la rutina activa
+     le toca hoy) y los ejercicios de ese dia.
+   - Al entrar a ese dia debe haber un boton **"Iniciar ejercicios"** que
+     arranca automaticamente el primer set (hoy `ActiveWorkoutView` no
+     tiene arranque automatico, el usuario interactua set por set).
+   - Por cada set: el usuario marca si lo completo o no. Si lo completa,
+     descansa **60-90 segundos segun la intensidad del ejercicio** (hoy el
+     descanso sale de `RoutineExercise.restSeconds`, fijo por prescripcion
+     de objetivo/nivel — no hay un concepto de "intensidad" que mapee a un
+     rango 60-90s, hay que definirlo).
+   - Terminado el descanso, **arranca automaticamente el siguiente set**
+     (hoy no hay auto-avance entre sets, cada set se completa manualmente
+     sin que el siguiente se dispare solo).
 
 ## Gotchas del entorno (cuestan horas si se redescubren)
 
