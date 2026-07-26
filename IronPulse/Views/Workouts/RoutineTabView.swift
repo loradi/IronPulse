@@ -53,6 +53,7 @@ struct RoutineTabView: View {
     }
 
     private func generateRoutine() {
+        guard !catalog.isEmpty else { return }
         let routine = WorkoutGeneratorService.generateRoutine(for: profile, catalog: catalog)
         profile.activate(routine, in: modelContext)
     }
@@ -74,7 +75,7 @@ private struct RoutineCard: View {
         VStack(alignment: .leading, spacing: 12) {
             VStack(alignment: .leading) {
                 Text(routine.name).font(.headline)
-                Text("\(routine.days.count) dias · \(routine.splitType.displayName)")
+                Text("\(diasLabel(routine.days.count)) · \(routine.splitType.displayName)")
                     .font(.caption)
                     .foregroundStyle(Color.ironTextSecondary)
             }

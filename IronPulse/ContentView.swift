@@ -75,7 +75,7 @@ private struct ProfileRow: View {
             Text(profile.name)
                 .font(.headline)
 
-            Text("\(profile.experienceLevel.displayName) • \(profile.primaryGoal.displayName) • \(profile.workoutDaysPerWeek) dias/semana")
+            Text("\(profile.experienceLevel.displayName) • \(profile.primaryGoal.displayName) • \(diasLabel(profile.workoutDaysPerWeek))/semana")
                 .font(.subheadline)
                 .foregroundStyle(Color.ironTextSecondary)
         }
@@ -112,7 +112,7 @@ struct ProfileDetailView: View {
                     }
                 }
 
-                Stepper("\(profile.workoutDaysPerWeek) dias por semana", value: $profile.workoutDaysPerWeek, in: 1...7)
+                Stepper("\(diasLabel(profile.workoutDaysPerWeek)) por semana", value: $profile.workoutDaysPerWeek, in: 1...7)
             }
 
             Section("Datos fisicos") {

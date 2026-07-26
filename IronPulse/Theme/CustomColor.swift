@@ -1,6 +1,10 @@
 import SwiftUI
 import UIKit
 
+func diasLabel(_ count: Int) -> String {
+    "\(count) \(count == 1 ? "dia" : "dias")"
+}
+
 extension Color {
     init(hex: String) {
         let sanitizedHex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)

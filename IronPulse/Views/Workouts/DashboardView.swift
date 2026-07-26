@@ -10,7 +10,7 @@ struct DashboardView: View {
                 header
 
                 if let active = profile.activeRoutine {
-                    Text("\(active.name) · \(active.days.count) dias")
+                    Text("\(active.name) · \(diasLabel(active.days.count))")
                         .font(.subheadline)
                         .foregroundStyle(Color.ironTextSecondary)
                 }
