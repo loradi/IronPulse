@@ -16,7 +16,7 @@ struct DashboardView: View {
                 }
 
                 NavigationLink {
-                    WorkoutHistoryView()
+                    WorkoutHistoryView(profile: profile)
                 } label: {
                     HStack {
                         Text("Ver historial de entrenamientos")

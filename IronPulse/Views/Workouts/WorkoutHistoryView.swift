@@ -2,14 +2,15 @@ import SwiftUI
 import SwiftData
 
 struct WorkoutHistoryView: View {
-    @Query(
-        filter: #Predicate<WorkoutLog> { $0.endDate != nil },
-        sort: \WorkoutLog.startDate,
-        order: .reverse
-    )
-    private var logs: [WorkoutLog]
+    let profile: UserProfile
 
     @State private var selectedLog: WorkoutLog?
+
+    private var logs: [WorkoutLog] {
+        profile.workoutLogs
+            .filter { $0.endDate != nil }
+            .sorted { $0.startDate > $1.startDate }
+    }
 
     var body: some View {
         List(logs) { log in
@@ -63,7 +64,7 @@ struct WorkoutHistoryView: View {
 struct WorkoutHistoryView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            WorkoutHistoryView()
+            WorkoutHistoryView(profile: UserProfile(name: "Preview", age: 30, weightKg: 70, heightCm: 170))
         }
         .preferredColorScheme(.dark)
     }
