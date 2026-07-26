@@ -2,10 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct DashboardView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var catalog: [Exercise]
     @Bindable var profile: UserProfile
-    let healthImporter: HealthKitProfileImporter
 
     var body: some View {
         ScrollView {
@@ -13,32 +10,9 @@ struct DashboardView: View {
                 header
 
                 if let active = profile.activeRoutine {
-                    RoutineCard(routine: active)
-                } else {
-                    ContentUnavailableView(
-                        "Sin rutina activa",
-                        systemImage: "bolt.slash",
-                        description: Text("Genera una rutina automatica o arma la tuya ejercicio por ejercicio.")
-                    )
-                }
-
-                VStack(spacing: 12) {
-                    Button("Rutina inteligente", action: generateRoutine)
-                        .buttonStyle(PrimarySportButtonStyle())
-
-                    NavigationLink {
-                        RoutineBuilderView(profile: profile)
-                    } label: {
-                        Text("Crear rutina manual")
-                            .font(.system(.headline, design: .rounded).weight(.bold))
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 14)
-                            .foregroundStyle(Color.ironAccent)
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                    .stroke(Color.ironAccent, lineWidth: 1.5)
-                            }
-                    }
+                    Text("\(active.name) · \(active.days.count) dias")
+                        .font(.subheadline)
+                        .foregroundStyle(Color.ironTextSecondary)
                 }
             }
             .padding()
@@ -46,27 +20,6 @@ struct DashboardView: View {
         .scrollContentBackground(.hidden)
         .background(Color.ironBackground)
         .navigationTitle(profile.name)
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                NavigationLink {
-                    ExerciseListView()
-                } label: {
-                    Label("Ejercicios", systemImage: "figure.strengthtraining.traditional")
-                }
-            }
-            ToolbarItem(placement: .primaryAction) {
-                NavigationLink {
-                    ProfileDetailView(profile: profile, healthImporter: healthImporter)
-                } label: {
-                    Label("Editar perfil", systemImage: "pencil.circle")
-                }
-            }
-        }
-    }
-
-    private func generateRoutine() {
-        let routine = WorkoutGeneratorService.generateRoutine(for: profile, catalog: catalog)
-        profile.activate(routine, in: modelContext)
     }
 
     private var header: some View {
@@ -81,37 +34,6 @@ struct DashboardView: View {
             Spacer()
 
             Circle().fill(Color.ironAccent).frame(width: 56, height: 56).neonGlow()
-        }
-        .ironCard()
-    }
-}
-
-private struct RoutineCard: View {
-    let routine: WorkoutRoutine
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            VStack(alignment: .leading) {
-                Text(routine.name).font(.headline)
-                Text("\(routine.days.count) dias · \(routine.splitType.displayName)")
-                    .font(.caption)
-                    .foregroundStyle(Color.ironTextSecondary)
-            }
-
-            ForEach(routine.days.sorted { $0.dayNumber < $1.dayNumber }) { day in
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(day.title).font(.subheadline).bold()
-                    ForEach(day.exercises.sorted { $0.orderIndex < $1.orderIndex }) { ex in
-                        HStack {
-                            Text(ex.exercise.name).font(.caption)
-                            Spacer()
-                            Text("\(ex.targetSets)x\(ex.targetRepsMin)-\(ex.targetRepsMax)")
-                                .font(.caption2)
-                                .foregroundStyle(Color.ironTextSecondary)
-                        }
-                    }
-                }
-            }
         }
         .ironCard()
     }

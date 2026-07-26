@@ -21,7 +21,7 @@ struct ContentView: View {
                     } else {
                         ForEach(profiles) { profile in
                             NavigationLink {
-                                DashboardView(profile: profile, healthImporter: healthImporter)
+                                MainTabView(profile: profile, healthImporter: healthImporter)
                             } label: {
                                 ProfileRow(profile: profile)
                             }
