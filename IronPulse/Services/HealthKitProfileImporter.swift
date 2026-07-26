@@ -17,6 +17,10 @@ final class HealthKitProfileImporter {
             types.insert(bodyMass)
         }
 
+        if let leanBodyMass = HKObjectType.quantityType(forIdentifier: .leanBodyMass) {
+            types.insert(leanBodyMass)
+        }
+
         if let height = HKObjectType.quantityType(forIdentifier: .height) {
             types.insert(height)
         }
@@ -59,6 +63,7 @@ final class HealthKitProfileImporter {
         }
 
         async let bodyMass = latestQuantity(.bodyMass, unit: .gramUnit(with: .kilo))
+        async let leanBodyMass = latestQuantity(.leanBodyMass, unit: .gramUnit(with: .kilo))
         async let height = latestQuantity(.height, unit: .meterUnit(with: .centi))
         async let steps = cumulativeQuantity(.stepCount, unit: .count(), daysBack: 7)
         async let activeEnergy = cumulativeQuantity(.activeEnergyBurned, unit: .kilocalorie(), daysBack: 7)
@@ -67,6 +72,7 @@ final class HealthKitProfileImporter {
 
         let snapshot = HealthSnapshot(
             bodyMassKg: try await bodyMass,
+            leanBodyMassKg: try await leanBodyMass,
             heightCm: try await height,
             biologicalSex: readBiologicalSex(),
             dateOfBirth: readDateOfBirth(),

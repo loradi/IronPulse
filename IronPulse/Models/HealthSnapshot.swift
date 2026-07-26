@@ -7,6 +7,7 @@ final class HealthSnapshot {
     var capturedAt: Date
     var source: String
     var bodyMassKg: Double?
+    var leanBodyMassKg: Double?
     var heightCm: Double?
     var biologicalSex: BiologicalSex
     var dateOfBirth: Date?
@@ -21,6 +22,7 @@ final class HealthSnapshot {
         capturedAt: Date = Date(),
         source: String = "HealthKit",
         bodyMassKg: Double? = nil,
+        leanBodyMassKg: Double? = nil,
         heightCm: Double? = nil,
         biologicalSex: BiologicalSex = .notSet,
         dateOfBirth: Date? = nil,
@@ -34,6 +36,7 @@ final class HealthSnapshot {
         self.capturedAt = capturedAt
         self.source = source
         self.bodyMassKg = bodyMassKg
+        self.leanBodyMassKg = leanBodyMassKg
         self.heightCm = heightCm
         self.biologicalSex = biologicalSex
         self.dateOfBirth = dateOfBirth
