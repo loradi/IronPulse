@@ -117,7 +117,7 @@ private struct FilterChip: View {
     }
 }
 
-private struct ExerciseDetailView: View {
+struct ExerciseDetailView: View {
     let exercise: Exercise
 
     var body: some View {

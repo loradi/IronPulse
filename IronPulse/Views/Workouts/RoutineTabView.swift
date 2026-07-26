@@ -70,13 +70,18 @@ private struct RoutineCard: View {
                 VStack(alignment: .leading, spacing: 6) {
                     Text(day.title).font(.subheadline).bold()
                     ForEach(day.exercises.sorted { $0.orderIndex < $1.orderIndex }) { ex in
-                        HStack {
-                            Text(ex.exercise.name).font(.caption)
-                            Spacer()
-                            Text("\(ex.targetSets)x\(ex.targetRepsMin)-\(ex.targetRepsMax)")
-                                .font(.caption2)
-                                .foregroundStyle(Color.ironTextSecondary)
+                        NavigationLink {
+                            ExerciseDetailView(exercise: ex.exercise)
+                        } label: {
+                            HStack {
+                                Text(ex.exercise.name).font(.caption)
+                                Spacer()
+                                Text("\(ex.targetSets)x\(ex.targetRepsMin)-\(ex.targetRepsMax)")
+                                    .font(.caption2)
+                                    .foregroundStyle(Color.ironTextSecondary)
+                            }
                         }
+                        .buttonStyle(.plain)
                     }
                 }
             }
