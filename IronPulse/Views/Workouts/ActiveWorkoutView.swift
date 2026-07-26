@@ -97,7 +97,12 @@ struct ActiveWorkoutView: View {
         }
         .navigationTitle("Entrenamiento")
         .task {
-            await RestNotificationScheduler.requestAuthorizationIfNeeded()
+            if !isReadOnly {
+                await RestNotificationScheduler.requestAuthorizationIfNeeded()
+            }
+        }
+        .onDisappear {
+            restTask?.cancel()
         }
     }
 
