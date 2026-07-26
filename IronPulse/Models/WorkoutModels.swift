@@ -95,6 +95,7 @@ final class WorkoutLog {
     var startDate: Date
     var endDate: Date?
     var routineName: String
+    var dayTitle: String
     var profile: UserProfile?
 
     @Relationship(deleteRule: .cascade, inverse: \SetLog.session)
@@ -105,6 +106,7 @@ final class WorkoutLog {
         startDate: Date = Date(),
         endDate: Date? = nil,
         routineName: String,
+        dayTitle: String,
         profile: UserProfile? = nil,
         completedSets: [SetLog] = []
     ) {
@@ -112,6 +114,7 @@ final class WorkoutLog {
         self.startDate = startDate
         self.endDate = endDate
         self.routineName = routineName
+        self.dayTitle = dayTitle
         self.profile = profile
         self.completedSets = completedSets
     }
@@ -124,6 +127,9 @@ final class SetLog {
     var setIndex: Int
     var weightKg: Double
     var repsCompleted: Int
+    var restSeconds: Int
+    var targetRepsMin: Int
+    var targetRepsMax: Int
     var isCompleted: Bool
     var timestamp: Date
     var session: WorkoutLog?
@@ -134,6 +140,9 @@ final class SetLog {
         setIndex: Int,
         weightKg: Double,
         repsCompleted: Int,
+        restSeconds: Int,
+        targetRepsMin: Int,
+        targetRepsMax: Int,
         isCompleted: Bool = false,
         timestamp: Date = Date(),
         session: WorkoutLog? = nil
@@ -143,6 +152,9 @@ final class SetLog {
         self.setIndex = setIndex
         self.weightKg = weightKg
         self.repsCompleted = repsCompleted
+        self.restSeconds = restSeconds
+        self.targetRepsMin = targetRepsMin
+        self.targetRepsMax = targetRepsMax
         self.isCompleted = isCompleted
         self.timestamp = timestamp
         self.session = session
