@@ -4,11 +4,28 @@ import SwiftData
 struct ExerciseListView: View {
     @Query(sort: \Exercise.name) private var exercises: [Exercise]
     @State private var searchText: String = ""
+    @State private var selectedMuscleGroup: MuscleGroup?
+    @State private var selectedEquipment: EquipmentType?
+
+    private var availableMuscleGroups: [MuscleGroup] {
+        MuscleGroup.allCases.filter { group in exercises.contains { $0.muscleGroup == group } }
+    }
+
+    private var availableEquipment: [EquipmentType] {
+        EquipmentType.allCases.filter { equipment in exercises.contains { $0.equipment == equipment } }
+    }
 
     private var filtered: [Exercise] {
-        guard !searchText.trimmingCharacters(in: .whitespaces).isEmpty else { return exercises }
-        let term = searchText.lowercased()
-        return exercises.filter { $0.name.lowercased().contains(term) }
+        exercises.filter { exercise in
+            let matchesText: Bool
+            let term = searchText.trimmingCharacters(in: .whitespaces).lowercased()
+            matchesText = term.isEmpty || exercise.name.lowercased().contains(term)
+
+            let matchesMuscleGroup = selectedMuscleGroup == nil || exercise.muscleGroup == selectedMuscleGroup
+            let matchesEquipment = selectedEquipment == nil || exercise.equipment == selectedEquipment
+
+            return matchesText && matchesMuscleGroup && matchesEquipment
+        }
     }
 
     var body: some View {
@@ -36,10 +53,67 @@ struct ExerciseListView: View {
             }
             .listRowBackground(Color.ironCard)
         }
+        .safeAreaInset(edge: .top, spacing: 0) {
+            VStack(spacing: 8) {
+                filterRow(
+                    allLabel: "Todos",
+                    items: availableMuscleGroups,
+                    label: \.displayName,
+                    selection: $selectedMuscleGroup
+                )
+                filterRow(
+                    allLabel: "Todos",
+                    items: availableEquipment,
+                    label: \.displayName,
+                    selection: $selectedEquipment
+                )
+            }
+            .padding(.vertical, 8)
+            .background(Color.ironBackground)
+        }
         .scrollContentBackground(.hidden)
         .background(Color.ironBackground)
         .navigationTitle("Ejercicios")
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+    }
+
+    private func filterRow<Item: Hashable>(
+        allLabel: String,
+        items: [Item],
+        label: KeyPath<Item, String>,
+        selection: Binding<Item?>
+    ) -> some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                FilterChip(title: allLabel, isSelected: selection.wrappedValue == nil) {
+                    selection.wrappedValue = nil
+                }
+                ForEach(items, id: \.self) { item in
+                    FilterChip(title: item[keyPath: label], isSelected: selection.wrappedValue == item) {
+                        selection.wrappedValue = item
+                    }
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
+}
+
+private struct FilterChip: View {
+    let title: String
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Text(title.uppercased())
+                .font(.caption.weight(.bold))
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .foregroundStyle(isSelected ? Color.ironBackground : Color.ironTextSecondary)
+                .background(isSelected ? Color.ironAccent : Color.ironCard)
+                .clipShape(Capsule())
+        }
     }
 }
 
