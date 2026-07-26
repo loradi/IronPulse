@@ -7,6 +7,7 @@ struct ActiveWorkoutView: View {
     @Query private var catalog: [Exercise]
     @State private var restRemaining: Int = 0
     @State private var restTask: Task<(), Never>? = nil
+    @State private var activeSetID: SetLog.ID?
 
     private var isReadOnly: Bool { log.endDate != nil }
 
@@ -14,8 +15,12 @@ struct ActiveWorkoutView: View {
         Dictionary(catalog.map { ($0.id, $0.name) }, uniquingKeysWith: { first, _ in first })
     }
 
+    private var flatSets: [SetLog] {
+        log.completedSets.sorted { $0.setIndex < $1.setIndex }
+    }
+
     private var groupedSets: [(exerciseId: String, sets: [SetLog])] {
-        let sorted = log.completedSets.sorted { $0.setIndex < $1.setIndex }
+        let sorted = flatSets
         var order: [String] = []
         var buckets: [String: [SetLog]] = [:]
         for set in sorted {
@@ -73,6 +78,19 @@ struct ActiveWorkoutView: View {
                                 }
                             }
                             .padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background {
+                                if set.id == activeSetID {
+                                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                        .fill(Color.ironAccent.opacity(0.12))
+                                }
+                            }
+                            .overlay {
+                                if set.id == activeSetID {
+                                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                        .stroke(Color.ironAccent, lineWidth: 2)
+                                }
+                            }
                         }
                     }
                 }
@@ -101,6 +119,11 @@ struct ActiveWorkoutView: View {
                 await RestNotificationScheduler.requestAuthorizationIfNeeded()
             }
         }
+        .onAppear {
+            if !isReadOnly && activeSetID == nil {
+                activeSetID = flatSets.first?.id
+            }
+        }
         .onDisappear {
             restTask?.cancel()
         }
@@ -119,14 +142,23 @@ struct ActiveWorkoutView: View {
         set.timestamp = Date()
         try? modelContext.save()
 
-        if set.isCompleted {
-            HapticFeedback.setCompleted()
-            startRest(seconds: set.restSeconds)
-            RestNotificationScheduler.scheduleRestFinished(in: set.restSeconds)
-        }
+        guard set.id == activeSetID, set.isCompleted else { return }
+        HapticFeedback.setCompleted()
+        let seconds = restSeconds(for: set)
+        startRest(seconds: seconds) { advanceToNextSet() }
+        RestNotificationScheduler.scheduleRestFinished(in: seconds)
     }
 
-    private func startRest(seconds: Int) {
+    private func restSeconds(for set: SetLog) -> Int {
+        let isCompound = catalog.first { $0.id == set.exerciseId }?.isCompound ?? false
+        return GuidedSessionFlow.restSeconds(isCompound: isCompound)
+    }
+
+    private func advanceToNextSet() {
+        activeSetID = GuidedSessionFlow.nextSetID(after: activeSetID, in: flatSets)
+    }
+
+    private func startRest(seconds: Int, onFinished: @escaping () -> Void) {
         restTask?.cancel()
         restRemaining = seconds
 
@@ -138,6 +170,7 @@ struct ActiveWorkoutView: View {
             if !Task.isCancelled {
                 HapticFeedback.restFinished()
                 RestNotificationScheduler.cancelPending()
+                onFinished()
             }
         }
     }
