@@ -1,7 +1,7 @@
 import Foundation
 import SwiftData
 
-private struct ExerciseSeedDTO: Codable {
+struct ExerciseSeedDTO: Codable {
     let id: String
     let name: String
     let muscleGroup: MuscleGroup

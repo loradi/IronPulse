@@ -104,14 +104,25 @@ la hace testeable sin `ModelContainer`.
 
 ### Selección de ejercicios por día
 
-1. Filtrar el catálogo a los grupos musculares del día.
-2. Ordenar en 3 niveles: `isCompound && muscleGroup != .core` primero,
-   aislamiento no-core después, todo lo de `core` al final (el core va al
-   final del día sin importar si el movimiento es compuesto).
-3. Mezclar aleatoriamente dentro de cada nivel (variedad entre
-   generaciones) y tomar los primeros N.
+1. Para cada grupo muscular del día, armar un pool de candidatos de ese
+   grupo (mezclado aleatoriamente para variedad entre generaciones).
+2. Elegir por round-robin entre los pools, en orden de template: ronda 0
+   aporta el primer ejercicio de cada grupo, ronda 1 el segundo de cada
+   grupo que aún tenga uno, y así hasta llegar a N ejercicios por día o
+   agotar todos los pools. Esto garantiza que todo grupo del template
+   tenga al menos un turno antes de que ningún grupo repita.
+3. Con el conjunto ya elegido, reordenar para mostrar: `isCompound &&
+   muscleGroup != .core` primero, aislamiento no-core después, todo lo de
+   `core` al final (el core va al final del día sin importar si el
+   movimiento es compuesto).
 4. N ejercicios por día según `experienceLevel`: principiante 4,
    intermedio 5, avanzado 6.
+
+**Fix de review final**: el enfoque original ("concatenar 3 buckets
+compuesto/aislamiento/core y tomar los primeros N") dejaba que el bucket de
+compuestos por sí solo saturara el cupo del día, así que grupos sin
+ejercicios compuestos en el catálogo real (biceps, core) nunca se
+seleccionaban. El round-robin por grupo muscular corrige esto.
 
 **Simplificación conocida** (marcar con comentario `ponytail:` en el
 código): no hay lógica para evitar que el mismo ejercicio se repita entre

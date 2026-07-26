@@ -1,3 +1,4 @@
+import Foundation
 import Testing
 @testable import IronPulse
 
@@ -159,7 +160,9 @@ struct WorkoutGeneratorServiceTests {
             let ordenados = day.exercises.sorted { $0.orderIndex < $1.orderIndex }
             // Ignorando core (que siempre va al final), ningun aislamiento precede a un compuesto.
             let sinCore = ordenados.filter { $0.exercise.muscleGroup != .core }
-            if let primerAislamiento = sinCore.firstIndex(where: { !$0.exercise.isCompound }) {
+            let primerAislamiento = sinCore.firstIndex(where: { !$0.exercise.isCompound })
+            #expect(primerAislamiento != nil, "el dia deberia tener al menos un ejercicio de aislamiento")
+            if let primerAislamiento {
                 let despues = sinCore[primerAislamiento...]
                 #expect(despues.allSatisfy { !$0.exercise.isCompound })
             }
@@ -170,9 +173,16 @@ struct WorkoutGeneratorServiceTests {
         let routine = WorkoutGeneratorService.generateRoutine(
             for: makeProfile(level: .advanced, days: 3), catalog: makeCatalog()
         )
-        for day in routine.days {
+        // days: 3 -> split upperLower -> ciclo Torso, Pierna, Torso. Solo Pierna
+        // incluye .core en su template, asi que solo ahi exigimos que aparezca.
+        let templates = WorkoutGeneratorService.dayTemplates(split: .upperLower, dayCount: 3)
+        for (day, template) in zip(routine.days, templates) {
             let ordenados = day.exercises.sorted { $0.orderIndex < $1.orderIndex }
-            if let primerCore = ordenados.firstIndex(where: { $0.exercise.muscleGroup == .core }) {
+            let primerCore = ordenados.firstIndex(where: { $0.exercise.muscleGroup == .core })
+            if template.muscleGroups.contains(.core) {
+                #expect(primerCore != nil, "el dia deberia incluir al menos un ejercicio de core")
+            }
+            if let primerCore {
                 let despues = ordenados[primerCore...]
                 #expect(despues.allSatisfy { $0.exercise.muscleGroup == .core })
             }
@@ -202,5 +212,36 @@ struct WorkoutGeneratorServiceTests {
         )
         #expect(routine.days.count == 4)
         #expect(routine.days.allSatisfy { $0.exercises.isEmpty })
+    }
+
+    @Test func todosLosGruposDelTemplateAparecenConElCatalogoReal() throws {
+        let catalog = try loadRealCatalog()
+        for split in SplitType.allCases {
+            for level in ExperienceLevel.allCases {
+                let days = split == .fullBody ? 2 : (split == .upperLower ? 4 : 6)
+                let profile = makeProfile(level: level, days: days)
+                let routine = WorkoutGeneratorService.generateRoutine(for: profile, catalog: catalog)
+                // dayCount: days (no 1) para que el ciclo completo se alinee con routine.days
+                // por posicion - con dayCount: 1 siempre se compara contra el primer template
+                // del ciclo y dias como "Pierna"/"Piernas" (los que incluyen core) nunca se verifican.
+                let templates = WorkoutGeneratorService.dayTemplates(split: split, dayCount: days)
+                let limit = WorkoutGeneratorService.exercisesPerDay(for: level)
+                for (day, template) in zip(routine.days, templates) {
+                    // Si el template pide mas grupos musculares que cupos disponibles, es
+                    // matematicamente imposible cubrirlos todos - no es un defecto del fix.
+                    guard template.muscleGroups.count <= limit else { continue }
+                    let gruposPresentes = Set(day.exercises.map(\.exercise.muscleGroup))
+                    let gruposEsperados = Set(template.muscleGroups)
+                    let faltantes = gruposEsperados.subtracting(gruposPresentes)
+                    #expect(faltantes.isEmpty, "\(template.title): faltan los grupos \(faltantes) con nivel \(level)")
+                }
+            }
+        }
+    }
+
+    private func loadRealCatalog() throws -> [Exercise] {
+        let url = try #require(Bundle.main.url(forResource: "ExercisesSeed", withExtension: "json"))
+        let data = try Data(contentsOf: url)
+        return try JSONDecoder().decode([ExerciseSeedDTO].self, from: data).map { $0.toModel() }
     }
 }

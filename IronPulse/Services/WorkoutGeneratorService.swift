@@ -111,12 +111,25 @@ enum WorkoutGeneratorService {
         from catalog: [Exercise],
         limit: Int
     ) -> [Exercise] {
-        let candidates = catalog.filter { template.muscleGroups.contains($0.muscleGroup) }
+        // Round-robin por grupo muscular: sin esto, un grupo sin ejercicios
+        // compuestos (ej. biceps, core) nunca entra al dia porque el cupo
+        // se llena antes con compuestos de otros grupos.
+        let pools = template.muscleGroups.map { group in
+            catalog.filter { $0.muscleGroup == group }.shuffled()
+        }
 
-        let compounds = candidates.filter { $0.isCompound && $0.muscleGroup != .core }.shuffled()
-        let isolation = candidates.filter { !$0.isCompound && $0.muscleGroup != .core }.shuffled()
-        let core = candidates.filter { $0.muscleGroup == .core }.shuffled()
+        var picked: [Exercise] = []
+        var round = 0
+        while picked.count < limit && pools.contains(where: { $0.count > round }) {
+            for pool in pools where pool.count > round && picked.count < limit {
+                picked.append(pool[round])
+            }
+            round += 1
+        }
 
-        return Array((compounds + isolation + core).prefix(limit))
+        let compounds = picked.filter { $0.isCompound && $0.muscleGroup != .core }
+        let isolation = picked.filter { !$0.isCompound && $0.muscleGroup != .core }
+        let core = picked.filter { $0.muscleGroup == .core }
+        return compounds + isolation + core
     }
 }
