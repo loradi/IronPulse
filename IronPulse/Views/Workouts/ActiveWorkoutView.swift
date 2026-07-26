@@ -8,61 +8,105 @@ struct ActiveWorkoutView: View {
     @State private var restRemaining: Int = 0
     @State private var restTask: Task<(), Never>? = nil
 
+    private var isReadOnly: Bool { log.endDate != nil }
+
     private var exerciseNames: [String: String] {
         Dictionary(catalog.map { ($0.id, $0.name) }, uniquingKeysWith: { first, _ in first })
+    }
+
+    private var groupedSets: [(exerciseId: String, sets: [SetLog])] {
+        let sorted = log.completedSets.sorted { $0.setIndex < $1.setIndex }
+        var order: [String] = []
+        var buckets: [String: [SetLog]] = [:]
+        for set in sorted {
+            if buckets[set.exerciseId] == nil { order.append(set.exerciseId) }
+            buckets[set.exerciseId, default: []].append(set)
+        }
+        return order.map { ($0, buckets[$0]!) }
     }
 
     var body: some View {
         VStack {
             HStack {
-                Text(log.routineName).font(.title2).fontWeight(.black)
+                VStack(alignment: .leading) {
+                    Text(log.routineName).font(.title2).fontWeight(.black)
+                    Text(log.dayTitle).font(.subheadline).foregroundStyle(Color.ironTextSecondary)
+                }
                 Spacer()
-                if log.endDate != nil {
+                if isReadOnly {
                     Text("Finalizada").foregroundStyle(Color.ironTextSecondary)
                 }
             }
             .padding()
 
             List {
-                ForEach(log.completedSets.sorted { $0.setIndex < $1.setIndex }) { set in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(exerciseNames[set.exerciseId] ?? set.exerciseId).font(.headline)
-                            Text("Set \(set.setIndex) · \(set.repsCompleted) reps")
-                                .font(.caption)
-                                .foregroundStyle(Color.ironTextSecondary)
-                        }
+                ForEach(groupedSets, id: \.exerciseId) { group in
+                    Section(exerciseNames[group.exerciseId] ?? group.exerciseId) {
+                        ForEach(Array(group.sets.enumerated()), id: \.element.id) { index, set in
+                            VStack(alignment: .leading, spacing: 8) {
+                                HStack {
+                                    Text("Set \(index + 1)").font(.headline)
+                                    Spacer()
+                                    Text("Meta: \(set.targetRepsMin)-\(set.targetRepsMax)")
+                                        .font(.caption)
+                                        .foregroundStyle(Color.ironTextSecondary)
+                                    Button(action: { toggleCompleted(set) }) {
+                                        Image(systemName: set.isCompleted ? "checkmark.circle.fill" : "circle")
+                                            .foregroundStyle(set.isCompleted ? Color.ironAccent : Color.ironTextSecondary)
+                                    }
+                                    .disabled(isReadOnly)
+                                }
 
-                        Spacer()
+                                HStack {
+                                    HStack(spacing: 4) {
+                                        TextField("Peso", value: bindingForWeight(set), format: .number)
+                                            .keyboardType(.decimalPad)
+                                            .disabled(isReadOnly)
+                                            .frame(width: 60)
+                                        Text("kg").font(.caption).foregroundStyle(Color.ironTextSecondary)
+                                    }
 
-                        VStack(alignment: .trailing, spacing: 6) {
-                            Text(String(format: "%.1fkg", set.weightKg)).font(.subheadline)
-                            Button(action: { toggleCompleted(set) }) {
-                                Image(systemName: set.isCompleted ? "checkmark.circle.fill" : "circle")
-                                    .foregroundStyle(set.isCompleted ? Color.ironAccent : Color.ironTextSecondary)
+                                    Spacer()
+
+                                    Stepper("\(set.repsCompleted) reps", value: bindingForReps(set), in: 0...50)
+                                        .disabled(isReadOnly)
+                                }
                             }
+                            .padding(.vertical, 4)
                         }
                     }
-                    .padding(.vertical, 8)
                 }
             }
 
-            HStack(spacing: 12) {
-                Button("Terminar") {
-                    log.endDate = Date()
-                    try? modelContext.save()
-                }
-                .buttonStyle(PrimarySportButtonStyle())
+            if !isReadOnly {
+                HStack(spacing: 12) {
+                    Button("Terminar") {
+                        log.endDate = Date()
+                        try? modelContext.save()
+                    }
+                    .buttonStyle(PrimarySportButtonStyle())
 
-                Spacer()
+                    Spacer()
 
-                if restRemaining > 0 {
-                    Text("Descanso: \(restRemaining)s").font(.headline).foregroundStyle(Color.ironAccent)
+                    if restRemaining > 0 {
+                        Text("Descanso: \(restRemaining)s").font(.headline).foregroundStyle(Color.ironAccent)
+                    }
                 }
+                .padding()
             }
-            .padding()
         }
         .navigationTitle("Entrenamiento")
+        .task {
+            await RestNotificationScheduler.requestAuthorizationIfNeeded()
+        }
+    }
+
+    private func bindingForWeight(_ set: SetLog) -> Binding<Double> {
+        Binding(get: { set.weightKg }, set: { set.weightKg = $0 })
+    }
+
+    private func bindingForReps(_ set: SetLog) -> Binding<Int> {
+        Binding(get: { set.repsCompleted }, set: { set.repsCompleted = $0 })
     }
 
     private func toggleCompleted(_ set: SetLog) {
@@ -72,8 +116,8 @@ struct ActiveWorkoutView: View {
 
         if set.isCompleted {
             HapticFeedback.setCompleted()
-            // ponytail: descanso fijo de 60s; leerlo del RoutineExercise cuando la Fase 5 conecte rutina -> log
-            startRest(seconds: 60)
+            startRest(seconds: set.restSeconds)
+            RestNotificationScheduler.scheduleRestFinished(in: set.restSeconds)
         }
     }
 
@@ -88,6 +132,7 @@ struct ActiveWorkoutView: View {
             }
             if !Task.isCancelled {
                 HapticFeedback.restFinished()
+                RestNotificationScheduler.cancelPending()
             }
         }
     }
