@@ -9,19 +9,28 @@ struct WorkoutHistoryView: View {
     )
     private var logs: [WorkoutLog]
 
+    @State private var selectedLog: WorkoutLog?
+
     var body: some View {
         List(logs) { log in
-            NavigationLink {
-                ActiveWorkoutView(log: log)
+            Button {
+                selectedLog = log
             } label: {
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("\(log.routineName) · \(log.dayTitle)").font(.headline)
-                    Text("\(log.startDate.formatted(date: .abbreviated, time: .shortened)) · \(duration(log))")
-                        .font(.caption)
+                HStack {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("\(log.routineName) · \(log.dayTitle)").font(.headline)
+                        Text("\(log.startDate.formatted(date: .abbreviated, time: .shortened)) · \(duration(log))")
+                            .font(.caption)
+                            .foregroundStyle(Color.ironTextSecondary)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.caption.weight(.semibold))
                         .foregroundStyle(Color.ironTextSecondary)
                 }
                 .padding(.vertical, 4)
             }
+            .buttonStyle(.plain)
             .listRowBackground(Color.ironCard)
         }
         .scrollContentBackground(.hidden)
@@ -30,6 +39,9 @@ struct WorkoutHistoryView: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
+        .navigationDestination(item: $selectedLog) { log in
+            ActiveWorkoutView(log: log)
+        }
         .overlay {
             if logs.isEmpty {
                 ContentUnavailableView(
