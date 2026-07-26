@@ -37,6 +37,7 @@ final class RoutineDay {
     @Attribute(.unique) var id: UUID
     var dayNumber: Int
     var title: String
+    var weekday: Weekday
     var routine: WorkoutRoutine?
 
     @Relationship(deleteRule: .cascade, inverse: \RoutineExercise.day)
@@ -46,12 +47,14 @@ final class RoutineDay {
         id: UUID = UUID(),
         dayNumber: Int,
         title: String,
+        weekday: Weekday = .monday,
         routine: WorkoutRoutine? = nil,
         exercises: [RoutineExercise] = []
     ) {
         self.id = id
         self.dayNumber = dayNumber
         self.title = title
+        self.weekday = weekday
         self.routine = routine
         self.exercises = exercises
     }

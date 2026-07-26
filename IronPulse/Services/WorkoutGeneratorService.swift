@@ -41,6 +41,18 @@ enum WorkoutGeneratorService {
         return (0..<max(1, dayCount)).map { cycle[$0 % cycle.count] }
     }
 
+    static func weekdaysForCount(_ count: Int) -> [Weekday] {
+        switch count {
+        case 1: return [.monday]
+        case 2: return [.monday, .thursday]
+        case 3: return [.monday, .wednesday, .friday]
+        case 4: return [.monday, .tuesday, .thursday, .friday]
+        case 5: return [.monday, .tuesday, .wednesday, .thursday, .friday]
+        case 6: return [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday]
+        default: return Weekday.allCases // 7 dias: los 7 casos del enum, ya en orden
+        }
+    }
+
     struct Prescription {
         let sets: Int
         let repsMin: Int
@@ -72,6 +84,7 @@ enum WorkoutGeneratorService {
         let templates = dayTemplates(split: split, dayCount: profile.workoutDaysPerWeek)
         let plan = prescription(goal: profile.primaryGoal, level: profile.experienceLevel)
         let perDay = exercisesPerDay(for: profile.experienceLevel)
+        let weekdays = weekdaysForCount(templates.count)
 
         let routine = WorkoutRoutine(
             name: "Rutina personalizada - \(profile.primaryGoal.displayName)",
@@ -82,7 +95,7 @@ enum WorkoutGeneratorService {
 
         for (index, template) in templates.enumerated() {
             let picked = selectExercises(for: template, from: catalog, limit: perDay)
-            let day = RoutineDay(dayNumber: index + 1, title: template.title)
+            let day = RoutineDay(dayNumber: index + 1, title: template.title, weekday: weekdays[index])
 
             // Solo se asigna el lado "coleccion" de cada relacion: SwiftData completa
             // el inverso (RoutineExercise.day, RoutineDay.routine) al insertar.

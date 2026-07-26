@@ -244,4 +244,28 @@ struct WorkoutGeneratorServiceTests {
         let data = try Data(contentsOf: url)
         return try JSONDecoder().decode([ExerciseSeedDTO].self, from: data).map { $0.toModel() }
     }
+
+    // MARK: - Dias de la semana
+
+    @Test func weekdaysForCountDevuelveLaTablaCorrecta() {
+        #expect(WorkoutGeneratorService.weekdaysForCount(1) == [.monday])
+        #expect(WorkoutGeneratorService.weekdaysForCount(2) == [.monday, .thursday])
+        #expect(WorkoutGeneratorService.weekdaysForCount(3) == [.monday, .wednesday, .friday])
+        #expect(WorkoutGeneratorService.weekdaysForCount(4) == [.monday, .tuesday, .thursday, .friday])
+        #expect(WorkoutGeneratorService.weekdaysForCount(5) == [.monday, .tuesday, .wednesday, .thursday, .friday])
+        #expect(WorkoutGeneratorService.weekdaysForCount(6) == [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday])
+        #expect(WorkoutGeneratorService.weekdaysForCount(7) == Weekday.allCases)
+    }
+
+    @Test func cadaCountDevuelveLaCantidadDeDiasPedida() {
+        for count in 1...7 {
+            #expect(WorkoutGeneratorService.weekdaysForCount(count).count == count)
+        }
+    }
+
+    @Test func generateRoutineAsignaLosWeekdaysEnOrden() {
+        let routine = WorkoutGeneratorService.generateRoutine(for: makeProfile(days: 3), catalog: makeCatalog())
+        let sortedDays = routine.days.sorted { $0.dayNumber < $1.dayNumber }
+        #expect(sortedDays.map(\.weekday) == [.monday, .wednesday, .friday])
+    }
 }

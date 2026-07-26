@@ -156,8 +156,9 @@ struct RoutineBuilderView: View {
 
         // Igual que en WorkoutGeneratorService: solo el lado "coleccion",
         // SwiftData completa el inverso al insertar.
+        let weekdays = WorkoutGeneratorService.weekdaysForCount(dayCount)
         for (index, draft) in draftDays.enumerated() where !draft.items.isEmpty {
-            let day = RoutineDay(dayNumber: index + 1, title: draft.title)
+            let day = RoutineDay(dayNumber: index + 1, title: draft.title, weekday: weekdays[index])
             day.exercises = draft.items.enumerated().map { position, item in
                 RoutineExercise(
                     exercise: item.exercise,
