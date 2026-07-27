@@ -5,7 +5,7 @@ Reconstruccion de IronPulse hacia "IRON & PULSE" (SwiftUI + SwiftData, iOS 17+,
 Todo el trabajo vive en el branch `dev` (repo: https://github.com/loradi/IronPulse),
 `main` es un checkpoint estable separado.
 
-## Estado (2026-07-26): Fases 1-5 completas + limpieza chica de deuda diferida
+## Estado (2026-07-27): Fases 1-5 + tendencias/sesion guiada completas, PR #1 abierto
 
 - `006cf59` — Fase 1: sistema de diseno neon + `GIFImageView`
 - `d39dfaa` — Fase 2: modelos SwiftData nuevos + seeder de 150 ejercicios
@@ -28,6 +28,16 @@ Todo el trabajo vive en el branch `dev` (repo: https://github.com/loradi/IronPul
   propia abajo): singularizacion de "N dias", rename de `isGeneratedByAI`,
   guard de catalogo vacio, step de `restSeconds` manual, nombre de rutina
   manual distinguible.
+- `5bfbd3c`..`6878439` — **Tendencias de perfil + sesion guiada con
+  auto-avance COMPLETA** (ver seccion propia abajo): dia de rutina por
+  dia de la semana, `WorkoutStatsService` (volumen/racha/grafico/progreso
+  por ejercicio), masa magra de HealthKit, auto-avance de sets con
+  descanso 60-90s segun `isCompound`, rediseno de `DashboardView`. Incluye
+  un bug real serio encontrado y corregido (`Chart` de Swift Charts
+  bloqueando todos los toques de la pantalla) y 2 hallazgos Important del
+  review final tambien corregidos.
+- **PR #1 abierto**: https://github.com/loradi/IronPulse/pull/1
+  (`dev` → `main`), esperando review/merge del usuario.
 - Nueva referencia visual sin implementar en `MOCKUPS/` (rebrand +
   sistema de diseno "Kinetic Onyx" + tab bar) — ver seccion propia abajo,
   pendiente de decision del usuario
@@ -608,13 +618,105 @@ simulador no migra y `ModelContainer` explota con
 Build compila igual con SourceKit quejandose y con `xcodebuild` en verde;
 el error solo aparece en runtime al intentar migrar el store.
 
+## Tendencias de perfil + sesion guiada con auto-avance — COMPLETA (2026-07-27)
+
+Spec: `docs/superpowers/specs/2026-07-26-profile-trends-guided-session-design.md`.
+Plan: `docs/superpowers/plans/2026-07-26-profile-trends-guided-session.md`.
+Ejecutado con `subagent-driven-development` (7 tareas, cada una con
+implementador + review propio, mas review final de toda la rama en el
+modelo mas capaz). Esto era el pendiente 7 de la lista anterior — quedo
+resuelto completo, incluidas las 3 decisiones de diseno que estaban
+abiertas (dia por dia de la semana asignado automaticamente y parejo,
+no por secuencia; intensidad = `Exercise.isCompound` → 90s/60s,
+reemplaza al `restSeconds` viejo en la sesion guiada; set no completado
+pausa el auto-avance en vez de reintentar solo).
+
+- `5bfbd3c` — `Weekday` (enum nuevo) + asignacion automatica de dia de
+  semana a `RoutineDay` (tabla fija por `workoutDaysPerWeek`, igual en
+  el generador automatico y el armador manual).
+- `7cbf696` — `WorkoutStatsService`: volumen total, conteo de
+  entrenamientos, racha, serie de volumen diario (30 dias), progreso de
+  peso maximo por ejercicio. Funciones puras, mismo estilo que
+  `WorkoutGeneratorService`.
+- `1bfca9d` — `leanBodyMassKg` en `HealthSnapshot` + lectura desde
+  HealthKit (mismo patron que `bodyMassKg`, sin permiso nuevo que pedir
+  aparte).
+- `73a6666` — `GuidedSessionFlow` (logica pura: descanso por
+  `isCompound`, siguiente set) + auto-avance en `ActiveWorkoutView`:
+  el primer set se resalta solo al entrar, completar el set activo
+  dispara descanso real y avanza solo al siguiente al terminar; marcar
+  un set fuera de orden o destildarlo no dispara nada.
+- `988579d` — `ExerciseProgressView`: grafico de progreso de un
+  ejercicio (Swift Charts).
+- `4372622`+`b9bf177` — Rediseno de `DashboardView` (no una vista
+  nueva — es la pantalla a la que ya se llega al tocar un perfil):
+  tarjeta de "hoy" con boton "Iniciar ejercicios", metricas, grafico de
+  30 dias, masa magra (si hay >=2 snapshots), progreso por ejercicio,
+  historial. El review de esta tarea encontro codigo duplicado entre
+  `DashboardView.startTodaysSession` y `RoutineTabView.startWorkout`,
+  extraido a `WorkoutLogGenerator.startSession(for:routineName:profile:in:)`.
+- `35a20b7` — **Bug real encontrado en la verificacion en simulador,
+  el mas serio de esta tanda**: al agregar el `Chart` de Swift Charts a
+  `DashboardView`, la pantalla entera dejo de responder a CUALQUIER
+  toque — no solo el grafico: el boton "Iniciar ejercicios", los
+  `NavigationLink`, hasta la tab bar del `TabView` (que ni siquiera esta
+  dentro del mismo `ScrollView`). Se descarto por bisagra en vivo que
+  fuera el `NavigationStack` anidado (`ContentView` empuja `MainTabView`,
+  que crea 4 `NavigationStack` propios) armando un fix con
+  `fullScreenCover` que **no** resolvio nada — y se confirmo la causa
+  real comparando, en el mismo simulador, contra el `DashboardView`
+  viejo de antes de esta tanda (que si respondia) y despues quitando
+  secciones nuevas una por una hasta aislar el `Chart`. **Fix real**:
+  `.allowsHitTesting(false)` en el `Chart` (tanto en `DashboardView`
+  como en `ExerciseProgressView`, mismo patron) — ningun grafico de esta
+  pantalla tiene seleccion/scrubbing, son puramente decorativos.
+  El review final califico esto como "mitigacion verificada, no causa
+  raiz probada" (podria ser hit-testing genuino del Chart o un loop de
+  layout contra `.ironCard()` sin ancho fijo; en cualquier caso el fix
+  es correcto para un grafico decorativo). **Regla a futuro: cualquier
+  `Chart` de Swift Charts sin interaccion propia dentro de un
+  `ScrollView` necesita `.allowsHitTesting(false)`, o puede tragarse los
+  toques de toda la pantalla, no solo los suyos.**
+- `9236338` — Limpieza chica adicional pedida en la misma sesion: los 4
+  ejercicios duplicados del seed (`Encogimientos con barra`, `Face pull
+  en polea`, `Fondos en banco`, `Fondos en paralelas`, cada uno dado de
+  alta dos veces bajo distinto grupo muscular) fusionados — cada
+  entrada que se mantuvo ya tenia el grupo de la duplicada en
+  `secondaryMuscles`, asi que el catalogo bajo de 150 a **146** sin
+  perder cobertura muscular. `ProfileSelectionView.swift` (huerfana,
+  sin ningun caller) borrada.
+- `6878439` — **2 hallazgos Important del review final de toda la
+  rama, corregidos en una sola tanda**: (1) `WorkoutStatsService.
+  currentStreak` devolvia 0 en un dia programado si todavia no se
+  entrenaba ese dia (rompia una racha real cada manana de dia de
+  entrenamiento) — ahora el dia de hoy sin sesion no corta la racha,
+  solo un dia *anterior* programado y sin sesion la corta; (2)
+  destildar el set activo a mitad del descanso no cancelaba el timer ni
+  la notificacion local, y el auto-avance seguia disparandose igual —
+  ahora cancela ambos.
+
+**Review final de toda la rama** (opus): veredicto "Ready to merge: Yes".
+6 hallazgos Minor quedaron sin accion (no bloquean, ver ledger de la SDD
+ya borrado — resumen: `Weekday.today(now:)` usado como mapeador general
+de fechas pasadas, nombre confuso pero funciona; `RoutineBuilderView`
+asigna `weekday` por posicion sin filtrar dias vacios, igual que ya
+pasaba con `dayNumber`; `startTodaysSession`/`startWorkout` pueden crear
+logs duplicados sin terminar si se sale sin terminar la sesion, invisible
+en toda la UI porque todo filtra por `endDate != nil`; sin cache en las
+metricas del Dashboard, irrelevante al volumen de datos actual; el
+numero de volumen no se formatea en toneladas para usuarios de mucho
+tiempo).
+
+**PR abierto**: https://github.com/loradi/IronPulse/pull/1 (`dev` → `main`,
+52 commits, Fases 1-5 completas + esta tanda). Decision de push+PR (en
+vez de merge local o seguir en `dev`) tomada por el usuario via el flujo
+`finishing-a-development-branch`.
+
 ## Siguientes pasos
 
-**Fases 1-5 estan 100% completas** (ver secciones propias arriba), mas la
-limpieza chica de deuda diferida del 2026-07-26. Sigue pendiente una sola
-decision del usuario, no tecnica: si integrar la rama `dev` (merge/PR) o
-seguir trabajando encima — no se ejecuta solo, se espera instruccion
-explicita (flujo `finishing-a-development-branch`).
+**Fases 1-5 y la tanda de tendencias/sesion guiada estan 100%
+completas** (ver secciones propias arriba). El PR #1 esta abierto,
+esperando review/merge del usuario — no se mergea solo.
 
 Pendientes reales que quedan, todos requieren alguna decision de producto
 o son de alcance mayor (no son fixes directos):
@@ -628,41 +730,17 @@ o son de alcance mayor (no son fixes directos):
    usuario que van en un documento aparte.
 3. Definir fuente real de GIFs animados (o aceptar las fotos JPG de
    free-exercise-db como definitivas).
-4. **4 ejercicios duplicados en el seed** (mismo ejercicio dado de alta dos
-   veces bajo dos grupos musculares, herencia de los 7 subagentes en
-   paralelo): `Encogimientos con barra` (back/shoulders), `Face pull en
-   polea` (back/shoulders), `Fondos en banco` (chest/triceps), `Fondos en
-   paralelas` (chest/triceps). Los ids son unicos asi que el seeder inserta
-   los 8; en la biblioteca salen repetidos. Decidir si se fusionan usando
-   `secondaryMuscles` o se dejan.
-5. `ProfileSelectionView.swift` sigue huerfana y duplica lo que ya hace
-   `ContentView` (listar perfiles + crear). Evaluar si se borra.
-6. `RoutineBuilderView.save()` genera `dayNumber` con huecos — declinado
+4. `RoutineBuilderView.save()` genera `dayNumber` con huecos — declinado
    explicitamente por el usuario, no tocar salvo que lo pida (ver "Del
    review final — declinados o parqueados" arriba).
-7. **Rediseño de la pantalla de perfil: tendencias + dia actual + sesion
-   guiada con auto-avance** (pedido por el usuario el 2026-07-26, alcance
-   grande, probablemente necesita su propia sesion de brainstorming/spec
-   antes de tocar codigo — toca `ProfileDetailView`/`DashboardView`,
-   `ActiveWorkoutView` y probablemente un concepto nuevo de "que dia de la
-   rutina toca hoy" que hoy no existe). Tal como lo describio el usuario:
-   - Al tocar un perfil, hoy solo se llega al historial de entrenamientos
-     terminados. La idea es que ahi tambien se vean **tendencias y todos
-     los datos de sus ejercicios** (progreso de peso/reps a lo largo del
-     tiempo, no solo la lista de sesiones).
-   - Debe poder ver **el dia en el que esta** (que dia de la rutina activa
-     le toca hoy) y los ejercicios de ese dia.
-   - Al entrar a ese dia debe haber un boton **"Iniciar ejercicios"** que
-     arranca automaticamente el primer set (hoy `ActiveWorkoutView` no
-     tiene arranque automatico, el usuario interactua set por set).
-   - Por cada set: el usuario marca si lo completo o no. Si lo completa,
-     descansa **60-90 segundos segun la intensidad del ejercicio** (hoy el
-     descanso sale de `RoutineExercise.restSeconds`, fijo por prescripcion
-     de objetivo/nivel — no hay un concepto de "intensidad" que mapee a un
-     rango 60-90s, hay que definirlo).
-   - Terminado el descanso, **arranca automaticamente el siguiente set**
-     (hoy no hay auto-avance entre sets, cada set se completa manualmente
-     sin que el siguiente se dispare solo).
+5. **6 hallazgos Minor del review final de la tanda de tendencias** (ver
+   seccion propia arriba) — ninguno bloquea, ninguno se toco todavia.
+6. **Preparacion para publicar en la App Store** — pendiente de
+   arrancar: falta definir bundle id final/certificados, icono de app
+   (hoy el icono del bundle sale vacio/generico en el simulador, se vio
+   en la ultima verificacion), screenshots, texto de App Store Connect,
+   privacy manifest (la app pide permisos de HealthKit y notificaciones
+   locales), y decidir que politica de privacidad usar.
 
 ## Gotchas del entorno (cuestan horas si se redescubren)
 
