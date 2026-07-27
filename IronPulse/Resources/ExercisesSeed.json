@@ -1660,24 +1660,6 @@
     "isCompound": false
   },
   {
-    "id": "ex_092_face_pull_polea",
-    "name": "Face pull en polea",
-    "muscleGroup": "shoulders",
-    "secondaryMuscles": [
-      "back"
-    ],
-    "equipment": "cableMachine",
-    "instructions": [
-      "Coloca la polea a la altura de la cara con una cuerda como agarre.",
-      "Tira de la cuerda hacia el rostro separando las manos.",
-      "Mantén los codos altos y aprieta los omoplatos.",
-      "Regresa lentamente a la posicion inicial."
-    ],
-    "gifFileName": "ex_hombros_face_pull_polea.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Face_Pull/0.jpg",
-    "isCompound": false
-  },
-  {
     "id": "ex_093_remo_menton_barra",
     "name": "Remo al menton con barra",
     "muscleGroup": "shoulders",
@@ -1712,24 +1694,6 @@
     "gifFileName": "ex_hombros_remo_menton_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Dumbbell_Upright_Row/0.jpg",
     "isCompound": true
-  },
-  {
-    "id": "ex_095_encogimientos_barra",
-    "name": "Encogimientos con barra",
-    "muscleGroup": "shoulders",
-    "secondaryMuscles": [
-      "back"
-    ],
-    "equipment": "barbell",
-    "instructions": [
-      "Sostén la barra con los brazos extendidos frente a los muslos.",
-      "Eleva los hombros hacia las orejas sin flexionar los codos.",
-      "Mantén una pausa breve en la parte alta del movimiento.",
-      "Baja los hombros de forma controlada hasta la posicion inicial."
-    ],
-    "gifFileName": "ex_hombros_encogimientos_barra.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shrug/0.jpg",
-    "isCompound": false
   },
   {
     "id": "ex_096_encogimientos_mancuernas",
@@ -2139,24 +2103,6 @@
     "isCompound": false
   },
   {
-    "id": "ex_119_fondos_banco",
-    "name": "Fondos en banco",
-    "muscleGroup": "triceps",
-    "secondaryMuscles": [
-      "chest",
-      "shoulders"
-    ],
-    "equipment": "bodyweight",
-    "instructions": [
-      "Apoya las manos en el borde de un banco con las piernas extendidas al frente.",
-      "Flexiona los codos bajando el cuerpo hacia el suelo manteniendo la espalda cerca del banco.",
-      "Empuja con los triceps para subir hasta extender los codos por completo."
-    ],
-    "gifFileName": "ex_triceps_fondos_banco.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/0.jpg",
-    "isCompound": true
-  },
-  {
     "id": "ex_120_extension_mancuernas_dos_manos_sobre_cabeza",
     "name": "Extension de triceps con mancuerna a dos manos por encima de la cabeza",
     "muscleGroup": "triceps",
@@ -2307,24 +2253,6 @@
     "gifFileName": "ex_triceps_extension_polea_cuerda_tras_nuca.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rope_Overhead_Triceps_Extension/0.jpg",
     "isCompound": false
-  },
-  {
-    "id": "ex_129_fondos_paralelas",
-    "name": "Fondos en paralelas",
-    "muscleGroup": "triceps",
-    "secondaryMuscles": [
-      "chest",
-      "shoulders"
-    ],
-    "equipment": "bodyweight",
-    "instructions": [
-      "Sujétate de las barras paralelas con los brazos extendidos y el cuerpo suspendido.",
-      "Flexiona los codos bajando el cuerpo manteniendo el torso lo mas vertical posible.",
-      "Empuja hacia arriba extendiendo los codos hasta volver a la posicion inicial."
-    ],
-    "gifFileName": "ex_triceps_fondos_paralelas.gif",
-    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dips_-_Triceps_Version/0.jpg",
-    "isCompound": true
   },
   {
     "id": "ex_130_press_cerrado_mancuernas",
