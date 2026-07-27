@@ -142,7 +142,13 @@ struct ActiveWorkoutView: View {
         set.timestamp = Date()
         try? modelContext.save()
 
-        guard set.id == activeSetID, set.isCompleted else { return }
+        guard set.id == activeSetID else { return }
+        guard set.isCompleted else {
+            restTask?.cancel()
+            restRemaining = 0
+            RestNotificationScheduler.cancelPending()
+            return
+        }
         HapticFeedback.setCompleted()
         let seconds = restSeconds(for: set)
         startRest(seconds: seconds) { advanceToNextSet() }

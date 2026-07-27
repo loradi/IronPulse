@@ -110,6 +110,20 @@ struct WorkoutStatsServiceTests {
         #expect(streak == 1)
     }
 
+    @Test func diaAsignadoDeHoySinSesionNoRompeLaRachaPrevia() {
+        let logs = [
+            makeLog(start: day(2026, 7, 27), finished: true, sets: []),
+            makeLog(start: day(2026, 7, 29), finished: true, sets: [])
+        ]
+        let streak = WorkoutStatsService.currentStreak(
+            scheduledWeekdays: [.monday, .wednesday, .friday],
+            logs: logs,
+            today: day(2026, 7, 31),
+            calendar: calendar
+        )
+        #expect(streak == 2)
+    }
+
     // MARK: - dailyVolume
 
     @Test func dailyVolumeSiempreDevuelveLaCantidadDeDiasPedida() {

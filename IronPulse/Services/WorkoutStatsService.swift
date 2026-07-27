@@ -25,7 +25,10 @@ enum WorkoutStatsService {
             guard let cursor = calendar.date(byAdding: .day, value: -offset, to: startDay) else { break }
             let weekday = Weekday.today(calendar: calendar, now: cursor)
             guard scheduledWeekdays.contains(weekday) else { continue }
-            guard completedDays.contains(cursor) else { break }
+            guard completedDays.contains(cursor) else {
+                if offset == 0 { continue }
+                break
+            }
             streak += 1
         }
 
