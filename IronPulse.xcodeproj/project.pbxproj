@@ -46,7 +46,7 @@
 		F10F51F030105F00005C2775 /* Exceptions for "IronPulse" folder in "IronPulse" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"Resources/Fonts/UIAppFonts.plist",
+				Resources/Fonts/UIAppFonts.plist,
 			);
 			target = F10F515830105658005C2775 /* IronPulse */;
 		};
