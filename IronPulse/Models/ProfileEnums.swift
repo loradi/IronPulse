@@ -217,6 +217,18 @@ enum Weekday: Int, Codable, CaseIterable, Identifiable {
         }
     }
 
+    var shortDisplayName: String {
+        switch self {
+        case .monday: return "LUN"
+        case .tuesday: return "MAR"
+        case .wednesday: return "MIE"
+        case .thursday: return "JUE"
+        case .friday: return "VIE"
+        case .saturday: return "SAB"
+        case .sunday: return "DOM"
+        }
+    }
+
     /// `Calendar.component(.weekday)` devuelve 1=domingo..7=sabado (calendario
     /// gregoriano/US) — se remapea a este enum (1=lunes..7=domingo) para no
     /// heredar esa convencion hacia el resto del codigo.
