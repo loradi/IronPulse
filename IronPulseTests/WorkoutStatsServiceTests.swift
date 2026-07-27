@@ -165,4 +165,36 @@ struct WorkoutStatsServiceTests {
         ]
         #expect(WorkoutStatsService.progress(for: "e1", in: logs).isEmpty)
     }
+
+    // MARK: - weekStrip
+
+    @Test func testTiraSemanalMarcaCompletadoPendienteYNoProgramado() {
+        // "hoy" fijo: miercoles 2026-07-29 (Weekday.wednesday = 3)
+        let today = day(2026, 7, 29)
+        let monday = day(2026, 7, 27)
+        let log = makeLog(start: monday, finished: true, sets: [])
+
+        let result = WorkoutStatsService.weekStrip(
+            scheduledWeekdays: [.monday, .wednesday, .friday],
+            logs: [log],
+            today: today,
+            calendar: calendar
+        )
+
+        #expect(result.count == 7)
+        #expect(result[0].weekday == .monday)
+        #expect(result[0].status == .completed)
+        #expect(result[1].status == .notScheduled) // martes, no programado
+        #expect(result[2].weekday == .wednesday)
+        #expect(result[2].status == .pending) // hoy, programado, sin log
+        #expect(result[2].isToday)
+        #expect(result[4].weekday == .friday)
+        #expect(result[4].status == .pending) // futuro, programado, sin log todavia
+        #expect(result[5].status == .notScheduled) // sabado
+    }
+
+    @Test func testTiraSemanalSinDiasProgramadosQuedaTodaVacia() {
+        let result = WorkoutStatsService.weekStrip(scheduledWeekdays: [], logs: [])
+        #expect(result.allSatisfy { $0.status == .notScheduled })
+    }
 }

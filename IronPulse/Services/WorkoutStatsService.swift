@@ -71,6 +71,38 @@ enum WorkoutStatsService {
             .sorted { $0.date < $1.date }
     }
 
+    enum WeekdayStatus: Equatable {
+        case notScheduled
+        case pending
+        case completed
+    }
+
+    static func weekStrip(
+        scheduledWeekdays: Set<Weekday>,
+        logs: [WorkoutLog],
+        today: Date = Date(),
+        calendar: Calendar = .current
+    ) -> [(weekday: Weekday, status: WeekdayStatus, isToday: Bool)] {
+        guard let weekStart = calendar.dateInterval(of: .weekOfYear, for: today)?.start else { return [] }
+
+        let completedDays = Set(finishedLogs(logs).map { calendar.startOfDay(for: $0.startDate) })
+        let todayWeekday = Weekday.today(calendar: calendar, now: today)
+
+        let days = (0..<7).compactMap { offset -> (weekday: Weekday, status: WeekdayStatus, isToday: Bool)? in
+            guard let date = calendar.date(byAdding: .day, value: offset, to: weekStart) else { return nil }
+            let weekday = Weekday.today(calendar: calendar, now: date)
+
+            guard scheduledWeekdays.contains(weekday) else {
+                return (weekday, .notScheduled, weekday == todayWeekday)
+            }
+
+            let status: WeekdayStatus = completedDays.contains(calendar.startOfDay(for: date)) ? .completed : .pending
+            return (weekday, status, weekday == todayWeekday)
+        }
+
+        return days.sorted { $0.weekday.rawValue < $1.weekday.rawValue }
+    }
+
     private static func finishedLogs(_ logs: [WorkoutLog]) -> [WorkoutLog] {
         logs.filter { $0.endDate != nil }
     }
