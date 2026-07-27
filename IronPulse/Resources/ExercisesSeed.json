@@ -1,0 +1,2620 @@
+[
+  {
+    "id": "ex_001_press_plano_barra",
+    "name": "Press plano con barra",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Acuestate en el banco plano con los pies firmes en el piso.",
+      "Agarra la barra con las manos un poco mas separadas que el ancho de los hombros.",
+      "Baja la barra controladamente hasta rozar el pecho.",
+      "Empuja hacia arriba sin bloquear los codos por completo."
+    ],
+    "gifFileName": "ex_pecho_press_plano_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Bench_Press_-_Medium_Grip/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_002_press_inclinado_barra",
+    "name": "Press inclinado con barra",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Acuestate en un banco inclinado a 30-45 grados.",
+      "Agarra la barra con un poco mas de ancho que los hombros.",
+      "Baja la barra controladamente hasta la parte superior del pecho.",
+      "Empuja hacia arriba y hacia atras sin bloquear los codos."
+    ],
+    "gifFileName": "ex_pecho_press_inclinado_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Bench_Press_-_Medium_Grip/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_003_press_declinado_barra",
+    "name": "Press declinado con barra",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Acuestate en un banco declinado asegurando los pies en los soportes.",
+      "Agarra la barra con las manos separadas al ancho de los hombros.",
+      "Baja la barra controladamente hasta la parte inferior del pecho.",
+      "Empuja hacia arriba de forma controlada sin bloquear los codos."
+    ],
+    "gifFileName": "ex_pecho_press_declinado_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Barbell_Bench_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_004_press_plano_mancuernas",
+    "name": "Press plano con mancuernas",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Acuestate en el banco plano sosteniendo una mancuerna en cada mano a la altura del pecho.",
+      "Empuja las mancuernas hacia arriba hasta extender los brazos.",
+      "Baja las mancuernas controladamente a los lados del pecho.",
+      "Manten el core firme durante todo el movimiento."
+    ],
+    "gifFileName": "ex_pecho_press_plano_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bench_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_005_press_inclinado_mancuernas",
+    "name": "Press inclinado con mancuernas",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sientate en un banco inclinado con una mancuerna en cada mano a la altura de los hombros.",
+      "Empuja las mancuernas hacia arriba hasta casi juntarlas.",
+      "Baja controladamente hasta sentir el estiramiento en el pecho.",
+      "Evita arquear excesivamente la espalda baja."
+    ],
+    "gifFileName": "ex_pecho_press_inclinado_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_006_press_declinado_mancuernas",
+    "name": "Press declinado con mancuernas",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Acuestate en un banco declinado sujetando los pies en los soportes.",
+      "Sostiene una mancuerna en cada mano a la altura del pecho.",
+      "Empuja las mancuernas hacia arriba de forma controlada.",
+      "Baja lentamente hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_pecho_press_declinado_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Bench_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_007_press_mancuerna_un_brazo",
+    "name": "Press con mancuerna a un brazo",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders",
+      "core"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Acuestate en el banco plano con una mancuerna en una sola mano a la altura del pecho.",
+      "Manten el core contraido para estabilizar el torso.",
+      "Empuja la mancuerna hacia arriba sin rotar el cuerpo.",
+      "Baja controladamente y repite antes de cambiar de brazo."
+    ],
+    "gifFileName": "ex_pecho_press_mancuerna_un_brazo.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One_Arm_Dumbbell_Bench_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_008_aperturas_mancuernas_plano",
+    "name": "Aperturas con mancuernas en banco plano",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Acuestate en el banco plano con una mancuerna en cada mano sobre el pecho.",
+      "Manten los codos ligeramente flexionados durante todo el movimiento.",
+      "Abre los brazos hacia los lados hasta sentir el estiramiento en el pecho.",
+      "Junta las mancuernas de nuevo arriba en un movimiento de arco."
+    ],
+    "gifFileName": "ex_pecho_aperturas_mancuernas_plano.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Flyes/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_009_aperturas_inclinadas_mancuernas",
+    "name": "Aperturas inclinadas con mancuernas",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sientate en un banco inclinado con una mancuerna en cada mano sobre el pecho.",
+      "Baja los brazos hacia los lados con los codos ligeramente flexionados.",
+      "Siente el estiramiento en la parte superior del pecho.",
+      "Sube las mancuernas juntandolas en un movimiento de arco."
+    ],
+    "gifFileName": "ex_pecho_aperturas_inclinadas_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Flyes/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_010_aperturas_declinadas_mancuernas",
+    "name": "Aperturas declinadas con mancuernas",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Acuestate en un banco declinado con una mancuerna en cada mano sobre el pecho.",
+      "Abre los brazos hacia los lados manteniendo los codos ligeramente flexionados.",
+      "Baja hasta sentir el estiramiento en la parte inferior del pecho.",
+      "Sube las mancuernas juntandolas en un movimiento controlado."
+    ],
+    "gifFileName": "ex_pecho_aperturas_declinadas_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Flyes/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_011_cruces_poleas_altas",
+    "name": "Cruces de poleas altas",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Coloca las poleas en la posicion alta y sujeta una empunadura en cada mano.",
+      "Da un paso al frente con un pie adelantado para estabilizarte.",
+      "Junta las manos hacia abajo y al frente del cuerpo en forma de arco.",
+      "Regresa controladamente a la posicion inicial sin perder la tension."
+    ],
+    "gifFileName": "ex_pecho_cruces_poleas_altas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Crossover/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_012_cruces_poleas_bajas",
+    "name": "Cruces de poleas bajas",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Coloca las poleas en la posicion baja y sujeta una empunadura en cada mano.",
+      "Da un paso al frente para crear tension en los cables.",
+      "Sube las manos hacia arriba y al frente del cuerpo en forma de arco.",
+      "Regresa lentamente a la posicion inicial controlando el peso."
+    ],
+    "gifFileName": "ex_pecho_cruces_poleas_bajas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Low_Cable_Crossover/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_013_aperturas_polea_inclinada",
+    "name": "Aperturas en polea con banco inclinado",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Coloca un banco inclinado entre dos poleas bajas.",
+      "Sujeta una empunadura en cada mano con los brazos extendidos a los lados.",
+      "Junta las manos por encima del pecho en un movimiento de arco.",
+      "Baja controladamente hasta sentir el estiramiento en el pecho."
+    ],
+    "gifFileName": "ex_pecho_aperturas_polea_inclinada.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Cable_Flye/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_014_aperturas_polea_plano",
+    "name": "Aperturas en polea con banco plano",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Coloca un banco plano entre dos poleas bajas.",
+      "Acuestate y sujeta una empunadura en cada mano sobre el pecho.",
+      "Abre los brazos hacia los lados manteniendo los codos ligeramente flexionados.",
+      "Junta las manos de nuevo en un movimiento de arco controlado."
+    ],
+    "gifFileName": "ex_pecho_aperturas_polea_plano.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Flat_Bench_Cable_Flyes/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_015_press_pecho_maquina",
+    "name": "Press de pecho en maquina",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Sientate en la maquina ajustando el asiento a la altura del pecho.",
+      "Sujeta las empunaduras con las manos al ancho de los hombros.",
+      "Empuja hacia adelante hasta extender los brazos sin bloquear los codos.",
+      "Regresa controladamente a la posicion inicial."
+    ],
+    "gifFileName": "ex_pecho_press_pecho_maquina.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bench_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_016_press_pecho_polea_de_pie",
+    "name": "Press de pecho en polea de pie",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders",
+      "core"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Coloca la polea a la altura del pecho y sujeta la empunadura con una mano.",
+      "Da un paso al frente adoptando una postura estable.",
+      "Empuja la empunadura hacia adelante extendiendo el brazo.",
+      "Regresa controladamente sin dejar que el cable te jale hacia atras."
+    ],
+    "gifFileName": "ex_pecho_press_pecho_polea_de_pie.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Cable_Chest_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_017_press_banca_smith_plano",
+    "name": "Press banca plano en maquina Smith",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Acuestate en el banco plano bajo la barra de la maquina Smith.",
+      "Agarra la barra un poco mas ancho que los hombros y desengancha el seguro.",
+      "Baja la barra controladamente hasta el pecho.",
+      "Empuja hacia arriba sin bloquear los codos por completo."
+    ],
+    "gifFileName": "ex_pecho_press_banca_smith_plano.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Bench_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_018_press_banca_smith_inclinado",
+    "name": "Press banca inclinado en maquina Smith",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Coloca un banco inclinado bajo la barra de la maquina Smith.",
+      "Agarra la barra un poco mas ancho que los hombros y desengancha el seguro.",
+      "Baja la barra controladamente hasta la parte superior del pecho.",
+      "Empuja hacia arriba sin bloquear los codos por completo."
+    ],
+    "gifFileName": "ex_pecho_press_banca_smith_inclinado.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Incline_Bench_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_019_fondos_paralelas",
+    "name": "Fondos en paralelas",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "triceps",
+      "shoulders"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Sujeta las barras paralelas y eleva el cuerpo con los brazos extendidos.",
+      "Inclina el torso ligeramente hacia adelante para enfatizar el pecho.",
+      "Baja el cuerpo flexionando los codos hasta sentir el estiramiento.",
+      "Empuja hacia arriba hasta extender los brazos por completo."
+    ],
+    "gifFileName": "ex_pecho_fondos_paralelas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Parallel_Bar_Dip/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_020_fondos_banco",
+    "name": "Fondos en banco",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Apoya las manos en el borde de un banco con los dedos hacia adelante.",
+      "Extiende las piernas al frente apoyando los talones en el piso.",
+      "Baja el cuerpo flexionando los codos hasta un angulo de 90 grados.",
+      "Empuja hacia arriba hasta extender los brazos sin bloquear los codos."
+    ],
+    "gifFileName": "ex_pecho_fondos_banco.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_021_flexiones_pecho",
+    "name": "Flexiones de pecho",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "triceps",
+      "core"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Colocate en posicion de plancha con las manos al ancho de los hombros.",
+      "Manten el cuerpo alineado desde la cabeza hasta los talones.",
+      "Baja el pecho hacia el piso flexionando los codos.",
+      "Empuja hacia arriba hasta extender los brazos por completo."
+    ],
+    "gifFileName": "ex_pecho_flexiones_pecho.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_022_flexiones_inclinadas",
+    "name": "Flexiones inclinadas",
+    "muscleGroup": "chest",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Apoya las manos en una superficie elevada como un banco o step.",
+      "Manten el cuerpo alineado desde la cabeza hasta los talones.",
+      "Baja el pecho hacia la superficie flexionando los codos.",
+      "Empuja hacia arriba hasta extender los brazos por completo."
+    ],
+    "gifFileName": "ex_pecho_flexiones_inclinadas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Push-Up/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_023_dominadas_pronadas",
+    "name": "Dominadas pronadas",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "biceps",
+      "shoulders"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Agarra la barra con las palmas hacia adelante, un poco mas ancho que los hombros.",
+      "Cuelga con los brazos extendidos y el core apretado.",
+      "Tira del cuerpo hacia arriba hasta que la barbilla supere la barra.",
+      "Baja de forma controlada hasta la extension completa de los brazos."
+    ],
+    "gifFileName": "ex_espalda_dominadas_pronadas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_024_dominadas_supinadas",
+    "name": "Dominadas supinadas",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "biceps"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Agarra la barra con las palmas hacia ti, separadas al ancho de los hombros.",
+      "Cuelga con los brazos extendidos sin balancear el cuerpo.",
+      "Tira hacia arriba llevando el pecho hacia la barra.",
+      "Desciende con control hasta estirar completamente los brazos."
+    ],
+    "gifFileName": "ex_espalda_dominadas_supinadas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chin-Up/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_025_dominadas_asistidas_banda",
+    "name": "Dominadas asistidas con banda",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "biceps",
+      "shoulders"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Ancla una banda elastica en la barra y coloca un pie o rodilla dentro del lazo.",
+      "Sujeta la barra con agarre pronado al ancho de los hombros.",
+      "Tira del cuerpo hacia arriba usando la asistencia de la banda.",
+      "Baja lentamente controlando el descenso."
+    ],
+    "gifFileName": "ex_espalda_dominadas_asistidas_banda.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Band_Assisted_Pull-Up/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_026_remo_barra_inclinado",
+    "name": "Remo con barra inclinado",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "biceps",
+      "shoulders"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Inclina el torso hacia adelante manteniendo la espalda recta y las rodillas semiflexionadas.",
+      "Sujeta la barra con agarre pronado al ancho de los hombros.",
+      "Tira de la barra hacia el abdomen apretando los omoplatos.",
+      "Baja la barra de forma controlada sin perder la postura de la espalda."
+    ],
+    "gifFileName": "ex_espalda_remo_barra_inclinado.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Barbell_Row/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_027_remo_sentado_polea",
+    "name": "Remo sentado en polea",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "biceps"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Sientate frente a la polea baja con las rodillas ligeramente flexionadas.",
+      "Sujeta el agarre con ambas manos y mantén la espalda recta.",
+      "Tira del agarre hacia el abdomen juntando los omoplatos.",
+      "Regresa lentamente sin redondear la espalda baja."
+    ],
+    "gifFileName": "ex_espalda_remo_sentado_polea.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Cable_Rows/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_028_jalon_pecho_agarre_ancho",
+    "name": "Jalon al pecho agarre ancho",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "biceps",
+      "shoulders"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Sujeta la barra con un agarre ancho y pronado.",
+      "Sientate con los muslos fijos bajo el soporte.",
+      "Tira de la barra hacia la parte superior del pecho.",
+      "Sube la barra con control hasta extender los brazos."
+    ],
+    "gifFileName": "ex_espalda_jalon_pecho_agarre_ancho.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_029_jalon_pecho_agarre_cerrado",
+    "name": "Jalon al pecho agarre cerrado",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "biceps"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Sujeta la barra en V o con agarre cerrado frente a ti.",
+      "Fija los muslos bajo el soporte y mantén el torso erguido.",
+      "Tira de la barra hacia el pecho llevando los codos hacia abajo.",
+      "Regresa de forma controlada hasta la extension completa."
+    ],
+    "gifFileName": "ex_espalda_jalon_pecho_agarre_cerrado.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Front_Lat_Pulldown/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_030_remo_mancuerna_un_brazo",
+    "name": "Remo con mancuerna a un brazo",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "biceps",
+      "core"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Apoya una rodilla y la mano del mismo lado sobre un banco.",
+      "Sujeta la mancuerna con el brazo libre completamente extendido.",
+      "Tira de la mancuerna hacia la cadera manteniendo el codo cerca del cuerpo.",
+      "Baja con control hasta extender el brazo por completo."
+    ],
+    "gifFileName": "ex_espalda_remo_mancuerna_un_brazo.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Dumbbell_Row/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_031_peso_muerto_convencional",
+    "name": "Peso muerto convencional",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "legs",
+      "glutes"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Colocate frente a la barra con los pies al ancho de la cadera.",
+      "Flexiona las caderas y rodillas para sujetar la barra con agarre firme.",
+      "Levanta la barra manteniendo la espalda recta y el pecho arriba.",
+      "Extiende caderas y rodillas hasta quedar completamente erguido."
+    ],
+    "gifFileName": "ex_espalda_peso_muerto_convencional.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Deadlift/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_032_peso_muerto_rumano",
+    "name": "Peso muerto rumano",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "glutes",
+      "legs"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Sujeta la barra con agarre pronado frente a los muslos.",
+      "Flexiona ligeramente las rodillas y empuja la cadera hacia atras.",
+      "Baja la barra deslizandola cerca de las piernas manteniendo la espalda recta.",
+      "Vuelve a la posicion inicial extendiendo la cadera."
+    ],
+    "gifFileName": "ex_espalda_peso_muerto_rumano.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_033_remo_posterior_polea_cuerda",
+    "name": "Remo posterior en polea con cuerda",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Coloca la polea a la altura del pecho y sujeta la cuerda con ambas manos.",
+      "Da un paso atras y mantén el torso erguido.",
+      "Tira de la cuerda hacia atras separando las manos hacia los lados.",
+      "Regresa lentamente controlando la tension del cable."
+    ],
+    "gifFileName": "ex_espalda_remo_posterior_polea_cuerda.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rope_Rear-Delt_Rows/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_034_pullover_mancuerna",
+    "name": "Pullover con mancuerna",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "chest",
+      "triceps"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Acuestate perpendicular sobre un banco sujetando una mancuerna con ambas manos.",
+      "Extiende los brazos por encima del pecho con un ligero doblez en los codos.",
+      "Baja la mancuerna en arco por detras de la cabeza sintiendo el estiramiento de la espalda.",
+      "Regresa la mancuerna a la posicion inicial contrayendo el dorsal."
+    ],
+    "gifFileName": "ex_espalda_pullover_mancuerna.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent-Arm_Dumbbell_Pullover/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_035_remo_t_tumbado",
+    "name": "Remo en T tumbado",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "biceps"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Recuestate boca abajo sobre el banco de la maquina de remo en T.",
+      "Sujeta las agarraderas con los brazos extendidos.",
+      "Tira del peso hacia el pecho apretando la espalda.",
+      "Baja el peso con control hasta la extension completa."
+    ],
+    "gifFileName": "ex_espalda_remo_t_tumbado.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_T-Bar_Row/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_036_remo_t_manija",
+    "name": "Remo en T con manija",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "biceps",
+      "shoulders"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Colocate sobre la barra en T con los pies firmes y el torso inclinado.",
+      "Sujeta la manija con ambas manos y la espalda recta.",
+      "Tira del peso hacia el abdomen apretando los omoplatos.",
+      "Baja el peso de forma controlada sin redondear la espalda."
+    ],
+    "gifFileName": "ex_espalda_remo_t_manija.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/T-Bar_Row_with_Handle/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_037_encogimientos_barra",
+    "name": "Encogimientos con barra",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Sujeta la barra con agarre pronado frente a los muslos.",
+      "Mantén los brazos extendidos y el torso erguido.",
+      "Eleva los hombros hacia las orejas sin flexionar los codos.",
+      "Baja los hombros con control hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_espalda_encogimientos_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shrug/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_038_hiperextensiones_lumbares",
+    "name": "Hiperextensiones lumbares",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "glutes",
+      "core"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Colocate en el banco de hiperextensiones con las caderas apoyadas en el cojin.",
+      "Cruza los brazos sobre el pecho y baja el torso lentamente.",
+      "Eleva el torso hasta alinear el cuerpo en linea recta.",
+      "Evita hiperextender la zona lumbar en la parte superior del movimiento."
+    ],
+    "gifFileName": "ex_espalda_hiperextensiones_lumbares.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hyperextensions_Back_Extensions/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_039_remo_invertido",
+    "name": "Remo invertido",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "biceps",
+      "core"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Coloca una barra fija a la altura de la cadera y sujetala con agarre pronado.",
+      "Cuelga debajo de la barra con el cuerpo recto y los talones apoyados.",
+      "Tira del pecho hacia la barra apretando los omoplatos.",
+      "Baja con control hasta extender completamente los brazos."
+    ],
+    "gifFileName": "ex_espalda_remo_invertido.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inverted_Row/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_040_jalon_brazos_rectos_polea",
+    "name": "Jalon con brazos rectos en polea",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Sujeta la barra de la polea alta con los brazos extendidos.",
+      "Mantén una ligera inclinacion del torso hacia adelante.",
+      "Baja la barra en arco hasta los muslos manteniendo los codos rectos.",
+      "Regresa la barra lentamente a la posicion inicial."
+    ],
+    "gifFileName": "ex_espalda_jalon_brazos_rectos_polea.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight-Arm_Pulldown/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_041_remo_kettlebell_un_brazo",
+    "name": "Remo con kettlebell a un brazo",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "core",
+      "biceps"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Apoya una mano y la rodilla del mismo lado sobre un banco.",
+      "Sujeta la kettlebell con el brazo libre completamente extendido.",
+      "Tira de la kettlebell hacia la cadera manteniendo el codo pegado al cuerpo.",
+      "Baja con control hasta estirar el brazo por completo."
+    ],
+    "gifFileName": "ex_espalda_remo_kettlebell_un_brazo.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Kettlebell_Row/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_042_superman",
+    "name": "Superman",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "glutes",
+      "core"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Acuestate boca abajo con los brazos extendidos al frente.",
+      "Contrae la zona lumbar y los gluteos.",
+      "Eleva simultaneamente brazos y piernas del suelo.",
+      "Mantén la posicion un segundo y baja con control."
+    ],
+    "gifFileName": "ex_espalda_superman.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Superman/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_043_peso_muerto_sumo",
+    "name": "Peso muerto sumo",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "glutes",
+      "legs"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Colocate con una postura amplia y las puntas de los pies hacia afuera.",
+      "Sujeta la barra por dentro de las piernas con los brazos extendidos.",
+      "Levanta la barra empujando el suelo con los pies y manteniendo la espalda recta.",
+      "Extiende caderas y rodillas hasta quedar completamente erguido."
+    ],
+    "gifFileName": "ex_espalda_peso_muerto_sumo.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sumo_Deadlift/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_044_remo_alto_maquina_palanca",
+    "name": "Remo alto en maquina de palanca",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "biceps"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Sientate en la maquina de palanca y sujeta las agarraderas.",
+      "Apoya el pecho contra el respaldo manteniendo la espalda recta.",
+      "Tira de las agarraderas hacia el cuerpo apretando los omoplatos.",
+      "Regresa el peso de forma controlada hasta la extension completa."
+    ],
+    "gifFileName": "ex_espalda_remo_alto_maquina_palanca.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_High_Row/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_045_face_pull_polea",
+    "name": "Face pull en polea",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Coloca la polea a la altura de la cara y sujeta la cuerda con ambas manos.",
+      "Da un paso atras manteniendo el torso erguido.",
+      "Tira de la cuerda hacia la cara separando las manos y llevando los codos atras.",
+      "Regresa con control a la posicion inicial."
+    ],
+    "gifFileName": "ex_espalda_face_pull_polea.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Face_Pull/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_046_remo_arrodillado_polea_alta",
+    "name": "Remo arrodillado en polea alta",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "biceps"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Arrodillate frente a la polea alta y sujeta el agarre con ambas manos.",
+      "Mantén el torso erguido y el core activado.",
+      "Tira del agarre hacia el pecho apretando la espalda.",
+      "Extiende los brazos con control para regresar a la posicion inicial."
+    ],
+    "gifFileName": "ex_espalda_remo_arrodillado_polea_alta.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kneeling_High_Pulley_Row/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_047_jalon_tras_nuca_agarre_ancho",
+    "name": "Jalon tras nuca agarre ancho",
+    "muscleGroup": "back",
+    "secondaryMuscles": [
+      "shoulders",
+      "biceps"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Sujeta la barra con un agarre ancho y pronado por encima de la cabeza.",
+      "Sientate con los muslos fijos bajo el soporte.",
+      "Tira de la barra hacia la nuca manteniendo el torso erguido.",
+      "Sube la barra con control hasta extender los brazos por completo."
+    ],
+    "gifFileName": "ex_espalda_jalon_tras_nuca_agarre_ancho.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Pulldown_Behind_The_Neck/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_048_sentadilla_trasera_con_barra",
+    "name": "Sentadilla trasera con barra",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Coloca la barra sobre los trapecios, no sobre el cuello.",
+      "Separa los pies al ancho de los hombros y baja flexionando cadera y rodillas.",
+      "Desciende hasta que los muslos queden paralelos al suelo manteniendo la espalda recta.",
+      "Empuja el suelo con los talones para volver a la posicion inicial."
+    ],
+    "gifFileName": "ex_piernas_sentadilla_trasera_con_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Squat/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_049_sentadilla_frontal_con_barra",
+    "name": "Sentadilla frontal con barra",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "core"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Apoya la barra sobre los deltoides frontales con los codos elevados.",
+      "Mantén el torso erguido durante todo el recorrido.",
+      "Baja controladamente hasta que los muslos superen la horizontal.",
+      "Sube empujando con fuerza a traves de los talones."
+    ],
+    "gifFileName": "ex_piernas_sentadilla_frontal_con_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Barbell_Squat/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_050_prensa_de_piernas_45_grados",
+    "name": "Prensa de piernas a 45 grados",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Sientate en la maquina y coloca los pies al ancho de los hombros sobre la plataforma.",
+      "Desbloquea los seguros y flexiona las rodillas controladamente.",
+      "Baja hasta formar un angulo de 90 grados sin despegar la zona lumbar del respaldo.",
+      "Empuja la plataforma sin bloquear por completo las rodillas."
+    ],
+    "gifFileName": "ex_piernas_prensa_de_piernas_45_grados.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_051_peso_muerto_rumano_con_barra",
+    "name": "Peso muerto rumano con barra",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Sujeta la barra con agarre prono a la altura de las caderas.",
+      "Flexiona ligeramente las rodillas y empuja la cadera hacia atras.",
+      "Desliza la barra pegada a las piernas hasta sentir el estiramiento del isquiotibial.",
+      "Vuelve a la posicion inicial contrayendo los gluteos."
+    ],
+    "gifFileName": "ex_piernas_peso_muerto_rumano_con_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_052_peso_muerto_rumano_con_mancuernas",
+    "name": "Peso muerto rumano con mancuernas",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sostén una mancuerna en cada mano frente a los muslos.",
+      "Inclina el torso hacia adelante empujando la cadera hacia atras.",
+      "Baja las mancuernas cerca de las piernas hasta la mitad de la espinilla.",
+      "Regresa extendiendo la cadera y apretando los gluteos."
+    ],
+    "gifFileName": "ex_piernas_peso_muerto_rumano_con_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stiff-Legged_Dumbbell_Deadlift/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_053_zancadas_caminando_con_mancuernas",
+    "name": "Zancadas caminando con mancuernas",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sujeta una mancuerna en cada mano junto al cuerpo.",
+      "Da un paso largo hacia adelante y flexiona ambas rodillas a 90 grados.",
+      "Empuja con la pierna delantera para avanzar y llevar el pie trasero al frente.",
+      "Alterna las piernas manteniendo el torso erguido durante todo el recorrido."
+    ],
+    "gifFileName": "ex_piernas_zancadas_caminando_con_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_054_extension_de_piernas_en_maquina",
+    "name": "Extension de piernas en maquina",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [],
+    "equipment": "machines",
+    "instructions": [
+      "Sientate en la maquina con el respaldo ajustado y los rodillos sobre los tobillos.",
+      "Extiende ambas piernas hasta casi bloquear las rodillas.",
+      "Aprieta el cuadriceps en la parte superior del movimiento.",
+      "Baja el peso de forma controlada sin dejarlo caer."
+    ],
+    "gifFileName": "ex_piernas_extension_de_piernas_en_maquina.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_055_curl_femoral_tumbado",
+    "name": "Curl femoral tumbado",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Acuestate boca abajo en la maquina con los rodillos sobre los tobillos.",
+      "Flexiona las rodillas llevando los talones hacia los gluteos.",
+      "Contrae el isquiotibial en el punto mas alto del movimiento.",
+      "Baja controladamente hasta extender por completo las piernas."
+    ],
+    "gifFileName": "ex_piernas_curl_femoral_tumbado.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_056_curl_femoral_sentado",
+    "name": "Curl femoral sentado",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Sientate en la maquina y coloca los rodillos sobre la parte inferior de las pantorrillas.",
+      "Sujeta las asas laterales para estabilizar el torso.",
+      "Flexiona las rodillas llevando el rodillo hacia abajo y atras.",
+      "Regresa lentamente a la posicion inicial sin soltar el peso."
+    ],
+    "gifFileName": "ex_piernas_curl_femoral_sentado.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Leg_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_057_sentadilla_bulgara_con_mancuernas",
+    "name": "Sentadilla bulgara con mancuernas",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Coloca el pie trasero elevado sobre un banco y sujeta una mancuerna en cada mano.",
+      "Desciende flexionando la rodilla delantera hasta formar un angulo de 90 grados.",
+      "Mantén el torso erguido y el peso sobre el talon delantero.",
+      "Empuja hacia arriba para volver a la posicion inicial."
+    ],
+    "gifFileName": "ex_piernas_sentadilla_bulgara_con_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Split_Squat_with_Dumbbells/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_058_sentadilla_sissy",
+    "name": "Sentadilla sissy",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "core"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Ponte de pie sujetandote de un soporte fijo para mantener el equilibrio.",
+      "Ponte de puntillas e inclina el cuerpo hacia atras flexionando las rodillas.",
+      "Baja el torso manteniendo cadera y rodillas alineadas hasta sentir el estiramiento del cuadriceps.",
+      "Sube contrayendo el cuadriceps hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_piernas_sentadilla_sissy.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Weighted_Sissy_Squat/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_059_zancada_con_barra",
+    "name": "Zancada con barra",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Coloca la barra sobre los trapecios como en la sentadilla trasera.",
+      "Da un paso adelante y flexiona ambas rodillas hasta formar angulos de 90 grados.",
+      "Empuja con la pierna delantera para regresar a la posicion inicial.",
+      "Alterna las piernas manteniendo el torso estable."
+    ],
+    "gifFileName": "ex_piernas_zancada_con_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Lunge/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_060_sentadilla_goblet_con_mancuerna",
+    "name": "Sentadilla goblet con mancuerna",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sujeta una mancuerna verticalmente contra el pecho con ambas manos.",
+      "Separa los pies un poco mas que el ancho de los hombros.",
+      "Baja en sentadilla manteniendo los codos entre las rodillas.",
+      "Empuja el suelo con los pies para volver a la posicion inicial."
+    ],
+    "gifFileName": "ex_piernas_sentadilla_goblet_con_mancuerna.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Goblet_Squat/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_061_step_up_con_mancuernas",
+    "name": "Step-up con mancuernas",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sujeta una mancuerna en cada mano y colocate frente a un banco o cajon.",
+      "Sube apoyando todo el pie sobre la superficie y extendiendo la pierna.",
+      "Lleva la otra pierna arriba sin apoyarla completamente.",
+      "Baja controladamente y repite alternando la pierna guia."
+    ],
+    "gifFileName": "ex_piernas_step_up_con_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Step_Ups/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_062_sentadilla_hack_en_maquina",
+    "name": "Sentadilla hack en maquina",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Coloca la espalda y hombros contra el respaldo acolchado de la maquina.",
+      "Apoya los pies al ancho de los hombros sobre la plataforma.",
+      "Desbloquea los seguros y flexiona las rodillas bajando el peso.",
+      "Empuja a traves de los talones para regresar a la posicion inicial."
+    ],
+    "gifFileName": "ex_piernas_sentadilla_hack_en_maquina.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hack_Squat/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_063_sentadilla_en_maquina_smith",
+    "name": "Sentadilla en maquina Smith",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Coloca la barra guiada sobre los trapecios y desbloquea el seguro.",
+      "Separa los pies ligeramente por delante de la linea de los hombros.",
+      "Baja en sentadilla controlando el descenso a lo largo del riel.",
+      "Empuja con los talones para volver a la posicion inicial."
+    ],
+    "gifFileName": "ex_piernas_sentadilla_en_maquina_smith.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Squat/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_064_peso_muerto_sumo_con_barra",
+    "name": "Peso muerto sumo con barra",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "glutes",
+      "back"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Separa los pies mas alla del ancho de los hombros con las puntas hacia afuera.",
+      "Sujeta la barra por dentro de las piernas con agarre firme.",
+      "Extiende cadera y rodillas al mismo tiempo manteniendo la espalda recta.",
+      "Baja la barra controladamente hasta el suelo repitiendo el movimiento."
+    ],
+    "gifFileName": "ex_piernas_peso_muerto_sumo_con_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sumo_Deadlift/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_065_elevacion_de_talones_de_pie",
+    "name": "Elevacion de talones de pie",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "calves"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Colocate en la maquina con los hombros bajo las almohadillas y el antepie sobre la plataforma.",
+      "Baja los talones para estirar completamente la pantorrilla.",
+      "Eleva los talones lo mas alto posible contrayendo el gemelo.",
+      "Baja de forma controlada y repite el movimiento."
+    ],
+    "gifFileName": "ex_piernas_elevacion_de_talones_de_pie.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_066_elevacion_de_talones_sentado",
+    "name": "Elevacion de talones sentado",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "calves"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Sientate en la maquina con las almohadillas apoyadas sobre las rodillas.",
+      "Coloca el antepie sobre la plataforma dejando los talones libres.",
+      "Baja los talones para estirar la pantorrilla y luego elevalos al maximo.",
+      "Repite el movimiento de forma controlada."
+    ],
+    "gifFileName": "ex_piernas_elevacion_de_talones_sentado.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_067_elevacion_de_talones_en_prensa_de_piernas",
+    "name": "Elevacion de talones en prensa de piernas",
+    "muscleGroup": "legs",
+    "secondaryMuscles": [
+      "calves"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Sientate en la maquina de prensa con las piernas extendidas.",
+      "Apoya solo la punta de los pies en el borde inferior de la plataforma.",
+      "Empuja la plataforma extendiendo el tobillo lo maximo posible.",
+      "Regresa controladamente flexionando el tobillo para estirar la pantorrilla."
+    ],
+    "gifFileName": "ex_piernas_elevacion_de_talones_en_prensa_de_piernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Calf_Press_On_The_Leg_Press_Machine/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_068_empuje_de_cadera_con_barra",
+    "name": "Empuje de cadera con barra",
+    "muscleGroup": "glutes",
+    "secondaryMuscles": [
+      "legs"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Apoya la espalda alta en un banco y coloca la barra sobre la cadera con una almohadilla protectora.",
+      "Planta los pies firmemente en el suelo al ancho de los hombros.",
+      "Empuja la cadera hacia arriba contrayendo los gluteos al final del recorrido.",
+      "Baja controladamente sin tocar el suelo con la cadera."
+    ],
+    "gifFileName": "ex_piernas_empuje_de_cadera_con_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_069_puente_de_gluteos_con_barra",
+    "name": "Puente de gluteos con barra",
+    "muscleGroup": "glutes",
+    "secondaryMuscles": [
+      "legs"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Acuestate boca arriba con las rodillas flexionadas y la barra apoyada sobre la cadera.",
+      "Planta los pies cerca de los gluteos con firmeza en el suelo.",
+      "Eleva la cadera contrayendo los gluteos hasta alinear rodillas, cadera y hombros.",
+      "Baja lentamente sin dejar caer la cadera al suelo."
+    ],
+    "gifFileName": "ex_piernas_puente_de_gluteos_con_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Glute_Bridge/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_070_puente_de_gluteos_a_una_pierna",
+    "name": "Puente de gluteos a una pierna",
+    "muscleGroup": "glutes",
+    "secondaryMuscles": [
+      "core"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Acuestate boca arriba con una rodilla flexionada y la otra pierna extendida en el aire.",
+      "Apoya firmemente el pie de la pierna de apoyo en el suelo.",
+      "Eleva la cadera contrayendo el gluteo de la pierna de apoyo.",
+      "Baja controladamente y completa las repeticiones antes de cambiar de lado."
+    ],
+    "gifFileName": "ex_piernas_puente_de_gluteos_a_una_pierna.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single_Leg_Glute_Bridge/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_071_patada_de_gluteo_en_polea",
+    "name": "Patada de gluteo en polea",
+    "muscleGroup": "glutes",
+    "secondaryMuscles": [
+      "legs"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Sujeta el tobillo al cable bajo de la polea y colocate frente a la maquina.",
+      "Apoyate en el marco para mantener el equilibrio con el torso ligeramente inclinado.",
+      "Extiende la pierna hacia atras contrayendo el gluteo al final del movimiento.",
+      "Regresa controladamente a la posicion inicial sin balancear el cuerpo."
+    ],
+    "gifFileName": "ex_piernas_patada_de_gluteo_en_polea.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Legged_Cable_Kickback/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_072_abduccion_de_cadera_en_maquina",
+    "name": "Abduccion de cadera en maquina",
+    "muscleGroup": "glutes",
+    "secondaryMuscles": [
+      "legs"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Sientate en la maquina con las piernas juntas contra las almohadillas.",
+      "Ajusta la resistencia segun tu nivel.",
+      "Separa las piernas hacia afuera contrayendo el gluteo medio.",
+      "Regresa controladamente a la posicion inicial sin soltar el peso."
+    ],
+    "gifFileName": "ex_piernas_abduccion_de_cadera_en_maquina.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Thigh_Abductor/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_073_aduccion_de_cadera_en_polea",
+    "name": "Aduccion de cadera en polea",
+    "muscleGroup": "glutes",
+    "secondaryMuscles": [
+      "legs"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Sujeta el cable bajo al tobillo y colocate de lado a la polea.",
+      "Apoyate en el marco de la maquina para mantener el equilibrio.",
+      "Cruza la pierna hacia el lado contrario contrayendo el aductor.",
+      "Regresa controladamente a la posicion inicial."
+    ],
+    "gifFileName": "ex_piernas_aduccion_de_cadera_en_polea.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Hip_Adduction/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_074_elevacion_de_cadera_en_maquina_smith",
+    "name": "Elevacion de cadera en maquina Smith",
+    "muscleGroup": "glutes",
+    "secondaryMuscles": [
+      "legs"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Colocate en el suelo con la espalda alta apoyada en un banco bajo la barra guiada.",
+      "Ajusta la barra sobre la cadera con una almohadilla protectora.",
+      "Empuja la cadera hacia arriba contrayendo los gluteos.",
+      "Baja controladamente sin perder la tension en los gluteos."
+    ],
+    "gifFileName": "ex_piernas_elevacion_de_cadera_en_maquina_smith.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Hip_Raise/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_075_hiperextension_gluteo_isquiotibial",
+    "name": "Hiperextension gluteo-isquiotibial",
+    "muscleGroup": "glutes",
+    "secondaryMuscles": [
+      "legs"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Colocate en el banco de hiperextensiones con los tobillos asegurados.",
+      "Flexiona el torso hacia adelante manteniendo la espalda recta.",
+      "Extiende la cadera y las rodillas al mismo tiempo hasta quedar alineado.",
+      "Baja controladamente repitiendo el movimiento."
+    ],
+    "gifFileName": "ex_piernas_hiperextension_gluteo_isquiotibial.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Ham_Raise/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_076_sentadilla_sumo_con_mancuerna",
+    "name": "Sentadilla sumo con mancuerna",
+    "muscleGroup": "glutes",
+    "secondaryMuscles": [
+      "legs"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Separa los pies mas alla del ancho de los hombros con las puntas hacia afuera.",
+      "Sujeta una mancuerna verticalmente con ambas manos frente al cuerpo.",
+      "Baja en sentadilla manteniendo el torso erguido y las rodillas alineadas con los pies.",
+      "Empuja el suelo con los pies contrayendo los gluteos para subir."
+    ],
+    "gifFileName": "ex_piernas_sentadilla_sumo_con_mancuerna.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plie_Dumbbell_Squat/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_077_peso_muerto_a_una_pierna_con_mancuerna",
+    "name": "Peso muerto a una pierna con mancuerna",
+    "muscleGroup": "glutes",
+    "secondaryMuscles": [
+      "legs",
+      "back"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sujeta una mancuerna en una mano y apoyate sobre la pierna del mismo lado.",
+      "Inclina el torso hacia adelante mientras elevas la pierna libre hacia atras.",
+      "Baja la mancuerna hasta cerca del suelo manteniendo la espalda recta.",
+      "Regresa contrayendo el gluteo de la pierna de apoyo hasta quedar erguido."
+    ],
+    "gifFileName": "ex_piernas_peso_muerto_a_una_pierna_con_mancuerna.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kettlebell_One-Legged_Deadlift/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_078_press_militar_barra",
+    "name": "Press militar con barra",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "triceps",
+      "core"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Sostén la barra a la altura de los hombros con agarre firme.",
+      "Empuja la barra hacia arriba hasta extender los brazos por completo.",
+      "Mantén el core apretado para evitar arquear la espalda.",
+      "Baja la barra de forma controlada hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_hombros_press_militar_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shoulder_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_079_press_militar_sentado_barra",
+    "name": "Press militar sentado con barra",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Siéntate con la espalda apoyada y la barra a la altura del pecho.",
+      "Empuja la barra hacia arriba en linea recta sobre la cabeza.",
+      "Extiende los codos sin bloquearlos por completo.",
+      "Desciende la barra de forma controlada hasta el punto de partida."
+    ],
+    "gifFileName": "ex_hombros_press_militar_sentado_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Barbell_Military_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_080_press_hombros_mancuernas",
+    "name": "Press de hombros con mancuernas",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sostén una mancuerna en cada mano a la altura de los hombros.",
+      "Empuja ambas mancuernas hacia arriba hasta extender los brazos.",
+      "Evita chocar las mancuernas en la parte superior del movimiento.",
+      "Baja lentamente hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_hombros_press_hombros_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shoulder_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_081_press_arnold",
+    "name": "Press Arnold",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "triceps",
+      "core"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Comienza con las mancuernas frente al pecho y las palmas hacia ti.",
+      "Empuja hacia arriba mientras rotas las munecas hasta que las palmas miren hacia adelante.",
+      "Extiende los brazos por completo en la parte superior.",
+      "Invierte el movimiento rotando las munecas al bajar."
+    ],
+    "gifFileName": "ex_hombros_press_arnold.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arnold_Dumbbell_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_082_press_hombros_sentado_mancuernas",
+    "name": "Press de hombros sentado con mancuernas",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Siéntate en un banco con respaldo y sostén las mancuernas a la altura de los hombros.",
+      "Empuja las mancuernas hacia arriba hasta extender los brazos.",
+      "Mantén la espalda apoyada durante todo el recorrido.",
+      "Baja de forma controlada hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_hombros_press_hombros_sentado_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Dumbbell_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_083_press_hombros_maquina",
+    "name": "Press de hombros en maquina",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Ajusta el asiento para que las agarraderas queden a la altura de los hombros.",
+      "Empuja las agarraderas hacia arriba hasta extender los brazos.",
+      "Controla el movimiento sin bloquear los codos por completo.",
+      "Regresa a la posicion inicial de forma controlada."
+    ],
+    "gifFileName": "ex_hombros_press_hombros_maquina.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_084_press_hombros_polea",
+    "name": "Press de hombros en polea",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Coloca las poleas bajas y sostén una agarradera en cada mano a la altura de los hombros.",
+      "Empuja hacia arriba y ligeramente hacia adentro hasta extender los brazos.",
+      "Mantén el torso estable durante todo el movimiento.",
+      "Baja controladamente hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_hombros_press_hombros_polea.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Shoulder_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_085_elevaciones_laterales_mancuernas",
+    "name": "Elevaciones laterales con mancuernas",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sostén una mancuerna en cada mano a los lados del cuerpo.",
+      "Eleva los brazos hacia los lados hasta la altura de los hombros.",
+      "Mantén una ligera flexion en los codos durante el movimiento.",
+      "Baja lentamente hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_hombros_elevaciones_laterales_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_086_elevaciones_laterales_polea",
+    "name": "Elevaciones laterales en polea",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Sitúate de lado a la polea baja y sujeta la agarradera con el brazo mas alejado.",
+      "Eleva el brazo hacia el lado hasta la altura del hombro.",
+      "Controla la tension del cable durante todo el recorrido.",
+      "Regresa lentamente a la posicion inicial."
+    ],
+    "gifFileName": "ex_hombros_elevaciones_laterales_polea.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Seated_Lateral_Raise/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_087_elevaciones_frontales_mancuernas",
+    "name": "Elevaciones frontales con mancuernas",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "core"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sostén una mancuerna en cada mano frente a los muslos.",
+      "Eleva los brazos hacia adelante hasta la altura de los hombros.",
+      "Evita usar impulso con la espalda durante el movimiento.",
+      "Baja las mancuernas de forma controlada."
+    ],
+    "gifFileName": "ex_hombros_elevaciones_frontales_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Dumbbell_Raise/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_088_elevaciones_frontales_polea",
+    "name": "Elevaciones frontales en polea",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Colocate de espaldas a la polea baja con la agarradera frente a los muslos.",
+      "Eleva el brazo hacia adelante hasta la altura del hombro.",
+      "Mantén el codo ligeramente flexionado y el torso estable.",
+      "Regresa lentamente a la posicion inicial."
+    ],
+    "gifFileName": "ex_hombros_elevaciones_frontales_polea.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Cable_Raise/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_089_aperturas_posteriores_mancuernas",
+    "name": "Aperturas posteriores con mancuernas",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "back"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Inclina el torso hacia adelante sosteniendo una mancuerna en cada mano.",
+      "Eleva los brazos hacia los lados manteniendo los codos ligeramente flexionados.",
+      "Aprieta los omoplatos en la parte alta del movimiento.",
+      "Baja las mancuernas de forma controlada."
+    ],
+    "gifFileName": "ex_hombros_aperturas_posteriores_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Bent-Over_Rear_Delt_Raise/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_090_aperturas_posteriores_polea",
+    "name": "Aperturas posteriores en polea",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "back"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Cruza las poleas altas y sujeta cada agarradera con la mano opuesta.",
+      "Tira de los cables hacia los lados abriendo los brazos.",
+      "Aprieta los deltoides posteriores al final del movimiento.",
+      "Regresa lentamente a la posicion inicial."
+    ],
+    "gifFileName": "ex_hombros_aperturas_posteriores_polea.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rear_Delt_Fly/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_091_aperturas_posteriores_maquina",
+    "name": "Aperturas posteriores en maquina",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "back"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Siéntate en la maquina con el pecho apoyado en el respaldo.",
+      "Sujeta las agarraderas con los brazos ligeramente flexionados.",
+      "Abre los brazos hacia los lados apretando los deltoides posteriores.",
+      "Regresa de forma controlada a la posicion inicial."
+    ],
+    "gifFileName": "ex_hombros_aperturas_posteriores_maquina.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Machine_Flyes/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_093_remo_menton_barra",
+    "name": "Remo al menton con barra",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Sostén la barra con agarre cerrado frente a los muslos.",
+      "Eleva la barra verticalmente guiando con los codos hacia arriba.",
+      "Sube hasta que la barra llegue a la altura del pecho.",
+      "Baja la barra de forma controlada hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_hombros_remo_menton_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Upright_Barbell_Row/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_094_remo_menton_mancuernas",
+    "name": "Remo al menton con mancuernas",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sostén una mancuerna en cada mano frente a los muslos.",
+      "Eleva las mancuernas verticalmente guiando con los codos.",
+      "Sube hasta que las mancuernas lleguen cerca del pecho.",
+      "Baja de forma controlada hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_hombros_remo_menton_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Dumbbell_Upright_Row/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_096_encogimientos_mancuernas",
+    "name": "Encogimientos con mancuernas",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "back"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sostén una mancuerna en cada mano a los lados del cuerpo.",
+      "Eleva los hombros hacia las orejas sin flexionar los codos.",
+      "Aprieta el trapecio en la parte alta del movimiento.",
+      "Baja los hombros de forma controlada."
+    ],
+    "gifFileName": "ex_hombros_encogimientos_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shrug/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_097_press_cubano",
+    "name": "Press cubano",
+    "muscleGroup": "shoulders",
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sostén una mancuerna en cada mano y realiza un remo al menton.",
+      "Rota los brazos hacia afuera hasta que los antebrazos queden verticales.",
+      "Empuja las mancuernas hacia arriba hasta extender los brazos.",
+      "Invierte el movimiento en el mismo orden hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_hombros_press_cubano.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cuban_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_098_curl_barra_recta",
+    "name": "Curl de biceps con barra recta",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Sujeta la barra con agarre supino a la anchura de los hombros.",
+      "Mantén los codos pegados al torso durante todo el movimiento.",
+      "Flexiona los codos y sube la barra hasta la altura del pecho.",
+      "Baja de forma controlada hasta la extension completa."
+    ],
+    "gifFileName": "ex_biceps_barra_recta.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_099_curl_barra_z",
+    "name": "Curl de biceps con barra Z",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Toma la barra Z por los angulos con agarre supino.",
+      "Mantén el torso fijo y los codos junto al cuerpo.",
+      "Eleva la barra contrayendo el biceps hasta arriba.",
+      "Desciende lentamente sin balancear el cuerpo."
+    ],
+    "gifFileName": "ex_biceps_barra_z.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/EZ-Bar_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_100_curl_alterno_mancuernas",
+    "name": "Curl alterno con mancuernas",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms",
+      "core"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Ponte de pie con una mancuerna en cada mano, palmas hacia el cuerpo.",
+      "Gira la muneca mientras subes una mancuerna hasta el hombro.",
+      "Contrae el biceps arriba y baja de forma controlada.",
+      "Alterna el brazo en cada repeticion."
+    ],
+    "gifFileName": "ex_biceps_alterno_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Alternate_Bicep_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_101_curl_martillo_mancuernas",
+    "name": "Curl martillo con mancuernas",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sujeta las mancuernas con agarre neutro, palmas enfrentadas.",
+      "Mantén los codos fijos pegados al torso.",
+      "Sube ambas mancuernas simultaneamente sin girar la muneca.",
+      "Baja con control hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_biceps_martillo_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hammer_Curls/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_102_curl_predicador_barra_z",
+    "name": "Curl predicador con barra Z",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Apoya los brazos sobre el banco predicador con la barra Z en las manos.",
+      "Extiende los codos sin bloquearlos por completo.",
+      "Flexiona los codos elevando la barra hacia los hombros.",
+      "Desciende lentamente controlando el estiramiento."
+    ],
+    "gifFileName": "ex_biceps_predicador_barra_z.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Preacher_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_103_curl_predicador_maquina",
+    "name": "Curl predicador en maquina",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Siéntate y ajusta el asiento apoyando los brazos en el soporte.",
+      "Sujeta las asas o barra de la maquina con agarre firme.",
+      "Flexiona los codos llevando el peso hacia los hombros.",
+      "Regresa de forma controlada sin soltar la tension."
+    ],
+    "gifFileName": "ex_biceps_predicador_maquina.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Preacher_Curls/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_104_curl_concentrado",
+    "name": "Curl concentrado",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Siéntate en un banco y apoya el codo en la cara interna del muslo.",
+      "Sujeta la mancuerna con el brazo extendido hacia el suelo.",
+      "Flexiona el codo elevando la mancuerna hacia el hombro.",
+      "Baja lentamente estirando el biceps por completo."
+    ],
+    "gifFileName": "ex_biceps_concentrado.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Concentration_Curls/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_105_curl_polea_baja",
+    "name": "Curl de biceps en polea baja",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Colocate frente a la polea baja con una barra recta enganchada.",
+      "Sujeta la barra con agarre supino y codos pegados al cuerpo.",
+      "Flexiona los codos llevando la barra hacia el pecho.",
+      "Extiende los brazos con control hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_biceps_polea_baja.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Biceps_Cable_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_106_curl_inclinado_mancuernas",
+    "name": "Curl inclinado con mancuernas",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms",
+      "shoulders"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Siéntate en un banco inclinado dejando los brazos colgar a los lados.",
+      "Sujeta una mancuerna en cada mano con agarre supino.",
+      "Flexiona los codos elevando las mancuernas hacia los hombros.",
+      "Baja lentamente aprovechando el estiramiento del biceps."
+    ],
+    "gifFileName": "ex_biceps_inclinado_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_107_curl_arana",
+    "name": "Curl arana (spider curl)",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Apoya el pecho sobre un banco inclinado dejando los brazos colgar.",
+      "Sujeta la barra Z con agarre supino, brazos extendidos.",
+      "Flexiona los codos elevando la barra sin mover los hombros.",
+      "Desciende de forma controlada hasta la extension total."
+    ],
+    "gifFileName": "ex_biceps_arana.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Spider_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_108_curl_drag",
+    "name": "Curl drag",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Sujeta la barra con agarre supino frente a los muslos.",
+      "Arrastra la barra pegada al cuerpo mientras subes.",
+      "Lleva los codos hacia atras en lugar de hacia adelante.",
+      "Baja la barra por la misma trayectoria de forma controlada."
+    ],
+    "gifFileName": "ex_biceps_drag.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Drag_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_109_curl_martillo_cuerda_polea",
+    "name": "Curl martillo con cuerda en polea",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Engancha la cuerda en la polea baja y sujétala con agarre neutro.",
+      "Mantén los codos fijos pegados al torso.",
+      "Flexiona los codos llevando la cuerda hacia los hombros.",
+      "Regresa lentamente hasta extender los brazos."
+    ],
+    "gifFileName": "ex_biceps_martillo_cuerda_polea.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Hammer_Curls_-_Rope_Attachment/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_110_curl_agarre_cerrado",
+    "name": "Curl con barra agarre cerrado",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Sujeta la barra con las manos separadas al ancho de los hombros o menos.",
+      "Mantén los codos pegados al cuerpo durante el recorrido.",
+      "Sube la barra contrayendo el biceps hasta el pecho.",
+      "Baja de forma controlada sin balancear el torso."
+    ],
+    "gifFileName": "ex_biceps_agarre_cerrado.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Standing_Barbell_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_111_curl_zottman",
+    "name": "Curl Zottman",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Sujeta las mancuernas con agarre supino junto a los muslos.",
+      "Sube las mancuernas flexionando los codos con palmas hacia arriba.",
+      "Gira las munecas 180 grados en la parte alta del movimiento.",
+      "Baja las mancuernas con agarre prono de forma controlada."
+    ],
+    "gifFileName": "ex_biceps_zottman.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Zottman_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_112_curl_polea_alta",
+    "name": "Curl de biceps en polea alta",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Colocate entre dos poleas ajustadas por encima de la cabeza.",
+      "Sujeta las asas con los brazos extendidos hacia los lados.",
+      "Flexiona los codos llevando las manos hacia la cabeza.",
+      "Extiende los brazos con control regresando a la posicion inicial."
+    ],
+    "gifFileName": "ex_biceps_polea_alta.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/High_Cable_Curls/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_113_curl_inverso_barra",
+    "name": "Curl inverso con barra",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Sujeta la barra con agarre prono a la anchura de los hombros.",
+      "Mantén los codos pegados al cuerpo durante el movimiento.",
+      "Flexiona los codos elevando la barra hasta el pecho.",
+      "Baja lentamente controlando el descenso de la barra."
+    ],
+    "gifFileName": "ex_biceps_inverso_barra.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Barbell_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_114_curl_maquina",
+    "name": "Curl de biceps en maquina",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Siéntate en la maquina ajustando el asiento a la altura del pecho.",
+      "Sujeta las asas con agarre firme y brazos extendidos.",
+      "Flexiona los codos llevando el peso hacia los hombros.",
+      "Regresa de forma controlada sin soltar la tension."
+    ],
+    "gifFileName": "ex_biceps_maquina.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bicep_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_115_curl_cruzado_martillo",
+    "name": "Curl cruzado martillo",
+    "muscleGroup": "biceps",
+    "secondaryMuscles": [
+      "arms"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Ponte de pie con una mancuerna en cada mano, agarre neutro.",
+      "Cruza una mancuerna hacia el hombro contrario del cuerpo.",
+      "Contrae el biceps arriba y baja de forma controlada.",
+      "Alterna el brazo cruzando en cada repeticion."
+    ],
+    "gifFileName": "ex_biceps_cruzado_martillo.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cross_Body_Hammer_Curl/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_116_press_frances_barra_ez",
+    "name": "Press frances con barra EZ",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [],
+    "equipment": "barbell",
+    "instructions": [
+      "Recuéstate en un banco sujetando la barra EZ con agarre cerrado, brazos extendidos sobre el pecho.",
+      "Flexiona los codos bajando la barra hacia la frente manteniendo los brazos fijos.",
+      "Extiende los codos para volver a la posicion inicial sin mover los hombros."
+    ],
+    "gifFileName": "ex_triceps_press_frances_barra_ez.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/EZ-Bar_Skullcrusher/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_117_pushdown_polea_cuerda",
+    "name": "Extension de triceps en polea con cuerda",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Sujeta la cuerda de la polea alta con ambas manos y codos pegados al cuerpo.",
+      "Empuja hacia abajo extendiendo los codos y separando las manos al final del recorrido.",
+      "Vuelve controladamente a la posicion inicial sin mover los codos hacia adelante."
+    ],
+    "gifFileName": "ex_triceps_pushdown_polea_cuerda.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_118_pushdown_polea_barra_recta",
+    "name": "Extension de triceps en polea con barra recta",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Toma la barra recta de la polea alta con agarre prono y codos fijos junto al torso.",
+      "Extiende los brazos empujando la barra hacia abajo hasta la extension completa.",
+      "Regresa lentamente sin dejar que los codos se despeguen del cuerpo."
+    ],
+    "gifFileName": "ex_triceps_pushdown_polea_barra_recta.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_120_extension_mancuernas_dos_manos_sobre_cabeza",
+    "name": "Extension de triceps con mancuerna a dos manos por encima de la cabeza",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "De pie, sujeta una mancuerna con ambas manos por encima de la cabeza con los brazos extendidos.",
+      "Flexiona los codos bajando la mancuerna detras de la nuca manteniendo los codos apuntando arriba.",
+      "Extiende los brazos para volver a la posicion inicial sin abrir los codos."
+    ],
+    "gifFileName": "ex_triceps_extension_mancuernas_dos_manos_sobre_cabeza.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Dumbbell_Triceps_Extension/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_121_patada_triceps_mancuerna",
+    "name": "Patada de triceps con mancuerna",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Inclina el torso hacia adelante con una rodilla apoyada en el banco y el brazo con el codo a 90 grados.",
+      "Extiende el codo hacia atras llevando la mancuerna hasta que el brazo quede recto.",
+      "Vuelve a flexionar el codo controlando el movimiento sin mover el hombro."
+    ],
+    "gifFileName": "ex_triceps_patada_triceps_mancuerna.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Tricep_Dumbbell_Kickback/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_122_press_banca_agarre_cerrado",
+    "name": "Press de banca con agarre cerrado",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Acuéstate en el banco y sujeta la barra con las manos separadas al ancho de los hombros.",
+      "Baja la barra controladamente hasta rozar el pecho manteniendo los codos cerca del cuerpo.",
+      "Empuja la barra hacia arriba extendiendo los brazos por completo."
+    ],
+    "gifFileName": "ex_triceps_press_banca_agarre_cerrado.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Barbell_Bench_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_123_flexiones_diamante",
+    "name": "Flexiones de brazos en diamante",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [
+      "chest",
+      "core"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Colócate en posicion de plancha con las manos juntas formando un diamante bajo el pecho.",
+      "Flexiona los codos bajando el cuerpo hasta casi tocar el suelo con el pecho.",
+      "Empuja con los brazos para volver a la posicion inicial manteniendo el core firme."
+    ],
+    "gifFileName": "ex_triceps_flexiones_diamante.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Push-Ups_-_Close_Triceps_Position/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_124_fondos_maquina",
+    "name": "Fondos en maquina",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "equipment": "machines",
+    "instructions": [
+      "Siéntate en la maquina de fondos y sujeta las empunaduras con los codos flexionados.",
+      "Empuja hacia abajo extendiendo los codos hasta que los brazos queden rectos.",
+      "Regresa lentamente a la posicion inicial controlando el peso."
+    ],
+    "gifFileName": "ex_triceps_fondos_maquina.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dip_Machine/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_125_extension_polea_una_mano",
+    "name": "Extension de triceps en polea a una mano",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Sujeta el mango de la polea alta con una mano y mantén el codo pegado al cuerpo.",
+      "Extiende el brazo hacia abajo hasta que quede completamente recto.",
+      "Vuelve a la posicion inicial de forma controlada sin mover el codo."
+    ],
+    "gifFileName": "ex_triceps_extension_polea_una_mano.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_One_Arm_Tricep_Extension/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_126_press_frances_mancuernas",
+    "name": "Press frances con mancuernas",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Recuéstate en un banco sujetando una mancuerna en cada mano sobre el pecho con los brazos extendidos.",
+      "Flexiona los codos bajando las mancuernas hacia los lados de la cabeza.",
+      "Extiende los codos para volver a la posicion inicial manteniendo los brazos fijos."
+    ],
+    "gifFileName": "ex_triceps_press_frances_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Dumbbell_Tricep_Extension/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_127_extension_mancuerna_una_mano_sobre_cabeza",
+    "name": "Extension de triceps con mancuerna a una mano por encima de la cabeza",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "De pie, sujeta una mancuerna con una mano por encima de la cabeza con el brazo extendido.",
+      "Flexiona el codo bajando la mancuerna detras de la cabeza manteniendo el brazo cerca de la oreja.",
+      "Extiende el codo para volver a la posicion inicial sin mover el hombro."
+    ],
+    "gifFileName": "ex_triceps_extension_mancuerna_una_mano_sobre_cabeza.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_One-Arm_Dumbbell_Triceps_Extension/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_128_extension_polea_cuerda_tras_nuca",
+    "name": "Extension de triceps en polea alta con cuerda tras nuca",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Ponte de espaldas a la polea baja sujetando la cuerda con ambas manos detras de la cabeza.",
+      "Extiende los codos llevando la cuerda hacia adelante y arriba hasta estirar los brazos.",
+      "Regresa controladamente flexionando los codos sin mover los hombros."
+    ],
+    "gifFileName": "ex_triceps_extension_polea_cuerda_tras_nuca.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rope_Overhead_Triceps_Extension/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_130_press_cerrado_mancuernas",
+    "name": "Press cerrado con mancuernas",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [
+      "chest"
+    ],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Recuéstate en el banco sujetando una mancuerna en cada mano juntas sobre el pecho.",
+      "Baja las mancuernas controladamente manteniendo los codos cerca del cuerpo.",
+      "Empuja hacia arriba extendiendo los brazos hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_triceps_press_cerrado_mancuernas.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Dumbbell_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_131_extension_polea_inclinada",
+    "name": "Extension de triceps en polea inclinada",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Colócate sobre un banco inclinado frente a la polea baja sujetando la barra con ambas manos.",
+      "Extiende los codos empujando la barra hacia abajo y atras manteniendo los brazos fijos.",
+      "Vuelve a la posicion inicial controlando el peso sin mover los hombros."
+    ],
+    "gifFileName": "ex_triceps_extension_polea_inclinada.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Incline_Triceps_Extension/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_132_press_jm",
+    "name": "Press JM",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [
+      "chest"
+    ],
+    "equipment": "barbell",
+    "instructions": [
+      "Recuéstate en el banco sujetando la barra con agarre cerrado sobre el pecho.",
+      "Baja la barra en un angulo intermedio entre un press cerrado y un press frances, hacia la barbilla.",
+      "Empuja la barra hacia arriba extendiendo los codos hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_triceps_press_jm.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/JM_Press/0.jpg",
+    "isCompound": true
+  },
+  {
+    "id": "ex_133_extension_triceps_maquina",
+    "name": "Extension de triceps en maquina",
+    "muscleGroup": "triceps",
+    "secondaryMuscles": [],
+    "equipment": "machines",
+    "instructions": [
+      "Siéntate en la maquina ajustando el asiento para que los codos queden alineados con el eje de giro.",
+      "Sujeta las empunaduras y extiende los codos empujando hacia abajo.",
+      "Regresa controladamente a la posicion inicial sin soltar la tension."
+    ],
+    "gifFileName": "ex_triceps_extension_triceps_maquina.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Triceps_Extension/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_134_crunch_polea_alta",
+    "name": "Crunch en polea alta",
+    "muscleGroup": "core",
+    "secondaryMuscles": [],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Arrodillate frente a la polea alta sujetando la cuerda detras de la cabeza.",
+      "Contrae el abdomen y flexiona el torso hacia abajo, llevando los codos hacia las rodillas.",
+      "Exhala durante el movimiento y evita tirar con los brazos.",
+      "Vuelve controladamente a la posicion inicial sin perder la tension abdominal."
+    ],
+    "gifFileName": "ex_core_crunch_polea_alta.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Crunch/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_135_elevacion_piernas_colgado",
+    "name": "Elevacion de piernas colgado",
+    "muscleGroup": "core",
+    "secondaryMuscles": [
+      "arms",
+      "legs"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Cuélgate de una barra fija con los brazos extendidos y el cuerpo estable.",
+      "Eleva las piernas juntas y estiradas hasta que queden paralelas al suelo o mas arriba.",
+      "Controla el descenso sin balancear el cuerpo.",
+      "Mantén el core activado durante toda la repeticion."
+    ],
+    "gifFileName": "ex_core_elevacion_piernas_colgado.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hanging_Leg_Raise/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_136_rollout_rueda_abdominal",
+    "name": "Rollout con rueda abdominal",
+    "muscleGroup": "core",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Arrodillate en el suelo sujetando la rueda abdominal con ambas manos.",
+      "Extiende el cuerpo hacia adelante rodando lentamente, manteniendo la espalda recta.",
+      "Llega hasta donde puedas controlar sin arquear la zona lumbar.",
+      "Contrae el abdomen para regresar a la posicion inicial."
+    ],
+    "gifFileName": "ex_core_rollout_rueda_abdominal.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Roller/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_137_plancha_frontal",
+    "name": "Plancha frontal",
+    "muscleGroup": "core",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Apóyate sobre los antebrazos y las puntas de los pies con el cuerpo en linea recta.",
+      "Contrae el abdomen y los gluteos para evitar que la cadera caiga.",
+      "Mantén la posicion respirando de forma controlada.",
+      "No dejes que la espalda baja se hunda ni que la cadera suba en exceso."
+    ],
+    "gifFileName": "ex_core_plancha_frontal.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_138_giros_rusos",
+    "name": "Giros rusos",
+    "muscleGroup": "core",
+    "secondaryMuscles": [],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Siéntate con las rodillas flexionadas y el torso inclinado ligeramente hacia atras.",
+      "Sujeta una mancuerna con ambas manos frente al pecho.",
+      "Gira el torso llevando la mancuerna de un lado al otro, tocando el suelo si es posible.",
+      "Mantén los pies elevados para mayor dificultad si el nivel lo permite."
+    ],
+    "gifFileName": "ex_core_giros_rusos.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Russian_Twist/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_139_lenador_polea",
+    "name": "Lenador en polea",
+    "muscleGroup": "core",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "cableMachine",
+    "instructions": [
+      "Coloca la polea en posicion alta y sujétala con ambas manos junto a un hombro.",
+      "Gira el torso y tira del cable en diagonal hacia la cadera opuesta.",
+      "Mantén los brazos semiextendidos y usa el core para generar el movimiento.",
+      "Regresa controladamente y repite el mismo numero de veces al otro lado."
+    ],
+    "gifFileName": "ex_core_lenador_polea.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Cable_Wood_Chop/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_140_vacio_abdominal",
+    "name": "Vacio abdominal",
+    "muscleGroup": "core",
+    "secondaryMuscles": [],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Ponte de pie o a cuatro patas y exhala todo el aire de los pulmones.",
+      "Lleva el ombligo hacia dentro y hacia arriba, contrayendo el transverso abdominal.",
+      "Mantén la contraccion entre 10 y 20 segundos sin respirar profundamente.",
+      "Suelta poco a poco y repite varias veces."
+    ],
+    "gifFileName": "ex_core_vacio_abdominal.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stomach_Vacuum/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_141_crunch_bicicleta",
+    "name": "Crunch de bicicleta",
+    "muscleGroup": "core",
+    "secondaryMuscles": [
+      "legs"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Recuéstate boca arriba con las manos detras de la cabeza y las piernas elevadas.",
+      "Lleva el codo derecho hacia la rodilla izquierda mientras extiendes la pierna derecha.",
+      "Alterna el movimiento de forma continua simulando pedalear.",
+      "Mantén la zona lumbar pegada al suelo durante todo el ejercicio."
+    ],
+    "gifFileName": "ex_core_crunch_bicicleta.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Air_Bike/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_142_abdominales_con_peso",
+    "name": "Abdominales con peso",
+    "muscleGroup": "core",
+    "secondaryMuscles": [],
+    "equipment": "dumbbells",
+    "instructions": [
+      "Recuéstate boca arriba con las rodillas flexionadas y sujeta un disco o mancuerna sobre el pecho.",
+      "Contrae el abdomen y eleva el torso hacia las rodillas.",
+      "Sube solo lo necesario para activar el recto abdominal, sin tirar del cuello.",
+      "Desciende de forma controlada hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_core_abdominales_con_peso.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Weighted_Crunches/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_143_escaladores",
+    "name": "Escaladores",
+    "muscleGroup": "core",
+    "secondaryMuscles": [
+      "legs",
+      "shoulders"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Colócate en posicion de plancha alta con brazos extendidos.",
+      "Lleva una rodilla hacia el pecho manteniendo la cadera estable.",
+      "Alterna rapidamente las piernas como si corrieras en el sitio.",
+      "Mantén el core contraido durante todo el ejercicio."
+    ],
+    "gifFileName": "ex_core_escaladores.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Mountain_Climbers/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_144_plancha_hueca",
+    "name": "Plancha hueca (hollow body hold)",
+    "muscleGroup": "core",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Recuéstate boca arriba y extiende brazos y piernas.",
+      "Eleva ligeramente brazos, cabeza, hombros y piernas del suelo.",
+      "Presiona la zona lumbar contra el suelo formando una curva en forma de banana.",
+      "Mantén la posicion isometrica sin dejar de respirar."
+    ],
+    "gifFileName": "ex_core_plancha_hueca.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cocoons/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_145_plancha_lateral",
+    "name": "Plancha lateral",
+    "muscleGroup": "core",
+    "secondaryMuscles": [
+      "shoulders",
+      "glutes"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Recuéstate de lado apoyando el antebrazo y el borde del pie en el suelo.",
+      "Eleva la cadera formando una linea recta desde los hombros hasta los tobillos.",
+      "Mantén el core contraido sin dejar caer la cadera.",
+      "Sostén el tiempo indicado y repite al lado contrario."
+    ],
+    "gifFileName": "ex_core_plancha_lateral.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Bridge/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_146_dead_bug",
+    "name": "Dead bug",
+    "muscleGroup": "core",
+    "secondaryMuscles": [
+      "legs"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Recuéstate boca arriba con brazos extendidos hacia el techo y rodillas flexionadas a 90 grados.",
+      "Baja lentamente el brazo derecho y la pierna izquierda hacia el suelo sin arquear la espalda.",
+      "Regresa a la posicion inicial y repite con el lado contrario.",
+      "Mantén la zona lumbar pegada al suelo durante todo el movimiento."
+    ],
+    "gifFileName": "ex_core_dead_bug.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dead_Bug/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_147_crunch_inverso",
+    "name": "Crunch inverso",
+    "muscleGroup": "core",
+    "secondaryMuscles": [
+      "legs"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Recuéstate boca arriba con las manos apoyadas junto al cuerpo.",
+      "Flexiona las rodillas y elévalas hacia el pecho levantando la cadera del suelo.",
+      "Contrae el abdomen en la parte alta del movimiento.",
+      "Baja las piernas de forma controlada sin balancear el impulso."
+    ],
+    "gifFileName": "ex_core_crunch_inverso.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Crunch/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_148_crunch_maquina",
+    "name": "Crunch en maquina",
+    "muscleGroup": "core",
+    "secondaryMuscles": [],
+    "equipment": "machines",
+    "instructions": [
+      "Siéntate en la maquina y ajusta el respaldo segun tu altura.",
+      "Sujeta las asas y flexiona el torso hacia adelante contrayendo el abdomen.",
+      "Evita tirar con los brazos, deja que el abdomen haga la fuerza.",
+      "Regresa lentamente a la posicion inicial sin soltar la tension."
+    ],
+    "gifFileName": "ex_core_crunch_maquina.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_149_crunch_obliquo_declinado",
+    "name": "Crunch obliquo en banco declinado",
+    "muscleGroup": "core",
+    "secondaryMuscles": [
+      "legs"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Asegura los pies en el banco declinado y recuéstate hacia atras.",
+      "Coloca las manos detras de la cabeza y flexiona el torso girando hacia un lado.",
+      "Lleva el codo hacia la rodilla contraria contrayendo el obliquo.",
+      "Alterna el lado en cada repeticion manteniendo el control."
+    ],
+    "gifFileName": "ex_core_crunch_obliquo_declinado.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Oblique_Crunch/0.jpg",
+    "isCompound": false
+  },
+  {
+    "id": "ex_150_abdominales_banco_declinado",
+    "name": "Abdominales en banco declinado",
+    "muscleGroup": "core",
+    "secondaryMuscles": [
+      "legs"
+    ],
+    "equipment": "bodyweight",
+    "instructions": [
+      "Asegura los pies en el banco declinado y recuéstate con el torso hacia atras.",
+      "Flexiona el torso hacia arriba contrayendo el abdomen hasta acercarte a las rodillas.",
+      "Evita usar el impulso del cuello o los brazos.",
+      "Desciende de forma controlada hasta la posicion inicial."
+    ],
+    "gifFileName": "ex_core_abdominales_banco_declinado.gif",
+    "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Crunch/0.jpg",
+    "isCompound": false
+  }
+]

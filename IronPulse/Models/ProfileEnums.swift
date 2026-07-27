@@ -19,24 +19,40 @@ enum ExperienceLevel: String, Codable, CaseIterable, Identifiable {
     }
 }
 
-enum FitnessGoal: String, Codable, CaseIterable, Identifiable {
-    case muscleGain
-    case fatLoss
+enum PrimaryGoal: String, Codable, CaseIterable, Identifiable {
+    case hypertrophy
     case strength
-    case maintenance
+    case fatLoss
 
     var id: String { rawValue }
 
     var displayName: String {
         switch self {
-        case .muscleGain:
-            return "Volumen"
-        case .fatLoss:
-            return "Definicion"
+        case .hypertrophy:
+            return "Hipertrofia"
         case .strength:
             return "Fuerza"
-        case .maintenance:
-            return "Mantenimiento"
+        case .fatLoss:
+            return "Perdida de grasa"
+        }
+    }
+}
+
+enum SplitType: String, Codable, CaseIterable, Identifiable {
+    case fullBody
+    case upperLower
+    case pushPullLegs
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .fullBody:
+            return "Cuerpo completo"
+        case .upperLower:
+            return "Torso / Pierna"
+        case .pushPullLegs:
+            return "Empuje / Tiron / Pierna"
         }
     }
 }
@@ -175,5 +191,38 @@ enum MuscleGroup: String, Codable, CaseIterable, Identifiable {
         case .fullBody:
             return []
         }
+    }
+}
+
+enum Weekday: Int, Codable, CaseIterable, Identifiable {
+    case monday = 1
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
+    case sunday
+
+    var id: Int { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .monday: return "Lunes"
+        case .tuesday: return "Martes"
+        case .wednesday: return "Miercoles"
+        case .thursday: return "Jueves"
+        case .friday: return "Viernes"
+        case .saturday: return "Sabado"
+        case .sunday: return "Domingo"
+        }
+    }
+
+    /// `Calendar.component(.weekday)` devuelve 1=domingo..7=sabado (calendario
+    /// gregoriano/US) — se remapea a este enum (1=lunes..7=domingo) para no
+    /// heredar esa convencion hacia el resto del codigo.
+    static func today(calendar: Calendar = .current, now: Date = Date()) -> Weekday {
+        let raw = calendar.component(.weekday, from: now)
+        let mondayFirst = (raw + 5) % 7 + 1
+        return Weekday(rawValue: mondayFirst)!
     }
 }

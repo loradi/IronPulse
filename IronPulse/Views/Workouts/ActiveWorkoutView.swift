@@ -3,83 +3,181 @@ import SwiftData
 
 struct ActiveWorkoutView: View {
     @Environment(\.modelContext) private var modelContext
-    @Bindable var session: WorkoutSession
+    @Bindable var log: WorkoutLog
+    @Query private var catalog: [Exercise]
     @State private var restRemaining: Int = 0
-    @State private var restTimerRunning = false
     @State private var restTask: Task<(), Never>? = nil
+    @State private var activeSetID: SetLog.ID?
+
+    private var isReadOnly: Bool { log.endDate != nil }
+
+    private var exerciseNames: [String: String] {
+        Dictionary(catalog.map { ($0.id, $0.name) }, uniquingKeysWith: { first, _ in first })
+    }
+
+    private var flatSets: [SetLog] {
+        log.completedSets.sorted { $0.setIndex < $1.setIndex }
+    }
+
+    private var groupedSets: [(exerciseId: String, sets: [SetLog])] {
+        let sorted = flatSets
+        var order: [String] = []
+        var buckets: [String: [SetLog]] = [:]
+        for set in sorted {
+            if buckets[set.exerciseId] == nil { order.append(set.exerciseId) }
+            buckets[set.exerciseId, default: []].append(set)
+        }
+        return order.map { ($0, buckets[$0]!) }
+    }
 
     var body: some View {
         VStack {
             HStack {
-                Text(session.title).font(.title2).weight(.black)
+                VStack(alignment: .leading) {
+                    Text(log.routineName).font(.title2).fontWeight(.black)
+                    Text(log.dayTitle).font(.subheadline).foregroundStyle(Color.ironTextSecondary)
+                }
                 Spacer()
-                if let ended = session.endedAt {
-                    Text("Finalizada").foregroundStyle(.ironTextSecondary)
+                if isReadOnly {
+                    Text("Finalizada").foregroundStyle(Color.ironTextSecondary)
                 }
             }
             .padding()
 
             List {
-                ForEach(session.sets.sorted { $0.setIndex < $1.setIndex }) { set in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(set.exerciseName).font(.headline)
-                            Text("Set \(set.setIndex) · RPE \(set.rpe)").font(.caption).foregroundStyle(.ironTextSecondary)
-                        }
+                ForEach(groupedSets, id: \.exerciseId) { group in
+                    Section(exerciseNames[group.exerciseId] ?? group.exerciseId) {
+                        ForEach(Array(group.sets.enumerated()), id: \.element.id) { index, set in
+                            VStack(alignment: .leading, spacing: 8) {
+                                HStack {
+                                    Text("Set \(index + 1)").font(.headline)
+                                    Spacer()
+                                    Text("Meta: \(set.targetRepsMin)-\(set.targetRepsMax)")
+                                        .font(.caption)
+                                        .foregroundStyle(Color.ironTextSecondary)
+                                    Button(action: { toggleCompleted(set) }) {
+                                        Image(systemName: set.isCompleted ? "checkmark.circle.fill" : "circle")
+                                            .foregroundStyle(set.isCompleted ? Color.ironAccent : Color.ironTextSecondary)
+                                    }
+                                    .disabled(isReadOnly)
+                                }
 
-                        Spacer()
+                                HStack {
+                                    HStack(spacing: 4) {
+                                        TextField("Peso", value: bindingForWeight(set), format: .number)
+                                            .keyboardType(.decimalPad)
+                                            .disabled(isReadOnly)
+                                            .frame(width: 60)
+                                        Text("kg").font(.caption).foregroundStyle(Color.ironTextSecondary)
+                                    }
 
-                        VStack(alignment: .trailing, spacing: 6) {
-                            Text(set.weightKg.map { String(format: "%.1fkg", $0) } ?? "--").font(.subheadline)
-                            Button(action: { toggleCompleted(set) }) {
-                                Image(systemName: set.isCompleted ? "checkmark.circle.fill" : "circle")
-                                    .foregroundStyle(set.isCompleted ? .ironPrimary : .ironTextSecondary)
+                                    Spacer()
+
+                                    Stepper("\(set.repsCompleted) reps", value: bindingForReps(set), in: 0...50)
+                                        .disabled(isReadOnly)
+                                }
+                            }
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background {
+                                if set.id == activeSetID {
+                                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                        .fill(Color.ironAccent.opacity(0.12))
+                                }
+                            }
+                            .overlay {
+                                if set.id == activeSetID {
+                                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                        .stroke(Color.ironAccent, lineWidth: 2)
+                                }
                             }
                         }
                     }
-                    .padding(.vertical, 8)
                 }
             }
 
-            HStack(spacing: 12) {
-                Button("Terminar") {
-                    session.endedAt = Date()
-                    try? modelContext.save()
-                }
-                .buttonStyle(PrimarySportButtonStyle())
+            if !isReadOnly {
+                HStack(spacing: 12) {
+                    Button("Terminar") {
+                        log.endDate = Date()
+                        try? modelContext.save()
+                    }
+                    .buttonStyle(PrimarySportButtonStyle())
 
-                Spacer()
+                    Spacer()
 
-                if restRemaining > 0 {
-                    Text("Descanso: \(restRemaining)s").font(.headline).foregroundStyle(.ironPrimary)
+                    if restRemaining > 0 {
+                        Text("Descanso: \(restRemaining)s").font(.headline).foregroundStyle(Color.ironAccent)
+                    }
                 }
+                .padding()
             }
-            .padding()
         }
         .navigationTitle("Entrenamiento")
-    }
-
-    private func toggleCompleted(_ set: WorkoutLogSet) {
-        set.isCompleted.toggle()
-        set.completedAt = set.isCompleted ? Date() : nil
-        try? modelContext.save()
-
-        if set.isCompleted {
-            startRest(seconds: set.session?.sets.first?.session?.sets.first?.session == nil ? 60 : 60)
+        .task {
+            if !isReadOnly {
+                await RestNotificationScheduler.requestAuthorizationIfNeeded()
+            }
+        }
+        .onAppear {
+            if !isReadOnly && activeSetID == nil {
+                activeSetID = flatSets.first?.id
+            }
+        }
+        .onDisappear {
+            restTask?.cancel()
         }
     }
 
-    private func startRest(seconds: Int) {
+    private func bindingForWeight(_ set: SetLog) -> Binding<Double> {
+        Binding(get: { set.weightKg }, set: { set.weightKg = $0 })
+    }
+
+    private func bindingForReps(_ set: SetLog) -> Binding<Int> {
+        Binding(get: { set.repsCompleted }, set: { set.repsCompleted = $0 })
+    }
+
+    private func toggleCompleted(_ set: SetLog) {
+        set.isCompleted.toggle()
+        set.timestamp = Date()
+        try? modelContext.save()
+
+        guard set.id == activeSetID else { return }
+        guard set.isCompleted else {
+            restTask?.cancel()
+            restRemaining = 0
+            RestNotificationScheduler.cancelPending()
+            return
+        }
+        HapticFeedback.setCompleted()
+        let seconds = restSeconds(for: set)
+        startRest(seconds: seconds) { advanceToNextSet() }
+        RestNotificationScheduler.scheduleRestFinished(in: seconds)
+    }
+
+    private func restSeconds(for set: SetLog) -> Int {
+        let isCompound = catalog.first { $0.id == set.exerciseId }?.isCompound ?? false
+        return GuidedSessionFlow.restSeconds(isCompound: isCompound)
+    }
+
+    private func advanceToNextSet() {
+        activeSetID = GuidedSessionFlow.nextSetID(after: activeSetID, in: flatSets)
+    }
+
+    private func startRest(seconds: Int, onFinished: @escaping () -> Void) {
         restTask?.cancel()
         restRemaining = seconds
-        restTimerRunning = true
 
         restTask = Task { @MainActor in
             while restRemaining > 0 && !Task.isCancelled {
                 try? await Task.sleep(nanoseconds: 1_000_000_000)
                 restRemaining -= 1
             }
-            restTimerRunning = false
+            if !Task.isCancelled {
+                HapticFeedback.restFinished()
+                RestNotificationScheduler.cancelPending()
+                onFinished()
+            }
         }
     }
 }

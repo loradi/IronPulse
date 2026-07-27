@@ -5,20 +5,14 @@ import SwiftData
 final class UserProfile {
     @Attribute(.unique) var id: UUID
     var name: String
-    var birthDate: Date?
-    var biologicalSex: BiologicalSex
-    var heightCm: Double?
-    var weightKg: Double?
+    var age: Int
+    var weightKg: Double
+    var heightCm: Double
     var experienceLevel: ExperienceLevel
-    var fitnessGoal: FitnessGoal
-    var trainingDaysPerWeek: Int
-    var sessionDurationMinutes: Int
-    var limitations: [String]
-    var equipment: [EquipmentType]
-    var syncsWithHealth: Bool
-    var isActive: Bool
+    var primaryGoal: PrimaryGoal
+    var workoutDaysPerWeek: Int
+    var preferredEquipment: [EquipmentType]
     var createdAt: Date
-    var updatedAt: Date
 
     @Relationship(deleteRule: .cascade, inverse: \HealthSnapshot.profile)
     var healthSnapshots: [HealthSnapshot]
@@ -26,65 +20,54 @@ final class UserProfile {
     @Relationship(deleteRule: .cascade, inverse: \WorkoutRoutine.profile)
     var routines: [WorkoutRoutine]
 
-    @Relationship(deleteRule: .cascade, inverse: \WorkoutSession.profile)
-    var workoutSessions: [WorkoutSession]
+    @Relationship(deleteRule: .cascade, inverse: \WorkoutLog.profile)
+    var workoutLogs: [WorkoutLog]
+
+    var activeRoutine: WorkoutRoutine? {
+        routines.first { $0.isActive }
+    }
 
     init(
         id: UUID = UUID(),
         name: String,
-        birthDate: Date? = nil,
-        biologicalSex: BiologicalSex = .notSet,
-        heightCm: Double? = nil,
-        weightKg: Double? = nil,
+        age: Int,
+        weightKg: Double,
+        heightCm: Double,
         experienceLevel: ExperienceLevel = .beginner,
-        fitnessGoal: FitnessGoal = .maintenance,
-        trainingDaysPerWeek: Int = 3,
-        sessionDurationMinutes: Int = 60,
-        limitations: [String] = [],
-        equipment: [EquipmentType] = [.fullGym],
-        syncsWithHealth: Bool = false,
-        isActive: Bool = false,
+        primaryGoal: PrimaryGoal = .hypertrophy,
+        workoutDaysPerWeek: Int = 3,
+        preferredEquipment: [EquipmentType] = [.bodyweight],
         createdAt: Date = Date(),
-        updatedAt: Date = Date(),
         healthSnapshots: [HealthSnapshot] = [],
         routines: [WorkoutRoutine] = [],
-        workoutSessions: [WorkoutSession] = []
+        workoutLogs: [WorkoutLog] = []
     ) {
         self.id = id
         self.name = name
-        self.birthDate = birthDate
-        self.biologicalSex = biologicalSex
-        self.heightCm = heightCm
+        self.age = age
         self.weightKg = weightKg
+        self.heightCm = heightCm
         self.experienceLevel = experienceLevel
-        self.fitnessGoal = fitnessGoal
-        self.trainingDaysPerWeek = trainingDaysPerWeek
-        self.sessionDurationMinutes = sessionDurationMinutes
-        self.limitations = limitations
-        self.equipment = equipment
-        self.syncsWithHealth = syncsWithHealth
-        self.isActive = isActive
+        self.primaryGoal = primaryGoal
+        self.workoutDaysPerWeek = workoutDaysPerWeek
+        self.preferredEquipment = preferredEquipment
         self.createdAt = createdAt
-        self.updatedAt = updatedAt
         self.healthSnapshots = healthSnapshots
         self.routines = routines
-        self.workoutSessions = workoutSessions
+        self.workoutLogs = workoutLogs
     }
+}
 
-    var age: Int? {
-        guard let birthDate else { return nil }
-        return Calendar.current.dateComponents([.year], from: birthDate, to: Date()).year
-    }
-
-    var activeRoutine: WorkoutRoutine? {
-        routines.first { $0.isActive } ?? routines.sorted { $0.createdAt > $1.createdAt }.first
-    }
-
-    var latestHealthSnapshot: HealthSnapshot? {
-        healthSnapshots.max { $0.capturedAt < $1.capturedAt }
-    }
-
-    func updateTimestamp() {
-        updatedAt = Date()
+extension UserProfile {
+    /// Unico punto de activacion de rutinas: lo usan tanto el generador como el armador manual.
+    /// Las rutinas viejas quedan con isActive = false a modo de historial, no se borran.
+    func activate(_ routine: WorkoutRoutine, in context: ModelContext) {
+        for existing in routines {
+            existing.isActive = false
+        }
+        routine.isActive = true
+        routine.profile = self
+        context.insert(routine)
+        try? context.save()
     }
 }
