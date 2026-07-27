@@ -16,7 +16,8 @@
     ],
     "gifFileName": "ex_pecho_press_plano_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Bench_Press_-_Medium_Grip/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Manten las munecas alineadas justo sobre los codos y baja la barra a la altura de las tetillas, no del cuello, para no comprometer el hombro."
   },
   {
     "id": "ex_002_press_inclinado_barra",
@@ -35,7 +36,8 @@
     ],
     "gifFileName": "ex_pecho_press_inclinado_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Bench_Press_-_Medium_Grip/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Si el banco supera los 45 grados el trabajo se corre a los deltoides frontales; mantenlo entre 30 y 45 grados y baja la barra a la clavicula, no al cuello."
   },
   {
     "id": "ex_003_press_declinado_barra",
@@ -53,7 +55,8 @@
     ],
     "gifFileName": "ex_pecho_press_declinado_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Barbell_Bench_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Fija bien los pies en los soportes antes de destrabar la barra, el angulo negativo tiende a hacerte perder el control del torso; no dejes que la gravedad acelere el descenso."
   },
   {
     "id": "ex_004_press_plano_mancuernas",
@@ -72,7 +75,8 @@
     ],
     "gifFileName": "ex_pecho_press_plano_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bench_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Deja que las mancuernas bajen un poco mas alla de la linea del pecho para aprovechar el rango extra que no da la barra, sin perder tension en los hombros."
   },
   {
     "id": "ex_005_press_inclinado_mancuernas",
@@ -91,7 +95,8 @@
     ],
     "gifFileName": "ex_pecho_press_inclinado_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Junta las mancuernas arriba girando ligeramente las munecas hacia adentro, como cerrando un abrazo, para maximizar la contraccion de la parte alta del pecho."
   },
   {
     "id": "ex_006_press_declinado_mancuernas",
@@ -109,7 +114,8 @@
     ],
     "gifFileName": "ex_pecho_press_declinado_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Bench_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Al ser declinado el recorrido es mas corto; enfocate en apretar el pecho arriba en vez de buscar mas peso del que puedas controlar con los pies enganchados."
   },
   {
     "id": "ex_007_press_mancuerna_un_brazo",
@@ -128,7 +134,8 @@
     ],
     "gifFileName": "ex_pecho_press_mancuerna_un_brazo.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One_Arm_Dumbbell_Bench_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Apoya el brazo libre sobre el abdomen para notar si el torso rota durante el empuje; si lo sientes moverse, baja el peso."
   },
   {
     "id": "ex_008_aperturas_mancuernas_plano",
@@ -146,7 +153,8 @@
     ],
     "gifFileName": "ex_pecho_aperturas_mancuernas_plano.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Flyes/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "El movimiento nace en el hombro, no en el codo: si flexionas o extiendes el codo durante el arco se convierte en un press y pierde el enfasis en el estiramiento pectoral."
   },
   {
     "id": "ex_009_aperturas_inclinadas_mancuernas",
@@ -164,7 +172,8 @@
     ],
     "gifFileName": "ex_pecho_aperturas_inclinadas_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Flyes/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Al ser inclinado el estiramiento se siente en la parte alta del pecho; no bajes las mancuernas mas alla del punto donde sientes tension en los hombros."
   },
   {
     "id": "ex_010_aperturas_declinadas_mancuernas",
@@ -182,7 +191,8 @@
     ],
     "gifFileName": "ex_pecho_aperturas_declinadas_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Flyes/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Con el banco declinado el estiramiento se concentra en la parte baja del pecho; controla el descenso porque en este angulo es facil perder la trayectoria de arco y forzar el hombro."
   },
   {
     "id": "ex_011_cruces_poleas_altas",
@@ -200,7 +210,8 @@
     ],
     "gifFileName": "ex_pecho_cruces_poleas_altas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Crossover/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Cruza ligeramente las manos al final del recorrido para maximizar la contraccion y no dejes que los cables te regresen de golpe en la fase excentrica."
   },
   {
     "id": "ex_012_cruces_poleas_bajas",
@@ -218,7 +229,8 @@
     ],
     "gifFileName": "ex_pecho_cruces_poleas_bajas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Low_Cable_Crossover/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Como el recorrido va de abajo hacia arriba, el enfasis cae en la parte superior del pecho; manten el torso ligeramente inclinado adelante para no compensar con los hombros."
   },
   {
     "id": "ex_013_aperturas_polea_inclinada",
@@ -236,7 +248,8 @@
     ],
     "gifFileName": "ex_pecho_aperturas_polea_inclinada.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Cable_Flye/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Al juntar las manos arriba gira ligeramente las munecas para que las palmas se encuentren de frente, asi el pectoral trabaja en toda su contraccion."
   },
   {
     "id": "ex_014_aperturas_polea_plano",
@@ -254,7 +267,8 @@
     ],
     "gifFileName": "ex_pecho_aperturas_polea_plano.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Flat_Bench_Cable_Flyes/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Manten la espalda pegada al banco durante todo el arco; si la despegas para juntar las manos estas usando impulso en vez del pectoral."
   },
   {
     "id": "ex_015_press_pecho_maquina",
@@ -273,7 +287,8 @@
     ],
     "gifFileName": "ex_pecho_press_pecho_maquina.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bench_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Si el asiento queda muy bajo o muy alto las agarraderas no coincidiran con la linea del pecho y el hombro absorbe la carga; ajusta antes de cada serie."
   },
   {
     "id": "ex_016_press_pecho_polea_de_pie",
@@ -292,7 +307,8 @@
     ],
     "gifFileName": "ex_pecho_press_pecho_polea_de_pie.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Cable_Chest_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "El paso adelante con postura estable es clave porque, al ser de pie, el core debe evitar que el cable te rote el torso durante el empuje."
   },
   {
     "id": "ex_017_press_banca_smith_plano",
@@ -310,7 +326,8 @@
     ],
     "gifFileName": "ex_pecho_press_banca_smith_plano.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Bench_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Ubica el banco de modo que la trayectoria de la barra guiada caiga justo sobre la linea del pecho, no mas atras, o el hombro cargara el peso en un angulo incomodo."
   },
   {
     "id": "ex_018_press_banca_smith_inclinado",
@@ -329,7 +346,8 @@
     ],
     "gifFileName": "ex_pecho_press_banca_smith_inclinado.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Incline_Bench_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Cuida que el respaldo no supere los 45 grados; la barra guiada no te deja corregir si el angulo desplaza el trabajo hacia los hombros."
   },
   {
     "id": "ex_019_fondos_paralelas",
@@ -348,7 +366,8 @@
     ],
     "gifFileName": "ex_pecho_fondos_paralelas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Parallel_Bar_Dip/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Cuanto mas inclines el torso hacia adelante mas trabaja el pecho y menos el triceps; si sientes pellizco en el hombro al bajar, reduce el rango antes de forzar el estiramiento."
   },
   {
     "id": "ex_020_fondos_banco",
@@ -366,7 +385,8 @@
     ],
     "gifFileName": "ex_pecho_fondos_banco.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Manten los hombros lejos de las orejas y los codos apuntando hacia atras, no hacia afuera, para no sobrecargar la articulacion en cada repeticion."
   },
   {
     "id": "ex_021_flexiones_pecho",
@@ -385,7 +405,8 @@
     ],
     "gifFileName": "ex_pecho_flexiones_pecho.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Si la cadera se hunde o se eleva estas perdiendo tension abdominal; imagina una tabla recta de la cabeza a los talones durante todo el recorrido."
   },
   {
     "id": "ex_022_flexiones_inclinadas",
@@ -404,7 +425,8 @@
     ],
     "gifFileName": "ex_pecho_flexiones_inclinadas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Push-Up/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Cuanto mas alta la superficie, mas facil el ejercicio; baja la altura del apoyo a medida que ganes fuerza para seguir progresando hacia la flexion en el piso."
   },
   {
     "id": "ex_023_dominadas_pronadas",
@@ -423,7 +445,8 @@
     ],
     "gifFileName": "ex_espalda_dominadas_pronadas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Evita balancear las piernas para tomar impulso; si no llegas con la barbilla completa, es mejor bajar el rango de forma controlada que hacer trampa con el cuerpo."
   },
   {
     "id": "ex_024_dominadas_supinadas",
@@ -441,7 +464,8 @@
     ],
     "gifFileName": "ex_espalda_dominadas_supinadas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chin-Up/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "El agarre supino suma ayuda del biceps; aprovechalo para llevar el pecho hacia la barra en vez de solo subir la barbilla, asi reclutas mejor el dorsal."
   },
   {
     "id": "ex_025_dominadas_asistidas_banda",
@@ -460,7 +484,8 @@
     ],
     "gifFileName": "ex_espalda_dominadas_asistidas_banda.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Band_Assisted_Pull-Up/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Entre mas gruesa la banda mas asistencia recibes, pero no dejes que haga todo el trabajo en la bajada: controla el descenso igual que en una dominada libre."
   },
   {
     "id": "ex_026_remo_barra_inclinado",
@@ -479,7 +504,8 @@
     ],
     "gifFileName": "ex_espalda_remo_barra_inclinado.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Barbell_Row/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Si el torso se endereza en cada repeticion estas usando la espalda baja como palanca; fija el angulo del torso al inicio y no lo cambies durante toda la serie."
   },
   {
     "id": "ex_027_remo_sentado_polea",
@@ -497,7 +523,8 @@
     ],
     "gifFileName": "ex_espalda_remo_sentado_polea.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Cable_Rows/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Tira con los codos hacia atras pegados al cuerpo, no hacia afuera, y evita que el torso se balancee para no restarle trabajo al dorsal."
   },
   {
     "id": "ex_028_jalon_pecho_agarre_ancho",
@@ -516,7 +543,8 @@
     ],
     "gifFileName": "ex_espalda_jalon_pecho_agarre_ancho.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Lleva la barra hacia el pecho arqueando ligeramente el torso hacia atras; no tires con los brazos hacia abajo como si fuera un curl."
   },
   {
     "id": "ex_029_jalon_pecho_agarre_cerrado",
@@ -534,7 +562,8 @@
     ],
     "gifFileName": "ex_espalda_jalon_pecho_agarre_cerrado.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Front_Lat_Pulldown/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "El agarre cerrado permite mayor rango de movimiento; enfocate en llevar los codos hacia las caderas en vez de solo flexionar los brazos."
   },
   {
     "id": "ex_030_remo_mancuerna_un_brazo",
@@ -553,7 +582,8 @@
     ],
     "gifFileName": "ex_espalda_remo_mancuerna_un_brazo.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Dumbbell_Row/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Evita rotar el torso al subir el peso, el movimiento debe salir del omoplato tirando hacia atras y no de un giro de cadera."
   },
   {
     "id": "ex_031_peso_muerto_convencional",
@@ -572,7 +602,8 @@
     ],
     "gifFileName": "ex_espalda_peso_muerto_convencional.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Deadlift/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "La barra debe rozar las espinillas durante toda la subida; si se aleja del cuerpo la zona lumbar recibe una carga innecesaria."
   },
   {
     "id": "ex_032_peso_muerto_rumano",
@@ -591,7 +622,8 @@
     ],
     "gifFileName": "ex_espalda_peso_muerto_rumano.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "La clave es el retroceso de cadera, no la flexion de rodillas; el punto donde el isquiotibial esta tenso y a punto de perder la curvatura lumbar marca tu rango real."
   },
   {
     "id": "ex_033_remo_posterior_polea_cuerda",
@@ -609,7 +641,8 @@
     ],
     "gifFileName": "ex_espalda_remo_posterior_polea_cuerda.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rope_Rear-Delt_Rows/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Separa las manos hacia los lados al final del recorrido en vez de llevarlas hacia el pecho, asi el enfasis queda en la espalda alta y el deltoide posterior."
   },
   {
     "id": "ex_034_pullover_mancuerna",
@@ -628,7 +661,8 @@
     ],
     "gifFileName": "ex_espalda_pullover_mancuerna.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent-Arm_Dumbbell_Pullover/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Manten un ligero doblez fijo en los codos durante todo el arco; si los flexionas mas al bajar, el ejercicio se convierte en un press de pecho y pierde el estiramiento del dorsal."
   },
   {
     "id": "ex_035_remo_t_tumbado",
@@ -646,7 +680,8 @@
     ],
     "gifFileName": "ex_espalda_remo_t_tumbado.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_T-Bar_Row/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Al tener el pecho apoyado no hay riesgo de compensar con la zona lumbar; aprovecha para concentrarte solo en apretar la espalda al final de cada repeticion."
   },
   {
     "id": "ex_036_remo_t_manija",
@@ -665,7 +700,8 @@
     ],
     "gifFileName": "ex_espalda_remo_t_manija.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/T-Bar_Row_with_Handle/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Manten las rodillas semiflexionadas y la espalda recta; el impulso de las piernas para levantar el torso reduce el trabajo real de la espalda."
   },
   {
     "id": "ex_037_encogimientos_barra",
@@ -683,7 +719,8 @@
     ],
     "gifFileName": "ex_espalda_encogimientos_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shrug/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Sube los hombros en linea recta hacia arriba, no los gires en circulo: girar puede irritar la articulacion sin sumar mas trabajo al trapecio."
   },
   {
     "id": "ex_038_hiperextensiones_lumbares",
@@ -702,7 +739,8 @@
     ],
     "gifFileName": "ex_espalda_hiperextensiones_lumbares.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hyperextensions_Back_Extensions/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Al llegar arriba busca alinear el cuerpo, no arquear de mas la zona lumbar; ese exceso es la causa mas comun de molestias en este ejercicio."
   },
   {
     "id": "ex_039_remo_invertido",
@@ -721,7 +759,8 @@
     ],
     "gifFileName": "ex_espalda_remo_invertido.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inverted_Row/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Cuanto mas horizontal este tu cuerpo (pies mas adelantados) mas dificil el ejercicio; regula la dificultad con el angulo del cuerpo antes que agregando peso externo."
   },
   {
     "id": "ex_040_jalon_brazos_rectos_polea",
@@ -739,7 +778,8 @@
     ],
     "gifFileName": "ex_espalda_jalon_brazos_rectos_polea.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight-Arm_Pulldown/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Los brazos se mantienen practicamente rectos durante todo el recorrido, el movimiento sale del hombro y no de los codos, para aislar el dorsal."
   },
   {
     "id": "ex_041_remo_kettlebell_un_brazo",
@@ -758,7 +798,8 @@
     ],
     "gifFileName": "ex_espalda_remo_kettlebell_un_brazo.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Kettlebell_Row/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "La forma de la kettlebell hace que el peso quede mas cerca del cuerpo que una mancuerna; usa eso para mantener el codo pegado a las costillas durante toda la tirada."
   },
   {
     "id": "ex_042_superman",
@@ -777,7 +818,8 @@
     ],
     "gifFileName": "ex_espalda_superman.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Superman/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Eleva brazos y piernas a la misma altura y de forma simetrica; si un lado sube mas que el otro estas rotando la cadera en vez de trabajar la cadena posterior por igual."
   },
   {
     "id": "ex_043_peso_muerto_sumo",
@@ -796,7 +838,8 @@
     ],
     "gifFileName": "ex_espalda_peso_muerto_sumo.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sumo_Deadlift/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Piensa en empujar el piso hacia los lados con los pies antes de tirar de la barra; esa activacion inicial de gluteos y aductores distingue al sumo del convencional."
   },
   {
     "id": "ex_044_remo_alto_maquina_palanca",
@@ -814,7 +857,8 @@
     ],
     "gifFileName": "ex_espalda_remo_alto_maquina_palanca.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_High_Row/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Apoyar el pecho contra el respaldo elimina el balanceo del torso; usa esa estabilidad para concentrar toda la tirada en juntar los omoplatos."
   },
   {
     "id": "ex_045_face_pull_polea",
@@ -832,7 +876,8 @@
     ],
     "gifFileName": "ex_espalda_face_pull_polea.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Face_Pull/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Termina el movimiento rotando los hombros hacia atras cuando la cuerda llega a la cara, eso enfatiza el manguito rotador y el deltoide posterior mas que un remo comun."
   },
   {
     "id": "ex_046_remo_arrodillado_polea_alta",
@@ -850,7 +895,8 @@
     ],
     "gifFileName": "ex_espalda_remo_arrodillado_polea_alta.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kneeling_High_Pulley_Row/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Al estar arrodillado pierdes el apoyo de las piernas para generar impulso, asi que cualquier balanceo del torso sale directamente del core; mantenlo firme."
   },
   {
     "id": "ex_047_jalon_tras_nuca_agarre_ancho",
@@ -869,7 +915,8 @@
     ],
     "gifFileName": "ex_espalda_jalon_tras_nuca_agarre_ancho.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Pulldown_Behind_The_Neck/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Baja la barra hasta la nuca sin inclinar la cabeza hacia adelante para encontrarla; si sientes pellizco en el hombro, este ejercicio no es para tu movilidad y conviene hacerlo al frente."
   },
   {
     "id": "ex_048_sentadilla_trasera_con_barra",
@@ -887,7 +934,8 @@
     ],
     "gifFileName": "ex_piernas_sentadilla_trasera_con_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Squat/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "La barra debe apoyarse sobre los trapecios, no sobre las cervicales; si te resbala hacia el cuello necesitas mas retraccion escapular antes de sacarla del rack."
   },
   {
     "id": "ex_049_sentadilla_frontal_con_barra",
@@ -905,7 +953,8 @@
     ],
     "gifFileName": "ex_piernas_sentadilla_frontal_con_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Barbell_Squat/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Mantener los codos elevados es lo que sostiene la barra en su sitio; en cuanto los codos caen, la barra se desliza hacia adelante y pierdes el equilibrio."
   },
   {
     "id": "ex_050_prensa_de_piernas_45_grados",
@@ -923,7 +972,8 @@
     ],
     "gifFileName": "ex_piernas_prensa_de_piernas_45_grados.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Si la zona lumbar se despega del respaldo al bajar, el rango es demasiado profundo para tu movilidad; reduce el recorrido antes de forzar la espalda baja."
   },
   {
     "id": "ex_051_peso_muerto_rumano_con_barra",
@@ -941,7 +991,8 @@
     ],
     "gifFileName": "ex_piernas_peso_muerto_rumano_con_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "La barra debe deslizarse pegada a los muslos y espinillas durante todo el recorrido; si se separa del cuerpo, la palanca sobre la espalda baja se multiplica."
   },
   {
     "id": "ex_052_peso_muerto_rumano_con_mancuernas",
@@ -959,7 +1010,8 @@
     ],
     "gifFileName": "ex_piernas_peso_muerto_rumano_con_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stiff-Legged_Dumbbell_Deadlift/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Las mancuernas permiten bajar mas cerca del cuerpo que una barra; aprovecha ese contacto constante contra las piernas como guia para no perder la posicion de la espalda."
   },
   {
     "id": "ex_053_zancadas_caminando_con_mancuernas",
@@ -977,7 +1029,8 @@
     ],
     "gifFileName": "ex_piernas_zancadas_caminando_con_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Al caminar hacia adelante evita que la rodilla delantera se adelante mas alla de la punta del pie, asi proteges la articulacion mientras avanzas."
   },
   {
     "id": "ex_054_extension_de_piernas_en_maquina",
@@ -993,7 +1046,8 @@
     ],
     "gifFileName": "ex_piernas_extension_de_piernas_en_maquina.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "La pausa con el cuadriceps contraido arriba marca la diferencia frente a solo mover el peso; no la sacrifiques por hacer repeticiones mas rapidas."
   },
   {
     "id": "ex_055_curl_femoral_tumbado",
@@ -1011,7 +1065,8 @@
     ],
     "gifFileName": "ex_piernas_curl_femoral_tumbado.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Evita que la cadera se despegue del banco al subir el peso; ese impulso le quita tension al isquiotibial y la transfiere a la zona lumbar."
   },
   {
     "id": "ex_056_curl_femoral_sentado",
@@ -1029,7 +1084,8 @@
     ],
     "gifFileName": "ex_piernas_curl_femoral_sentado.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Leg_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Fija bien el torso con las asas laterales; si el cuerpo se mueve hacia adelante durante la flexion estas restando rango util al isquiotibial."
   },
   {
     "id": "ex_057_sentadilla_bulgara_con_mancuernas",
@@ -1047,7 +1103,8 @@
     ],
     "gifFileName": "ex_piernas_sentadilla_bulgara_con_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Split_Squat_with_Dumbbells/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "El peso debe sentirse sobre el talon de la pierna delantera, no en la de atras; si la pierna trasera empuja mucho para ayudar, el gluteo delantero deja de ser el limitante."
   },
   {
     "id": "ex_058_sentadilla_sissy",
@@ -1065,7 +1122,8 @@
     ],
     "gifFileName": "ex_piernas_sentadilla_sissy.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Weighted_Sissy_Squat/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "La inclinacion hacia atras con los talones elevados genera el estiramiento profundo del cuadriceps; sujetarte de un soporte fijo es obligatorio hasta tener el equilibrio para controlarlo sin apoyo."
   },
   {
     "id": "ex_059_zancada_con_barra",
@@ -1083,7 +1141,8 @@
     ],
     "gifFileName": "ex_piernas_zancada_con_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Lunge/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Al llevar la barra sobre los trapecios el equilibrio es mas exigente que con mancuernas; da pasos de longitud moderada, uno demasiado largo compromete la rodilla delantera."
   },
   {
     "id": "ex_060_sentadilla_goblet_con_mancuerna",
@@ -1101,7 +1160,8 @@
     ],
     "gifFileName": "ex_piernas_sentadilla_goblet_con_mancuerna.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Goblet_Squat/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Usa los codos rozando la cara interna de las rodillas como guia de profundidad: cuando ya no entran comodos entre las piernas, ese es tu punto mas bajo."
   },
   {
     "id": "ex_061_step_up_con_mancuernas",
@@ -1119,7 +1179,8 @@
     ],
     "gifFileName": "ex_piernas_step_up_con_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Step_Ups/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Sube apoyando todo el pie y empujando con el talon de la pierna que esta arriba; no impulses con la pierna de abajo o pierdes el trabajo unilateral que busca el ejercicio."
   },
   {
     "id": "ex_062_sentadilla_hack_en_maquina",
@@ -1137,7 +1198,8 @@
     ],
     "gifFileName": "ex_piernas_sentadilla_hack_en_maquina.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hack_Squat/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Al tener la espalda fija contra el respaldo el riesgo cae sobre las rodillas; controla el descenso y no dejes que el peso te empuje mas rapido de lo que puedes frenar."
   },
   {
     "id": "ex_063_sentadilla_en_maquina_smith",
@@ -1155,7 +1217,8 @@
     ],
     "gifFileName": "ex_piernas_sentadilla_en_maquina_smith.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Squat/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Adelantar los pies respecto a la barra guiada compensa que el riel es vertical y no sigue tu arco natural de sentadilla, evitando que las rodillas se vayan demasiado al frente."
   },
   {
     "id": "ex_064_peso_muerto_sumo_con_barra",
@@ -1174,7 +1237,8 @@
     ],
     "gifFileName": "ex_piernas_peso_muerto_sumo_con_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sumo_Deadlift/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Extiende cadera y rodillas al mismo tiempo, no la cadera primero; si el torso sube antes de que las piernas terminen de extenderse, la espalda baja absorbe la diferencia."
   },
   {
     "id": "ex_065_elevacion_de_talones_de_pie",
@@ -1192,7 +1256,8 @@
     ],
     "gifFileName": "ex_piernas_elevacion_de_talones_de_pie.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "No rebotes en la parte baja del estiramiento, esa fase excentrica lenta es la que mas construye la pantorrilla; sube hasta sentir el gemelo completamente contraido en la punta."
   },
   {
     "id": "ex_066_elevacion_de_talones_sentado",
@@ -1210,7 +1275,8 @@
     ],
     "gifFileName": "ex_piernas_elevacion_de_talones_sentado.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Con las rodillas flexionadas se enfatiza el soleo mas que el gemelo; no aceleres el descenso, el estiramiento profundo es lo que distingue este ejercicio del de pie."
   },
   {
     "id": "ex_067_elevacion_de_talones_en_prensa_de_piernas",
@@ -1228,7 +1294,8 @@
     ],
     "gifFileName": "ex_piernas_elevacion_de_talones_en_prensa_de_piernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Calf_Press_On_The_Leg_Press_Machine/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Apoya solo la punta de los pies dejando los talones colgando fuera del borde; si apoyas todo el pie pierdes el rango completo de flexion del tobillo."
   },
   {
     "id": "ex_068_empuje_de_cadera_con_barra",
@@ -1246,7 +1313,8 @@
     ],
     "gifFileName": "ex_piernas_empuje_de_cadera_con_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Al llegar arriba busca la extension completa de cadera con una pausa apretando los gluteos; no sigas subiendo con la zona lumbar una vez que la cadera ya esta extendida."
   },
   {
     "id": "ex_069_puente_de_gluteos_con_barra",
@@ -1264,7 +1332,8 @@
     ],
     "gifFileName": "ex_piernas_puente_de_gluteos_con_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Glute_Bridge/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Manten la barbilla ligeramente metida y evita arquear en exceso la zona lumbar arriba; la extension debe sentirse en el gluteo, no en la espalda baja."
   },
   {
     "id": "ex_070_puente_de_gluteos_a_una_pierna",
@@ -1282,7 +1351,8 @@
     ],
     "gifFileName": "ex_piernas_puente_de_gluteos_a_una_pierna.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single_Leg_Glute_Bridge/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "La pierna elevada tiende a caer hacia el lado durante el esfuerzo; mantenla alineada con la cadera para que todo el trabajo recaiga sobre el gluteo de apoyo."
   },
   {
     "id": "ex_071_patada_de_gluteo_en_polea",
@@ -1300,7 +1370,8 @@
     ],
     "gifFileName": "ex_piernas_patada_de_gluteo_en_polea.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Legged_Cable_Kickback/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Evita balancear el torso hacia adelante para ganar rango con la pierna; el movimiento debe venir solo de la extension de cadera con el gluteo contraido al final."
   },
   {
     "id": "ex_072_abduccion_de_cadera_en_maquina",
@@ -1318,7 +1389,8 @@
     ],
     "gifFileName": "ex_piernas_abduccion_de_cadera_en_maquina.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Thigh_Abductor/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Separa las piernas de forma controlada sin usar el impulso del torso hacia atras; el gluteo medio responde mejor a un tempo lento que a cargas pesadas con balanceo."
   },
   {
     "id": "ex_073_aduccion_de_cadera_en_polea",
@@ -1336,7 +1408,8 @@
     ],
     "gifFileName": "ex_piernas_aduccion_de_cadera_en_polea.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Hip_Adduction/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Apoyate firme en el marco de la maquina para que el movimiento de cruce salga de la cadera y no de una inclinacion del torso hacia el lado."
   },
   {
     "id": "ex_074_elevacion_de_cadera_en_maquina_smith",
@@ -1354,7 +1427,8 @@
     ],
     "gifFileName": "ex_piernas_elevacion_de_cadera_en_maquina_smith.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Hip_Raise/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "La barra guiada elimina el riesgo de que ruede hacia adelante; aprovecha esa estabilidad para enfocarte en apretar los gluteos al final en lugar de en balancear el peso."
   },
   {
     "id": "ex_075_hiperextension_gluteo_isquiotibial",
@@ -1372,7 +1446,8 @@
     ],
     "gifFileName": "ex_piernas_hiperextension_gluteo_isquiotibial.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Ham_Raise/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "A diferencia de la hiperextension lumbar comun, aqui tambien extiendes la rodilla; asegura bien los tobillos o perderas la palanca para completar el movimiento."
   },
   {
     "id": "ex_076_sentadilla_sumo_con_mancuerna",
@@ -1390,7 +1465,8 @@
     ],
     "gifFileName": "ex_piernas_sentadilla_sumo_con_mancuerna.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plie_Dumbbell_Squat/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Las rodillas deben viajar en la misma direccion que apuntan los pies durante todo el descenso; si se cierran hacia adentro, el gluteo deja de ser el limitante del movimiento."
   },
   {
     "id": "ex_077_peso_muerto_a_una_pierna_con_mancuerna",
@@ -1409,7 +1485,8 @@
     ],
     "gifFileName": "ex_piernas_peso_muerto_a_una_pierna_con_mancuerna.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kettlebell_One-Legged_Deadlift/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Usa la pierna libre como contrapeso llevandola hacia atras a medida que el torso baja; ese balance mantiene la cadera nivelada y evita que rotes hacia un lado."
   },
   {
     "id": "ex_078_press_militar_barra",
@@ -1428,7 +1505,8 @@
     ],
     "gifFileName": "ex_hombros_press_militar_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shoulder_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Aprieta gluteos y core antes de empujar la barra; si arqueas la espalda baja para ayudar el impulso, el ejercicio se convierte en un press inclinado disfrazado."
   },
   {
     "id": "ex_079_press_militar_sentado_barra",
@@ -1446,7 +1524,8 @@
     ],
     "gifFileName": "ex_hombros_press_militar_sentado_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Barbell_Military_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Al estar sentado no puedes usar las piernas para impulsar, asi que cualquier arqueo de espalda para completar la repeticion es senal de que el peso es demasiado."
   },
   {
     "id": "ex_080_press_hombros_mancuernas",
@@ -1464,7 +1543,8 @@
     ],
     "gifFileName": "ex_hombros_press_hombros_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shoulder_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Las mancuernas obligan a estabilizar cada brazo por separado; si notas que un lado se adelanta al otro, baja el peso hasta igualar el control entre ambos."
   },
   {
     "id": "ex_081_press_arnold",
@@ -1483,7 +1563,8 @@
     ],
     "gifFileName": "ex_hombros_press_arnold.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arnold_Dumbbell_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "La rotacion de munecas debe ser continua y coordinada con el empuje, no un giro brusco al inicio; eso es lo que mas exige al deltoide en toda su fibra frente a un press comun."
   },
   {
     "id": "ex_082_press_hombros_sentado_mancuernas",
@@ -1501,7 +1582,8 @@
     ],
     "gifFileName": "ex_hombros_press_hombros_sentado_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Dumbbell_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Apoyar la espalda en el respaldo elimina la ayuda de la cadera para impulsar el peso, asi que si te cuesta completar la repeticion es la fuerza real del hombro la que esta fallando."
   },
   {
     "id": "ex_083_press_hombros_maquina",
@@ -1519,7 +1601,8 @@
     ],
     "gifFileName": "ex_hombros_press_hombros_maquina.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Ajusta el asiento para que las agarraderas queden justo a la altura de los hombros al iniciar; si quedan mas altas o bajas, el recorrido carga la articulacion en un angulo desfavorable."
   },
   {
     "id": "ex_084_press_hombros_polea",
@@ -1537,7 +1620,8 @@
     ],
     "gifFileName": "ex_hombros_press_hombros_polea.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Shoulder_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Empujar ligeramente hacia adentro en vez de recto hacia arriba mantiene tension constante en el deltoide durante todo el recorrido, algo que el peso libre no logra arriba."
   },
   {
     "id": "ex_085_elevaciones_laterales_mancuernas",
@@ -1553,7 +1637,8 @@
     ],
     "gifFileName": "ex_hombros_elevaciones_laterales_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Imagina que estas sirviendo una jarra de agua, no levantando peso: si te ayudas con impulso del torso o subes los brazos por encima del hombro, el trapecio roba el trabajo al deltoide."
   },
   {
     "id": "ex_086_elevaciones_laterales_polea",
@@ -1569,7 +1654,8 @@
     ],
     "gifFileName": "ex_hombros_elevaciones_laterales_polea.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Seated_Lateral_Raise/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "La polea mantiene tension incluso al inicio del movimiento, algo que la mancuerna pierde en el punto mas bajo; aprovecha eso controlando tambien la fase baja."
   },
   {
     "id": "ex_087_elevaciones_frontales_mancuernas",
@@ -1587,7 +1673,8 @@
     ],
     "gifFileName": "ex_hombros_elevaciones_frontales_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Dumbbell_Raise/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Sube solo hasta la altura del hombro, pasar de ahi involucra al trapecio; si necesitas balancear la espalda para subir el peso, es momento de bajarlo."
   },
   {
     "id": "ex_088_elevaciones_frontales_polea",
@@ -1603,7 +1690,8 @@
     ],
     "gifFileName": "ex_hombros_elevaciones_frontales_polea.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Cable_Raise/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Colocarte de espaldas a la polea baja da tension constante desde el primer grado de elevacion, a diferencia de la mancuerna donde el punto bajo queda sin carga real."
   },
   {
     "id": "ex_089_aperturas_posteriores_mancuernas",
@@ -1621,7 +1709,8 @@
     ],
     "gifFileName": "ex_hombros_aperturas_posteriores_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Bent-Over_Rear_Delt_Raise/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Inclina el torso lo suficiente para que los brazos cuelguen libres antes de empezar, y aprieta los omoplatos en la parte alta en vez de solo subir los codos."
   },
   {
     "id": "ex_090_aperturas_posteriores_polea",
@@ -1639,7 +1728,8 @@
     ],
     "gifFileName": "ex_hombros_aperturas_posteriores_polea.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rear_Delt_Fly/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Cruzar las poleas altas antes de tirar hacia los lados alarga el recorrido util para el deltoide posterior comparado con hacerlo con mancuernas."
   },
   {
     "id": "ex_091_aperturas_posteriores_maquina",
@@ -1657,7 +1747,8 @@
     ],
     "gifFileName": "ex_hombros_aperturas_posteriores_maquina.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Machine_Flyes/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "El pecho apoyado en el respaldo evita el balanceo que se da con mancuernas libres; aprovecha esa base fija para aislar completamente el deltoide posterior."
   },
   {
     "id": "ex_093_remo_menton_barra",
@@ -1675,7 +1766,8 @@
     ],
     "gifFileName": "ex_hombros_remo_menton_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Upright_Barbell_Row/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Guia el movimiento con los codos hacia arriba y afuera, no con las munecas; si sientes pinzamiento en el hombro al subir la barra por encima del pecho, reduce la altura del recorrido."
   },
   {
     "id": "ex_094_remo_menton_mancuernas",
@@ -1693,7 +1785,8 @@
     ],
     "gifFileName": "ex_hombros_remo_menton_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Dumbbell_Upright_Row/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Las mancuernas permiten que cada brazo siga su propia trayectoria natural, reduciendo el riesgo de pinzamiento frente a la barra fija; aun asi no subas mas alla de donde el codo queda a la altura del hombro."
   },
   {
     "id": "ex_096_encogimientos_mancuernas",
@@ -1711,7 +1804,8 @@
     ],
     "gifFileName": "ex_hombros_encogimientos_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shrug/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Sube los hombros en linea recta hacia las orejas y manten una pausa arriba apretando el trapecio; girar los hombros en circulo no aporta mas estimulo y solo agrega riesgo."
   },
   {
     "id": "ex_097_press_cubano",
@@ -1729,7 +1823,8 @@
     ],
     "gifFileName": "ex_hombros_press_cubano.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cuban_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Es un ejercicio de tres tiempos (remo, rotacion, press); no aceleres la fase de rotacion externa, es la que mas trabaja el manguito rotador y la que mas se salta al apurar el movimiento."
   },
   {
     "id": "ex_098_curl_barra_recta",
@@ -1747,7 +1842,8 @@
     ],
     "gifFileName": "ex_biceps_barra_recta.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Si los codos se despegan del torso hacia adelante en la parte alta, el deltoide anterior empieza a ayudar y el biceps deja de trabajar solo."
   },
   {
     "id": "ex_099_curl_barra_z",
@@ -1765,7 +1861,8 @@
     ],
     "gifFileName": "ex_biceps_barra_z.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/EZ-Bar_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "La barra Z reduce la tension en la muneca frente a la barra recta gracias al agarre angulado; aun asi manten el torso fijo, sin balancear la espalda para subir el peso."
   },
   {
     "id": "ex_100_curl_alterno_mancuernas",
@@ -1784,7 +1881,8 @@
     ],
     "gifFileName": "ex_biceps_alterno_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Alternate_Bicep_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "La rotacion de la muneca hacia afuera al subir activa mas fibra del biceps que un agarre neutro fijo; hazla de forma progresiva durante toda la subida, no de golpe."
   },
   {
     "id": "ex_101_curl_martillo_mancuernas",
@@ -1802,7 +1900,8 @@
     ],
     "gifFileName": "ex_biceps_martillo_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hammer_Curls/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Al no rotar la muneca el enfasis se mueve del biceps hacia el braquial y el antebrazo; manten los codos fijos para que ese cambio de enfoque sea real y no un curl normal a medias."
   },
   {
     "id": "ex_102_curl_predicador_barra_z",
@@ -1820,7 +1919,8 @@
     ],
     "gifFileName": "ex_biceps_predicador_barra_z.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Preacher_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "El banco predicador elimina el balanceo del torso, asi que la parte baja del movimiento, donde el brazo casi se extiende, es la que mas debes controlar para no forzar el codo."
   },
   {
     "id": "ex_103_curl_predicador_maquina",
@@ -1838,7 +1938,8 @@
     ],
     "gifFileName": "ex_biceps_predicador_maquina.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Preacher_Curls/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Al ser guiado por la maquina no hay riesgo de perder el angulo del brazo; aprovecha para bajar el peso lento y sentir el estiramiento completo del biceps en cada repeticion."
   },
   {
     "id": "ex_104_curl_concentrado",
@@ -1856,7 +1957,8 @@
     ],
     "gifFileName": "ex_biceps_concentrado.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Concentration_Curls/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Apoyar el codo contra la pierna elimina cualquier ayuda del hombro o la espalda; si necesitas impulsar el torso para subir el peso, es momento de bajarlo."
   },
   {
     "id": "ex_105_curl_polea_baja",
@@ -1874,7 +1976,8 @@
     ],
     "gifFileName": "ex_biceps_polea_baja.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Biceps_Cable_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "La polea mantiene tension constante incluso en la posicion baja donde una mancuerna la pierde, util para sentir el estiramiento del biceps sin descanso en cada repeticion."
   },
   {
     "id": "ex_106_curl_inclinado_mancuernas",
@@ -1893,7 +1996,8 @@
     ],
     "gifFileName": "ex_biceps_inclinado_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "El respaldo inclinado pone el hombro detras de la cadera, lo que estira mas el biceps al inicio del movimiento; no dejes que el hombro se adelante para compensar ese estiramiento extra."
   },
   {
     "id": "ex_107_curl_arana",
@@ -1911,7 +2015,8 @@
     ],
     "gifFileName": "ex_biceps_arana.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Spider_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Apoyar el pecho en el banco inclinado impide cualquier balanceo de hombros; si los codos se mueven hacia adelante durante la subida, el peso es demasiado para el aislamiento que busca este ejercicio."
   },
   {
     "id": "ex_108_curl_drag",
@@ -1929,7 +2034,8 @@
     ],
     "gifFileName": "ex_biceps_drag.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Drag_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "La barra debe arrastrarse rozando el torso y los codos deben irse hacia atras en vez de hacia adelante como en un curl normal, cambiando el enfasis hacia la cabeza larga del biceps."
   },
   {
     "id": "ex_109_curl_martillo_cuerda_polea",
@@ -1947,7 +2053,8 @@
     ],
     "gifFileName": "ex_biceps_martillo_cuerda_polea.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Hammer_Curls_-_Rope_Attachment/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Separa ligeramente los extremos de la cuerda al llegar arriba para mantener el agarre neutro durante toda la subida; si la cuerda gira en tu mano, pierdes el enfoque en el braquial."
   },
   {
     "id": "ex_110_curl_agarre_cerrado",
@@ -1965,7 +2072,8 @@
     ],
     "gifFileName": "ex_biceps_agarre_cerrado.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Standing_Barbell_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Un agarre mas cerrado que el ancho de hombros enfatiza la cabeza larga del biceps, pero exige mas de la muneca; no balancees el torso para compensar si el agarre te resulta incomodo."
   },
   {
     "id": "ex_111_curl_zottman",
@@ -1983,7 +2091,8 @@
     ],
     "gifFileName": "ex_biceps_zottman.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Zottman_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "La fase excentrica con agarre pronado es la parte mas valiosa de este ejercicio para el antebrazo; no la aceleres solo porque ya termino la parte de biceps."
   },
   {
     "id": "ex_112_curl_polea_alta",
@@ -2001,7 +2110,8 @@
     ],
     "gifFileName": "ex_biceps_polea_alta.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/High_Cable_Curls/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Al llevar las manos hacia la cabeza en vez de hacia el hombro, el angulo de tension favorece una contraccion maxima del biceps que el curl de pie no alcanza."
   },
   {
     "id": "ex_113_curl_inverso_barra",
@@ -2019,7 +2129,8 @@
     ],
     "gifFileName": "ex_biceps_inverso_barra.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Barbell_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "El agarre prono desplaza el trabajo del biceps hacia el braquiorradial y el antebrazo; usa menos peso que en un curl normal, esta variante es notablemente mas exigente para la muneca."
   },
   {
     "id": "ex_114_curl_maquina",
@@ -2037,7 +2148,8 @@
     ],
     "gifFileName": "ex_biceps_maquina.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bicep_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Ajusta el asiento para que el eje de giro de la maquina coincida con tu codo; si queda desalineado, el recorrido no corresponde a la flexion natural del brazo y se pierde tension en partes del rango."
   },
   {
     "id": "ex_115_curl_cruzado_martillo",
@@ -2055,7 +2167,8 @@
     ],
     "gifFileName": "ex_biceps_cruzado_martillo.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cross_Body_Hammer_Curl/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Llevar la mancuerna hacia el hombro contrario en vez de hacia arriba en linea recta cambia el enfasis hacia el braquial; manten el codo fijo durante el cruce para no convertirlo en un movimiento de hombro."
   },
   {
     "id": "ex_116_press_frances_barra_ez",
@@ -2070,7 +2183,8 @@
     ],
     "gifFileName": "ex_triceps_press_frances_barra_ez.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/EZ-Bar_Skullcrusher/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Los codos deben apuntar al techo y no abrirse hacia los lados al bajar la barra hacia la frente; abrir los codos es la forma mas comun de perder tension en la cabeza larga del triceps."
   },
   {
     "id": "ex_117_pushdown_polea_cuerda",
@@ -2085,7 +2199,8 @@
     ],
     "gifFileName": "ex_triceps_pushdown_polea_cuerda.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Separa los extremos de la cuerda hacia afuera y abajo al final del recorrido para exprimir la contraccion, y no dejes que los codos se despeguen del torso durante el empuje."
   },
   {
     "id": "ex_118_pushdown_polea_barra_recta",
@@ -2100,7 +2215,8 @@
     ],
     "gifFileName": "ex_triceps_pushdown_polea_barra_recta.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Con la barra recta es mas facil que los codos se adelanten para ayudar con el peso; mantenlos pegados al torso y deja que solo el antebrazo se mueva."
   },
   {
     "id": "ex_120_extension_mancuernas_dos_manos_sobre_cabeza",
@@ -2117,7 +2233,8 @@
     ],
     "gifFileName": "ex_triceps_extension_mancuernas_dos_manos_sobre_cabeza.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Dumbbell_Triceps_Extension/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Los codos deben quedarse apuntando al techo durante todo el descenso detras de la nuca; si se abren hacia los lados, el hombro empieza a compensar por el triceps."
   },
   {
     "id": "ex_121_patada_triceps_mancuerna",
@@ -2134,7 +2251,8 @@
     ],
     "gifFileName": "ex_triceps_patada_triceps_mancuerna.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Tricep_Dumbbell_Kickback/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "El brazo superior debe quedar paralelo al piso y fijo durante toda la repeticion; si el hombro se mueve para ayudar a extender el codo, el triceps deja de trabajar solo."
   },
   {
     "id": "ex_122_press_banca_agarre_cerrado",
@@ -2152,7 +2270,8 @@
     ],
     "gifFileName": "ex_triceps_press_banca_agarre_cerrado.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Barbell_Bench_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Un agarre al ancho de los hombros, no mas cerrado, protege la muneca mientras desplaza el enfasis hacia el triceps; manten los codos cerca del cuerpo durante el descenso."
   },
   {
     "id": "ex_123_flexiones_diamante",
@@ -2170,7 +2289,8 @@
     ],
     "gifFileName": "ex_triceps_flexiones_diamante.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Push-Ups_-_Close_Triceps_Position/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Las manos juntas bajo el pecho formando el diamante concentran el esfuerzo en el triceps mucho mas que una flexion normal; si la cadera se hunde antes de completar el rango, aun te falta fuerza para la version completa."
   },
   {
     "id": "ex_124_fondos_maquina",
@@ -2188,7 +2308,8 @@
     ],
     "gifFileName": "ex_triceps_fondos_maquina.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dip_Machine/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "La maquina fija la trayectoria, asi que en vez de preocuparte por el equilibrio como en las paralelas, enfocate en extender los codos por completo sin dejar que el peso caiga de golpe."
   },
   {
     "id": "ex_125_extension_polea_una_mano",
@@ -2203,7 +2324,8 @@
     ],
     "gifFileName": "ex_triceps_extension_polea_una_mano.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_One_Arm_Tricep_Extension/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Al trabajar un brazo a la vez es facil que el codo se despegue del cuerpo para ganar impulso; mantenlo pegado y deja que solo el antebrazo viaje durante toda la extension."
   },
   {
     "id": "ex_126_press_frances_mancuernas",
@@ -2218,7 +2340,8 @@
     ],
     "gifFileName": "ex_triceps_press_frances_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Dumbbell_Tricep_Extension/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Las mancuernas permiten bajar cada una hacia un lado de la cabeza en vez de a la frente, dando mas libertad al hombro; aun asi manten los brazos fijos y que solo el codo se mueva."
   },
   {
     "id": "ex_127_extension_mancuerna_una_mano_sobre_cabeza",
@@ -2235,7 +2358,8 @@
     ],
     "gifFileName": "ex_triceps_extension_mancuerna_una_mano_sobre_cabeza.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_One-Arm_Dumbbell_Triceps_Extension/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Manten el brazo pegado a la oreja durante todo el descenso; si se separa hacia afuera, el hombro roba parte del trabajo que deberia hacer el triceps."
   },
   {
     "id": "ex_128_extension_polea_cuerda_tras_nuca",
@@ -2252,7 +2376,8 @@
     ],
     "gifFileName": "ex_triceps_extension_polea_cuerda_tras_nuca.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rope_Overhead_Triceps_Extension/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Al estar de espaldas a la polea el estiramiento del triceps se siente desde detras de la cabeza; no muevas los hombros hacia adelante al extender, deja que el movimiento salga solo del codo."
   },
   {
     "id": "ex_130_press_cerrado_mancuernas",
@@ -2269,7 +2394,8 @@
     ],
     "gifFileName": "ex_triceps_press_cerrado_mancuernas.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Dumbbell_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "Manten las mancuernas juntas y en contacto durante todo el recorrido; si se separan al bajar, el ejercicio pierde el enfasis en el triceps y se acerca a un press de pecho normal."
   },
   {
     "id": "ex_131_extension_polea_inclinada",
@@ -2284,7 +2410,8 @@
     ],
     "gifFileName": "ex_triceps_extension_polea_inclinada.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Incline_Triceps_Extension/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "El banco inclinado cambia el angulo de tiron respecto a un pushdown de pie; empuja hacia abajo y ligeramente atras sin mover los hombros para mantener el enfasis en la cabeza larga del triceps."
   },
   {
     "id": "ex_132_press_jm",
@@ -2301,7 +2428,8 @@
     ],
     "gifFileName": "ex_triceps_press_jm.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/JM_Press/0.jpg",
-    "isCompound": true
+    "isCompound": true,
+    "proTip": "La barra baja hacia la barbilla en una trayectoria intermedia, ni tan vertical como un press cerrado ni tan hacia la frente como un press frances; encuentra ese angulo propio con poca carga antes de anadir peso."
   },
   {
     "id": "ex_133_extension_triceps_maquina",
@@ -2316,7 +2444,8 @@
     ],
     "gifFileName": "ex_triceps_extension_triceps_maquina.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Triceps_Extension/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Si el eje de giro de la maquina no coincide con tu codo, el brazo de palanca cambia durante el recorrido y sentiras el ejercicio de forma desigual entre el inicio y el final del movimiento."
   },
   {
     "id": "ex_134_crunch_polea_alta",
@@ -2332,7 +2461,8 @@
     ],
     "gifFileName": "ex_core_crunch_polea_alta.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Crunch/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Las manos solo sostienen la cuerda, la flexion del torso debe salir del abdomen; si notas que tiras con los brazos hacia abajo, el peso es demasiado para tu control actual."
   },
   {
     "id": "ex_135_elevacion_piernas_colgado",
@@ -2351,7 +2481,8 @@
     ],
     "gifFileName": "ex_core_elevacion_piernas_colgado.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hanging_Leg_Raise/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Controla especialmente la fase de bajada de las piernas, dejarlas caer por gravedad es lo que mas roba tension al abdomen; si te balanceas del cuerpo, reduce el rango a rodillas flexionadas primero."
   },
   {
     "id": "ex_136_rollout_rueda_abdominal",
@@ -2369,7 +2500,8 @@
     ],
     "gifFileName": "ex_core_rollout_rueda_abdominal.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Roller/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Solo avanza hasta el punto donde puedas regresar sin que la zona lumbar se hunda hacia el suelo; ese limite personal importa mas que la distancia que alcances."
   },
   {
     "id": "ex_137_plancha_frontal",
@@ -2387,7 +2519,8 @@
     ],
     "gifFileName": "ex_core_plancha_frontal.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "La plancha no es solo aguantar el tiempo, es evitar que la cadera caiga o se eleve en exceso; si empiezas a temblar y perder esa linea recta, ya cumpliste el objetivo aunque no llegues al tiempo planeado."
   },
   {
     "id": "ex_138_giros_rusos",
@@ -2403,7 +2536,8 @@
     ],
     "gifFileName": "ex_core_giros_rusos.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Russian_Twist/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "El movimiento debe salir de rotar el torso, no solo de mover los brazos de un lado a otro; elevar los pies aumenta la dificultad porque exige mas estabilidad de todo el core."
   },
   {
     "id": "ex_139_lenador_polea",
@@ -2421,7 +2555,8 @@
     ],
     "gifFileName": "ex_core_lenador_polea.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Cable_Wood_Chop/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "El giro debe iniciarse desde el torso y las caderas, con los brazos casi extendidos actuando solo como transmisores de la fuerza, no como los que generan el movimiento."
   },
   {
     "id": "ex_140_vacio_abdominal",
@@ -2437,7 +2572,8 @@
     ],
     "gifFileName": "ex_core_vacio_abdominal.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stomach_Vacuum/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "La exhalacion completa antes de meter el ombligo es lo que permite activar el transverso abdominal; si respiras profundo durante la contraccion, pierdes la activacion que distingue este ejercicio de un crunch comun."
   },
   {
     "id": "ex_141_crunch_bicicleta",
@@ -2455,7 +2591,8 @@
     ],
     "gifFileName": "ex_core_crunch_bicicleta.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Air_Bike/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "La zona lumbar debe quedarse pegada al piso durante todo el pedaleo; en cuanto se despega para llevar el codo a la rodilla, la cadera empieza a ayudar y el obliquo deja de ser el limitante."
   },
   {
     "id": "ex_142_abdominales_con_peso",
@@ -2471,7 +2608,8 @@
     ],
     "gifFileName": "ex_core_abdominales_con_peso.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Weighted_Crunches/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Sube solo lo necesario para sentir el abdomen contraido, no hasta sentarte por completo; un rango excesivo en este ejercicio suele tirar del cuello en vez de sumar trabajo al recto abdominal."
   },
   {
     "id": "ex_143_escaladores",
@@ -2490,7 +2628,8 @@
     ],
     "gifFileName": "ex_core_escaladores.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Mountain_Climbers/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "La cadera debe mantenerse a la misma altura durante todo el ejercicio; si sube y baja con cada rodilla que entra, se convierte en un movimiento de cadera y no de core."
   },
   {
     "id": "ex_144_plancha_hueca",
@@ -2508,7 +2647,8 @@
     ],
     "gifFileName": "ex_core_plancha_hueca.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cocoons/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "La zona lumbar presionada contra el piso es lo que define esta plancha frente a otras variantes; cuanto mas lejos del cuerpo estiras brazos y piernas, mas dificil se vuelve mantener esa presion."
   },
   {
     "id": "ex_145_plancha_lateral",
@@ -2527,7 +2667,8 @@
     ],
     "gifFileName": "ex_core_plancha_lateral.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Bridge/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Si la cadera cae hacia el suelo antes de terminar el tiempo, es mejor apoyar la rodilla de abajo y acortar la palanca que perder la alineacion recta del cuerpo."
   },
   {
     "id": "ex_146_dead_bug",
@@ -2545,7 +2686,8 @@
     ],
     "gifFileName": "ex_core_dead_bug.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dead_Bug/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "La velocidad de bajada del brazo y la pierna debe ser lenta y sincronizada; si la zona lumbar se despega del suelo en algun punto, estas bajando mas rango del que tu core puede controlar todavia."
   },
   {
     "id": "ex_147_crunch_inverso",
@@ -2563,7 +2705,8 @@
     ],
     "gifFileName": "ex_core_crunch_inverso.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Crunch/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "El movimiento termina cuando la cadera se despega del piso, no solo cuando las rodillas llegan al pecho; evita usar el impulso de balancear las piernas para lograr ese despegue."
   },
   {
     "id": "ex_148_crunch_maquina",
@@ -2579,7 +2722,8 @@
     ],
     "gifFileName": "ex_core_crunch_maquina.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Las asas son solo un punto de apoyo, la flexion debe salir del abdomen; si sueltas la tension y dejas que el peso regrese de golpe, pierdes buena parte del estimulo en la fase negativa."
   },
   {
     "id": "ex_149_crunch_obliquo_declinado",
@@ -2597,7 +2741,8 @@
     ],
     "gifFileName": "ex_core_crunch_obliquo_declinado.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Oblique_Crunch/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Gira el torso completo hacia el lado, no solo el brazo, para que el trabajo caiga sobre el obliquo y no se convierta en un simple crunch con un giro superficial de hombros."
   },
   {
     "id": "ex_150_abdominales_banco_declinado",
@@ -2615,6 +2760,7 @@
     ],
     "gifFileName": "ex_core_abdominales_banco_declinado.gif",
     "gifRemoteURLString": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Crunch/0.jpg",
-    "isCompound": false
+    "isCompound": false,
+    "proTip": "Si sientes tension en el cuello antes que en el abdomen, es senal de que estas tirando con las manos detras de la cabeza en vez de dejar que el recto abdominal inicie el movimiento."
   }
 ]
