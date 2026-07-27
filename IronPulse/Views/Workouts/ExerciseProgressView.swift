@@ -12,7 +12,7 @@ struct ExerciseProgressView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                Text(exercise.name).font(.ironTitle)
+                Text(exercise.name).font(.wwHeadline)
 
                 if points.isEmpty {
                     ContentUnavailableView(

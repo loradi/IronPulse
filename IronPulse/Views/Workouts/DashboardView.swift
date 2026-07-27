@@ -58,7 +58,7 @@ struct DashboardView: View {
     private var header: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 6) {
-                Text(profile.name).font(.ironTitle)
+                Text(profile.name).font(.wwHeadline)
                 Text("\(profile.experienceLevel.displayName) • \(profile.primaryGoal.displayName)")
                     .font(.subheadline)
                     .foregroundStyle(Color.ironTextSecondary)
@@ -66,7 +66,8 @@ struct DashboardView: View {
 
             Spacer()
 
-            Circle().fill(Color.ironAccent).frame(width: 56, height: 56).neonGlow()
+            Circle().fill(Color.ironAccent).frame(width: 56, height: 56)
+                .overlay(Circle().stroke(Color.ironTextPrimary.opacity(0.3), lineWidth: 2))
         }
         .ironCard()
     }
