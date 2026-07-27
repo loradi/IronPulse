@@ -28,6 +28,9 @@ struct ExerciseProgressView: View {
                             .foregroundStyle(Color.ironAccent)
                     }
                     .frame(height: 220)
+                    // Mismo motivo que en DashboardView: el Chart bloquea los toques
+                    // del resto de la pantalla si se deja interactivo.
+                    .allowsHitTesting(false)
                     .ironCard()
                 }
             }

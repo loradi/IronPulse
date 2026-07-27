@@ -134,6 +134,9 @@ struct DashboardView: View {
                 AxisMarks(values: .stride(by: .day, count: 15))
             }
             .frame(height: 140)
+            // Sin esto el Chart se traga TODOS los toques de la pantalla (botones y
+            // NavigationLinks incluidos), no solo los suyos. El grafico es decorativo.
+            .allowsHitTesting(false)
         }
         .ironCard()
     }
