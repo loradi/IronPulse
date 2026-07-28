@@ -19,14 +19,14 @@ struct WorkoutHistoryView: View {
             } label: {
                 HStack {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text("\(log.routineName) · \(log.dayTitle)").font(.headline)
+                        Text("\(log.routineName) · \(log.dayTitle)").font(.wwTitle3)
                         Text("\(log.startDate.formatted(date: .abbreviated, time: .shortened)) · \(duration(log))")
-                            .font(.caption)
+                            .font(.wwCaption)
                             .foregroundStyle(Color.ironTextSecondary)
                     }
                     Spacer()
                     Image(systemName: "chevron.right")
-                        .font(.caption.weight(.semibold))
+                        .font(.wwCaption.weight(.semibold))
                         .foregroundStyle(Color.ironTextSecondary)
                 }
                 .padding(.vertical, 4)

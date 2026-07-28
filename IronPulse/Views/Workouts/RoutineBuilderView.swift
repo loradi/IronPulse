@@ -60,7 +60,7 @@ struct RoutineBuilderView: View {
                 Section("Dia \(dayIndex + 1) — \(day.title)") {
                     ForEach(Array(day.items.enumerated()), id: \.element.id) { itemIndex, item in
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(item.exercise.name).font(.headline)
+                            Text(item.exercise.name).font(.wwTitle3)
 
                             Stepper(
                                 "\(item.sets) series",

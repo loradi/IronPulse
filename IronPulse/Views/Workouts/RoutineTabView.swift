@@ -28,7 +28,7 @@ struct RoutineTabView: View {
                         RoutineBuilderView(profile: profile)
                     } label: {
                         Text("Crear rutina manual")
-                            .font(.system(.headline, design: .rounded).weight(.bold))
+                            .font(.wwHeadline)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 14)
                             .foregroundStyle(Color.ironAccent)
@@ -71,19 +71,19 @@ private struct RoutineCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             VStack(alignment: .leading) {
-                Text(routine.name).font(.headline)
+                Text(routine.name).font(.wwHeadline)
                 Text("\(diasLabel(routine.days.count)) · \(routine.splitType.displayName)")
-                    .font(.caption)
+                    .font(.wwCaption)
                     .foregroundStyle(Color.ironTextSecondary)
             }
 
             ForEach(routine.days.sorted { $0.dayNumber < $1.dayNumber }) { day in
                 VStack(alignment: .leading, spacing: 6) {
                     HStack {
-                        Text(day.title).font(.subheadline).bold()
+                        Text(day.title).font(.wwBody).bold()
                         Spacer()
                         Button("Empezar") { onStartDay(day) }
-                            .font(.caption.weight(.bold))
+                            .font(.wwCaption.weight(.bold))
                             .foregroundStyle(Color.ironAccent)
                     }
                     ForEach(day.exercises.sorted { $0.orderIndex < $1.orderIndex }) { ex in
@@ -91,10 +91,10 @@ private struct RoutineCard: View {
                             ExerciseDetailView(exercise: ex.exercise)
                         } label: {
                             HStack {
-                                Text(ex.exercise.name).font(.caption)
+                                Text(ex.exercise.name).font(.wwCaption)
                                 Spacer()
                                 Text("\(ex.targetSets)x\(ex.targetRepsMin)-\(ex.targetRepsMax)")
-                                    .font(.caption2)
+                                    .font(.wwCaption)
                                     .foregroundStyle(Color.ironTextSecondary)
                             }
                         }

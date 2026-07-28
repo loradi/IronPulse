@@ -35,9 +35,9 @@ struct ExercisePickerSheet: View {
                         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(exercise.name).font(.headline)
+                            Text(exercise.name).font(.wwTitle3)
                             Text("\(exercise.muscleGroup.displayName) • \(exercise.equipment.displayName)")
-                                .font(.caption)
+                                .font(.wwCaption)
                                 .foregroundStyle(Color.ironTextSecondary)
                         }
 
