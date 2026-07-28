@@ -513,6 +513,78 @@
         "es" : { "stringUnit" : { "state" : "translated", "value" : "%lld dias por semana" } },
         "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lld jours par semaine" } }
       }
+    },
+    "%@ • %@" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%@ • %@" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%@ • %@" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ • %@" } }
+      }
+    },
+    "%@ • %@ • %@/semana" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%@ • %@ • %@/week" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%@ • %@ • %@/semana" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ • %@ • %@/semaine" } }
+      }
+    },
+    "Split" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Split" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Split" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Répartition" } }
+      }
+    },
+    "%lld series" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld sets" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%lld series" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lld séries" } }
+      }
+    },
+    "Minimo %lld reps" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Minimum %lld reps" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Minimo %lld reps" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Minimum %lld reps" } }
+      }
+    },
+    "Maximo %lld reps" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Maximum %lld reps" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Maximo %lld reps" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Maximum %lld reps" } }
+      }
+    },
+    "%llds de descanso" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%llds rest" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%llds de descanso" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%llds de repos" } }
+      }
+    },
+    "Tambien trabaja: %@" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Also works: %@" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Tambien trabaja: %@" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Travaille aussi : %@" } }
+      }
+    },
+    "health_import.success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Health data imported." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Datos importados desde Salud." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Données de santé importées." } }
+      }
+    },
+    "profile.no_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No data" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sin dato" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucune donnée" } }
+      }
     }
   },
   "version" : "1.0"

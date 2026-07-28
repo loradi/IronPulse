@@ -186,7 +186,7 @@ struct ProfileDetailView: View {
                 let snapshot = try await healthImporter.makeSnapshot(for: profile)
                 modelContext.insert(snapshot)
                 try modelContext.save()
-                healthImportMessage = "Datos importados desde Salud."
+                healthImportMessage = String(localized: "health_import.success", defaultValue: "Datos importados desde Salud.", locale: AppLanguage.current.locale)
             } catch {
                 healthImportMessage = error.localizedDescription
             }
@@ -196,7 +196,7 @@ struct ProfileDetailView: View {
     }
 
     private func formatted(_ value: Double?, suffix: String) -> String {
-        guard let value else { return "Sin dato" }
+        guard let value else { return String(localized: "profile.no_data", defaultValue: "Sin dato", locale: AppLanguage.current.locale) }
         return value.formatted(.number.precision(.fractionLength(0...1))) + " " + suffix
     }
 
