@@ -67,8 +67,7 @@ struct DashboardView: View {
 
             Spacer()
 
-            Circle().fill(Color.ironAccent).frame(width: 56, height: 56)
-                .overlay(Circle().stroke(Color.ironTextPrimary.opacity(0.3), lineWidth: 2))
+            EditableAvatarView(profile: profile, size: 56)
         }
         .ironCard()
     }

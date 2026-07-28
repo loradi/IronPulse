@@ -100,7 +100,7 @@ struct ProfileDetailView: View {
             Section {
                 HStack {
                     Spacer()
-                    AvatarPlaceholder(name: profile.name, size: 72)
+                    EditableAvatarView(profile: profile, size: 72)
                     Spacer()
                 }
             }
