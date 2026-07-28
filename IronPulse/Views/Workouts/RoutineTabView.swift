@@ -83,7 +83,7 @@ private struct RoutineCard: View {
                         Text(day.title).font(.wwBody).bold()
                         Spacer()
                         Button("Empezar") { onStartDay(day) }
-                            .font(.wwCaption.weight(.bold))
+                            .font(.wwLabelCaps)
                             .foregroundStyle(Color.ironAccent)
                     }
                     ForEach(day.exercises.sorted { $0.orderIndex < $1.orderIndex }) { ex in

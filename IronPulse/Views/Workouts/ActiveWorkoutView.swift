@@ -127,7 +127,17 @@ struct ActiveWorkoutView: View {
                 .padding()
             }
         }
-        .navigationTitle("Entrenamiento")
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack(spacing: 8) {
+                    Image("wwLogoMark")
+                        .resizable()
+                        .frame(width: 28, height: 28)
+                        .clipShape(Circle())
+                    Text("Entrenamiento").font(.wwHeadline)
+                }
+            }
+        }
         .task {
             if !isReadOnly {
                 await RestNotificationScheduler.requestAuthorizationIfNeeded()

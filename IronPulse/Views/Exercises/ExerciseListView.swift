@@ -44,7 +44,8 @@ struct ExerciseListView: View {
 
                     VStack(alignment: .leading, spacing: 6) {
                         HStack(spacing: 8) {
-                            Text(exercise.name).font(.wwTitle3)
+                            Text(exercise.name).font(.wwTitle3).lineLimit(2)
+                            Spacer()
                             if exercise.isCompound {
                                 TagBadge(text: "Compound")
                             }

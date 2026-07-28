@@ -73,7 +73,7 @@ private struct ProfileRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(profile.name)
-                .font(.wwHeadline)
+                .font(.wwTitle3)
 
             Text("\(profile.experienceLevel.displayName) • \(profile.primaryGoal.displayName) • \(diasLabel(profile.workoutDaysPerWeek))/semana")
                 .font(.wwBody)

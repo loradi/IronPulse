@@ -229,7 +229,7 @@ struct DashboardView: View {
                 Spacer()
                 Image(systemName: "chevron.right")
             }
-            .font(.subheadline.weight(.semibold))
+            .font(.wwCaption)
             .foregroundStyle(Color.ironAccent)
             .padding()
             .background(Color.ironCard)

@@ -26,7 +26,7 @@ struct WorkoutHistoryView: View {
                     }
                     Spacer()
                     Image(systemName: "chevron.right")
-                        .font(.wwCaption.weight(.semibold))
+                        .font(.wwLabelCaps)
                         .foregroundStyle(Color.ironTextSecondary)
                 }
                 .padding(.vertical, 4)
