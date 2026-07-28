@@ -5,7 +5,7 @@ Reconstruccion de IronPulse hacia "IRON & PULSE" (SwiftUI + SwiftData, iOS 17+,
 Todo el trabajo vive en el branch `dev` (repo: https://github.com/loradi/IronPulse),
 `main` es un checkpoint estable separado.
 
-## Estado (2026-07-27): Fases 1-5 + tendencias/sesion guiada completas, PR #1 abierto
+## Estado (2026-07-27): Fases 1-5 + tendencias/sesion guiada + rebrand "Watt + Weight" completas, PR #1 abierto
 
 - `006cf59` — Fase 1: sistema de diseno neon + `GIFImageView`
 - `d39dfaa` — Fase 2: modelos SwiftData nuevos + seeder de 150 ejercicios
@@ -36,11 +36,16 @@ Todo el trabajo vive en el branch `dev` (repo: https://github.com/loradi/IronPul
   un bug real serio encontrado y corregido (`Chart` de Swift Charts
   bloqueando todos los toques de la pantalla) y 2 hallazgos Important del
   review final tambien corregidos.
+- `3c4c26b`..`9264a26` — **Rebrand "Watt + Weight" + reskin visual "Kinetic
+  Onyx" COMPLETO** (13 tareas via `subagent-driven-development`, ver
+  seccion propia abajo). El nombre visible, bundle id, app icon, paleta,
+  tipografia, componentes nuevos (`TagBadge`, `LabeledProgressBar`,
+  `AvatarPlaceholder`, `MuscleDiagramView`) y 146 pro tips de ejercicios
+  se aplicaron a las 9 vistas existentes sin tocar logica de negocio.
+  Verificacion final en simulador encontro y corrigio 2 bugs reales (ver
+  seccion propia).
 - **PR #1 abierto**: https://github.com/loradi/IronPulse/pull/1
   (`dev` → `main`), esperando review/merge del usuario.
-- Nueva referencia visual sin implementar en `MOCKUPS/` (rebrand +
-  sistema de diseno "Kinetic Onyx" + tab bar) — ver seccion propia abajo,
-  pendiente de decision del usuario
 
 ## Fase 1 — Tokens de diseno y GIFImageView
 
@@ -453,6 +458,11 @@ volumen/racha del mockup (dependen de `WorkoutLog`, Fase 5).
 
 ## MOCKUPS/ — referencia visual nueva, SIN implementar (2026-07-25)
 
+**Actualizacion (2026-07-27): esto ya se implemento entero.** Ver la
+seccion "Rebrand 'Watt + Weight' + reskin visual 'Kinetic Onyx' —
+COMPLETA" mas abajo. Se deja esta seccion tal cual quedo escrita en su
+momento como registro historico de la referencia original.
+
 El usuario agrego una carpeta `MOCKUPS/` en la raiz del repo (no versionada
 todavia — es nueva, no confundir con parte del codigo actual) con
 referencia de diseno para toda la app. **No se implemento nada de esto
@@ -712,19 +722,190 @@ tiempo).
 vez de merge local o seguir en `dev`) tomada por el usuario via el flujo
 `finishing-a-development-branch`.
 
+## Rebrand "Watt + Weight" + reskin visual "Kinetic Onyx" — COMPLETA (2026-07-27)
+
+Spec: `docs/superpowers/specs/2026-07-27-watt-weight-rebrand-design.md`.
+Plan: `docs/superpowers/plans/2026-07-27-watt-weight-rebrand.md`. Ejecutado
+con `subagent-driven-development` (13 tareas, implementador + review por
+tarea, mas Tarea 13 de verificacion final en simulador + documentacion).
+Esto era el pendiente 1 de la lista de abajo — la referencia visual de
+`MOCKUPS/` (ver seccion propia arriba) que llevaba desde el 2026-07-25 sin
+implementar.
+
+### Que se construyo
+
+- **Identidad de marca** (`3c4c26b`): bundle id `com.BERNU.WattWeight`,
+  `CFBundleDisplayName` "Watt + Weight" (visible en home screen del
+  simulador y en el navigation title de la lista de perfiles), App Icon
+  nuevo (circulo negro + rayo/mancuerna + texto en lima electrico, ya no
+  el icono generico gris de Xcode), y `wwLogoMark` (mismo logo escalado a
+  60/120/180px, reutilizado como imagen de header en `ExerciseListView` —
+  simplificacion documentada en el plan para no depender de un recorte
+  manual impreciso de la imagen generada por IA).
+- **Theme "Kinetic Onyx"** (`2e04fb7`), en `Theme/CustomColor.swift`,
+  dark-only (cero `dynamic(light:dark:)`, todos los tokens son hex planos):
+  - Colores: `ironAccent` `#CAF300` (lima electrico, unico acento),
+    `ironDanger` `#FF3300`, `ironBackground` `#121317`, `ironCard`
+    `#1E1F23`, `ironCardElevated` `#292A2E`, `ironBorder` `#343539`,
+    `ironTextPrimary` `#E3E2E7`, `ironTextSecondary` `#9A9E86`. Los
+    *nombres* de los tokens no cambiaron desde la Fase 1 (`ironAccent`,
+    `ironCard`, etc.), solo sus valores hex — la mayoria de las vistas no
+    tuvieron que tocar sus referencias de color.
+  - `neonGlow()` (sombra) eliminado por completo, reemplazado por un
+    borde extra en sus 2 call sites — el design system prohibe sombras,
+    la profundidad se resuelve con bordes de 1px y capas de superficie.
+  - Tipografia: Inter (Regular/Medium/Bold/ExtraBold) + JetBrains Mono
+    (Regular/Medium) bundleadas en `Resources/Fonts/`, registradas via
+    `INFOPLIST_FILE` merge (`UIAppFonts.plist`) en vez del array
+    `INFOPLIST_KEY_UIAppFonts` — ese array se descarta en silencio con el
+    `GENERATE_INFOPLIST_FILE=YES` de este proyecto, se verifico con
+    build+lldb real. Tokens nuevos: `.wwDisplay`, `.wwHeadline`,
+    `.wwTitle3`, `.wwBody`, `.wwCaption`, `.wwLabelCaps`,
+    `.wwDataMono(_:)` (JetBrains Mono para pesos/reps/timers).
+  - `CornerRadius`/`Spacing` enums + `.ironCard()` modifier (sin sombra).
+- **Componentes compartidos nuevos** (`49199ad`, `92b0112`):
+  `TagBadge` (chip con borde, usado para el badge "COMPOUND"),
+  `LabeledProgressBar` (barra de progreso etiquetada, usada para el
+  volumen de sesion), `AvatarPlaceholder` (circulo con iniciales del
+  perfil, funcion pura `initials(from:)` testeada aparte),
+  `MuscleDiagramView` (diagrama abstracto de 5 zonas del cuerpo —
+  hombros/pecho/brazos/core/piernas — no una ilustracion anatomica
+  realista; mapeo fijo de los 11 `MuscleGroup` a esas 5 zonas via la
+  funcion pura `zones(primary:secondary:)`, testeada aparte).
+- **`WorkoutStatsService.weekStrip`** (`6a5de49`): tira semanal Lun-Dom
+  para el Dashboard (`WeekdayStatus`: `.notScheduled`/`.pending`/
+  `.completed` por dia).
+- **146 pro tips de ejercicios** (`b6c763e`): campo nuevo `Exercise.proTip:
+  String?`, un consejo especifico por ejercicio (no una plantilla generica
+  por grupo muscular) redactado a partir de los campos existentes de cada
+  entrada (`instructions`, `isCompound`, `secondaryMuscles`), verificado
+  con script que confirma cobertura 146/146 y cero duplicados.
+- **Las 9 vistas existentes** actualizadas a los tokens nuevos
+  (`9ec1c4d`, `f1920b6`, `2fc5f66`, `3ad4893`, `6a9f343`): Dashboard (tira
+  semanal nueva insertada entre header y tarjeta de hoy), lista/detalle de
+  ejercicios (badge "Compound", `MuscleDiagramView`, tarjeta de pro tip),
+  sesion activa (barra de "Session Volume" via `LabeledProgressBar`,
+  calculo inline de `weightKg × reps` de los sets completados), perfil
+  (avatar con iniciales, `Slider` en vez de `Stepper` para dias/semana),
+  resto de pantallas (Rutina, Constructor de rutina, Historial,
+  Selector de ejercicio, Progreso por ejercicio, tab bar) con la regla
+  mecanica de reemplazo de fuentes de sistema por tokens `.ww*`.
+
+### Verificacion final (Tarea 13) — 2 bugs reales encontrados y corregidos
+
+**Suite de tests**: 59/59 en verde (`xcodebuild test -only-testing:
+IronPulseTests`, iPhone 17) — los 58 tests previos (incluidos los nuevos
+de `AvatarPlaceholderTests`, `MuscleDiagramZoneTests` y los casos nuevos
+de `WorkoutStatsServiceTests` de tareas anteriores) mas 1 test de
+regresion nuevo agregado en esta tarea.
+
+**Recorrido visual completo en simulador** (iPhone 17, sesion con acceso
+real al dispositivo) — las 9 vistas se vieron corriendo, incluidas 3 que
+nunca se habian confirmado en vivo en ninguna tarea anterior por
+problemas de acceso al simulador: `RoutineBuilderView`,
+`WorkoutHistoryView` y `ExercisePickerSheet`. Tambien se confirmo en vivo
+que la barra de "Session Volume" sube de "0 kg" a "200 kg" al instante al
+completar reps de un set (200kg × 1 rep), que el Dashboard con la tira
+semanal nueva no tiene ningun boton/NavigationLink sin responder (la
+regresion historica de `Chart` de la tanda anterior no reaparecio), que
+el diagrama muscular resalta la zona correcta segun `primary`/
+`secondary`, y que el app icon + nombre "Watt + Weight" se ven bien en el
+home screen del simulador.
+
+Esta misma verificacion **encontro 2 bugs reales que ningun review por
+tarea habia detectado** (commit `9264a26`, causa raiz confirmada
+inspeccionando el store SwiftData en runtime, no solo leyendo codigo):
+
+1. **Los 146 pro tips nunca llegaban a la app corriendo.**
+   `ExerciseSeedDTO` (`ExerciseDatabaseSeeder.swift`) nunca declaraba el
+   campo `proTip` agregado en la Tarea 7, asi que `JSONDecoder` lo
+   ignoraba en silencio (Codable ignora claves no declaradas) y todo
+   `Exercise` sembrado quedaba con `proTip = nil` pese a que las 146
+   entradas del JSON lo tienen relleno. La tarjeta de pro tip en
+   `ExerciseDetailView` (con codigo correcto desde la Tarea 9) nunca se
+   habia renderizado en ningun build hasta este fix — se confirmo
+   consultando directo la tabla `ZEXERCISE` del `.store` sqlite del
+   simulador (`ZPROTIP` vacio en las 146 filas) antes del fix, y viendo
+   la tarjeta con el lightbulb + texto real en pantalla despues. Fix:
+   agregar `proTip` a la DTO + pasarlo en `toModel()`, mas un test de
+   regresion (`todosLosEjerciciosSembradosTienenProTip`) que decodifica
+   el catalogo real y falla si algun `proTip` llega vacio al modelo
+   sembrado — exactamente el hueco que dejo pasar el bug sin que ningun
+   test lo agarrara.
+2. **`.preferredColorScheme(.dark)` nunca se aplicaba a la app real,
+   solo a los `#Preview` de 6 vistas.** Las Tareas 8-12 agregaron
+   `.preferredColorScheme(.dark)` correctamente dentro de cada
+   `_Previews`/`PreviewProvider` de `DashboardView`, `ActiveWorkoutView`,
+   `RoutineTabView`, `WorkoutHistoryView`, `ExerciseListView` y
+   `ExerciseProgressView` — pero `IronPulseApp.swift` (el `WindowGroup`
+   raiz de la app real) nunca lo tuvo. Mientras el simulador estuviera en
+   apariencia Light del sistema (confirmado con
+   `xcrun simctl ui ... appearance` = `light`), cualquier control que
+   dependiera de `.primary`/chrome nativo en vez de un token `Color.iron*`
+   explicito se veia en modo claro: el `Form` completo de
+   `ProfileDetailView` (fondo blanco, texto negro — la mayoria de las
+   demas vistas se salvaban por pura casualidad, porque el paso mecanico
+   de tokens de las Tareas 8-12 les puso `.foregroundStyle(Color.iron*)`
+   a practicamente todo texto), el `Text(exercise.name)` sin estilo de
+   `ExerciseListView`/`ExercisePickerSheet` (heredaba el color de label
+   por defecto de `NavigationLink`/`Button`, negro o lima segun el
+   control, no `ironTextPrimary`), y hasta el titulo "Watt + Weight" y el
+   texto "Sin perfiles" de la lista de perfiles raiz (`ContentView`)
+   salian en un gris casi invisible sobre el fondo oscuro. Fix de raiz en
+   un solo lugar: `.preferredColorScheme(.dark)` en el `WindowGroup` de
+   `IronPulseApp.swift` — se verifico en vivo que esto arreglo los 3
+   sitios de una sola vez (Form de perfil, texto de la lista de
+   ejercicios, titulo de la lista de perfiles) sin tocar ninguna otra
+   vista.
+
+**Hallazgos menores confirmados en vivo, sin accion (cosmeticos, ya
+sopesados por reviews anteriores)**:
+
+- `TagBadge` junto al nombre del ejercicio en `ExerciseListView` fuerza
+  wrap en nombres largos (ej. "Press inclinado con mancuernas" queda en
+  3 lineas, con la palabra "con" sola en su propia linea) — se ve
+  raro pero sigue siendo legible, consistente con el juicio ya registrado
+  en el ledger de la Tarea 9 ("Text wraps gracefully").
+- El sistema de alerta nativo de iOS (permiso de notificaciones, "Watt +
+  Weight Would Like to Send You Notifications") sale en apariencia clara
+  incluso con el fix de `.preferredColorScheme(.dark)` aplicado — es
+  comportamiento esperado de iOS, las apps no pueden forzar el tema de
+  las hojas de permiso del sistema.
+
+### Simplificaciones documentadas del spec (decisiones, no atajos)
+
+- `MuscleDiagramView` es un diagrama abstracto de 5 zonas geometricas,
+  no una ilustracion anatomica realista ni un par frente/espalda —
+  cubre la intencion del mockup (resaltar la zona objetivo) con la
+  complejidad minima.
+- `wwLogoMark` reutiliza la misma imagen 1024×1024 del App Icon
+  (circulo + rayo + texto), solo escalada, en vez de un recorte
+  separado sin anillo/texto.
+- La barra de "Session Volume" en `ActiveWorkoutView` usa
+  `progress: 1.0` fijo (barra siempre llena) porque no existe un
+  "volumen objetivo" real en el modelo — agregar ese campo solo para
+  esta barra hubiera sido alcance fuera de lo pedido.
+
+Commits de la tanda completa: `3c4c26b`..`9264a26` (13 tareas + 1 commit
+de fix post-verificacion). Sin PR nuevo — se suma al mismo PR #1 abierto
+(`dev` → `main`), que sigue esperando review/merge del usuario.
+
 ## Siguientes pasos
 
-**Fases 1-5 y la tanda de tendencias/sesion guiada estan 100%
-completas** (ver secciones propias arriba). El PR #1 esta abierto,
-esperando review/merge del usuario — no se mergea solo.
+**Fases 1-5, la tanda de tendencias/sesion guiada y el rebrand "Watt +
+Weight" estan 100% completos** (ver secciones propias arriba). El PR #1
+esta abierto, esperando review/merge del usuario — no se mergea solo.
 
 Pendientes reales que quedan, todos requieren alguna decision de producto
 o son de alcance mayor (no son fixes directos):
 
-1. **Rebrand visual `MOCKUPS/`** (rebrand "Watt + Weight" + reskin visual
-   "Kinetic Onyx" completo) — pendiente de su propia sesion de
-   brainstorming, alcance grande. El tab bar fue la primera pieza
-   adoptada de esa referencia, ya resuelta.
+1. ~~**Rebrand visual `MOCKUPS/`** (rebrand "Watt + Weight" + reskin
+   visual "Kinetic Onyx" completo) — pendiente de su propia sesion de
+   brainstorming, alcance grande.~~ — **RESUELTO** (2026-07-27): las 13
+   tareas del plan `docs/superpowers/plans/2026-07-27-watt-weight-rebrand.md`
+   estan completas, incluida la verificacion final en simulador. Ver
+   seccion "Rebrand 'Watt + Weight' + reskin visual 'Kinetic Onyx' —
+   COMPLETA" arriba.
 2. **Spec nuevo — idioma + foto de perfil**: selector espanol/ingles/frances
    (i18n de toda la app) y foto por `UserProfile`. Ya acordado con el
    usuario que van en un documento aparte.
@@ -736,11 +917,17 @@ o son de alcance mayor (no son fixes directos):
 5. **6 hallazgos Minor del review final de la tanda de tendencias** (ver
    seccion propia arriba) — ninguno bloquea, ninguno se toco todavia.
 6. **Preparacion para publicar en la App Store** — pendiente de
-   arrancar: falta definir bundle id final/certificados, icono de app
-   (hoy el icono del bundle sale vacio/generico en el simulador, se vio
-   en la ultima verificacion), screenshots, texto de App Store Connect,
+   arrancar: el rebrand ya resolvio el App Icon (antes salia
+   vacio/generico, ahora es el icono real de "Watt + Weight" — confirmado
+   en el home screen del simulador en la Tarea 13). Falta todavia definir
+   bundle id final/certificados, screenshots, texto de App Store Connect,
    privacy manifest (la app pide permisos de HealthKit y notificaciones
    locales), y decidir que politica de privacidad usar.
+7. **`TagBadge` sin `Spacer`/`lineLimit` en `ExerciseListView`**:
+   confirmado en vivo en la Tarea 13 que nombres largos (ej. "Press
+   inclinado con mancuernas") envuelven en 3 lineas con una palabra sola
+   en la ultima linea — sigue siendo legible, cosmetico, sin accion (ver
+   ledger de la Tarea 9 y la seccion de verificacion final arriba).
 
 ## Gotchas del entorno (cuestan horas si se redescubren)
 

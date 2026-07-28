@@ -11,6 +11,7 @@ struct ExerciseSeedDTO: Codable {
     let instructions: [String]
     let gifFileName: String
     let gifRemoteURLString: String?
+    let proTip: String?
 
     func toModel() -> Exercise {
         Exercise(
@@ -23,7 +24,8 @@ struct ExerciseSeedDTO: Codable {
             instructions: instructions,
             gifFileName: gifFileName,
             gifRemoteURLString: gifRemoteURLString,
-            isCustom: false
+            isCustom: false,
+            proTip: proTip
         )
     }
 }

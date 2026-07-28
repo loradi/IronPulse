@@ -33,7 +33,7 @@ struct ContentView: View {
             }
             .scrollContentBackground(.hidden)
             .background(Color.ironBackground)
-            .navigationTitle("IronPulse")
+            .navigationTitle("Watt + Weight")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: addProfile) {
@@ -73,10 +73,10 @@ private struct ProfileRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(profile.name)
-                .font(.headline)
+                .font(.wwTitle3)
 
             Text("\(profile.experienceLevel.displayName) • \(profile.primaryGoal.displayName) • \(diasLabel(profile.workoutDaysPerWeek))/semana")
-                .font(.subheadline)
+                .font(.wwBody)
                 .foregroundStyle(Color.ironTextSecondary)
         }
         .padding(.vertical, 4)
@@ -97,6 +97,14 @@ struct ProfileDetailView: View {
 
     var body: some View {
         Form {
+            Section {
+                HStack {
+                    Spacer()
+                    AvatarPlaceholder(name: profile.name, size: 72)
+                    Spacer()
+                }
+            }
+
             Section("Perfil") {
                 TextField("Nombre", text: $profile.name)
 
@@ -112,7 +120,19 @@ struct ProfileDetailView: View {
                     }
                 }
 
-                Stepper("\(diasLabel(profile.workoutDaysPerWeek)) por semana", value: $profile.workoutDaysPerWeek, in: 1...7)
+                VStack(alignment: .leading) {
+                    Text(diasLabel(profile.workoutDaysPerWeek) + " por semana")
+                        .font(.wwBody)
+                    Slider(
+                        value: Binding(
+                            get: { Double(profile.workoutDaysPerWeek) },
+                            set: { profile.workoutDaysPerWeek = Int($0.rounded()) }
+                        ),
+                        in: 1...7,
+                        step: 1
+                    )
+                    .tint(Color.ironAccent)
+                }
             }
 
             Section("Datos fisicos") {
@@ -136,7 +156,7 @@ struct ProfileDetailView: View {
 
                 if let healthImportMessage {
                     Text(healthImportMessage)
-                        .font(.footnote)
+                        .font(.wwCaption)
                         .foregroundStyle(.secondary)
                 }
             }

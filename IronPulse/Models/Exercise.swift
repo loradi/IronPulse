@@ -13,6 +13,7 @@ final class Exercise {
     var gifFileName: String
     var gifRemoteURLString: String?
     var isCustom: Bool
+    var proTip: String?
 
     init(
         id: String,
@@ -24,7 +25,8 @@ final class Exercise {
         instructions: [String],
         gifFileName: String,
         gifRemoteURLString: String? = nil,
-        isCustom: Bool = false
+        isCustom: Bool = false,
+        proTip: String? = nil
     ) {
         self.id = id
         self.name = name
@@ -36,5 +38,6 @@ final class Exercise {
         self.gifFileName = gifFileName
         self.gifRemoteURLString = gifRemoteURLString
         self.isCustom = isCustom
+        self.proTip = proTip
     }
 }

@@ -245,6 +245,14 @@ struct WorkoutGeneratorServiceTests {
         return try JSONDecoder().decode([ExerciseSeedDTO].self, from: data).map { $0.toModel() }
     }
 
+    // MARK: - proTip llega del JSON al modelo sembrado
+
+    @Test func todosLosEjerciciosSembradosTienenProTip() throws {
+        let catalog = try loadRealCatalog()
+        let sinProTip = catalog.filter { ($0.proTip ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+        #expect(sinProTip.isEmpty, "Ejercicios sin proTip tras sembrar: \(sinProTip.map(\.id))")
+    }
+
     // MARK: - Dias de la semana
 
     @Test func weekdaysForCountDevuelveLaTablaCorrecta() {

@@ -38,6 +38,7 @@ struct DashboardView: View {
         ScrollView {
             VStack(spacing: 16) {
                 header
+                weekStrip
                 todaysCard
                 metricsRow
                 progressChart
@@ -58,17 +59,56 @@ struct DashboardView: View {
     private var header: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 6) {
-                Text(profile.name).font(.ironTitle)
+                Text(profile.name).font(.wwHeadline)
                 Text("\(profile.experienceLevel.displayName) • \(profile.primaryGoal.displayName)")
-                    .font(.subheadline)
+                    .font(.wwBody)
                     .foregroundStyle(Color.ironTextSecondary)
             }
 
             Spacer()
 
-            Circle().fill(Color.ironAccent).frame(width: 56, height: 56).neonGlow()
+            Circle().fill(Color.ironAccent).frame(width: 56, height: 56)
+                .overlay(Circle().stroke(Color.ironTextPrimary.opacity(0.3), lineWidth: 2))
         }
         .ironCard()
+    }
+
+    private var weekStrip: some View {
+        let statuses = WorkoutStatsService.weekStrip(
+            scheduledWeekdays: Set((profile.activeRoutine?.days ?? []).map(\.weekday)),
+            logs: profile.workoutLogs
+        )
+
+        return HStack(spacing: Spacing.xs) {
+            ForEach(statuses, id: \.weekday) { entry in
+                VStack(spacing: 4) {
+                    Text(entry.weekday.shortDisplayName)
+                        .font(.wwLabelCaps)
+                        .foregroundStyle(Color.ironTextSecondary)
+
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+                            .fill(entry.status == .completed ? Color.ironAccent : Color.ironCard)
+                            .frame(height: 44)
+
+                        if entry.status == .completed {
+                            Image(systemName: "checkmark")
+                                .foregroundStyle(Color.ironBackground)
+                        } else if entry.status == .pending {
+                            Circle()
+                                .fill(Color.ironTextSecondary)
+                                .frame(width: 8, height: 8)
+                        }
+                    }
+                    .overlay {
+                        if entry.isToday {
+                            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                .stroke(Color.ironAccent, lineWidth: 2)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @ViewBuilder
@@ -81,10 +121,10 @@ struct DashboardView: View {
             )
         } else if let day = todaysDay {
             VStack(alignment: .leading, spacing: 12) {
-                Text("Hoy: \(day.title)").font(.headline)
+                Text("Hoy: \(day.title)").font(.wwHeadline)
                 ForEach(day.exercises.sorted { $0.orderIndex < $1.orderIndex }) { ex in
                     Text(ex.exercise.name)
-                        .font(.subheadline)
+                        .font(.wwBody)
                         .foregroundStyle(Color.ironTextSecondary)
                 }
                 Button("Iniciar ejercicios", action: startTodaysSession)
@@ -93,9 +133,9 @@ struct DashboardView: View {
             .ironCard()
         } else {
             VStack(alignment: .leading, spacing: 6) {
-                Text("Descanso hoy").font(.headline)
+                Text("Descanso hoy").font(.wwHeadline)
                 Text("Hoy no hay ningun dia de la rutina asignado.")
-                    .font(.subheadline)
+                    .font(.wwBody)
                     .foregroundStyle(Color.ironTextSecondary)
             }
             .ironCard()
@@ -115,15 +155,15 @@ struct DashboardView: View {
 
     private func metric(_ title: String, _ value: String) -> some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(value).font(.title3).fontWeight(.black)
-            Text(title).font(.caption).foregroundStyle(Color.ironTextSecondary)
+            Text(value).font(.wwDataMono(22))
+            Text(title).font(.wwCaption).foregroundStyle(Color.ironTextSecondary)
         }
     }
 
     private var progressChart: some View {
         let points = WorkoutStatsService.dailyVolume(profile.workoutLogs)
         return VStack(alignment: .leading, spacing: 8) {
-            Text("Progreso (30 dias)").font(.headline)
+            Text("Progreso (30 dias)").font(.wwHeadline)
             Chart(points, id: \.date) { point in
                 AreaMark(x: .value("Dia", point.date), y: .value("Volumen", point.volumeKg))
                     .foregroundStyle(Color.ironAccent.opacity(0.2))
@@ -148,9 +188,9 @@ struct DashboardView: View {
            let lastValue = leanMassEntries.last?.leanBodyMassKg {
             let delta = lastValue - firstValue
             VStack(alignment: .leading, spacing: 4) {
-                Text("Masa magra").font(.headline)
+                Text("Masa magra").font(.wwHeadline)
                 Text(String(format: "%.1f kg (%@%.1fkg desde que empezaste)", lastValue, delta >= 0 ? "+" : "", delta))
-                    .font(.subheadline)
+                    .font(.wwBody)
                     .foregroundStyle(Color.ironTextSecondary)
             }
             .ironCard()
@@ -161,7 +201,7 @@ struct DashboardView: View {
     private var exerciseProgressSection: some View {
         if !trainedExercises.isEmpty {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Progreso por ejercicio").font(.headline)
+                Text("Progreso por ejercicio").font(.wwHeadline)
                 ForEach(trainedExercises) { exercise in
                     NavigationLink {
                         ExerciseProgressView(profile: profile, exercise: exercise)
@@ -171,7 +211,7 @@ struct DashboardView: View {
                             Spacer()
                             Image(systemName: "chevron.right")
                         }
-                        .font(.subheadline)
+                        .font(.wwBody)
                         .foregroundStyle(Color.ironTextSecondary)
                     }
                 }
@@ -189,7 +229,7 @@ struct DashboardView: View {
                 Spacer()
                 Image(systemName: "chevron.right")
             }
-            .font(.subheadline.weight(.semibold))
+            .font(.wwCaption)
             .foregroundStyle(Color.ironAccent)
             .padding()
             .background(Color.ironCard)
