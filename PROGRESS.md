@@ -890,6 +890,92 @@ Commits de la tanda completa: `3c4c26b`..`9264a26` (13 tareas + 1 commit
 de fix post-verificacion). Sin PR nuevo — se suma al mismo PR #1 abierto
 (`dev` → `main`), que sigue esperando review/merge del usuario.
 
+## Foto de perfil — 6/7 tareas completas, 1 bug real bloqueante encontrado en verificacion (2026-07-28)
+
+Spec: `docs/superpowers/specs/2026-07-28-profile-photo-design.md`. Plan:
+`docs/superpowers/plans/2026-07-28-profile-photo.md`. Ejecutado con
+`subagent-driven-development` (7 tareas, implementador + review por tarea).
+Era la mitad "foto de perfil" del pendiente 2 de la lista de abajo — el
+selector de idioma (espanol/ingles/frances) sigue siendo un pendiente propio
+sin arrancar, se separaron a proposito desde el principio de esta tanda.
+
+### Que se construyo (Tareas 1-6, todas completas y con review limpio)
+
+- `UserProfile.photoData: Data?` nuevo + permiso de camara
+  (`NSCameraUsageDescription`, con un typo menor deferido: falta el acento
+  en "camara") — `308532c..bd8b146`.
+- `resizedProfilePhotoData(from:)`: recorte a cuadrado + compresion JPEG a
+  512x512. El implementador se desvio del codigo de ejemplo del plan
+  agregando `UIGraphicsImageRendererFormat` con `scale=1.0` explicito — el
+  review confirmo que era necesario (el codigo literal del plan renderizaba
+  a la escala del device, ej. 1536x1536px en 3x, y fallaba los tests que
+  esperan 512x512 porque `UIImage(data:)` asume escala 1.0 por defecto) —
+  `bd8b146..2b3e7a5`.
+- `CameraPicker`: wrapper de `UIImagePickerController` para camara —
+  `2b3e7a5..73e2e5d`.
+- `AvatarPlaceholder` extendido: dibuja la foto real si `photoData` existe,
+  iniciales si no — `73e2e5d..d0d7493`.
+- `EditableAvatarView`: menu (`.confirmationDialog`) con "Elegir de
+  galeria" (`PhotosPicker`), "Tomar foto" (solo si
+  `UIImagePickerController.isSourceTypeAvailable(.camera)`) y "Eliminar
+  foto" (si ya hay una) — `d0d7493..38a8cf5` + fix `03e00b5` (import UIKit
+  explicito, no alcanzaba con la visibilidad transitiva via SwiftUI).
+- Integrado en `ProfileDetailView` (avatar grande arriba del form) y en el
+  header de `DashboardView` (avatar chico) — `03e00b5..30c9088`.
+- **63 tests** en verde (`IronPulseTests`, incluye 4 nuevos de
+  `ProfilePhotoProcessorTests`) — confirmado por xcresult, no por scroll
+  del log (la Tarea 6 detecto que el reporte del implementador decia "49
+  tests" cuando el real via xcresult era 63/63, solo error de reporte, sin
+  regresion real).
+
+### Tarea 7 (verificacion final) — bug real bloqueante encontrado
+
+La Tarea 5 habia dejado anotado en el ledger un punto sin verificar: el
+`PhotosPicker` esta puesto como una fila **dentro** del
+`.confirmationDialog` (no como su propio boton en la vista), un patron que
+compila y es estructuralmente correcto, pero cuya interaccion en tiempo de
+ejecucion (el dialog cerrandose mientras el picker de `PhotosPicker` quiere
+presentar su propia hoja) quedo sin probar en vivo — se pidio confirmarlo
+en esta tarea.
+
+**Se probo en vivo y el bug es real**: tocar "Elegir de galeria" cierra el
+`.confirmationDialog` correctamente, pero la hoja del selector de fotos
+(`PHPicker`) **nunca aparece** — ni error, ni crash, ni nada en el log del
+sistema, simplemente no presenta nada. Reproducido de forma consistente
+**4 veces** (relanzando la app, con esperas de hasta 4 segundos entre el
+tap y el screenshot). Se descarto que fuera un problema de coordenadas de
+tap: el boton "Tomar foto" en el mismo dialog, con la misma metodologia de
+tap, **si** abre la camara del sistema de forma confiable — asi que el tap
+llega bien al dialog, es especificamente el boton de `PhotosPicker` el que
+no dispara su presentacion. Como consecuencia, no se pudo verificar en
+vivo: foto recortada en circulo en `ProfileDetailView`/`Dashboard`, opcion
+"Eliminar foto" apareciendo tras elegir una foto, ni el revertir a
+iniciales tras eliminarla — los 3 quedan bloqueados por este bug hasta que
+se arregle el picker.
+
+**Hallazgo adicional, no bloqueante**: el simulador de esta sesion (Xcode
+26.6, iPhone 17, iOS 26.5) **si** mostro "Tomar foto" en el menu (el plan
+asumia que no, porque "el simulador no tiene camara"). Xcode 14+ agrega
+camera passthrough al webcam del Mac host cuando hay una disponible (esta
+Mac tiene FaceTime HD Camera) — `UIImagePickerController.isSourceTypeAvailable(.camera)`
+devuelve `true` legitimamente en ese caso. El codigo de `EditableAvatarView`
+ya hace ese chequeo correctamente; es la asuncion del plan sobre el entorno
+la que quedo desactualizada, no un bug de la app.
+
+**Suite de tests**: 63/63 en verde, confirmado con
+`xcrun xcresulttool get test-results summary` (no alcanza con leer el
+scroll del log de `xcodebuild`).
+
+**Camara real (captura fisica)**: no se pudo verificar completamente ni
+siquiera con el passthrough del webcam (el shutter no respondio a los
+taps sinteticos en la UI nativa de camara) — sigue pendiente de
+verificacion manual del usuario en un dispositivo fisico, tal cual pedia
+el plan original.
+
+**Este bug no se arreglo en esta tarea** (Tarea 7 esta explicitamente
+delimitada a verificacion, "Files: ninguno" en el brief) — queda anotado
+como pendiente inmediato, ver "Siguientes pasos" abajo.
+
 ## Siguientes pasos
 
 **Fases 1-5, la tanda de tendencias/sesion guiada y el rebrand "Watt +
@@ -906,9 +992,21 @@ o son de alcance mayor (no son fixes directos):
    estan completas, incluida la verificacion final en simulador. Ver
    seccion "Rebrand 'Watt + Weight' + reskin visual 'Kinetic Onyx' —
    COMPLETA" arriba.
-2. **Spec nuevo — idioma + foto de perfil**: selector espanol/ingles/frances
-   (i18n de toda la app) y foto por `UserProfile`. Ya acordado con el
-   usuario que van en un documento aparte.
+2. ~~**Spec nuevo — idioma + foto de perfil**~~ — se separaron en dos
+   pendientes independientes desde el principio de la tanda de foto de
+   perfil (2026-07-28):
+   - **Foto de perfil**: 6/7 tareas completas, **bloqueada por 1 bug real**
+     encontrado en la Tarea 7 de verificacion — el `PhotosPicker` puesto
+     como fila del `.confirmationDialog` en `EditableAvatarView.swift`
+     nunca presenta su hoja de seleccion (el dialog se cierra pero no pasa
+     nada mas). Ver seccion "Foto de perfil" arriba para el detalle
+     completo y como se confirmo. **Fix pendiente antes de dar esto por
+     cerrado.**
+   - **Selector de idioma** (espanol/ingles/frances, i18n de toda la app):
+     sigue sin arrancar, spec propia todavia por escribir. Sin relacion de
+     dependencia con la foto de perfil — son dos subsistemas
+     independientes, solo compartian el mismo "spec futura" cuando se
+     mencionaron juntos por primera vez.
 3. Definir fuente real de GIFs animados (o aceptar las fotos JPG de
    free-exercise-db como definitivas).
 4. `RoutineBuilderView.save()` genera `dayNumber` con huecos — declinado
