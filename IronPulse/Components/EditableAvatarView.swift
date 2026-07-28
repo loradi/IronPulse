@@ -1,5 +1,6 @@
 import SwiftUI
 import PhotosUI
+import UIKit
 
 struct EditableAvatarView: View {
     @Bindable var profile: UserProfile
