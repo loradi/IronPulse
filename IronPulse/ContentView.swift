@@ -90,6 +90,7 @@ struct ProfileDetailView: View {
 
     @State private var isImportingHealthData = false
     @State private var healthImportMessage: String?
+    @AppStorage("appLanguage") private var appLanguageRaw: String = AppLanguage.current.rawValue
 
     private var latestSnapshot: HealthSnapshot? {
         profile.healthSnapshots.max { $0.capturedAt < $1.capturedAt }
@@ -158,6 +159,14 @@ struct ProfileDetailView: View {
                     Text(healthImportMessage)
                         .font(.wwCaption)
                         .foregroundStyle(.secondary)
+                }
+            }
+
+            Section("Ajustes") {
+                Picker("Idioma", selection: $appLanguageRaw) {
+                    ForEach(AppLanguage.allCases) { language in
+                        Text(language.displayName).tag(language.rawValue)
+                    }
                 }
             }
         }

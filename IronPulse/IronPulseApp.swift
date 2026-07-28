@@ -32,9 +32,12 @@ struct IronPulseApp: App {
         }
     }()
 
+    @AppStorage("appLanguage") private var appLanguageRaw: String = AppLanguage.current.rawValue
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.locale, (AppLanguage(rawValue: appLanguageRaw) ?? .spanish).locale)
                 .preferredColorScheme(.dark)
         }
         .modelContainer(sharedModelContainer)
