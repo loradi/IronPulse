@@ -19,6 +19,12 @@ struct ActiveWorkoutView: View {
         log.completedSets.sorted { $0.setIndex < $1.setIndex }
     }
 
+    private var sessionVolumeKg: Double {
+        log.completedSets
+            .filter(\.isCompleted)
+            .reduce(0) { $0 + $1.weightKg * Double($1.repsCompleted) }
+    }
+
     private var groupedSets: [(exerciseId: String, sets: [SetLog])] {
         let sorted = flatSets
         var order: [String] = []
@@ -34,8 +40,8 @@ struct ActiveWorkoutView: View {
         VStack {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(log.routineName).font(.title2).fontWeight(.black)
-                    Text(log.dayTitle).font(.subheadline).foregroundStyle(Color.ironTextSecondary)
+                    Text(log.routineName).font(.wwHeadline)
+                    Text(log.dayTitle).font(.wwBody).foregroundStyle(Color.ironTextSecondary)
                 }
                 Spacer()
                 if isReadOnly {
@@ -44,16 +50,24 @@ struct ActiveWorkoutView: View {
             }
             .padding()
 
+            LabeledProgressBar(
+                label: "Session Volume",
+                valueText: "\(Int(sessionVolumeKg)) kg",
+                progress: 1.0
+            )
+            .ironCard()
+            .padding(.horizontal)
+
             List {
                 ForEach(groupedSets, id: \.exerciseId) { group in
                     Section(exerciseNames[group.exerciseId] ?? group.exerciseId) {
                         ForEach(Array(group.sets.enumerated()), id: \.element.id) { index, set in
                             VStack(alignment: .leading, spacing: 8) {
                                 HStack {
-                                    Text("Set \(index + 1)").font(.headline)
+                                    Text("Set \(index + 1)").font(.wwHeadline)
                                     Spacer()
                                     Text("Meta: \(set.targetRepsMin)-\(set.targetRepsMax)")
-                                        .font(.caption)
+                                        .font(.wwCaption)
                                         .foregroundStyle(Color.ironTextSecondary)
                                     Button(action: { toggleCompleted(set) }) {
                                         Image(systemName: set.isCompleted ? "checkmark.circle.fill" : "circle")
@@ -68,7 +82,7 @@ struct ActiveWorkoutView: View {
                                             .keyboardType(.decimalPad)
                                             .disabled(isReadOnly)
                                             .frame(width: 60)
-                                        Text("kg").font(.caption).foregroundStyle(Color.ironTextSecondary)
+                                        Text("kg").font(.wwCaption).foregroundStyle(Color.ironTextSecondary)
                                     }
 
                                     Spacer()
@@ -107,7 +121,7 @@ struct ActiveWorkoutView: View {
                     Spacer()
 
                     if restRemaining > 0 {
-                        Text("Descanso: \(restRemaining)s").font(.headline).foregroundStyle(Color.ironAccent)
+                        Text("Descanso: \(restRemaining)s").font(.wwHeadline).foregroundStyle(Color.ironAccent)
                     }
                 }
                 .padding()
