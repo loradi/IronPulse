@@ -15,6 +15,8 @@ struct EditableAvatarView: View {
         AvatarPlaceholder(name: profile.name, photoData: profile.photoData, size: size)
             .contentShape(Circle())
             .onTapGesture { showingMenu = true }
+            .accessibilityAddTraits(.isButton)
+            .accessibilityLabel("Foto de perfil")
             .confirmationDialog("Foto de perfil", isPresented: $showingMenu) {
                 Button("Elegir de galeria") {
                     showingPhotoPicker = true
@@ -34,15 +36,20 @@ struct EditableAvatarView: View {
             }
             .onChange(of: selectedPhotoItem) { _, newItem in
                 Task {
-                    guard let newItem,
-                          let data = try? await newItem.loadTransferable(type: Data.self),
+                    guard let newItem else { return }
+                    defer { selectedPhotoItem = nil }
+                    guard let data = try? await newItem.loadTransferable(type: Data.self),
                           let uiImage = UIImage(data: data) else { return }
-                    profile.photoData = resizedProfilePhotoData(from: uiImage)
+                    if let resized = resizedProfilePhotoData(from: uiImage) {
+                        profile.photoData = resized
+                    }
                 }
             }
             .sheet(isPresented: $showingCamera) {
                 CameraPicker { image in
-                    profile.photoData = resizedProfilePhotoData(from: image)
+                    if let resized = resizedProfilePhotoData(from: image) {
+                        profile.photoData = resized
+                    }
                     showingCamera = false
                 }
             }

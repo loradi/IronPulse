@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 func initials(from name: String) -> String {
     let words = name
