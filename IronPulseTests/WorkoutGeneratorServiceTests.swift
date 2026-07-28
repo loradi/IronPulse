@@ -44,11 +44,15 @@ struct WorkoutGeneratorServiceTests {
     ) -> Exercise {
         Exercise(
             id: id,
-            name: name,
+            nameEs: name,
+            nameEn: name,
+            nameFr: name,
             muscleGroup: group,
             equipment: .barbell,
             isCompound: compound,
-            instructions: ["Paso uno."],
+            instructionsEs: ["Paso uno."],
+            instructionsEn: ["Paso uno."],
+            instructionsFr: ["Paso uno."],
             gifFileName: "\(id).gif"
         )
     }
@@ -202,7 +206,11 @@ struct WorkoutGeneratorServiceTests {
         let routine = WorkoutGeneratorService.generateRoutine(
             for: makeProfile(goal: .strength), catalog: makeCatalog()
         )
-        #expect(routine.name == "Rutina personalizada - Fuerza")
+        // Compara contra el valor dinamico de displayName (no un literal en
+        // espanol) para que el test no dependa del idioma activo del
+        // dispositivo/simulador que lo corre - PrimaryGoal.displayName ahora
+        // varia segun AppLanguage.current.
+        #expect(routine.name == "Rutina personalizada - \(PrimaryGoal.strength.displayName)")
         #expect(!routine.name.contains("IA"))
     }
 

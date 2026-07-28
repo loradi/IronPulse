@@ -7,10 +7,14 @@ struct WorkoutLogGeneratorTests {
     private func makeExercise(_ id: String, _ name: String) -> Exercise {
         Exercise(
             id: id,
-            name: name,
+            nameEs: name,
+            nameEn: name,
+            nameFr: name,
             muscleGroup: .chest,
             equipment: .barbell,
-            instructions: ["Paso uno."],
+            instructionsEs: ["Paso uno."],
+            instructionsEn: ["Paso uno."],
+            instructionsFr: ["Paso uno."],
             gifFileName: "\(id).gif"
         )
     }

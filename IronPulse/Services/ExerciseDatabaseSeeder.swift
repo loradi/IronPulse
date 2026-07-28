@@ -1,31 +1,49 @@
 import Foundation
 import SwiftData
 
+struct LocalizedString: Codable {
+    let es: String
+    let en: String
+    let fr: String
+}
+
+struct LocalizedStringArray: Codable {
+    let es: [String]
+    let en: [String]
+    let fr: [String]
+}
+
 struct ExerciseSeedDTO: Codable {
     let id: String
-    let name: String
+    let name: LocalizedString
     let muscleGroup: MuscleGroup
     let secondaryMuscles: [MuscleGroup]
     let equipment: EquipmentType
     let isCompound: Bool
-    let instructions: [String]
+    let instructions: LocalizedStringArray
     let gifFileName: String
     let gifRemoteURLString: String?
-    let proTip: String?
+    let proTip: LocalizedString?
 
     func toModel() -> Exercise {
         Exercise(
             id: id,
-            name: name,
+            nameEs: name.es,
+            nameEn: name.en,
+            nameFr: name.fr,
             muscleGroup: muscleGroup,
             secondaryMuscles: secondaryMuscles,
             equipment: equipment,
             isCompound: isCompound,
-            instructions: instructions,
+            instructionsEs: instructions.es,
+            instructionsEn: instructions.en,
+            instructionsFr: instructions.fr,
             gifFileName: gifFileName,
             gifRemoteURLString: gifRemoteURLString,
             isCustom: false,
-            proTip: proTip
+            proTipEs: proTip?.es,
+            proTipEn: proTip?.en,
+            proTipFr: proTip?.fr
         )
     }
 }
