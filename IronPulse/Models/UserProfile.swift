@@ -13,6 +13,7 @@ final class UserProfile {
     var workoutDaysPerWeek: Int
     var preferredEquipment: [EquipmentType]
     var createdAt: Date
+    var photoData: Data?
 
     @Relationship(deleteRule: .cascade, inverse: \HealthSnapshot.profile)
     var healthSnapshots: [HealthSnapshot]
@@ -38,6 +39,7 @@ final class UserProfile {
         workoutDaysPerWeek: Int = 3,
         preferredEquipment: [EquipmentType] = [.bodyweight],
         createdAt: Date = Date(),
+        photoData: Data? = nil,
         healthSnapshots: [HealthSnapshot] = [],
         routines: [WorkoutRoutine] = [],
         workoutLogs: [WorkoutLog] = []
@@ -52,6 +54,7 @@ final class UserProfile {
         self.workoutDaysPerWeek = workoutDaysPerWeek
         self.preferredEquipment = preferredEquipment
         self.createdAt = createdAt
+        self.photoData = photoData
         self.healthSnapshots = healthSnapshots
         self.routines = routines
         self.workoutLogs = workoutLogs

@@ -452,6 +452,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IronPulse/Resources/Fonts/UIAppFonts.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Watt + Weight";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Watt + Weight usa la camara para tomar tu foto de perfil.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Watt + Weight usa tus datos de Salud (peso, altura, fecha de nacimiento) para completar tu perfil.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Watt + Weight no escribe datos en Salud, solo los lee.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -501,6 +502,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IronPulse/Resources/Fonts/UIAppFonts.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Watt + Weight";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Watt + Weight usa la camara para tomar tu foto de perfil.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Watt + Weight usa tus datos de Salud (peso, altura, fecha de nacimiento) para completar tu perfil.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Watt + Weight no escribe datos en Salud, solo los lee.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
