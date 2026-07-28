@@ -3,7 +3,7 @@ import SwiftData
 
 struct ExercisePickerSheet: View {
     @Environment(\.dismiss) private var dismiss
-    @Query(sort: \Exercise.name) private var exercises: [Exercise]
+    @Query private var exercises: [Exercise]
     @State private var searchText: String = ""
 
     /// Ids ya agregados al dia: se muestran deshabilitados para no duplicar.
@@ -11,9 +11,10 @@ struct ExercisePickerSheet: View {
     let onSelect: (Exercise) -> Void
 
     private var filtered: [Exercise] {
-        guard !searchText.trimmingCharacters(in: .whitespaces).isEmpty else { return exercises }
+        let sorted = exercises.sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
+        guard !searchText.trimmingCharacters(in: .whitespaces).isEmpty else { return sorted }
         let term = searchText.lowercased()
-        return exercises.filter { $0.name.lowercased().contains(term) }
+        return sorted.filter { $0.name.lowercased().contains(term) }
     }
 
     var body: some View {

@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct ExerciseListView: View {
-    @Query(sort: \Exercise.name) private var exercises: [Exercise]
+    @Query private var exercises: [Exercise]
     @State private var searchText: String = ""
     @State private var selectedMuscleGroup: MuscleGroup?
     @State private var selectedEquipment: EquipmentType?
@@ -26,6 +26,7 @@ struct ExerciseListView: View {
 
             return matchesText && matchesMuscleGroup && matchesEquipment
         }
+        .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
     }
 
     var body: some View {
