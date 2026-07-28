@@ -890,7 +890,7 @@ Commits de la tanda completa: `3c4c26b`..`9264a26` (13 tareas + 1 commit
 de fix post-verificacion). Sin PR nuevo — se suma al mismo PR #1 abierto
 (`dev` → `main`), que sigue esperando review/merge del usuario.
 
-## Foto de perfil — 6/7 tareas completas, 1 bug real bloqueante encontrado en verificacion (2026-07-28)
+## Foto de perfil — 7/7 tareas completas, bug del picker corregido (2026-07-28)
 
 Spec: `docs/superpowers/specs/2026-07-28-profile-photo-design.md`. Plan:
 `docs/superpowers/plans/2026-07-28-profile-photo.md`. Ejecutado con
@@ -973,8 +973,48 @@ verificacion manual del usuario en un dispositivo fisico, tal cual pedia
 el plan original.
 
 **Este bug no se arreglo en esta tarea** (Tarea 7 esta explicitamente
-delimitada a verificacion, "Files: ninguno" en el brief) — queda anotado
-como pendiente inmediato, ver "Siguientes pasos" abajo.
+delimitada a verificacion, "Files: ninguno" en el brief) — se arreglo aparte,
+ver seccion siguiente.
+
+### Fix del bug del `PhotosPicker` (commit `52de635`)
+
+Causa raiz: `PhotosPicker` puesto como fila directa dentro de un
+`.confirmationDialog` no llega a presentar su propia hoja — el dialog se
+cierra y la presentacion en cola del picker se pierde con el, un problema de
+timing conocido de SwiftUI al anidar dos presentaciones modales asi. Fix:
+`PhotosPicker` se saco del `.confirmationDialog` (que ahora solo tiene
+`Button`s simples, "Elegir de galeria" incluido) y se agrego el modifier
+`.photosPicker(isPresented:selection:matching:)` sobre la vista, controlado
+por un `@State private var showingPhotosPicker = false` que el boton del
+dialog activa — mismo patron que ya usaban "Tomar foto" (`showingCamera`) y
+"Eliminar foto".
+
+El implementador del fix ya habia verificado en vivo (con screenshots reales,
+sesion de simulador previa a esta): el dialog abre, "Elegir de galeria" ahora
+si presenta la hoja de seleccion de fotos, y una foto elegida se ve recortada
+en circulo en el avatar del header del **Dashboard**. Review post-fix: limpio,
+sin hallazgos.
+
+**Esta tarea (Tarea 7, cierre final) volvio a correr la suite completa** —
+**63/63 en verde**, confirmado con `xcrun xcresulttool get test-results
+summary` (no por scroll del log). Se intento ademas re-verificar en vivo los
+3 puntos que quedaban sin confirmar (foto recortada en circulo tambien en
+`ProfileDetailView` y no solo Dashboard; "Eliminar foto" aparece tocando el
+avatar de nuevo una vez que ya hay foto; volver a iniciales en ambos lugares
+al eliminarla) — **no se pudo**: la inyeccion de taps del simulador de esta
+sesion dejo de responder por completo (confirmado con 4 intentos de tap en
+distintas coordenadas + un intento con `touch_path`, contra la fila de
+"Perfil 1" y contra el icono de la app en el home screen; la app si lanza y
+renderiza bien via el comando directo de `launch`, y el boton HOME si
+funciona, asi que es especificamente la inyeccion de tap la que quedo rota,
+no el simulador entero). Siguiendo la instruccion de no forzar una
+herramienta con una falla ya conocida (un reviewer anterior tuvo el mismo
+problema), se dejo esto anotado en vez de fabricar una verificacion que no
+se pudo hacer. Riesgo bajo igual: los 3 puntos dependen del mismo componente
+(`EditableAvatarView`/`AvatarPlaceholder`) ya confirmado funcionando en el
+Dashboard por el implementer del fix — pero **sigue pendiente confirmarlo
+independientemente en `ProfileDetailView`** la proxima vez que haya acceso
+confiable al simulador.
 
 ## Siguientes pasos
 
@@ -995,13 +1035,19 @@ o son de alcance mayor (no son fixes directos):
 2. ~~**Spec nuevo — idioma + foto de perfil**~~ — se separaron en dos
    pendientes independientes desde el principio de la tanda de foto de
    perfil (2026-07-28):
-   - **Foto de perfil**: 6/7 tareas completas, **bloqueada por 1 bug real**
-     encontrado en la Tarea 7 de verificacion — el `PhotosPicker` puesto
-     como fila del `.confirmationDialog` en `EditableAvatarView.swift`
-     nunca presenta su hoja de seleccion (el dialog se cierra pero no pasa
-     nada mas). Ver seccion "Foto de perfil" arriba para el detalle
-     completo y como se confirmo. **Fix pendiente antes de dar esto por
-     cerrado.**
+   - **Foto de perfil**: 7/7 tareas completas. El bug real encontrado en la
+     Tarea 7 de verificacion (`PhotosPicker` como fila del
+     `.confirmationDialog` en `EditableAvatarView.swift` nunca presentaba su
+     hoja de seleccion) esta **corregido** (commit `52de635`) y confirmado
+     con screenshots reales en el Dashboard. Ver seccion "Foto de perfil"
+     arriba para el detalle completo. Queda un pendiente chico: confirmar en
+     vivo (bloqueado esta vez por inyeccion de taps rota en el simulador)
+     que la foto recortada, "Eliminar foto" y el revertir a iniciales
+     tambien se ven bien en `ProfileDetailView` (no solo Dashboard) — mismo
+     componente ya verificado, riesgo bajo, pero sin confirmacion
+     independiente todavia. **Camara real en dispositivo fisico** tambien
+     sigue pendiente de verificacion manual del usuario, como ya estaba
+     anotado.
    - **Selector de idioma** (espanol/ingles/frances, i18n de toda la app):
      sigue sin arrancar, spec propia todavia por escribir. Sin relacion de
      dependencia con la foto de perfil — son dos subsistemas
