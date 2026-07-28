@@ -10,11 +10,11 @@ enum ExperienceLevel: String, Codable, CaseIterable, Identifiable {
     var displayName: String {
         switch self {
         case .beginner:
-            return "Principiante"
+            return String(localized: "experience_level.beginner", defaultValue: "Principiante", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .intermediate:
-            return "Intermedio"
+            return String(localized: "experience_level.intermediate", defaultValue: "Intermedio", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .advanced:
-            return "Avanzado"
+            return String(localized: "experience_level.advanced", defaultValue: "Avanzado", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         }
     }
 }
@@ -29,11 +29,11 @@ enum PrimaryGoal: String, Codable, CaseIterable, Identifiable {
     var displayName: String {
         switch self {
         case .hypertrophy:
-            return "Hipertrofia"
+            return String(localized: "primary_goal.hypertrophy", defaultValue: "Hipertrofia", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .strength:
-            return "Fuerza"
+            return String(localized: "primary_goal.strength", defaultValue: "Fuerza", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .fatLoss:
-            return "Perdida de grasa"
+            return String(localized: "primary_goal.fat_loss", defaultValue: "Perdida de grasa", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         }
     }
 }
@@ -48,11 +48,11 @@ enum SplitType: String, Codable, CaseIterable, Identifiable {
     var displayName: String {
         switch self {
         case .fullBody:
-            return "Cuerpo completo"
+            return String(localized: "split_type.full_body", defaultValue: "Cuerpo completo", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .upperLower:
-            return "Torso / Pierna"
+            return String(localized: "split_type.upper_lower", defaultValue: "Torso / Pierna", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .pushPullLegs:
-            return "Empuje / Tiron / Pierna"
+            return String(localized: "split_type.push_pull_legs", defaultValue: "Empuje / Tiron / Pierna", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         }
     }
 }
@@ -68,13 +68,13 @@ enum BiologicalSex: String, Codable, CaseIterable, Identifiable {
     var displayName: String {
         switch self {
         case .notSet:
-            return "No definido"
+            return String(localized: "biological_sex.not_set", defaultValue: "No definido", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .female:
-            return "Femenino"
+            return String(localized: "biological_sex.female", defaultValue: "Femenino", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .male:
-            return "Masculino"
+            return String(localized: "biological_sex.male", defaultValue: "Masculino", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .other:
-            return "Otro"
+            return String(localized: "biological_sex.other", defaultValue: "Otro", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         }
     }
 }
@@ -92,17 +92,17 @@ enum EquipmentType: String, Codable, CaseIterable, Identifiable {
     var displayName: String {
         switch self {
         case .fullGym:
-            return "Gimnasio completo"
+            return String(localized: "equipment_type.full_gym", defaultValue: "Gimnasio completo", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .dumbbells:
-            return "Mancuernas"
+            return String(localized: "equipment_type.dumbbells", defaultValue: "Mancuernas", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .barbell:
-            return "Barra"
+            return String(localized: "equipment_type.barbell", defaultValue: "Barra", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .machines:
-            return "Maquinas"
+            return String(localized: "equipment_type.machines", defaultValue: "Maquinas", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .cableMachine:
-            return "Poleas"
+            return String(localized: "equipment_type.cable_machine", defaultValue: "Poleas", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .bodyweight:
-            return "Calistenia"
+            return String(localized: "equipment_type.bodyweight", defaultValue: "Calistenia", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         }
     }
 
@@ -142,27 +142,27 @@ enum MuscleGroup: String, Codable, CaseIterable, Identifiable {
     var displayName: String {
         switch self {
         case .chest:
-            return "Pecho"
+            return String(localized: "muscle_group.chest", defaultValue: "Pecho", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .back:
-            return "Espalda"
+            return String(localized: "muscle_group.back", defaultValue: "Espalda", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .legs:
-            return "Piernas"
+            return String(localized: "muscle_group.legs", defaultValue: "Piernas", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .shoulders:
-            return "Hombros"
+            return String(localized: "muscle_group.shoulders", defaultValue: "Hombros", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .arms:
-            return "Brazos"
+            return String(localized: "muscle_group.arms", defaultValue: "Brazos", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .biceps:
-            return "Biceps"
+            return String(localized: "muscle_group.biceps", defaultValue: "Biceps", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .triceps:
-            return "Triceps"
+            return String(localized: "muscle_group.triceps", defaultValue: "Triceps", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .core:
-            return "Core"
+            return String(localized: "muscle_group.core", defaultValue: "Core", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .glutes:
-            return "Gluteos"
+            return String(localized: "muscle_group.glutes", defaultValue: "Gluteos", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .calves:
-            return "Pantorrillas"
+            return String(localized: "muscle_group.calves", defaultValue: "Pantorrillas", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .fullBody:
-            return "Cuerpo completo"
+            return String(localized: "muscle_group.full_body", defaultValue: "Cuerpo completo", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         }
     }
 
@@ -207,25 +207,25 @@ enum Weekday: Int, Codable, CaseIterable, Identifiable {
 
     var displayName: String {
         switch self {
-        case .monday: return "Lunes"
-        case .tuesday: return "Martes"
-        case .wednesday: return "Miercoles"
-        case .thursday: return "Jueves"
-        case .friday: return "Viernes"
-        case .saturday: return "Sabado"
-        case .sunday: return "Domingo"
+        case .monday: return String(localized: "weekday.monday", defaultValue: "Lunes", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .tuesday: return String(localized: "weekday.tuesday", defaultValue: "Martes", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .wednesday: return String(localized: "weekday.wednesday", defaultValue: "Miercoles", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .thursday: return String(localized: "weekday.thursday", defaultValue: "Jueves", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .friday: return String(localized: "weekday.friday", defaultValue: "Viernes", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .saturday: return String(localized: "weekday.saturday", defaultValue: "Sabado", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .sunday: return String(localized: "weekday.sunday", defaultValue: "Domingo", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         }
     }
 
     var shortDisplayName: String {
         switch self {
-        case .monday: return "LUN"
-        case .tuesday: return "MAR"
-        case .wednesday: return "MIE"
-        case .thursday: return "JUE"
-        case .friday: return "VIE"
-        case .saturday: return "SAB"
-        case .sunday: return "DOM"
+        case .monday: return String(localized: "weekday.short.monday", defaultValue: "LUN", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .tuesday: return String(localized: "weekday.short.tuesday", defaultValue: "MAR", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .wednesday: return String(localized: "weekday.short.wednesday", defaultValue: "MIE", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .thursday: return String(localized: "weekday.short.thursday", defaultValue: "JUE", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .friday: return String(localized: "weekday.short.friday", defaultValue: "VIE", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .saturday: return String(localized: "weekday.short.saturday", defaultValue: "SAB", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .sunday: return String(localized: "weekday.short.sunday", defaultValue: "DOM", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         }
     }
 

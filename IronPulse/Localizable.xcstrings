@@ -1,591 +1,2833 @@
 {
-  "sourceLanguage" : "es",
-  "strings" : {
-    "%@ · %@" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%@ · %@" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "%@ · %@" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ · %@" } }
-      }
-    },
-    "%@ por semana" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%@ per week" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "%@ por semana" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ par semaine" } }
-      }
-    },
-    "%lld anos" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld years" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "%lld anos" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lld ans" } }
-      }
-    },
-    "%lld reps" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld reps" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "%lld reps" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lld reps" } }
-      }
-    },
-    "%lldx%lld-%lld" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lldx%lld-%lld" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "%lldx%lld-%lld" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lldx%lld-%lld" } }
-      }
-    },
-    "Agregar ejercicio" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add Exercise" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Agregar ejercicio" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ajouter un exercice" } }
-      }
-    },
-    "Ajustes" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Ajustes" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Réglages" } }
-      }
-    },
-    "Altura" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Height" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Altura" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Taille" } }
-      }
-    },
-    "Cancelar" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Cancelar" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Annuler" } }
-      }
-    },
-    "Crea un perfil para generar rutinas y registrar progreso." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create a profile to generate routines and track progress." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Crea un perfil para generar rutinas y registrar progreso." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Crée un profil pour générer des programmes et suivre tes progrès." } }
-      }
-    },
-    "Crear rutina manual" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create Manual Routine" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Crear rutina manual" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Créer un programme manuel" } }
-      }
-    },
-    "Dashboard" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Dashboard" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Dashboard" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tableau de bord" } }
-      }
-    },
-    "Datos fisicos" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Physical Data" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Datos fisicos" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Données physiques" } }
-      }
-    },
-    "Descanso hoy" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Rest Day" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Descanso hoy" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Jour de repos" } }
-      }
-    },
-    "Descanso: %llds" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Rest: %llds" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Descanso: %llds" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Repos : %llds" } }
-      }
-    },
-    "Dia %lld — %@" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Day %lld — %@" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Dia %lld — %@" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Jour %lld — %@" } }
-      }
-    },
-    "Eliminar foto" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remove Photo" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Eliminar foto" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Supprimer la photo" } }
-      }
-    },
-    "Elegir de galeria" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose from Library" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Elegir de galeria" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Choisir depuis la galerie" } }
-      }
-    },
-    "Elegir ejercicio" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose Exercise" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Elegir ejercicio" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Choisir un exercice" } }
-      }
-    },
-    "Ejercicios" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Exercises" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Ejercicios" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Exercices" } }
-      }
-    },
-    "Empezar" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Empezar" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Commencer" } }
-      }
-    },
-    "Entrenamiento" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Workout" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Entrenamiento" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Entraînement" } }
-      }
-    },
-    "Estructura" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Structure" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Estructura" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Structure" } }
-      }
-    },
-    "Finalizada" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Finished" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Finalizada" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Terminé" } }
-      }
-    },
-    "Foto de perfil" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Profile Photo" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Foto de perfil" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Photo de profil" } }
-      }
-    },
-    "Genera una rutina automatica o arma la tuya desde la tab Rutina." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Generate an automatic routine or build your own from the Routine tab." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Genera una rutina automatica o arma la tuya desde la tab Rutina." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Génère un programme automatique ou crée le tien depuis l'onglet Programme." } }
-      }
-    },
-    "Genera una rutina automatica o arma la tuya ejercicio por ejercicio." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Generate an automatic routine or build your own exercise by exercise." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Genera una rutina automatica o arma la tuya ejercicio por ejercicio." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Génère un programme automatique ou crée le tien exercice par exercice." } }
-      }
-    },
-    "Guardar" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Save" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Guardar" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Enregistrer" } }
-      }
-    },
-    "Historial" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "History" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Historial" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Historique" } }
-      }
-    },
-    "Hoy no hay ningun dia de la rutina asignado." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "There's no routine day scheduled for today." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Hoy no hay ningun dia de la rutina asignado." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucun jour de programme n'est prévu aujourd'hui." } }
-      }
-    },
-    "Hoy: %@" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Today: %@" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Hoy: %@" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aujourd'hui : %@" } }
-      }
-    },
-    "Idioma" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Language" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Idioma" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Langue" } }
-      }
-    },
-    "Importar datos de Salud" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Import Health Data" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Importar datos de Salud" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Importer les données Santé" } }
-      }
-    },
-    "Iniciar ejercicios" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start Exercises" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Iniciar ejercicios" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Démarrer les exercices" } }
-      }
-    },
-    "kg" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "kg" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "kg" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "kg" } }
-      }
-    },
-    "Los entrenamientos que termines van a aparecer aca." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Workouts you finish will show up here." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Los entrenamientos que termines van a aparecer aca." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Les entraînements que tu termines apparaîtront ici." } }
-      }
-    },
-    "Masa magra" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Lean Mass" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Masa magra" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Masse maigre" } }
-      }
-    },
-    "Meta: %lld-%lld" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Target: %lld-%lld" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Meta: %lld-%lld" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Objectif : %lld-%lld" } }
-      }
-    },
-    "Nombre" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Name" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Nombre" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Nom" } }
-      }
-    },
-    "Nuevo perfil" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Profile" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Nuevo perfil" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Nouveau profil" } }
-      }
-    },
-    "Perfil" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Profile" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Perfil" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Profil" } }
-      }
-    },
-    "Perfiles" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Profiles" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Perfiles" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Profils" } }
-      }
-    },
-    "Peso" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Weight" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Peso" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Poids" } }
-      }
-    },
-    "Progreso" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Progress" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Progreso" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Progrès" } }
-      }
-    },
-    "Progreso (30 dias)" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Progress (30 days)" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Progreso (30 dias)" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Progrès (30 jours)" } }
-      }
-    },
-    "Progreso por ejercicio" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Progress by Exercise" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Progreso por ejercicio" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Progrès par exercice" } }
-      }
-    },
-    "Rutina" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Routine" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Rutina" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Programme" } }
-      }
-    },
-    "Rutina inteligente" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Smart Routine" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Rutina inteligente" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Programme intelligent" } }
-      }
-    },
-    "Rutina manual" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Manual Routine" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Rutina manual" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Programme manuel" } }
-      }
-    },
-    "Salud" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Health" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Salud" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Santé" } }
-      }
-    },
-    "Set %lld" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Set %lld" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Set %lld" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Série %lld" } }
-      }
-    },
-    "Sexo" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sex" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sexo" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Sexe" } }
-      }
-    },
-    "Sin datos todavia" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No Data Yet" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sin datos todavia" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Pas encore de données" } }
-      }
-    },
-    "Sin entrenamientos" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No Workouts" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sin entrenamientos" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucun entraînement" } }
-      }
-    },
-    "Sin perfiles" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No Profiles" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sin perfiles" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucun profil" } }
-      }
-    },
-    "Sin rutina activa" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No Active Routine" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sin rutina activa" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucun programme actif" } }
-      }
-    },
-    "Terminar" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Finish" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Terminar" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Terminer" } }
-      }
-    },
-    "Todavia no completaste ningun set de este ejercicio." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "You haven't completed any sets for this exercise yet." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Todavia no completaste ningun set de este ejercicio." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tu n'as encore complété aucune série pour cet exercice." } }
-      }
-    },
-    "Tomar foto" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Take Photo" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Tomar foto" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Prendre une photo" } }
-      }
-    },
-    "Ver historial de entrenamientos" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "View Workout History" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Ver historial de entrenamientos" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Voir l'historique des entraînements" } }
-      }
-    },
-    "Watt + Weight" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Watt + Weight" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Watt + Weight" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Watt + Weight" } }
-      }
-    },
-    "exercise.compound_badge" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Compound" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Compound" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Composé" } }
-      }
-    },
-    "exercise_filter.all" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "All" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Todos" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tous" } }
-      }
-    },
-    "dias_label.singular" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "1 day" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "1 dia" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "1 jour" } }
-      }
-    },
-    "dias_label.plural" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld days" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "%lld dias" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lld jours" } }
-      }
-    },
-    "dashboard.metric_volumen" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Volume" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Volumen" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Volume" } }
-      }
-    },
-    "dashboard.metric_entrenamientos" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Workouts" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Entrenamientos" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Entraînements" } }
-      }
-    },
-    "dashboard.metric_racha" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Streak" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Racha" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Série" } }
-      }
-    },
-    "Nivel" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Level" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Nivel" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Niveau" } }
-      }
-    },
-    "Objetivo" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Goal" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Objetivo" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Objectif" } }
-      }
-    },
-    "profile.days_per_week_slider.singular" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "1 day per week" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "1 dia por semana" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "1 jour par semaine" } }
-      }
-    },
-    "profile.days_per_week_slider.plural" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld days per week" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "%lld dias por semana" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lld jours par semaine" } }
-      }
-    },
-    "%@ • %@" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%@ • %@" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "%@ • %@" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ • %@" } }
-      }
-    },
-    "%@ • %@ • %@/semana" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%@ • %@ • %@/week" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "%@ • %@ • %@/semana" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ • %@ • %@/semaine" } }
-      }
-    },
-    "Split" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Split" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Split" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Répartition" } }
-      }
-    },
-    "%lld series" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld sets" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "%lld series" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lld séries" } }
-      }
-    },
-    "Minimo %lld reps" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Minimum %lld reps" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Minimo %lld reps" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Minimum %lld reps" } }
-      }
-    },
-    "Maximo %lld reps" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Maximum %lld reps" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Maximo %lld reps" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Maximum %lld reps" } }
-      }
-    },
-    "%llds de descanso" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%llds rest" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "%llds de descanso" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%llds de repos" } }
-      }
-    },
-    "Tambien trabaja: %@" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Also works: %@" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Tambien trabaja: %@" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Travaille aussi : %@" } }
-      }
-    },
-    "health_import.success" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Health data imported." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Datos importados desde Salud." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Données de santé importées." } }
-      }
-    },
-    "profile.no_data" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No data" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sin dato" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucune donnée" } }
+  "sourceLanguage": "es",
+  "strings": {
+    "%@ por semana": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ per week"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ par semaine"
+          }
+        }
+      }
+    },
+    "%@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %@"
+          }
+        }
+      }
+    },
+    "%@ • %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ • %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ • %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ • %@"
+          }
+        }
+      }
+    },
+    "%@ • %@ • %@/semana": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ • %@ • %@/week"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ • %@ • %@/semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ • %@ • %@/semaine"
+          }
+        }
+      }
+    },
+    "%lld anos": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld years"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld anos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ans"
+          }
+        }
+      }
+    },
+    "%lld reps": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld reps"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld reps"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld reps"
+          }
+        }
+      }
+    },
+    "%lld series": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld sets"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld series"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld séries"
+          }
+        }
+      }
+    },
+    "%llds de descanso": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%llds rest"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%llds de descanso"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%llds de repos"
+          }
+        }
+      }
+    },
+    "%lldx%lld-%lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lldx%lld-%lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lldx%lld-%lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lldx%lld-%lld"
+          }
+        }
+      }
+    },
+    "Agregar ejercicio": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Exercise"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar ejercicio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter un exercice"
+          }
+        }
+      }
+    },
+    "Ajustes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réglages"
+          }
+        }
+      }
+    },
+    "Altura": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Height"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altura"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taille"
+          }
+        }
+      }
+    },
+    "Cancelar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuler"
+          }
+        }
+      }
+    },
+    "Crea un perfil para generar rutinas y registrar progreso.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a profile to generate routines and track progress."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea un perfil para generar rutinas y registrar progreso."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crée un profil pour générer des programmes et suivre tes progrès."
+          }
+        }
+      }
+    },
+    "Crear rutina manual": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create Manual Routine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear rutina manual"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créer un programme manuel"
+          }
+        }
+      }
+    },
+    "Dashboard": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dashboard"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dashboard"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tableau de bord"
+          }
+        }
+      }
+    },
+    "Datos fisicos": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Physical Data"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datos fisicos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Données physiques"
+          }
+        }
+      }
+    },
+    "Descanso hoy": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest Day"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso hoy"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jour de repos"
+          }
+        }
+      }
+    },
+    "Descanso: %llds": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest: %llds"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso: %llds"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repos : %llds"
+          }
+        }
+      }
+    },
+    "Dia %lld — %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day %lld — %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dia %lld — %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jour %lld — %@"
+          }
+        }
+      }
+    },
+    "Ejercicios": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercises"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ejercicios"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercices"
+          }
+        }
+      }
+    },
+    "Elegir de galeria": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose from Library"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir de galeria"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisir depuis la galerie"
+          }
+        }
+      }
+    },
+    "Elegir ejercicio": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose Exercise"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir ejercicio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisir un exercice"
+          }
+        }
+      }
+    },
+    "Eliminar foto": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove Photo"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar foto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer la photo"
+          }
+        }
+      }
+    },
+    "Empezar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commencer"
+          }
+        }
+      }
+    },
+    "Entrenamiento": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrenamiento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entraînement"
+          }
+        }
+      }
+    },
+    "Estructura": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Structure"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estructura"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Structure"
+          }
+        }
+      }
+    },
+    "Finalizada": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finished"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finalizada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminé"
+          }
+        }
+      }
+    },
+    "Foto de perfil": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profile Photo"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foto de perfil"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photo de profil"
+          }
+        }
+      }
+    },
+    "Genera una rutina automatica o arma la tuya desde la tab Rutina.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generate an automatic routine or build your own from the Routine tab."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genera una rutina automatica o arma la tuya desde la tab Rutina."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Génère un programme automatique ou crée le tien depuis l'onglet Programme."
+          }
+        }
+      }
+    },
+    "Genera una rutina automatica o arma la tuya ejercicio por ejercicio.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generate an automatic routine or build your own exercise by exercise."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genera una rutina automatica o arma la tuya ejercicio por ejercicio."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Génère un programme automatique ou crée le tien exercice par exercice."
+          }
+        }
+      }
+    },
+    "Guardar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer"
+          }
+        }
+      }
+    },
+    "Historial": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historial"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historique"
+          }
+        }
+      }
+    },
+    "Hoy no hay ningun dia de la rutina asignado.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There's no routine day scheduled for today."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy no hay ningun dia de la rutina asignado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun jour de programme n'est prévu aujourd'hui."
+          }
+        }
+      }
+    },
+    "Hoy: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aujourd'hui : %@"
+          }
+        }
+      }
+    },
+    "Idioma": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idioma"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langue"
+          }
+        }
+      }
+    },
+    "Importar datos de Salud": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import Health Data"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar datos de Salud"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer les données Santé"
+          }
+        }
+      }
+    },
+    "Iniciar ejercicios": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Exercises"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar ejercicios"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarrer les exercices"
+          }
+        }
+      }
+    },
+    "Los entrenamientos que termines van a aparecer aca.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workouts you finish will show up here."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los entrenamientos que termines van a aparecer aca."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les entraînements que tu termines apparaîtront ici."
+          }
+        }
+      }
+    },
+    "Masa magra": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lean Mass"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masa magra"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masse maigre"
+          }
+        }
+      }
+    },
+    "Maximo %lld reps": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximum %lld reps"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximo %lld reps"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximum %lld reps"
+          }
+        }
+      }
+    },
+    "Meta: %lld-%lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Target: %lld-%lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meta: %lld-%lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objectif : %lld-%lld"
+          }
+        }
+      }
+    },
+    "Minimo %lld reps": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minimum %lld reps"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minimo %lld reps"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minimum %lld reps"
+          }
+        }
+      }
+    },
+    "Nivel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Level"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nivel"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niveau"
+          }
+        }
+      }
+    },
+    "Nombre": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom"
+          }
+        }
+      }
+    },
+    "Nuevo perfil": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Profile"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo perfil"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouveau profil"
+          }
+        }
+      }
+    },
+    "Objetivo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objectif"
+          }
+        }
+      }
+    },
+    "Perfil": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profile"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perfil"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profil"
+          }
+        }
+      }
+    },
+    "Perfiles": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profiles"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perfiles"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profils"
+          }
+        }
+      }
+    },
+    "Peso": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peso"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poids"
+          }
+        }
+      }
+    },
+    "Progreso": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progress"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progreso"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progrès"
+          }
+        }
+      }
+    },
+    "Progreso (30 dias)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progress (30 days)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progreso (30 dias)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progrès (30 jours)"
+          }
+        }
+      }
+    },
+    "Progreso por ejercicio": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progress by Exercise"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progreso por ejercicio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progrès par exercice"
+          }
+        }
+      }
+    },
+    "Rutina": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rutina"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Programme"
+          }
+        }
+      }
+    },
+    "Rutina inteligente": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart Routine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rutina inteligente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Programme intelligent"
+          }
+        }
+      }
+    },
+    "Rutina manual": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manual Routine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rutina manual"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Programme manuel"
+          }
+        }
+      }
+    },
+    "Salud": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Health"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salud"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Santé"
+          }
+        }
+      }
+    },
+    "Set %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set %lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Série %lld"
+          }
+        }
+      }
+    },
+    "Sexo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sex"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sexo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sexe"
+          }
+        }
+      }
+    },
+    "Sin datos todavia": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Data Yet"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin datos todavia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas encore de données"
+          }
+        }
+      }
+    },
+    "Sin entrenamientos": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Workouts"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin entrenamientos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun entraînement"
+          }
+        }
+      }
+    },
+    "Sin perfiles": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Profiles"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin perfiles"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun profil"
+          }
+        }
+      }
+    },
+    "Sin rutina activa": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Active Routine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin rutina activa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun programme actif"
+          }
+        }
+      }
+    },
+    "Split": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Répartition"
+          }
+        }
+      }
+    },
+    "Tambien trabaja: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Also works: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tambien trabaja: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Travaille aussi : %@"
+          }
+        }
+      }
+    },
+    "Terminar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminer"
+          }
+        }
+      }
+    },
+    "Todavia no completaste ningun set de este ejercicio.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You haven't completed any sets for this exercise yet."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todavia no completaste ningun set de este ejercicio."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu n'as encore complété aucune série pour cet exercice."
+          }
+        }
+      }
+    },
+    "Tomar foto": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Take Photo"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tomar foto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prendre une photo"
+          }
+        }
+      }
+    },
+    "Ver historial de entrenamientos": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View Workout History"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver historial de entrenamientos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voir l'historique des entraînements"
+          }
+        }
+      }
+    },
+    "Watt + Weight": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watt + Weight"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watt + Weight"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watt + Weight"
+          }
+        }
+      }
+    },
+    "biological_sex.female": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Female"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Femenino"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Féminin"
+          }
+        }
+      }
+    },
+    "biological_sex.male": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Male"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masculino"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masculin"
+          }
+        }
+      }
+    },
+    "biological_sex.not_set": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not set"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No definido"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non défini"
+          }
+        }
+      }
+    },
+    "biological_sex.other": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otro"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autre"
+          }
+        }
+      }
+    },
+    "dashboard.metric_entrenamientos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workouts"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrenamientos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entraînements"
+          }
+        }
+      }
+    },
+    "dashboard.metric_racha": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Streak"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Racha"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Série"
+          }
+        }
+      }
+    },
+    "dashboard.metric_volumen": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volumen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume"
+          }
+        }
+      }
+    },
+    "dias_label.plural": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld days"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dias"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld jours"
+          }
+        }
+      }
+    },
+    "dias_label.singular": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 day"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 dia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 jour"
+          }
+        }
+      }
+    },
+    "equipment_type.barbell": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barbell"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barra"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barre"
+          }
+        }
+      }
+    },
+    "equipment_type.bodyweight": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bodyweight"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calistenia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poids du corps"
+          }
+        }
+      }
+    },
+    "equipment_type.cable_machine": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cable machine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poleas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poulies"
+          }
+        }
+      }
+    },
+    "equipment_type.dumbbells": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dumbbells"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mancuernas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haltères"
+          }
+        }
+      }
+    },
+    "equipment_type.full_gym": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full gym"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gimnasio completo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salle complète"
+          }
+        }
+      }
+    },
+    "equipment_type.machines": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Machines"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maquinas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Machines"
+          }
+        }
+      }
+    },
+    "exercise.compound_badge": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compound"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compound"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Composé"
+          }
+        }
+      }
+    },
+    "exercise_filter.all": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tous"
+          }
+        }
+      }
+    },
+    "experience_level.advanced": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Advanced"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avanzado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avancé"
+          }
+        }
+      }
+    },
+    "experience_level.beginner": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginner"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Principiante"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Débutant"
+          }
+        }
+      }
+    },
+    "experience_level.intermediate": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intermediate"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intermedio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intermédiaire"
+          }
+        }
+      }
+    },
+    "health_import.success": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Health data imported."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datos importados desde Salud."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Données de santé importées."
+          }
+        }
+      }
+    },
+    "kg": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kg"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kg"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kg"
+          }
+        }
+      }
+    },
+    "muscle_group.arms": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arms"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brazos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bras"
+          }
+        }
+      }
+    },
+    "muscle_group.back": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espalda"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dos"
+          }
+        }
+      }
+    },
+    "muscle_group.biceps": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Biceps"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Biceps"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Biceps"
+          }
+        }
+      }
+    },
+    "muscle_group.calves": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calves"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantorrillas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mollets"
+          }
+        }
+      }
+    },
+    "muscle_group.chest": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chest"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pecho"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pectoraux"
+          }
+        }
+      }
+    },
+    "muscle_group.core": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Core"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Core"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gainage"
+          }
+        }
+      }
+    },
+    "muscle_group.full_body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full body"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuerpo completo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corps entier"
+          }
+        }
+      }
+    },
+    "muscle_group.glutes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glutes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gluteos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fessiers"
+          }
+        }
+      }
+    },
+    "muscle_group.legs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legs"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Piernas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jambes"
+          }
+        }
+      }
+    },
+    "muscle_group.shoulders": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shoulders"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hombros"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Épaules"
+          }
+        }
+      }
+    },
+    "muscle_group.triceps": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Triceps"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Triceps"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Triceps"
+          }
+        }
+      }
+    },
+    "primary_goal.fat_loss": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fat loss"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perdida de grasa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perte de graisse"
+          }
+        }
+      }
+    },
+    "primary_goal.hypertrophy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hypertrophy"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hipertrofia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hypertrophie"
+          }
+        }
+      }
+    },
+    "primary_goal.strength": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strength"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuerza"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Force"
+          }
+        }
+      }
+    },
+    "profile.days_per_week_slider.plural": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld days per week"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dias por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld jours par semaine"
+          }
+        }
+      }
+    },
+    "profile.days_per_week_slider.singular": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 day per week"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 dia por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 jour par semaine"
+          }
+        }
+      }
+    },
+    "profile.no_data": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No data"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin dato"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune donnée"
+          }
+        }
+      }
+    },
+    "split_type.full_body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full body"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuerpo completo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corps entier"
+          }
+        }
+      }
+    },
+    "split_type.push_pull_legs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Push / Pull / Legs"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empuje / Tiron / Pierna"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poussée / Tirage / Jambes"
+          }
+        }
+      }
+    },
+    "split_type.upper_lower": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upper / Lower"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Torso / Pierna"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haut / Bas"
+          }
+        }
+      }
+    },
+    "weekday.friday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Friday"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viernes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vendredi"
+          }
+        }
+      }
+    },
+    "weekday.monday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monday"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lunes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lundi"
+          }
+        }
+      }
+    },
+    "weekday.saturday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saturday"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sabado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Samedi"
+          }
+        }
+      }
+    },
+    "weekday.short.friday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FRI"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VIE"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VEN"
+          }
+        }
+      }
+    },
+    "weekday.short.monday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MON"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUN"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUN"
+          }
+        }
+      }
+    },
+    "weekday.short.saturday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAT"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAB"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAM"
+          }
+        }
+      }
+    },
+    "weekday.short.sunday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SUN"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DOM"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DIM"
+          }
+        }
+      }
+    },
+    "weekday.short.thursday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "THU"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "JUE"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "JEU"
+          }
+        }
+      }
+    },
+    "weekday.short.tuesday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TUE"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MAR"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MAR"
+          }
+        }
+      }
+    },
+    "weekday.short.wednesday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WED"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MIE"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MER"
+          }
+        }
+      }
+    },
+    "weekday.sunday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunday"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Domingo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dimanche"
+          }
+        }
+      }
+    },
+    "weekday.thursday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thursday"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jueves"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeudi"
+          }
+        }
+      }
+    },
+    "weekday.tuesday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tuesday"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Martes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mardi"
+          }
+        }
+      }
+    },
+    "weekday.wednesday": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wednesday"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miercoles"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mercredi"
+          }
+        }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }
