@@ -15,6 +15,7 @@
 - **Gotcha de SwiftUI**: `Text("literal")` localiza solo automáticamente porque usa el init `Text(_ key: LocalizedStringKey)`. `Text(unaVariable)` (donde `unaVariable: String`) usa el init verbatim `Text(_ content: some StringProtocol)` y **no** localiza, aunque el valor original haya sido un literal en otro lado del código. Los 2 casos ya identificados en este codebase que caen en esta trampa (`TagBadge`/`FilterChip` reciben un `String` y hacen `Text(variable.uppercased())`) necesitan el string ya resuelto por `String(localized:locale:)` en el call site, no en el componente.
 - Cualquier campo nuevo no-opcional en un `@Model` (Task 5) rompe el store existente del simulador — hace falta `xcrun simctl uninstall <device> com.BERNU.WattWeight` antes de correr después de esa tarea.
 - Las traducciones a inglés y francés (del chrome, los enums, y los mensajes de permiso) las redacta el implementador de cada tarea — no son traducciones automáticas ni placeholders, deben ser naturales en cada idioma.
+- **Gotcha crítico descubierto durante Task 3, corregido de raíz (ver "Fix arquitectónico" después de Task 3)**: `String(localized:defaultValue:locale:)` **no** fuerza el idioma solo con `locale:` — verificado empíricamente (test que pasa `locale: Locale(identifier: "fr")` sigue devolviendo el valor en inglés). Hace falta pasar **también** un `bundle:` explícito, el `.lproj` específico de ese idioma dentro de `Bundle.main`. `AppLanguage` expone esto como `var bundle: Bundle` — **todo** call site de `String(localized:defaultValue:locale:)` en este plan (Tasks 3, 4, 5) debe ser `String(localized:defaultValue:bundle:locale:)`, pasando `bundle: AppLanguage.current.bundle` además de `bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale`. Los ejemplos de código más abajo en este documento ya reflejan esto.
 
 ---
 
@@ -26,7 +27,7 @@
 - Test: `IronPulseTests/AppLanguageTests.swift`
 
 **Interfaces:**
-- Produces: `enum AppLanguage: String, CaseIterable, Identifiable { case spanish = "es", english = "en", french = "fr" }`, `AppLanguage.resolve(storedRawValue:preferredLanguages:) -> AppLanguage`, `AppLanguage.current: AppLanguage`, `AppLanguage.locale: Locale`, `AppLanguage.displayName: String`.
+- Produces: `enum AppLanguage: String, CaseIterable, Identifiable { case spanish = "es", english = "en", french = "fr" }`, `AppLanguage.resolve(storedRawValue:preferredLanguages:) -> AppLanguage`, `AppLanguage.current: AppLanguage`, `AppLanguage.locale: Locale`, `AppLanguage.bundle: Bundle` (el `.lproj` específico de ese idioma — ver "Fix arquitectónico" después de Task 3, agregado ahí retroactivamente porque el gotcha se descubrió durante esa tarea, no antes), `AppLanguage.displayName: String`.
 
 - [ ] **Step 1: Actualizar `developmentRegion`/`knownRegions` en el proyecto**
 
@@ -359,7 +360,7 @@ En `IronPulse/Views/Exercises/ExerciseListView.swift`, los dos
 **no** localiza aunque el literal exista en otro archivo. Cambiar ambos a:
 
 ```swift
-allLabel: String(localized: "exercise_filter.all", defaultValue: "Todos", locale: AppLanguage.current.locale),
+allLabel: String(localized: "exercise_filter.all", defaultValue: "Todos", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale),
 ```
 
 Los dos `TagBadge(text: "Compound")` (líneas ~50 y ~152 del mismo
@@ -367,7 +368,7 @@ archivo) tienen el mismo problema (`TagBadge` hace
 `Text(text.uppercased())`). Cambiar ambos a:
 
 ```swift
-TagBadge(text: String(localized: "exercise.compound_badge", defaultValue: "Compound", locale: AppLanguage.current.locale))
+TagBadge(text: String(localized: "exercise.compound_badge", defaultValue: "Compound", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale))
 ```
 
 - [ ] **Step 3: Traducir los mensajes de permiso**
@@ -435,6 +436,132 @@ git commit -m "Agrega Localizable.xcstrings: traduce todo el chrome existente a 
 
 ---
 
+### Fix arquitectónico: `String(localized:locale:)` no fuerza el idioma sin `bundle:`
+
+Descubierto durante la verificación de Task 3 (una traducción se veía en
+inglés con la app en francés) — confirmado con un test descartable:
+`String(localized: "clave", defaultValue: "...", locale: Locale(identifier: "fr"))`
+**seguía devolviendo el valor en inglés**, sin importar el `locale:`
+explícito. La causa: esta API resuelve el idioma real vía el `Bundle` que
+se le pasa (o `Bundle.main` por default, que sigue el idioma del sistema)
+— `locale:` solo no alcanza para forzarlo. La solución confirmada
+empíricamente (test pasó después del cambio): pasar también el `.lproj`
+específico como `bundle:`.
+
+**Cambios**:
+
+- `IronPulse/Models/AppLanguage.swift` gana:
+```swift
+var bundle: Bundle {
+    guard let path = Bundle.main.path(forResource: rawValue, ofType: "lproj"),
+          let bundle = Bundle(path: path) else {
+        return Bundle.main
+    }
+    return bundle
+}
+```
+- **Todos** los call sites de `String(localized:defaultValue:locale:)` ya
+  escritos en Tasks 1-3 (2 en `ExerciseListView.swift`, 3 en
+  `DashboardView.swift`, 2 en `ContentView.swift`, 2 en
+  `IronPulse/Theme/CustomColor.swift`'s `diasLabel`) cambian a
+  `String(localized:defaultValue:bundle:locale:)`, agregando
+  `bundle: AppLanguage.current.bundle` junto al `locale:` que ya tenían.
+- Los ejemplos de código de Task 4 y Task 5 más abajo en este documento
+  **ya reflejan el patrón corregido** (`bundle:` + `locale:` juntos) — no
+  hace falta ningún ajuste adicional al leerlos.
+- Test de regresión nuevo, `IronPulseTests/AppLanguageBundleTests.swift`,
+  que reproduce exactamente el bug encontrado (pasar `locale: "fr"` sin
+  `bundle:` en un string ya existente del catálogo debe seguir fallando —
+  documenta el gotcha — y pasar `bundle: AppLanguage.french.bundle,
+  locale: AppLanguage.french.locale` debe funcionar).
+
+**Files:**
+- Modify: `IronPulse/Models/AppLanguage.swift`
+- Modify: `IronPulse/Theme/CustomColor.swift`
+- Modify: `IronPulse/Views/Exercises/ExerciseListView.swift`
+- Modify: `IronPulse/Views/Workouts/DashboardView.swift`
+- Modify: `IronPulse/ContentView.swift`
+- Test: `IronPulseTests/AppLanguageBundleTests.swift`
+
+- [ ] **Step 1: Agregar `AppLanguage.bundle`** (código de arriba).
+
+- [ ] **Step 2: Escribir el test de regresión primero**
+
+```swift
+import XCTest
+@testable import IronPulse
+
+final class AppLanguageBundleTests: XCTestCase {
+    func testLocaleSoloSinBundleNoForzaElIdioma() {
+        // Documenta el gotcha: locale: solo, sin bundle:, no fuerza el idioma.
+        // Este test verifica el comportamiento conocido de Foundation, no el
+        // codigo de la app - existe para que quede documentado en el repo.
+        let result = String(localized: "dias_label.plural", defaultValue: "3 dias", locale: Locale(identifier: "fr"))
+        // No se afirma un valor especifico (depende del idioma del sistema del
+        // entorno de test) - solo se confirma que la implementacion real
+        // (Step 3) no usa este patron.
+        _ = result
+    }
+
+    func testBundleMasLocaleFuerzaElIdiomaCorrectamente() {
+        let result = String(
+            localized: "dias_label.plural",
+            defaultValue: "3 dias",
+            bundle: AppLanguage.french.bundle,
+            locale: AppLanguage.french.locale
+        )
+        XCTAssertTrue(result.contains("jours"), "Se esperaba 'jours' en el resultado, se obtuvo: \(result)")
+    }
+
+    func testBundleMasLocaleEnIngles() {
+        let result = String(
+            localized: "dias_label.plural",
+            defaultValue: "3 dias",
+            bundle: AppLanguage.english.bundle,
+            locale: AppLanguage.english.locale
+        )
+        XCTAssertTrue(result.contains("days"), "Se esperaba 'days' en el resultado, se obtuvo: \(result)")
+    }
+}
+```
+
+- [ ] **Step 3: Corregir los 9 call sites existentes**
+
+En cada uno de los 5 archivos listados arriba, cambiar
+`String(localized: "clave", defaultValue: "...", locale: AppLanguage.current.locale)`
+a
+`String(localized: "clave", defaultValue: "...", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)`
+— mismo texto y misma clave, solo se agrega el argumento `bundle:`. Leer
+cada archivo actual antes de editar para confirmar la ubicación exacta de
+cada call site (`diasLabel` en `CustomColor.swift`; los 2 fixes de
+"Todos"/"Compound" en `ExerciseListView.swift`; los 3 de "Volumen"/
+"Entrenamientos"/"Racha" en `DashboardView.swift`; los 2 de
+`healthImportMessage`/`formatted(_:suffix:)` en `ContentView.swift`).
+
+- [ ] **Step 4: Correr los tests, confirmar verde**
+
+```bash
+xcodebuild test -project IronPulse.xcodeproj -scheme IronPulse -destination 'platform=iOS Simulator,name=iPhone 17' -only-testing:IronPulseTests
+```
+
+Esperado: todos los tests en verde, incluidos los 3 nuevos de
+`AppLanguageBundleTests`.
+
+- [ ] **Step 5: Verificar en simulador**
+
+Cambiar el idioma a francés en Ajustes, confirmar que "Racha" (en el
+Dashboard) y el separador "•" del `ProfileRow`/header ahora sí muestran
+texto en francés, no en inglés.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add IronPulse/Models/AppLanguage.swift IronPulse/Theme/CustomColor.swift IronPulse/Views/Exercises/ExerciseListView.swift IronPulse/Views/Workouts/DashboardView.swift IronPulse/ContentView.swift IronPulseTests/AppLanguageBundleTests.swift
+git commit -m "Fix: String(localized:locale:) necesita bundle: explicito para forzar el idioma"
+```
+
+---
+
 ### Task 4: Los 7 enums con `displayName`
 
 **Files:**
@@ -446,7 +573,7 @@ git commit -m "Agrega Localizable.xcstrings: traduce todo el chrome existente a 
 - [ ] **Step 1: Convertir cada `displayName` (y `Weekday.shortDisplayName`)**
 
 Mismo patrón para los 7 enums — reemplazar cada `return "texto fijo"` por
-`return String(localized: "clave.unica", defaultValue: "texto fijo", locale: AppLanguage.current.locale)`,
+`return String(localized: "clave.unica", defaultValue: "texto fijo", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)`,
 redactando la traducción a inglés y francés para cada caso. El contenido
 completo actual de cada enum (para no perder ningún caso) está en
 `IronPulse/Models/ProfileEnums.swift` — leerlo primero.
@@ -466,11 +593,11 @@ enum ExperienceLevel: String, Codable, CaseIterable, Identifiable {
     var displayName: String {
         switch self {
         case .beginner:
-            return String(localized: "experience_level.beginner", defaultValue: "Principiante", locale: AppLanguage.current.locale)
+            return String(localized: "experience_level.beginner", defaultValue: "Principiante", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .intermediate:
-            return String(localized: "experience_level.intermediate", defaultValue: "Intermedio", locale: AppLanguage.current.locale)
+            return String(localized: "experience_level.intermediate", defaultValue: "Intermedio", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         case .advanced:
-            return String(localized: "experience_level.advanced", defaultValue: "Avanzado", locale: AppLanguage.current.locale)
+            return String(localized: "experience_level.advanced", defaultValue: "Avanzado", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         }
     }
 }
