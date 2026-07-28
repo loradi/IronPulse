@@ -186,7 +186,7 @@ struct ProfileDetailView: View {
                 let snapshot = try await healthImporter.makeSnapshot(for: profile)
                 modelContext.insert(snapshot)
                 try modelContext.save()
-                healthImportMessage = String(localized: "health_import.success", defaultValue: "Datos importados desde Salud.", locale: AppLanguage.current.locale)
+                healthImportMessage = String(localized: "health_import.success", defaultValue: "Datos importados desde Salud.", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
             } catch {
                 healthImportMessage = error.localizedDescription
             }
@@ -196,15 +196,15 @@ struct ProfileDetailView: View {
     }
 
     private func formatted(_ value: Double?, suffix: String) -> String {
-        guard let value else { return String(localized: "profile.no_data", defaultValue: "Sin dato", locale: AppLanguage.current.locale) }
+        guard let value else { return String(localized: "profile.no_data", defaultValue: "Sin dato", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale) }
         return value.formatted(.number.precision(.fractionLength(0...1))) + " " + suffix
     }
 
     private func daysPerWeekSliderLabel(_ count: Int) -> String {
         if count == 1 {
-            return String(localized: "profile.days_per_week_slider.singular", defaultValue: "\(count) dia por semana", locale: AppLanguage.current.locale)
+            return String(localized: "profile.days_per_week_slider.singular", defaultValue: "\(count) dia por semana", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         } else {
-            return String(localized: "profile.days_per_week_slider.plural", defaultValue: "\(count) dias por semana", locale: AppLanguage.current.locale)
+            return String(localized: "profile.days_per_week_slider.plural", defaultValue: "\(count) dias por semana", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         }
     }
 }

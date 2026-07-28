@@ -3,9 +3,9 @@ import UIKit
 
 func diasLabel(_ count: Int) -> String {
     if count == 1 {
-        return String(localized: "dias_label.singular", defaultValue: "\(count) dia", locale: AppLanguage.current.locale)
+        return String(localized: "dias_label.singular", defaultValue: "\(count) dia", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     } else {
-        return String(localized: "dias_label.plural", defaultValue: "\(count) dias", locale: AppLanguage.current.locale)
+        return String(localized: "dias_label.plural", defaultValue: "\(count) dias", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 }
 

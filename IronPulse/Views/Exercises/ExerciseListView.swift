@@ -47,7 +47,7 @@ struct ExerciseListView: View {
                             Text(exercise.name).font(.wwTitle3).lineLimit(2)
                             Spacer()
                             if exercise.isCompound {
-                                TagBadge(text: String(localized: "exercise.compound_badge", defaultValue: "Compound", locale: AppLanguage.current.locale))
+                                TagBadge(text: String(localized: "exercise.compound_badge", defaultValue: "Compound", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale))
                             }
                         }
                         Text("\(exercise.muscleGroup.displayName) • \(exercise.equipment.displayName)")
@@ -62,13 +62,13 @@ struct ExerciseListView: View {
         .safeAreaInset(edge: .top, spacing: 0) {
             VStack(spacing: 8) {
                 filterRow(
-                    allLabel: String(localized: "exercise_filter.all", defaultValue: "Todos", locale: AppLanguage.current.locale),
+                    allLabel: String(localized: "exercise_filter.all", defaultValue: "Todos", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale),
                     items: availableMuscleGroups,
                     label: \.displayName,
                     selection: $selectedMuscleGroup
                 )
                 filterRow(
-                    allLabel: String(localized: "exercise_filter.all", defaultValue: "Todos", locale: AppLanguage.current.locale),
+                    allLabel: String(localized: "exercise_filter.all", defaultValue: "Todos", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale),
                     items: availableEquipment,
                     label: \.displayName,
                     selection: $selectedEquipment
@@ -149,7 +149,7 @@ struct ExerciseDetailView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
 
                 if exercise.isCompound {
-                    TagBadge(text: String(localized: "exercise.compound_badge", defaultValue: "Compound", locale: AppLanguage.current.locale))
+                    TagBadge(text: String(localized: "exercise.compound_badge", defaultValue: "Compound", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale))
                 }
 
                 MuscleDiagramView(primary: exercise.muscleGroup, secondary: exercise.secondaryMuscles)

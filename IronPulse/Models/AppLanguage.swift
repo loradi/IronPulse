@@ -8,6 +8,14 @@ enum AppLanguage: String, CaseIterable, Identifiable {
     var id: String { rawValue }
     var locale: Locale { Locale(identifier: rawValue) }
 
+    var bundle: Bundle {
+        guard let path = Bundle.main.path(forResource: rawValue, ofType: "lproj"),
+              let bundle = Bundle(path: path) else {
+            return Bundle.main
+        }
+        return bundle
+    }
+
     var displayName: String {
         switch self {
         case .spanish: return "Español"
