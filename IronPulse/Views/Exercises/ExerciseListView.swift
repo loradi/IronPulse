@@ -43,9 +43,14 @@ struct ExerciseListView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 
                     VStack(alignment: .leading, spacing: 6) {
-                        Text(exercise.name).font(.headline)
+                        HStack(spacing: 8) {
+                            Text(exercise.name).font(.wwTitle3)
+                            if exercise.isCompound {
+                                TagBadge(text: "Compound")
+                            }
+                        }
                         Text("\(exercise.muscleGroup.displayName) • \(exercise.equipment.displayName)")
-                            .font(.caption)
+                            .font(.wwCaption)
                             .foregroundStyle(Color.ironTextSecondary)
                     }
                 }
@@ -73,7 +78,17 @@ struct ExerciseListView: View {
         }
         .scrollContentBackground(.hidden)
         .background(Color.ironBackground)
-        .navigationTitle("Ejercicios")
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack(spacing: 8) {
+                    Image("wwLogoMark")
+                        .resizable()
+                        .frame(width: 28, height: 28)
+                        .clipShape(Circle())
+                    Text("Watt + Weight").font(.wwHeadline)
+                }
+            }
+        }
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
     }
 
@@ -107,7 +122,7 @@ private struct FilterChip: View {
     var body: some View {
         Button(action: action) {
             Text(title.uppercased())
-                .font(.caption.weight(.bold))
+                .font(.wwLabelCaps)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 8)
                 .foregroundStyle(isSelected ? Color.ironBackground : Color.ironTextSecondary)
@@ -132,13 +147,32 @@ struct ExerciseDetailView: View {
                 .frame(height: 220)
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
 
+                if exercise.isCompound {
+                    TagBadge(text: "Compound")
+                }
+
+                MuscleDiagramView(primary: exercise.muscleGroup, secondary: exercise.secondaryMuscles)
+                    .frame(maxWidth: .infinity)
+
+                if let proTip = exercise.proTip {
+                    HStack(alignment: .top, spacing: Spacing.sm) {
+                        Image(systemName: "lightbulb.fill")
+                            .foregroundStyle(Color.ironAccent)
+                        Text(proTip)
+                            .font(.wwBody)
+                            .italic()
+                            .foregroundStyle(Color.ironTextPrimary)
+                    }
+                    .ironCard()
+                }
+
                 Text("\(exercise.muscleGroup.displayName) • \(exercise.equipment.displayName)")
-                    .font(.subheadline)
+                    .font(.wwBody)
                     .foregroundStyle(Color.ironTextSecondary)
 
                 if !exercise.secondaryMuscles.isEmpty {
                     Text("Tambien trabaja: \(exercise.secondaryMuscles.map(\.displayName).joined(separator: ", "))")
-                        .font(.caption)
+                        .font(.wwCaption)
                         .foregroundStyle(Color.ironTextSecondary)
                 }
 
@@ -146,7 +180,7 @@ struct ExerciseDetailView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         ForEach(Array(exercise.instructions.enumerated()), id: \.offset) { index, step in
                             Text("\(index + 1). \(step)")
-                                .font(.body)
+                                .font(.wwBody)
                         }
                     }
                     .ironCard()
