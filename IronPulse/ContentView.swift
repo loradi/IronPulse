@@ -122,7 +122,7 @@ struct ProfileDetailView: View {
                 }
 
                 VStack(alignment: .leading) {
-                    Text(diasLabel(profile.workoutDaysPerWeek) + " por semana")
+                    Text(daysPerWeekSliderLabel(profile.workoutDaysPerWeek))
                         .font(.wwBody)
                     Slider(
                         value: Binding(
@@ -198,6 +198,14 @@ struct ProfileDetailView: View {
     private func formatted(_ value: Double?, suffix: String) -> String {
         guard let value else { return "Sin dato" }
         return value.formatted(.number.precision(.fractionLength(0...1))) + " " + suffix
+    }
+
+    private func daysPerWeekSliderLabel(_ count: Int) -> String {
+        if count == 1 {
+            return String(localized: "profile.days_per_week_slider.singular", defaultValue: "\(count) dia por semana", locale: AppLanguage.current.locale)
+        } else {
+            return String(localized: "profile.days_per_week_slider.plural", defaultValue: "\(count) dias por semana", locale: AppLanguage.current.locale)
+        }
     }
 }
 

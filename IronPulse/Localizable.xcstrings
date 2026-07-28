@@ -443,6 +443,76 @@
         "es" : { "stringUnit" : { "state" : "translated", "value" : "Todos" } },
         "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tous" } }
       }
+    },
+    "dias_label.singular" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "1 day" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "1 dia" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "1 jour" } }
+      }
+    },
+    "dias_label.plural" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld days" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%lld dias" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lld jours" } }
+      }
+    },
+    "dashboard.metric_volumen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Volume" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Volumen" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Volume" } }
+      }
+    },
+    "dashboard.metric_entrenamientos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Workouts" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Entrenamientos" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Entraînements" } }
+      }
+    },
+    "dashboard.metric_racha" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Streak" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Racha" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Série" } }
+      }
+    },
+    "Nivel" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Level" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Nivel" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Niveau" } }
+      }
+    },
+    "Objetivo" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Goal" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Objetivo" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Objectif" } }
+      }
+    },
+    "profile.days_per_week_slider.singular" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "1 day per week" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "1 dia por semana" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "1 jour par semaine" } }
+      }
+    },
+    "profile.days_per_week_slider.plural" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld days per week" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%lld dias por semana" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lld jours par semaine" } }
+      }
     }
   },
   "version" : "1.0"

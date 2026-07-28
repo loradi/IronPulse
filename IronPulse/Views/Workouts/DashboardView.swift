@@ -143,11 +143,11 @@ struct DashboardView: View {
 
     private var metricsRow: some View {
         HStack {
-            metric("Volumen", "\(Int(WorkoutStatsService.totalVolumeKg(profile.workoutLogs))) kg")
+            metric(String(localized: "dashboard.metric_volumen", defaultValue: "Volumen", locale: AppLanguage.current.locale), "\(Int(WorkoutStatsService.totalVolumeKg(profile.workoutLogs))) kg")
             Spacer()
-            metric("Entrenamientos", "\(WorkoutStatsService.workoutCount(profile.workoutLogs))")
+            metric(String(localized: "dashboard.metric_entrenamientos", defaultValue: "Entrenamientos", locale: AppLanguage.current.locale), "\(WorkoutStatsService.workoutCount(profile.workoutLogs))")
             Spacer()
-            metric("Racha", diasLabel(currentStreak))
+            metric(String(localized: "dashboard.metric_racha", defaultValue: "Racha", locale: AppLanguage.current.locale), diasLabel(currentStreak))
         }
         .ironCard()
     }

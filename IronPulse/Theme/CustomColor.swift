@@ -2,7 +2,11 @@ import SwiftUI
 import UIKit
 
 func diasLabel(_ count: Int) -> String {
-    "\(count) \(count == 1 ? "dia" : "dias")"
+    if count == 1 {
+        return String(localized: "dias_label.singular", defaultValue: "\(count) dia", locale: AppLanguage.current.locale)
+    } else {
+        return String(localized: "dias_label.plural", defaultValue: "\(count) dias", locale: AppLanguage.current.locale)
+    }
 }
 
 extension Color {
