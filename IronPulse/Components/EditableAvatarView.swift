@@ -9,14 +9,15 @@ struct EditableAvatarView: View {
     @State private var selectedPhotoItem: PhotosPickerItem?
     @State private var showingCamera = false
     @State private var showingMenu = false
+    @State private var showingPhotoPicker = false
 
     var body: some View {
         AvatarPlaceholder(name: profile.name, photoData: profile.photoData, size: size)
             .contentShape(Circle())
             .onTapGesture { showingMenu = true }
             .confirmationDialog("Foto de perfil", isPresented: $showingMenu) {
-                PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
-                    Text("Elegir de galeria")
+                Button("Elegir de galeria") {
+                    showingPhotoPicker = true
                 }
 
                 if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -45,5 +46,6 @@ struct EditableAvatarView: View {
                     showingCamera = false
                 }
             }
+            .photosPicker(isPresented: $showingPhotoPicker, selection: $selectedPhotoItem, matching: .images)
     }
 }
