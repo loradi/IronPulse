@@ -238,10 +238,12 @@
 				};
 			};
 			buildConfigurationList = F10F515430105658005C2775 /* Build configuration list for PBXProject "IronPulse" */;
-			developmentRegion = en;
+			developmentRegion = es;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
+				fr,
 				Base,
 			);
 			mainGroup = F10F515030105658005C2775;
