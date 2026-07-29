@@ -33,11 +33,12 @@ struct IronPulseApp: App {
     }()
 
     @AppStorage("appLanguage") private var appLanguageRaw: String = AppLanguage.current.rawValue
+    @AppStorage("unitSystem") private var unitSystemRaw: String = UnitSystem.metric.rawValue
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .id(appLanguageRaw)
+                .id(appLanguageRaw + unitSystemRaw)
                 .environment(\.locale, (AppLanguage(rawValue: appLanguageRaw) ?? .spanish).locale)
                 .preferredColorScheme(.dark)
         }

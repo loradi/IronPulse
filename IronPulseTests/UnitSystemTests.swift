@@ -35,14 +35,6 @@ final class UnitSystemTests: XCTestCase {
         XCTAssertEqual(UnitSystem.formattedWeight(100, system: .imperial), "220.5 lbs")
     }
 
-    func testFormattedHeightEnMetricoUsaCm() {
-        XCTAssertEqual(UnitSystem.formattedHeight(175, system: .metric), "175 cm")
-    }
-
-    func testFormattedHeightEnImperialUsaPiesYPulgadas() {
-        XCTAssertEqual(UnitSystem.formattedHeight(175, system: .imperial), "5'9\"")
-    }
-
     func testCurrentSinValorGuardadoDevuelveMetrico() {
         let original = UserDefaults.standard.string(forKey: "unitSystem")
         defer {

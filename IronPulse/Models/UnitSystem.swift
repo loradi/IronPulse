@@ -40,14 +40,4 @@ extension UnitSystem {
         let suffix = system == .metric ? "kg" : "lbs"
         return value.formatted(.number.precision(.fractionLength(1))) + " " + suffix
     }
-
-    static func formattedHeight(_ cm: Double, system: UnitSystem) -> String {
-        switch system {
-        case .metric:
-            return cm.formatted(.number.precision(.fractionLength(0...1))) + " cm"
-        case .imperial:
-            let (feet, inches) = cmToFeetInches(cm)
-            return "\(feet)'\(inches)\""
-        }
-    }
 }
