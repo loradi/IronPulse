@@ -78,7 +78,7 @@ struct ActiveWorkoutView: View {
 
                                 HStack {
                                     HStack(spacing: 4) {
-                                        TextField("Peso", value: bindingForWeight(set), format: .number)
+                                        TextField("Peso", value: bindingForWeight(set), format: .number.precision(.fractionLength(1)))
                                             .keyboardType(.decimalPad)
                                             .disabled(isReadOnly)
                                             .frame(width: 60)
