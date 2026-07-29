@@ -1016,6 +1016,169 @@ Dashboard por el implementer del fix — pero **sigue pendiente confirmarlo
 independientemente en `ProfileDetailView`** la proxima vez que haya acceso
 confiable al simulador.
 
+## Selector de idioma (i18n) — infraestructura + chrome + enums COMPLETA (2026-07-28)
+
+Spec/plan: `.superpowers/sdd/2026-07-28-i18n-infraestructura/`. Ejecutado con
+`subagent-driven-development` (6 tareas, implementador + review por tarea).
+Era la mitad "selector de idioma" del pendiente 2 que quedaba abierto desde
+la tanda de foto de perfil. **Alcance real: espanol/ingles/frances para todo
+el chrome (titulos, botones, mensajes de estado vacio, tabs) y los 7 enums
+con `displayName`** (`ExperienceLevel`, `PrimaryGoal`, `SplitType`,
+`BiologicalSex`, `EquipmentType`, `MuscleGroup`, `Weekday`) — la traduccion
+real de los 146 ejercicios del catalogo (nombre/instrucciones/pro tip) es
+explicitamente **NO** parte de este alcance, queda como spec futura propia
+(ver "Siguientes pasos").
+
+### Que se construyo (Tareas 1-5)
+
+- **`AppLanguage`** (Tarea 1): enum nuevo `es`/`en`/`fr`, persistido en
+  `@AppStorage("appLanguage")`, con `resolve()` que mapea el idioma del
+  sistema a uno de los 3 soportados (heuristica `hasPrefix("en")`/
+  `hasPrefix("fr")`, cualquier otro cae a `es`) si el usuario nunca eligio
+  explicitamente. `developmentRegion`/`knownRegions` agregados al
+  `project.pbxproj`.
+- **Wiring en vivo** (Tarea 2): `.environment(\.locale:)` en el
+  `WindowGroup` raiz de `IronPulseApp.swift` + seccion "Ajustes" con
+  `Picker("Idioma", ...)` en `ProfileDetailView`. Cambiar el picker
+  recalcula el `locale` del environment sin reiniciar la app.
+- **Catalogo de chrome** (Tarea 3, `Localizable.xcstrings`): 126 keys
+  cubriendo titulos, botones, tabs, mensajes de estado vacio, labels de
+  formularios, etc. de las 9 vistas existentes. Encontro y corrigio 2 bugs
+  arquitectonicos reales durante la ejecucion (ver "Hallazgos reales"
+  abajo): un mismatch de caracter bullet (`•` U+2022 vs `·` U+00B7`) en 5
+  call sites, y el gotcha de que `String(localized:defaultValue:locale:)`
+  **no** fuerza el idioma sin un `bundle:` explicito (cae en silencio al
+  idioma del sistema) — afectaba los 13 call sites que ya usaban ese
+  patron.
+- **7 enums traducidos** (Tarea 4): las 44 `case` con `displayName` de
+  `ProfileEnums.swift` pasaron todas a
+  `String(localized: "...", defaultValue: "...", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)`
+  — el mismo patron con `bundle:` explicito que corrigio el gotcha de la
+  Tarea 3. Confirmado que `weekday.short.*` (la tira semanal del Dashboard)
+  da exactamente 3 letras en ingles/frances (`MON`/`TUE`/... , `LUN`/`MAR`/...)
+  sin romper el layout.
+- **Esquema por idioma del catalogo de ejercicios** (Tarea 5,
+  `IronPulse/Models/Exercise.swift` + `ExerciseDatabaseSeeder.swift` +
+  `ExercisesSeed.json`): `name`/`instructions`/`proTip` pasaron de
+  propiedades guardadas a computadas que eligen entre `nameEs/En/Fr` (etc.,
+  guardadas) segun `AppLanguage.current`. Las 146 entradas del JSON
+  migraron a `{es, en, fr}` con `en`/`fr` **duplicando** el valor de `es`
+  como placeholder — la traduccion real es spec futura, no tocada aca.
+
+### Hallazgos reales encontrados y corregidos durante la ejecucion (Tareas 3-5)
+
+- **Bug de test hermeticity** (Tarea 5): `elNombreDeLaRutinaNoMencionaIA()`
+  comparaba contra el literal espanol `"Fuerza"` — dejo de pasar en un
+  simulador con idioma de sistema frances en cuanto `PrimaryGoal.displayName`
+  paso a depender de `AppLanguage.current` (Tarea 4). Fix: comparar contra
+  el valor dinamico (`PrimaryGoal.strength.displayName`) en vez del
+  literal, preservando la intencion real del test.
+- **Bug Critico de crash real** (Tarea 5, encontrado en el review final):
+  `@Query(sort: \Exercise.name)` en `ExerciseListView.swift` y
+  `ExercisePickerSheet.swift` crasheaba en runtime porque `name` paso a ser
+  una propiedad computada (no guardada) en la misma tarea — SwiftData no
+  puede construir un sort descriptor sobre una computada. Ni el build ni
+  los 71 tests lo agarraban porque ninguno ejercita `@Query` de verdad.
+  Reproducido de forma sintetica (SwiftData `FetchDescriptor` standalone)
+  por dos personas independientes antes de escribir el fix. **Fix**: sacar
+  el `sort:` del `@Query` y ordenar el array en Swift sobre `.name`
+  (tambien re-ordena correctamente segun el idioma activo, ya que `.name`
+  es dinamico).
+- **Bug arquitectonico del gotcha `bundle:`** (Tarea 3): confirmado
+  empiricamente con un test descartable antes de despachar el fix —
+  `String(localized:defaultValue:locale:)` sin `bundle:` cae en silencio al
+  idioma del sistema (`Bundle.main`) en vez del idioma elegido por el
+  usuario. Se corrigieron los 13 call sites existentes y se actualizo el
+  plan para que las Tareas 4-5 no repitieran el mismo bug en su propio
+  codigo de ejemplo.
+
+### Verificacion final (Tarea 6)
+
+**Suite de tests**: `xcodebuild test -only-testing:IronPulseTests` en
+iPhone 17 (iOS 26.5) → **71/71 passed, 0 failed**, confirmado con
+`xcrun xcresulttool get test-results summary` (no por scroll del log).
+
+**Prioridad #1 — confirmacion en vivo del crash de la Tarea 5**: la Tarea 5
+habia dejado esto como el pendiente mas importante — 3 intentos previos
+(fix implementer, re-reviewer, controller) fallaron por la inyeccion de
+taps rota del simulador en esa sesion, dejando solo evidencia sintetica.
+**Esta vez se logro la confirmacion en vivo real**: `simctl uninstall` +
+reinstall limpio del build actual, perfil nuevo creado, tab Ejercicios
+abierta con exito — **renderiza los nombres de los ejercicios ordenados
+alfabeticamente sin crashear**, con los filtros de grupo muscular/equipo
+tambien traducidos. El crash esta genuinamente resuelto y confirmado en
+dispositivo real, no solo en teoria.
+
+**Recorrido visual en los 3 idiomas**: el simulador arranco en frances
+(idioma de sistema de esa maquina, sin override guardado). Se navegaron
+las 4 tabs (Dashboard/Rutina/Ejercicios/Perfil) + el detalle de un
+ejercicio en frances, despues se cambio el picker de Idioma en vivo a
+ingles y se repitio el recorrido completo, despues a espanol. Confirmado
+en las 3 corridas:
+- El chrome (titulos, tabs, botones, mensajes de estado vacio, labels de
+  formulario) cambia en vivo sin reiniciar la app.
+- Los 7 enums muestran el idioma correcto donde se probaron: Nivel/Level
+  (Debutant/Beginner/Principiante), Objetivo/Goal (Hypertrophie/Hypertrophy/
+  Hipertrofia), Sexo/Sex, grupos musculares y equipamiento (en los chips de
+  filtro y en los tags de cada ejercicio: "Pectoraux"/"Chest"/"Pecho",
+  "Halteres"/"Dumbbells"/"Mancuernas", etc.).
+- La tira semanal del Dashboard no rompe layout con las abreviaturas de 3
+  letras: `LUN MAR MIE JUE VIE SAB DOM` (fr) y `MON TUE WED THU FRI SAT SUN`
+  (en) caben igual de bien que el espanol.
+- Los nombres de ejercicios se ven identicos entre los 3 idiomas (esperado
+  — son placeholders, la traduccion real del catalogo es spec futura).
+- Ningun boton/`NavigationLink` quedo sin responder (la regresion historica
+  de `Chart` de la tanda de tendencias no aplica aca, este plan no toca
+  ningun `Chart`, confirmado como red de seguridad).
+
+**2 hallazgos reales nuevos encontrados durante esta verificacion** (no
+corregidos aca — Tarea 6 esta explicitamente delimitada a verificacion,
+"Files: ninguno" en el brief — quedan documentados como pendientes):
+
+1. **Sufijo `"/semana"` hardcodeado sin traducir**
+   (`ContentView.swift:78`, `ProfileRow.body`): la fila de perfil en la
+   lista raiz arma el resumen como
+   `"\(experienceLevel.displayName) • \(primaryGoal.displayName) • \(diasLabel(...))/semana"`
+   — el `/semana` final es un literal espanol fijo, nunca pasa por el
+   catalogo de traduccion. Confirmado en vivo: con la app en frances se vio
+   literalmente `"Debutant • Hypertrophie • 3 jours/semana"` — `jours`
+   (frances, correcto) pegado a `/semana` (espanol, hardcodeado). Cosmetico
+   pero real, se le escapo al barrido "exhaustivo" de la Tarea 3 igual que
+   los otros gaps que esa tarea ya documento haber encontrado en rondas
+   sucesivas.
+2. **Gap de refresco en vivo para vistas no re-renderizadas al momento del
+   cambio de idioma**: los 7 enums usan `String(localized:bundle:locale:)`
+   leyendo `AppLanguage.current` (una variable global), **no**
+   `\.locale` del environment de SwiftUI — es el mismo patron que ya
+   arreglo el gotcha `bundle:` de la Tarea 3, pero como consecuencia
+   SwiftUI no tiene forma de saber que esas vistas dependen del idioma.
+   Confirmado en vivo, reproducido dos veces: (a) el `Picker(selection:
+   $profile.experienceLevel)` de "Nivel"/"Objetivo" en `ProfileDetailView`
+   sigue mostrando el valor colapsado en el idioma anterior (ej. quedo en
+   "Beginner"/"Hypertrophy" en ingles justo despues de cambiar el picker de
+   Idioma a espanol, mientras que las etiquetas "Nivel"/"Objetivo" y todo
+   el resto de la pantalla si cambiaron a espanol al instante); (b) la fila
+   de perfil en la lista raiz (`ContentView`/`ProfileRow`), al no haber
+   sido re-visitada desde antes del cambio de idioma, seguia mostrando
+   texto del idioma viejo. **Confirmado que es puramente cosmetico y se
+   autocorrige**: cerrar la app entera y volver a abrirla (o, se presume,
+   cualquier reconstruccion completa de esas vistas) muestra el idioma
+   correcto de inmediato — los datos y el idioma persistido
+   (`@AppStorage`) siempre fueron correctos, es solo una ventana de
+   refresco incompleta en vistas ya montadas fuera de pantalla o en el
+   label colapsado de un `Picker(.menu)`. No afecta la fiabilidad de la
+   traduccion en si (confirmado comparando contra el mismo dato mostrado
+   correctamente en otra vista simultanea, ej. el resumen del Dashboard).
+
+### Mensajes de permiso — decision de alcance (ya tomada en la Tarea 3)
+
+`NSHealthShareUsageDescription`, `NSHealthUpdateUsageDescription` y
+`NSCameraUsageDescription` (`project.pbxproj`) se dejan **solo en
+espanol**, por decision explicita de alcance ya documentada en el reporte
+de la Tarea 3: son texto de Info.plist, un mecanismo de i18n distinto al
+String Catalog de SwiftUI (requeriria `InfoPlist.strings` por idioma), y
+traducirlos quedo fuera de alcance de este plan.
+
 ## Siguientes pasos
 
 **Fases 1-5, la tanda de tendencias/sesion guiada y el rebrand "Watt +
@@ -1048,11 +1211,20 @@ o son de alcance mayor (no son fixes directos):
      independiente todavia. **Camara real en dispositivo fisico** tambien
      sigue pendiente de verificacion manual del usuario, como ya estaba
      anotado.
-   - **Selector de idioma** (espanol/ingles/frances, i18n de toda la app):
-     sigue sin arrancar, spec propia todavia por escribir. Sin relacion de
-     dependencia con la foto de perfil — son dos subsistemas
-     independientes, solo compartian el mismo "spec futura" cuando se
-     mencionaron juntos por primera vez.
+   - ~~**Selector de idioma** (espanol/ingles/frances, i18n de toda la
+     app)~~ — **RESUELTO** (2026-07-28): infraestructura + chrome (126
+     keys) + los 7 enums con `displayName` estan completos y verificados
+     en vivo en los 3 idiomas. Ver seccion "Selector de idioma (i18n) —
+     infraestructura + chrome + enums COMPLETA" arriba para el detalle
+     completo, incluidos 2 hallazgos reales nuevos (sufijo `/semana`
+     hardcodeado, gap de refresco en vivo en vistas no re-renderizadas)
+     que quedan pendientes mas abajo. **La traduccion real del catalogo de
+     ejercicios (146 × 3 campos: nombre/instrucciones/pro tip, a
+     ingles/frances) sigue siendo un pendiente separado** — el esquema
+     `{es, en, fr}` ya existe (Tarea 5 de esta misma tanda) pero `en`/`fr`
+     son placeholders identicos a `es`; la traduccion de contenido en si
+     necesita su propia spec futura (no es un fix directo, es contenido a
+     producir/revisar para 146 ejercicios).
 3. Definir fuente real de GIFs animados (o aceptar las fotos JPG de
    free-exercise-db como definitivas).
 4. `RoutineBuilderView.save()` genera `dayNumber` con huecos — declinado
@@ -1072,6 +1244,24 @@ o son de alcance mayor (no son fixes directos):
    inclinado con mancuernas") envuelven en 3 lineas con una palabra sola
    en la ultima linea — sigue siendo legible, cosmetico, sin accion (ver
    ledger de la Tarea 9 y la seccion de verificacion final arriba).
+8. **Sufijo `"/semana"` hardcodeado en `ContentView.swift:78`**
+   (`ProfileRow.body`) — encontrado en la verificacion final de la tanda
+   de i18n (2026-07-28), ver seccion propia arriba. Fix directo y chico
+   (agregar la key al catalogo y usarla en vez del literal), no se aplico
+   porque la Tarea 6 que lo encontro estaba delimitada a verificacion
+   ("Files: ninguno").
+9. **Gap de refresco en vivo del idioma en vistas no re-renderizadas**
+   (`Picker(.menu)` de Nivel/Objetivo en `ProfileDetailView`, fila de
+   perfil en `ContentView`) — encontrado en la verificacion final de la
+   tanda de i18n (2026-07-28), ver seccion propia arriba para el detalle
+   completo. Cosmetico (se autocorrige con un relanzamiento de la app, los
+   datos y el idioma persistido siempre fueron correctos), pero real: no
+   todas las pantallas cumplen 100% el requisito de "cambia en vivo sin
+   reiniciar la app" tal cual esta implementado hoy (via `AppLanguage.current`
+   global en vez de `\.locale` del environment de SwiftUI). Necesitaria
+   investigacion de causa raiz antes de un fix (candidatos: forzar
+   `.id(AppLanguage.current)` en las vistas afectadas, o migrar los 7 enums
+   a leer `\.locale` del environment en vez de la variable global).
 
 ## Gotchas del entorno (cuestan horas si se redescubren)
 
