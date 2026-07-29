@@ -3,6 +3,7 @@ import SwiftData
 
 struct GuidedWorkoutView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     @Bindable var log: WorkoutLog
     let catalog: [Exercise]
 
@@ -12,6 +13,7 @@ struct GuidedWorkoutView: View {
     @State private var elapsedSetSeconds: Int = 0
     @State private var restRemaining: Int = 0
     @State private var timerTask: Task<(), Never>? = nil
+    @State private var isShowingExerciseInfo = false
 
     private var groups: [(exerciseId: String, sets: [SetLog])] {
         GuidedSessionFlow.groupedSets(log.completedSets)
@@ -62,6 +64,45 @@ struct GuidedWorkoutView: View {
                         .frame(width: 28, height: 28)
                         .clipShape(Circle())
                     Text("Entrenamiento").font(.wwHeadline)
+                }
+            }
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+                Button {
+                    goToPreviousExercise()
+                } label: {
+                    Image(systemName: "chevron.left")
+                }
+                .disabled(currentExerciseIndex == 0)
+
+                Button {
+                    goToNextExercise()
+                } label: {
+                    Image(systemName: "chevron.right")
+                }
+                .disabled(currentExerciseIndex >= groups.count - 1)
+            }
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    isShowingExerciseInfo = true
+                } label: {
+                    Image(systemName: "info.circle")
+                }
+                Button(finishLabel) {
+                    finishSession()
+                }
+            }
+        }
+        .sheet(isPresented: $isShowingExerciseInfo) {
+            if let exercise = currentExercise {
+                NavigationStack {
+                    ExerciseDetailView(exercise: exercise)
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button(closeLabel) {
+                                    isShowingExerciseInfo = false
+                                }
+                            }
+                        }
                 }
             }
         }
@@ -224,6 +265,25 @@ struct GuidedWorkoutView: View {
         selectFirstIncompleteSet()
     }
 
+    private func goToPreviousExercise() {
+        guard currentExerciseIndex > 0 else { return }
+        currentExerciseIndex -= 1
+        selectFirstIncompleteSet()
+    }
+
+    private func goToNextExercise() {
+        guard currentExerciseIndex < groups.count - 1 else { return }
+        currentExerciseIndex += 1
+        selectFirstIncompleteSet()
+    }
+
+    private func finishSession() {
+        timerTask?.cancel()
+        log.endDate = Date()
+        try? modelContext.save()
+        dismiss()
+    }
+
     private func selectFirstIncompleteSet() {
         timerTask?.cancel()
         setPhase = .idle
@@ -251,6 +311,14 @@ struct GuidedWorkoutView: View {
 
     private func elapsedLabel(_ seconds: Int) -> String {
         String(localized: "guided_session.elapsed_seconds", defaultValue: "\(seconds) s", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var finishLabel: String {
+        String(localized: "guided_session.finish", defaultValue: "Terminar", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var closeLabel: String {
+        String(localized: "guided_session.close_info", defaultValue: "Cerrar", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 }
 
