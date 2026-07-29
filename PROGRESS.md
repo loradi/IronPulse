@@ -1123,7 +1123,7 @@ en las 3 corridas:
   filtro y en los tags de cada ejercicio: "Pectoraux"/"Chest"/"Pecho",
   "Halteres"/"Dumbbells"/"Mancuernas", etc.).
 - La tira semanal del Dashboard no rompe layout con las abreviaturas de 3
-  letras: `LUN MAR MIE JUE VIE SAB DOM` (fr) y `MON TUE WED THU FRI SAT SUN`
+  letras: `LUN MAR MER JEU VEN SAM DIM` (fr) y `MON TUE WED THU FRI SAT SUN`
   (en) caben igual de bien que el espanol.
 - Los nombres de ejercicios se ven identicos entre los 3 idiomas (esperado
   — son placeholders, la traduccion real del catalogo es spec futura).
