@@ -143,7 +143,7 @@ struct DashboardView: View {
 
     private var metricsRow: some View {
         HStack {
-            metric(String(localized: "dashboard.metric_volumen", defaultValue: "Volumen", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale), "\(Int(WorkoutStatsService.totalVolumeKg(profile.workoutLogs))) kg")
+            metric(String(localized: "dashboard.metric_volumen", defaultValue: "Volumen", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale), UnitSystem.formattedWeight(WorkoutStatsService.totalVolumeKg(profile.workoutLogs), system: UnitSystem.current))
             Spacer()
             metric(String(localized: "dashboard.metric_entrenamientos", defaultValue: "Entrenamientos", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale), "\(WorkoutStatsService.workoutCount(profile.workoutLogs))")
             Spacer()
@@ -185,10 +185,14 @@ struct DashboardView: View {
         if leanMassEntries.count >= 2,
            let firstValue = leanMassEntries.first?.leanBodyMassKg,
            let lastValue = leanMassEntries.last?.leanBodyMassKg {
-            let delta = lastValue - firstValue
+            let system = UnitSystem.current
+            let deltaKg = lastValue - firstValue
+            let displayValue = system == .metric ? lastValue : UnitSystem.kgToLbs(lastValue)
+            let displayDelta = system == .metric ? deltaKg : UnitSystem.kgToLbs(deltaKg)
+            let unitSuffix = system == .metric ? "kg" : "lbs"
             VStack(alignment: .leading, spacing: 4) {
                 Text("Masa magra").font(.wwHeadline)
-                Text(String(format: "%.1f kg (%@%.1fkg desde que empezaste)", lastValue, delta >= 0 ? "+" : "", delta))
+                Text(String(format: "%.1f \(unitSuffix) (%@%.1f\(unitSuffix) desde que empezaste)", displayValue, displayDelta >= 0 ? "+" : "", displayDelta))
                     .font(.wwBody)
                     .foregroundStyle(Color.ironTextSecondary)
             }
