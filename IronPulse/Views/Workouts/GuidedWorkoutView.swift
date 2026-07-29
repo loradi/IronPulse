@@ -43,6 +43,11 @@ struct GuidedWorkoutView: View {
                     ForEach(Array(currentGroup.sets.enumerated()), id: \.element.id) { index, set in
                         setRow(set: set, index: index)
                     }
+                    Button {
+                        addSet(to: currentGroup.exerciseId)
+                    } label: {
+                        Label(addSetLabel, systemImage: "plus")
+                    }
                 }
 
                 if let set = activeSet {
@@ -139,6 +144,15 @@ struct GuidedWorkoutView: View {
                 }
                 Spacer()
                 Stepper("\(set.repsCompleted) reps", value: bindingForReps(set), in: 0...50)
+            }
+
+            if (currentGroup?.sets.count ?? 0) > 1 {
+                Button(role: .destructive) {
+                    removeSet(set)
+                } label: {
+                    Label(removeSetLabel, systemImage: "trash")
+                }
+                .font(.wwCaption)
             }
         }
         .padding(.vertical, 4)
@@ -284,6 +298,40 @@ struct GuidedWorkoutView: View {
         dismiss()
     }
 
+    private func addSet(to exerciseId: String) {
+        let exerciseSets = log.completedSets.filter { $0.exerciseId == exerciseId }
+        guard let template = exerciseSets.max(by: { $0.setIndex < $1.setIndex }) else { return }
+        let newSet = SetLog(
+            exerciseId: exerciseId,
+            setIndex: (log.completedSets.map(\.setIndex).max() ?? 0) + 1,
+            weightKg: 0,
+            repsCompleted: 0,
+            restSeconds: template.restSeconds,
+            targetRepsMin: template.targetRepsMin,
+            targetRepsMax: template.targetRepsMax
+        )
+        log.completedSets.append(newSet)
+        renumberSets()
+        try? modelContext.save()
+    }
+
+    private func removeSet(_ set: SetLog) {
+        let exerciseSetCount = log.completedSets.filter { $0.exerciseId == set.exerciseId }.count
+        guard exerciseSetCount > 1 else { return }
+        log.completedSets.removeAll { $0.id == set.id }
+        modelContext.delete(set)
+        if activeSetID == set.id {
+            selectFirstIncompleteSet()
+        }
+        renumberSets()
+        try? modelContext.save()
+    }
+
+    private func renumberSets() {
+        let order = GuidedSessionFlow.groupedSets(log.completedSets).map(\.exerciseId)
+        GuidedSessionFlow.renumbered(log.completedSets, groupedBy: order)
+    }
+
     private func selectFirstIncompleteSet() {
         timerTask?.cancel()
         setPhase = .idle
@@ -319,6 +367,14 @@ struct GuidedWorkoutView: View {
 
     private var closeLabel: String {
         String(localized: "guided_session.close_info", defaultValue: "Cerrar", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var addSetLabel: String {
+        String(localized: "guided_session.add_set", defaultValue: "Agregar set", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var removeSetLabel: String {
+        String(localized: "guided_session.remove_set", defaultValue: "Eliminar set", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 }
 
