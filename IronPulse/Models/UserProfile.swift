@@ -12,7 +12,7 @@ final class UserProfile {
     var primaryGoal: PrimaryGoal
     var workoutDaysPerWeek: Int
     var preferredEquipment: [EquipmentType]
-    var biologicalSex: BiologicalSex
+    var biologicalSex: BiologicalSex = BiologicalSex.notSet
     var createdAt: Date
     var photoData: Data?
 
