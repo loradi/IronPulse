@@ -4,7 +4,7 @@
 Watt + Weight
 
 ## Subtítulo
-(máx. 30 caracteres — 29 usados)
+(máx. 30 caracteres — 28 usados)
 
 Rutinas y fuerza en un lugar
 
@@ -65,7 +65,7 @@ Deportes (Sports) — opcional, dejar en blanco si App Store Connect solo permit
 ldiego900@gmail.com
 
 ## URL de política de privacidad
-(completar con la URL de GitHub Pages una vez publicada — ver checklist, Task 5)
+(completar con la URL de GitHub Pages una vez publicada — ver docs/app-store/submission-checklist.md, paso 1)
 
 ## Nota para el equipo de revisión de Apple
 (campo "Notes" en App Store Connect, no visible al público)

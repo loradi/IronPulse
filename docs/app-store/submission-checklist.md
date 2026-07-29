@@ -15,7 +15,11 @@ automatizar — hazlos en este orden.
       - Idioma principal: Español
 - [ ] 3. Completa la ficha con el contenido de
       `docs/app-store/listing-es.md` (subtítulo, descripción, palabras
-      clave, categoría, contacto de soporte).
+      clave, categoría, contacto de soporte). Opcionalmente, agrega
+      localizaciones adicionales en App Store Connect ("Add
+      Localization") usando `docs/app-store/listing-en.md` (English) y
+      `docs/app-store/listing-fr.md` (Français) — la app ya soporta
+      es/en/fr en el catálogo de ejercicios y el resto de la interfaz.
 - [ ] 4. Pega la URL de la política de privacidad (del paso 1) en el
       campo correspondiente de App Store Connect.
 - [ ] 5. Sube las 5 capturas de `docs/app-store/screenshots/` en la
