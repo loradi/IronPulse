@@ -7,11 +7,15 @@ struct RoutineTabView: View {
     @Bindable var profile: UserProfile
     @State private var activeLog: WorkoutLog?
 
+    private var todaysCompletedLog: WorkoutLog? {
+        WorkoutStatsService.todaysCompletedLog(logs: profile.workoutLogs)
+    }
+
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
                 if let active = profile.activeRoutine {
-                    RoutineCard(routine: active, onStartDay: startWorkout)
+                    RoutineCard(routine: active, todaysCompletedLog: todaysCompletedLog, onStartDay: startWorkout)
                 } else {
                     ContentUnavailableView(
                         "Sin rutina activa",
@@ -60,12 +64,17 @@ struct RoutineTabView: View {
 
     private func startWorkout(_ day: RoutineDay) {
         guard let routine = profile.activeRoutine else { return }
+        if day.weekday == Weekday.today(), let completedLog = todaysCompletedLog {
+            activeLog = completedLog
+            return
+        }
         activeLog = WorkoutLogGenerator.startSession(for: day, routineName: routine.name, profile: profile, in: modelContext)
     }
 }
 
 private struct RoutineCard: View {
     let routine: WorkoutRoutine
+    let todaysCompletedLog: WorkoutLog?
     let onStartDay: (RoutineDay) -> Void
 
     var body: some View {
@@ -82,7 +91,7 @@ private struct RoutineCard: View {
                     HStack {
                         Text(day.title).font(.wwBody).bold()
                         Spacer()
-                        Button("Empezar") { onStartDay(day) }
+                        Button(isTodayCompleted(day) ? viewSummaryLabel : "Empezar") { onStartDay(day) }
                             .font(.wwLabelCaps)
                             .foregroundStyle(Color.ironAccent)
                     }
@@ -104,6 +113,14 @@ private struct RoutineCard: View {
             }
         }
         .ironCard()
+    }
+
+    private func isTodayCompleted(_ day: RoutineDay) -> Bool {
+        day.weekday == Weekday.today() && todaysCompletedLog != nil
+    }
+
+    private var viewSummaryLabel: String {
+        String(localized: "dashboard.view_summary", defaultValue: "Ver resumen", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 }
 

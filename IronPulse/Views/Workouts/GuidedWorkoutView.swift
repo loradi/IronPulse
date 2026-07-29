@@ -123,7 +123,11 @@ struct GuidedWorkoutView: View {
     }
 
     private func setRow(set: SetLog, index: Int) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
+        let isActive = set.id == activeSetID
+        let weightMissing = isActive && set.weightKg <= 0
+        let repsMissing = isActive && set.repsCompleted <= 0
+
+        return VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text("Set \(index + 1)").font(.wwHeadline)
                 Spacer()
@@ -140,19 +144,16 @@ struct GuidedWorkoutView: View {
                     TextField("Peso", value: bindingForWeight(set), format: .number.precision(.fractionLength(1)))
                         .keyboardType(.decimalPad)
                         .frame(width: 60)
-                    Text(UnitSystem.current == .metric ? "kg" : "lbs").font(.wwCaption).foregroundStyle(Color.ironTextSecondary)
+                        .foregroundStyle(weightMissing ? Color.red : Color.ironTextPrimary)
+                    Text(UnitSystem.current == .metric ? "kg" : "lbs")
+                        .font(.wwCaption)
+                        .foregroundStyle(weightMissing ? Color.red : Color.ironTextSecondary)
                 }
                 Spacer()
-                Stepper("\(set.repsCompleted) reps", value: bindingForReps(set), in: 0...50)
-            }
-
-            if (currentGroup?.sets.count ?? 0) > 1 {
-                Button(role: .destructive) {
-                    removeSet(set)
-                } label: {
-                    Label(removeSetLabel, systemImage: "trash")
+                Stepper(value: bindingForReps(set), in: 0...50) {
+                    Text("\(set.repsCompleted) reps")
+                        .foregroundStyle(repsMissing ? Color.red : Color.ironTextPrimary)
                 }
-                .font(.wwCaption)
             }
         }
         .padding(.vertical, 4)
@@ -170,16 +171,38 @@ struct GuidedWorkoutView: View {
             }
         }
         .listRowBackground(Color.clear)
+        .swipeActions(edge: .trailing) {
+            if canDeleteSet(set) {
+                Button(role: .destructive) {
+                    removeSet(set)
+                } label: {
+                    Label(removeSetLabel, systemImage: "trash")
+                }
+            }
+        }
+    }
+
+    private func canDeleteSet(_ set: SetLog) -> Bool {
+        !set.isCompleted && (currentGroup?.sets.count ?? 0) > 1
     }
 
     @ViewBuilder
     private func controls(for set: SetLog) -> some View {
         switch setPhase {
         case .idle:
-            Button(startSetLabel) {
-                startSet()
+            if currentGroup?.sets.allSatisfy(\.isCompleted) == true {
+                if currentExerciseIndex < groups.count - 1 {
+                    Button(nextExerciseLabel) {
+                        advanceToNextExercise()
+                    }
+                    .buttonStyle(PrimarySportButtonStyle())
+                }
+            } else {
+                Button(startSetLabel) {
+                    startSet()
+                }
+                .buttonStyle(PrimarySportButtonStyle())
             }
-            .buttonStyle(PrimarySportButtonStyle())
         case .runningSet:
             VStack(spacing: 8) {
                 Text(elapsedLabel(elapsedSetSeconds)).font(.wwHeadline).foregroundStyle(Color.ironAccent)
@@ -193,12 +216,17 @@ struct GuidedWorkoutView: View {
             HStack(spacing: 12) {
                 Text(restLabel(restRemaining)).font(.wwHeadline).foregroundStyle(Color.ironAccent)
                 Spacer()
-                Button(startSetLabel) {
+                Button(isLastSetInGroup(set) ? nextExerciseLabel : startSetLabel) {
                     startNextSet()
                 }
                 .buttonStyle(PrimarySportButtonStyle())
             }
         }
+    }
+
+    private func isLastSetInGroup(_ set: SetLog) -> Bool {
+        guard let currentGroup else { return false }
+        return GuidedSessionFlow.nextSetID(after: set.id, in: currentGroup.sets) == nil
     }
 
     private func bindingForWeight(_ set: SetLog) -> Binding<Double> {
@@ -316,8 +344,7 @@ struct GuidedWorkoutView: View {
     }
 
     private func removeSet(_ set: SetLog) {
-        let exerciseSetCount = log.completedSets.filter { $0.exerciseId == set.exerciseId }.count
-        guard exerciseSetCount > 1 else { return }
+        guard canDeleteSet(set) else { return }
         log.completedSets.removeAll { $0.id == set.id }
         modelContext.delete(set)
         if activeSetID == set.id {
@@ -348,6 +375,10 @@ struct GuidedWorkoutView: View {
 
     private var startSetLabel: String {
         String(localized: "guided_session.start_set", defaultValue: "Empezar set", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var nextExerciseLabel: String {
+        String(localized: "guided_session.next_exercise", defaultValue: "Siguiente", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 
     private var finishSetLabel: String {
