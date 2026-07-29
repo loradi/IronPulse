@@ -103,6 +103,11 @@ enum WorkoutStatsService {
         return days.sorted { $0.weekday.rawValue < $1.weekday.rawValue }
     }
 
+    static func todaysCompletedLog(logs: [WorkoutLog], today: Date = Date(), calendar: Calendar = .current) -> WorkoutLog? {
+        let todayStart = calendar.startOfDay(for: today)
+        return finishedLogs(logs).first { calendar.startOfDay(for: $0.startDate) == todayStart }
+    }
+
     private static func finishedLogs(_ logs: [WorkoutLog]) -> [WorkoutLog] {
         logs.filter { $0.endDate != nil }
     }

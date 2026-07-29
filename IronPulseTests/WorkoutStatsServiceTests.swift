@@ -197,4 +197,25 @@ struct WorkoutStatsServiceTests {
         let result = WorkoutStatsService.weekStrip(scheduledWeekdays: [], logs: [])
         #expect(result.allSatisfy { $0.status == .notScheduled })
     }
+
+    // MARK: - todaysCompletedLog
+
+    @Test func todaysCompletedLogEncuentraElLogDeHoyTerminado() {
+        let today = Date()
+        let log = WorkoutLog(startDate: today, endDate: today, routineName: "R", dayTitle: "D")
+        #expect(WorkoutStatsService.todaysCompletedLog(logs: [log], today: today, calendar: calendar) != nil)
+    }
+
+    @Test func todaysCompletedLogIgnoraLogsSinTerminar() {
+        let today = Date()
+        let log = WorkoutLog(startDate: today, endDate: nil, routineName: "R", dayTitle: "D")
+        #expect(WorkoutStatsService.todaysCompletedLog(logs: [log], today: today, calendar: calendar) == nil)
+    }
+
+    @Test func todaysCompletedLogIgnoraLogsDeOtroDia() {
+        let today = Date()
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
+        let log = WorkoutLog(startDate: yesterday, endDate: yesterday, routineName: "R", dayTitle: "D")
+        #expect(WorkoutStatsService.todaysCompletedLog(logs: [log], today: today, calendar: calendar) == nil)
+    }
 }
