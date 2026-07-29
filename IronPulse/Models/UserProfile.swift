@@ -12,6 +12,7 @@ final class UserProfile {
     var primaryGoal: PrimaryGoal
     var workoutDaysPerWeek: Int
     var preferredEquipment: [EquipmentType]
+    var biologicalSex: BiologicalSex
     var createdAt: Date
     var photoData: Data?
 
@@ -38,6 +39,7 @@ final class UserProfile {
         primaryGoal: PrimaryGoal = .hypertrophy,
         workoutDaysPerWeek: Int = 3,
         preferredEquipment: [EquipmentType] = [.bodyweight],
+        biologicalSex: BiologicalSex = .notSet,
         createdAt: Date = Date(),
         photoData: Data? = nil,
         healthSnapshots: [HealthSnapshot] = [],
@@ -53,6 +55,7 @@ final class UserProfile {
         self.primaryGoal = primaryGoal
         self.workoutDaysPerWeek = workoutDaysPerWeek
         self.preferredEquipment = preferredEquipment
+        self.biologicalSex = biologicalSex
         self.createdAt = createdAt
         self.photoData = photoData
         self.healthSnapshots = healthSnapshots
