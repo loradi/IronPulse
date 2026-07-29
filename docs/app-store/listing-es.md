@@ -45,9 +45,8 @@ cualquier momento, con soporte para sistema métrico (kg/cm) o imperial
 
 • Multi-idioma — disponible en español, inglés y francés.
 
-• 100% privado — todos tus datos se guardan únicamente en tu
-dispositivo. Sin cuentas, sin anuncios, sin backend, sin analítica de
-terceros.
+• 100% privado — todos tus datos personales se guardan únicamente en
+tu dispositivo. Sin cuentas, sin anuncios, sin analítica de terceros.
 
 Empieza hoy tu rutina de fuerza con Watt + Weight.
 
@@ -71,9 +70,14 @@ ldiego900@gmail.com
 ## Nota para el equipo de revisión de Apple
 (campo "Notes" en App Store Connect, no visible al público)
 
-Watt + Weight es una app completamente local: no tiene servidor propio,
-no envía datos a ningún backend, y no usa SDKs de analítica de
-terceros. El permiso de HealthKit se usa únicamente para LEER peso,
+Watt + Weight es una app completamente local para los datos del
+usuario: no tiene servidor propio, no envía ningún dato personal a
+ningún backend, y no usa SDKs de analítica de terceros. La única
+excepción es que las imágenes de demostración del catálogo de
+ejercicios se descargan desde una base de datos pública y abierta de
+ejercicios alojada en GitHub (identificadas únicamente por el nombre
+del ejercicio, sin ningún dato del usuario), y se guardan en caché
+localmente tras la primera descarga. El permiso de HealthKit se usa únicamente para LEER peso,
 altura, fecha de nacimiento y sexo biológico al importar datos de
 Salud — la app nunca escribe datos de vuelta a Salud
 (`NSHealthUpdateUsageDescription` está declarado por requisito de
