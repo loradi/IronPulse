@@ -31,6 +31,13 @@ Si tienes el respaldo de iCloud activado a nivel de sistema operativo,
 tus datos podrían incluirse en el respaldo general de tu dispositivo —
 esto lo controla iOS directamente, no la app.
 
+La única excepción es que las imágenes de demostración de los
+ejercicios del catálogo se descargan desde una fuente pública de
+terceros (una base de datos abierta de ejercicios alojada en GitHub),
+identificada únicamente por el nombre del ejercicio — esta descarga no
+incluye ningún dato personal tuyo, y la imagen se guarda en caché
+localmente en tu dispositivo tras la primera descarga.
+
 ## Notificaciones
 
 La app usa notificaciones locales (generadas en tu propio dispositivo,
