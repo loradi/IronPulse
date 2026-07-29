@@ -307,7 +307,7 @@ struct ProfileDetailView: View {
         HStack {
             Text(weightLabel)
             Spacer()
-            TextField(weightLabel, value: weightBinding, format: .number.precision(.fractionLength(0...1)))
+            TextField(weightLabel, value: weightBinding, format: .number.precision(.fractionLength(1)))
                 .keyboardType(.decimalPad)
                 .multilineTextAlignment(.trailing)
                 .frame(width: 80)
