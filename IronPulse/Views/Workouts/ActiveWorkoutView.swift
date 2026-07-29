@@ -52,7 +52,7 @@ struct ActiveWorkoutView: View {
 
             LabeledProgressBar(
                 label: "Session Volume",
-                valueText: "\(Int(sessionVolumeKg)) kg",
+                valueText: UnitSystem.formattedWeight(sessionVolumeKg, system: UnitSystem.current),
                 progress: 1.0
             )
             .ironCard()
@@ -82,7 +82,7 @@ struct ActiveWorkoutView: View {
                                             .keyboardType(.decimalPad)
                                             .disabled(isReadOnly)
                                             .frame(width: 60)
-                                        Text("kg").font(.wwCaption).foregroundStyle(Color.ironTextSecondary)
+                                        Text(UnitSystem.current == .metric ? "kg" : "lbs").font(.wwCaption).foregroundStyle(Color.ironTextSecondary)
                                     }
 
                                     Spacer()
@@ -154,7 +154,14 @@ struct ActiveWorkoutView: View {
     }
 
     private func bindingForWeight(_ set: SetLog) -> Binding<Double> {
-        Binding(get: { set.weightKg }, set: { set.weightKg = $0 })
+        Binding(
+            get: {
+                UnitSystem.current == .metric ? set.weightKg : UnitSystem.kgToLbs(set.weightKg)
+            },
+            set: { newValue in
+                set.weightKg = UnitSystem.current == .metric ? newValue : UnitSystem.lbsToKg(newValue)
+            }
+        )
     }
 
     private func bindingForReps(_ set: SetLog) -> Binding<Int> {
