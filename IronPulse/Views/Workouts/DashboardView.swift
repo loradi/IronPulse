@@ -126,8 +126,18 @@ struct DashboardView: View {
                         .font(.wwBody)
                         .foregroundStyle(Color.ironTextSecondary)
                 }
-                Button("Iniciar ejercicios", action: startTodaysSession)
+                if let completedLog = WorkoutStatsService.todaysCompletedLog(logs: profile.workoutLogs) {
+                    Text(completedTodayLabel)
+                        .font(.wwBody)
+                        .foregroundStyle(Color.ironAccent)
+                    Button(viewSummaryLabel) {
+                        activeLog = completedLog
+                    }
                     .buttonStyle(PrimarySportButtonStyle())
+                } else {
+                    Button("Iniciar ejercicios", action: startTodaysSession)
+                        .buttonStyle(PrimarySportButtonStyle())
+                }
             }
             .ironCard()
         } else {
@@ -243,6 +253,14 @@ struct DashboardView: View {
     private func startTodaysSession() {
         guard let routine = profile.activeRoutine, let day = todaysDay else { return }
         activeLog = WorkoutLogGenerator.startSession(for: day, routineName: routine.name, profile: profile, in: modelContext)
+    }
+
+    private var completedTodayLabel: String {
+        String(localized: "dashboard.today_completed", defaultValue: "Completado hoy", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var viewSummaryLabel: String {
+        String(localized: "dashboard.view_summary", defaultValue: "Ver resumen", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 }
 
