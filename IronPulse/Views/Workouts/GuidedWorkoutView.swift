@@ -118,7 +118,7 @@ struct GuidedWorkoutView: View {
             selectFirstIncompleteSet()
         }
         .onDisappear {
-            timerTask?.cancel()
+            stopTimers()
         }
     }
 
@@ -292,7 +292,7 @@ struct GuidedWorkoutView: View {
     }
 
     private func finishSession() {
-        timerTask?.cancel()
+        stopTimers()
         log.endDate = Date()
         try? modelContext.save()
         dismiss()
@@ -332,8 +332,13 @@ struct GuidedWorkoutView: View {
         GuidedSessionFlow.renumbered(log.completedSets, groupedBy: order)
     }
 
-    private func selectFirstIncompleteSet() {
+    private func stopTimers() {
         timerTask?.cancel()
+        RestNotificationScheduler.cancelPending()
+    }
+
+    private func selectFirstIncompleteSet() {
+        stopTimers()
         setPhase = .idle
         elapsedSetSeconds = 0
         restRemaining = 0

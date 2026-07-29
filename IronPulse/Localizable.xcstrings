@@ -397,28 +397,6 @@
         }
       }
     },
-    "Descanso: %llds": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rest: %llds"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Descanso: %llds"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Repos : %llds"
-          }
-        }
-      }
-    },
     "Dia %lld — %@": {
       "localizations": {
         "en": {
