@@ -1147,12 +1147,18 @@ corregidos aca — Tarea 6 esta explicitamente delimitada a verificacion,
    los otros gaps que esa tarea ya documento haber encontrado en rondas
    sucesivas.
 2. **Gap de refresco en vivo para vistas no re-renderizadas al momento del
-   cambio de idioma**: los 7 enums usan `String(localized:bundle:locale:)`
-   leyendo `AppLanguage.current` (una variable global), **no**
-   `\.locale` del environment de SwiftUI — es el mismo patron que ya
-   arreglo el gotcha `bundle:` de la Tarea 3, pero como consecuencia
-   SwiftUI no tiene forma de saber que esas vistas dependen del idioma.
-   Confirmado en vivo, reproducido dos veces: (a) el `Picker(selection:
+   cambio de idioma** — **RESUELTO** (ver mas abajo). Los 7 enums usan
+   `String(localized:bundle:locale:)` leyendo `AppLanguage.current` (una
+   variable global), **no** `\.locale` del environment de SwiftUI — es el
+   mismo patron que ya arreglo el gotcha `bundle:` de la Tarea 3, pero como
+   consecuencia SwiftUI no tiene forma de saber que esas vistas dependen
+   del idioma. El alcance real es mayor de lo que se penso al encontrarlo:
+   afecta a practicamente **cualquier vista que muestre alguno de los 7
+   `displayName` traducidos** (no solo los dos puntos donde se reprodujo en
+   vivo), y el texto viejo **no se autocorrige solo**, queda mostrando el
+   idioma anterior durante el resto de la sesion hasta que la app se
+   relanza por completo — no es un parpadeo breve. Confirmado en vivo,
+   reproducido dos veces: (a) el `Picker(selection:
    $profile.experienceLevel)` de "Nivel"/"Objetivo" en `ProfileDetailView`
    sigue mostrando el valor colapsado en el idioma anterior (ej. quedo en
    "Beginner"/"Hypertrophy" en ingles justo despues de cambiar el picker de
@@ -1160,15 +1166,15 @@ corregidos aca — Tarea 6 esta explicitamente delimitada a verificacion,
    el resto de la pantalla si cambiaron a espanol al instante); (b) la fila
    de perfil en la lista raiz (`ContentView`/`ProfileRow`), al no haber
    sido re-visitada desde antes del cambio de idioma, seguia mostrando
-   texto del idioma viejo. **Confirmado que es puramente cosmetico y se
-   autocorrige**: cerrar la app entera y volver a abrirla (o, se presume,
-   cualquier reconstruccion completa de esas vistas) muestra el idioma
-   correcto de inmediato — los datos y el idioma persistido
-   (`@AppStorage`) siempre fueron correctos, es solo una ventana de
-   refresco incompleta en vistas ya montadas fuera de pantalla o en el
-   label colapsado de un `Picker(.menu)`. No afecta la fiabilidad de la
-   traduccion en si (confirmado comparando contra el mismo dato mostrado
-   correctamente en otra vista simultanea, ej. el resumen del Dashboard).
+   texto del idioma viejo. Los datos y el idioma persistido (`@AppStorage`)
+   siempre fueron correctos — es una ventana de refresco incompleta en
+   vistas ya montadas fuera de pantalla o en el label colapsado de un
+   `Picker(.menu)`, no un problema de fiabilidad de la traduccion en si.
+   **Fix aplicado** (este commit): `.id(appLanguageRaw)` en `ContentView()`
+   dentro de `IronPulseApp.swift`, antes del `.environment(\.locale:)` —
+   fuerza a SwiftUI a reconstruir toda la jerarquia de vistas cuando cambia
+   el idioma, en vez de depender de que cada vista se re-renderice sola al
+   leer la variable global `AppLanguage.current`.
 
 ### Mensajes de permiso — decision de alcance (ya tomada en la Tarea 3)
 
@@ -1250,18 +1256,17 @@ o son de alcance mayor (no son fixes directos):
    (agregar la key al catalogo y usarla en vez del literal), no se aplico
    porque la Tarea 6 que lo encontro estaba delimitada a verificacion
    ("Files: ninguno").
-9. **Gap de refresco en vivo del idioma en vistas no re-renderizadas**
-   (`Picker(.menu)` de Nivel/Objetivo en `ProfileDetailView`, fila de
-   perfil en `ContentView`) — encontrado en la verificacion final de la
-   tanda de i18n (2026-07-28), ver seccion propia arriba para el detalle
-   completo. Cosmetico (se autocorrige con un relanzamiento de la app, los
-   datos y el idioma persistido siempre fueron correctos), pero real: no
-   todas las pantallas cumplen 100% el requisito de "cambia en vivo sin
-   reiniciar la app" tal cual esta implementado hoy (via `AppLanguage.current`
-   global en vez de `\.locale` del environment de SwiftUI). Necesitaria
-   investigacion de causa raiz antes de un fix (candidatos: forzar
-   `.id(AppLanguage.current)` en las vistas afectadas, o migrar los 7 enums
-   a leer `\.locale` del environment en vez de la variable global).
+9. ~~**Gap de refresco en vivo del idioma en vistas no re-renderizadas**~~ —
+   **RESUELTO**: afectaba practicamente cualquier vista que muestre alguno
+   de los 7 `displayName` traducidos (no solo `Picker(.menu)` de
+   Nivel/Objetivo en `ProfileDetailView` y la fila de perfil en
+   `ContentView`, que fueron donde se reprodujo en vivo primero), y el
+   texto viejo quedaba mostrandose el resto de la sesion hasta relanzar la
+   app por completo (no era un parpadeo breve). Encontrado en la
+   verificacion final de la tanda de i18n (2026-07-28). Fix aplicado:
+   `.id(appLanguageRaw)` en `ContentView()` (`IronPulseApp.swift`) fuerza
+   la reconstruccion completa de la jerarquia de vistas al cambiar de
+   idioma. Ver seccion propia arriba para el detalle completo.
 
 ## Gotchas del entorno (cuestan horas si se redescubren)
 

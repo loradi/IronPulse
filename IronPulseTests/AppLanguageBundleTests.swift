@@ -2,15 +2,23 @@ import XCTest
 @testable import IronPulse
 
 final class AppLanguageBundleTests: XCTestCase {
-    func testLocaleSoloSinBundleNoForzaElIdioma() {
-        // Documenta el gotcha: locale: solo, sin bundle:, no fuerza el idioma.
-        // Este test verifica el comportamiento conocido de Foundation, no el
-        // codigo de la app - existe para que quede documentado en el repo.
-        let result = String(localized: "dias_label.plural", defaultValue: "3 dias", locale: Locale(identifier: "fr"))
-        // No se afirma un valor especifico (depende del idioma del sistema del
-        // entorno de test) - solo se confirma que la implementacion real
-        // (Step 3) no usa este patron.
-        _ = result
+    func testDisplayNameCambiaConAppLanguageCurrent() {
+        let original = UserDefaults.standard.string(forKey: "appLanguage")
+        defer {
+            if let original {
+                UserDefaults.standard.set(original, forKey: "appLanguage")
+            } else {
+                UserDefaults.standard.removeObject(forKey: "appLanguage")
+            }
+        }
+
+        UserDefaults.standard.set(AppLanguage.spanish.rawValue, forKey: "appLanguage")
+        let es = PrimaryGoal.strength.displayName
+
+        UserDefaults.standard.set(AppLanguage.english.rawValue, forKey: "appLanguage")
+        let en = PrimaryGoal.strength.displayName
+
+        XCTAssertNotEqual(es, en)
     }
 
     func testBundleMasLocaleFuerzaElIdiomaCorrectamente() {

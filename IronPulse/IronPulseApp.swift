@@ -37,6 +37,7 @@ struct IronPulseApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .id(appLanguageRaw)
                 .environment(\.locale, (AppLanguage(rawValue: appLanguageRaw) ?? .spanish).locale)
                 .preferredColorScheme(.dark)
         }

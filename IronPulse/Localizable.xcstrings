@@ -1674,7 +1674,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Série"
+            "value": "Série en cours"
           }
         }
       }
@@ -1898,7 +1898,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Compound"
+            "value": "Compuesto"
           }
         },
         "fr": {
