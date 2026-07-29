@@ -49,7 +49,7 @@ struct GuidedWorkoutView: View {
                 }
             } else {
                 ContentUnavailableView(
-                    "Sin ejercicios",
+                    noExercisesLabel,
                     systemImage: "checkmark.circle"
                 )
             }
@@ -239,6 +239,10 @@ struct GuidedWorkoutView: View {
 
     private var finishSetLabel: String {
         String(localized: "guided_session.finish_set", defaultValue: "Terminar set", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var noExercisesLabel: String {
+        String(localized: "guided_session.no_exercises", defaultValue: "Sin ejercicios", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 
     private func restLabel(_ seconds: Int) -> String {

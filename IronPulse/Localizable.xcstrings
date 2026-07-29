@@ -3103,6 +3103,29 @@
           }
         }
       }
+    },
+    "guided_session.no_exercises": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No exercises"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin ejercicios"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun exercice"
+          }
+        }
+      }
     }
   },
   "version": "1.0"
