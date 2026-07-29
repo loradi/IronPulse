@@ -91,9 +91,10 @@ struct ProfileDetailView: View {
     @State private var isImportingHealthData = false
     @State private var healthImportMessage: String?
     @AppStorage("appLanguage") private var appLanguageRaw: String = AppLanguage.current.rawValue
+    @AppStorage("unitSystem") private var unitSystemRaw: String = UnitSystem.metric.rawValue
 
-    private var latestSnapshot: HealthSnapshot? {
-        profile.healthSnapshots.max { $0.capturedAt < $1.capturedAt }
+    private var unitSystem: UnitSystem {
+        UnitSystem(rawValue: unitSystemRaw) ?? .metric
     }
 
     var body: some View {
@@ -138,9 +139,15 @@ struct ProfileDetailView: View {
 
             Section("Datos fisicos") {
                 Stepper("\(profile.age) anos", value: $profile.age, in: 14...99)
-                LabeledContent("Sexo", value: latestSnapshot?.biologicalSex.displayName ?? BiologicalSex.notSet.displayName)
-                LabeledContent("Altura", value: formatted(profile.heightCm, suffix: "cm"))
-                LabeledContent("Peso", value: formatted(profile.weightKg, suffix: "kg"))
+
+                Picker(sexLabel, selection: $profile.biologicalSex) {
+                    ForEach(BiologicalSex.allCases) { sex in
+                        Text(sex.displayName).tag(sex)
+                    }
+                }
+
+                heightField
+                weightField
             }
 
             Section("Salud") {
@@ -166,6 +173,12 @@ struct ProfileDetailView: View {
                 Picker("Idioma", selection: $appLanguageRaw) {
                     ForEach(AppLanguage.allCases) { language in
                         Text(language.displayName).tag(language.rawValue)
+                    }
+                }
+
+                Picker(unitSystemLabel, selection: $unitSystemRaw) {
+                    ForEach(UnitSystem.allCases) { system in
+                        Text(system.displayName).tag(system.rawValue)
                     }
                 }
             }
@@ -195,16 +208,110 @@ struct ProfileDetailView: View {
         }
     }
 
-    private func formatted(_ value: Double?, suffix: String) -> String {
-        guard let value else { return String(localized: "profile.no_data", defaultValue: "Sin dato", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale) }
-        return value.formatted(.number.precision(.fractionLength(0...1))) + " " + suffix
-    }
-
     private func daysPerWeekSliderLabel(_ count: Int) -> String {
         if count == 1 {
             return String(localized: "profile.days_per_week_slider.singular", defaultValue: "\(count) dia por semana", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
         } else {
             return String(localized: "profile.days_per_week_slider.plural", defaultValue: "\(count) dias por semana", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        }
+    }
+
+    private var sexLabel: String {
+        String(localized: "profile.field_sex", defaultValue: "Sexo", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var heightLabel: String {
+        String(localized: "profile.field_height", defaultValue: "Altura", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var weightLabel: String {
+        String(localized: "profile.field_weight", defaultValue: "Peso", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var unitSystemLabel: String {
+        String(localized: "profile.unit_system_label", defaultValue: "Sistema de unidades", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private func clampedHeight(_ cm: Double) -> Double { min(max(cm, 100), 250) }
+    private func clampedWeight(_ kg: Double) -> Double { min(max(kg, 30), 300) }
+
+    private var heightCmBinding: Binding<Double> {
+        Binding(
+            get: { profile.heightCm },
+            set: { profile.heightCm = clampedHeight($0) }
+        )
+    }
+
+    private var heightFeetBinding: Binding<Int> {
+        Binding(
+            get: { UnitSystem.cmToFeetInches(profile.heightCm).feet },
+            set: { newFeet in
+                let inches = UnitSystem.cmToFeetInches(profile.heightCm).inches
+                profile.heightCm = clampedHeight(UnitSystem.feetInchesToCm(feet: newFeet, inches: inches))
+            }
+        )
+    }
+
+    private var heightInchesBinding: Binding<Int> {
+        Binding(
+            get: { UnitSystem.cmToFeetInches(profile.heightCm).inches },
+            set: { newInches in
+                let feet = UnitSystem.cmToFeetInches(profile.heightCm).feet
+                profile.heightCm = clampedHeight(UnitSystem.feetInchesToCm(feet: feet, inches: newInches))
+            }
+        )
+    }
+
+    private var weightBinding: Binding<Double> {
+        Binding(
+            get: { unitSystem == .metric ? profile.weightKg : UnitSystem.kgToLbs(profile.weightKg) },
+            set: { newValue in
+                let kg = unitSystem == .metric ? newValue : UnitSystem.lbsToKg(newValue)
+                profile.weightKg = clampedWeight(kg)
+            }
+        )
+    }
+
+    @ViewBuilder
+    private var heightField: some View {
+        switch unitSystem {
+        case .metric:
+            HStack {
+                Text(heightLabel)
+                Spacer()
+                TextField(heightLabel, value: heightCmBinding, format: .number)
+                    .keyboardType(.decimalPad)
+                    .multilineTextAlignment(.trailing)
+                    .frame(width: 80)
+                Text("cm").foregroundStyle(Color.ironTextSecondary)
+            }
+        case .imperial:
+            HStack {
+                Text(heightLabel)
+                Spacer()
+                TextField("ft", value: heightFeetBinding, format: .number)
+                    .keyboardType(.numberPad)
+                    .multilineTextAlignment(.trailing)
+                    .frame(width: 40)
+                Text("'").foregroundStyle(Color.ironTextSecondary)
+                TextField("in", value: heightInchesBinding, format: .number)
+                    .keyboardType(.numberPad)
+                    .multilineTextAlignment(.trailing)
+                    .frame(width: 40)
+                Text("\"").foregroundStyle(Color.ironTextSecondary)
+            }
+        }
+    }
+
+    private var weightField: some View {
+        HStack {
+            Text(weightLabel)
+            Spacer()
+            TextField(weightLabel, value: weightBinding, format: .number.precision(.fractionLength(0...1)))
+                .keyboardType(.decimalPad)
+                .multilineTextAlignment(.trailing)
+                .frame(width: 80)
+            Text(unitSystem == .metric ? "kg" : "lbs").foregroundStyle(Color.ironTextSecondary)
         }
     }
 }
