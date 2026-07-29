@@ -1,3 +1,8 @@
+---
+title: Política de Privacidad de Watt + Weight
+permalink: /privacy-policy/
+---
+
 # Política de Privacidad de Watt + Weight
 
 _Última actualización: 29 de julio de 2026_

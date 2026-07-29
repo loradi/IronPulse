@@ -20,18 +20,38 @@ automatizar — hazlos en este orden.
       campo correspondiente de App Store Connect.
 - [ ] 5. Sube las 5 capturas de `docs/app-store/screenshots/` en la
       sección de capturas de pantalla de iPhone.
-- [ ] 6. En Xcode, selecciona el esquema de dispositivo genérico ("Any
+- [ ] 6. En la sección "App Privacy" (Privacidad de la app) de la
+      ficha, completa el cuestionario de recopilación de datos.
+      Selecciona "Data Not Collected" ("No se recopilan datos"): la app
+      no envía datos personales del usuario a servidores externos; la
+      única llamada de red que hace es para descargar imágenes de
+      demostración de ejercicios desde una base de datos pública en
+      GitHub, y no incluye datos del usuario.
+- [ ] 7. Completa el cuestionario de "Clasificación por edad" (Age
+      Rating). La app no tiene contenido generado por usuarios,
+      violencia, ni contenido objetable, así que selecciona "Ninguno"
+      en todas las categorías.
+- [ ] 8. En la sección "Precios y disponibilidad", configura el precio
+      como Gratis y selecciona los territorios donde quieres publicar
+      la app.
+- [ ] 9. En Xcode, selecciona el esquema de dispositivo genérico ("Any
       iOS Device"), y ve a Product → Archive.
-- [ ] 7. Cuando termine el archivo, usa el botón "Distribute App" del
-      Organizer de Xcode → "App Store Connect" → sigue el asistente
-      para subir el build.
-- [ ] 8. En App Store Connect, ve a la sección TestFlight de la app y
-      confirma que el build recién subido aparece (puede tardar unos
-      minutos en procesarse).
-- [ ] 9. Crea un grupo de prueba interno en TestFlight, agrégate a ti
-      mismo (u otros testers), y prueba el build instalado vía
-      TestFlight en un dispositivo real.
-- [ ] 10. Cuando estés conforme con las pruebas, en la sección
+- [ ] 10. Cuando termine el archivo, usa el botón "Distribute App" del
+       Organizer de Xcode → "App Store Connect" → sigue el asistente
+       para subir el build.
+- [ ] 11. Durante el asistente de subida del paso anterior, Xcode/App
+       Store Connect te preguntará sobre cumplimiento de exportación
+       (export compliance). Como la app solo usa HTTPS estándar, esto
+       califica como exento: responde "No" o selecciona la exención
+       estándar, sin necesitar un documento de cumplimiento de
+       exportación.
+- [ ] 12. En App Store Connect, ve a la sección TestFlight de la app y
+       confirma que el build recién subido aparece (puede tardar unos
+       minutos en procesarse).
+- [ ] 13. Crea un grupo de prueba interno en TestFlight, agrégate a ti
+       mismo (u otros testers), y prueba el build instalado vía
+       TestFlight en un dispositivo real.
+- [ ] 14. Cuando estés conforme con las pruebas, en la sección
        "App Store" de App Store Connect selecciona el build subido,
        pega la nota para el equipo de revisión (del archivo
        `docs/app-store/listing-es.md`), y envía a revisión.
