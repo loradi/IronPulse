@@ -98,6 +98,10 @@ final class HealthKitProfileImporter {
             profile.heightCm = heightCm
         }
 
+        if snapshot.biologicalSex != .notSet {
+            profile.biologicalSex = snapshot.biologicalSex
+        }
+
         if let dateOfBirth = snapshot.dateOfBirth,
            let years = Calendar.current.dateComponents([.year], from: dateOfBirth, to: Date()).year,
            years > 0 {
