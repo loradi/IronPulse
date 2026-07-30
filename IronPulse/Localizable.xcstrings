@@ -3242,6 +3242,52 @@
           }
         }
       }
+    },
+    "rest_notification.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest finished"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso terminado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repos terminé"
+          }
+        }
+      }
+    },
+    "rest_notification.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time for your next set."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A por el siguiente set."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À vous la prochaine série."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

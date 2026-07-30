@@ -34,8 +34,18 @@ enum RestNotificationScheduler {
         guard seconds > 0 else { return }
 
         let content = UNMutableNotificationContent()
-        content.title = "Descanso terminado"
-        content.body = "A por el siguiente set."
+        content.title = String(
+            localized: "rest_notification.title",
+            defaultValue: "Descanso terminado",
+            bundle: AppLanguage.current.bundle,
+            locale: AppLanguage.current.locale
+        )
+        content.body = String(
+            localized: "rest_notification.body",
+            defaultValue: "A por el siguiente set.",
+            bundle: AppLanguage.current.bundle,
+            locale: AppLanguage.current.locale
+        )
         content.sound = .default
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(seconds), repeats: false)
