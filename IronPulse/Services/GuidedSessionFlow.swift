@@ -39,4 +39,12 @@ enum GuidedSessionFlow {
     static func canCompleteSet(weightKg: Double, repsCompleted: Int) -> Bool {
         weightKg > 0 && repsCompleted > 0
     }
+
+    static func elapsedSeconds(since start: Date, now: Date = Date()) -> Int {
+        max(0, Int(now.timeIntervalSince(start)))
+    }
+
+    static func remainingSeconds(until end: Date, now: Date = Date()) -> Int {
+        max(0, Int(ceil(end.timeIntervalSince(now))))
+    }
 }

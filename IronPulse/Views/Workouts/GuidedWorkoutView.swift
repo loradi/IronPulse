@@ -14,6 +14,7 @@ struct GuidedWorkoutView: View {
     @State private var restRemaining: Int = 0
     @State private var timerTask: Task<(), Never>? = nil
     @State private var isShowingExerciseInfo = false
+    @FocusState private var focusedWeightSetID: SetLog.ID?
 
     private var groups: [(exerciseId: String, sets: [SetLog])] {
         GuidedSessionFlow.groupedSets(log.completedSets)
@@ -96,6 +97,12 @@ struct GuidedWorkoutView: View {
                     finishSession()
                 }
             }
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button(doneLabel) {
+                    focusedWeightSetID = nil
+                }
+            }
         }
         .sheet(isPresented: $isShowingExerciseInfo) {
             if let exercise = currentExercise {
@@ -141,10 +148,12 @@ struct GuidedWorkoutView: View {
 
             HStack {
                 HStack(spacing: 4) {
-                    TextField("Peso", value: bindingForWeight(set), format: .number.precision(.fractionLength(1)))
-                        .keyboardType(.decimalPad)
-                        .frame(width: 60)
-                        .foregroundStyle(weightMissing ? Color.red : Color.ironTextPrimary)
+                    WeightTextField(
+                        value: bindingForWeight(set),
+                        isInvalid: weightMissing,
+                        setID: set.id,
+                        focus: $focusedWeightSetID
+                    )
                     Text(UnitSystem.current == .metric ? "kg" : "lbs")
                         .font(.wwCaption)
                         .foregroundStyle(weightMissing ? Color.red : Color.ironTextSecondary)
@@ -245,12 +254,12 @@ struct GuidedWorkoutView: View {
     private func startSet() {
         setPhase = .runningSet
         elapsedSetSeconds = 0
+        let startedAt = Date()
         timerTask?.cancel()
         timerTask = Task { @MainActor in
             while !Task.isCancelled {
+                elapsedSetSeconds = GuidedSessionFlow.elapsedSeconds(since: startedAt)
                 try? await Task.sleep(nanoseconds: 1_000_000_000)
-                guard !Task.isCancelled else { return }
-                elapsedSetSeconds += 1
             }
         }
     }
@@ -271,11 +280,14 @@ struct GuidedWorkoutView: View {
         timerTask?.cancel()
         setPhase = .resting
         restRemaining = seconds
+        let endsAt = Date().addingTimeInterval(TimeInterval(seconds))
 
         timerTask = Task { @MainActor in
-            while restRemaining > 0 && !Task.isCancelled {
+            while !Task.isCancelled {
+                let remaining = GuidedSessionFlow.remainingSeconds(until: endsAt)
+                restRemaining = remaining
+                guard remaining > 0 else { break }
                 try? await Task.sleep(nanoseconds: 1_000_000_000)
-                restRemaining -= 1
             }
             if !Task.isCancelled {
                 HapticFeedback.restFinished()
@@ -411,6 +423,49 @@ struct GuidedWorkoutView: View {
 
     private var removeSetLabel: String {
         String(localized: "guided_session.remove_set", defaultValue: "Eliminar set", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var doneLabel: String {
+        String(localized: "guided_session.done", defaultValue: "Listo", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+}
+
+/// TextField propio para el peso de un set: el buffer de texto vive en
+/// @State local y solo se reformatea al perder el foco. Un TextField
+/// atado directamente a un Double via `format:` reformatea el texto en
+/// cada tecla, lo que hacia el campo dificil de editar (efecto
+/// "autocompletado"). Aca el texto se sincroniza desde el modelo solo
+/// cuando el campo NO tiene el foco.
+private struct WeightTextField: View {
+    @Binding var value: Double
+    let isInvalid: Bool
+    let setID: SetLog.ID
+    var focus: FocusState<SetLog.ID?>.Binding
+
+    @State private var text: String = ""
+
+    var body: some View {
+        TextField("Peso", text: $text)
+            .keyboardType(.decimalPad)
+            .frame(width: 60)
+            .foregroundStyle(isInvalid ? Color.red : Color.ironTextPrimary)
+            .focused(focus, equals: setID)
+            .onAppear {
+                text = Self.format(value)
+            }
+            .onChange(of: focus.wrappedValue) { _, newFocus in
+                guard newFocus != setID else { return }
+                text = Self.format(value)
+            }
+            .onChange(of: text) { _, newValue in
+                let normalized = newValue.replacingOccurrences(of: ",", with: ".")
+                guard let parsed = Double(normalized) else { return }
+                value = parsed
+            }
+    }
+
+    private static func format(_ value: Double) -> String {
+        String(format: "%.1f", value)
     }
 }
 
