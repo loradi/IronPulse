@@ -82,4 +82,44 @@ struct GuidedSessionFlowTests {
         #expect(GuidedSessionFlow.canCompleteSet(weightKg: 20, repsCompleted: 0) == false)
         #expect(GuidedSessionFlow.canCompleteSet(weightKg: 0, repsCompleted: 0) == false)
     }
+
+    @Test func elapsedSecondsCalculaDesdeElInicioHastaAhora() {
+        let start = Date()
+        let now = start.addingTimeInterval(12)
+        #expect(GuidedSessionFlow.elapsedSeconds(since: start, now: now) == 12)
+    }
+
+    @Test func elapsedSecondsSobreviveUnaAppSuspendidaLargoTiempo() {
+        // Simula la app suspendida en background durante 5 minutos: el
+        // calculo debe reflejar el tiempo real transcurrido, no congelarse.
+        let start = Date()
+        let now = start.addingTimeInterval(300)
+        #expect(GuidedSessionFlow.elapsedSeconds(since: start, now: now) == 300)
+    }
+
+    @Test func elapsedSecondsNuncaEsNegativo() {
+        let start = Date()
+        let now = start.addingTimeInterval(-5)
+        #expect(GuidedSessionFlow.elapsedSeconds(since: start, now: now) == 0)
+    }
+
+    @Test func remainingSecondsCalculaHastaElFinal() {
+        let now = Date()
+        let end = now.addingTimeInterval(45)
+        #expect(GuidedSessionFlow.remainingSeconds(until: end, now: now) == 45)
+    }
+
+    @Test func remainingSecondsSobreviveUnaAppSuspendidaMasAllaDelFinal() {
+        // Si la app estuvo suspendida mas alla del fin del descanso, el
+        // restante debe ser 0, no un valor negativo ni un valor congelado.
+        let now = Date()
+        let end = now.addingTimeInterval(-30)
+        #expect(GuidedSessionFlow.remainingSeconds(until: end, now: now) == 0)
+    }
+
+    @Test func remainingSecondsRedondeaHaciaArriba() {
+        let now = Date()
+        let end = now.addingTimeInterval(10.2)
+        #expect(GuidedSessionFlow.remainingSeconds(until: end, now: now) == 11)
+    }
 }

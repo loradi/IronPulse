@@ -7,9 +7,14 @@
 
 import SwiftUI
 import SwiftData
+import UserNotifications
 
 @main
 struct IronPulseApp: App {
+    init() {
+        UNUserNotificationCenter.current().delegate = RestNotificationDelegate.shared
+    }
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             UserProfile.self,

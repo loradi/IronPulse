@@ -1,6 +1,23 @@
 import Foundation
 import UserNotifications
 
+/// Sin delegado, iOS no muestra el banner de una notificacion local si la
+/// app esta en foreground cuando el trigger dispara (solo la entrega en
+/// silencio). Esto hacia que el aviso de fin de descanso pareciera
+/// funcionar "a veces si, a veces no" segun si el usuario estaba mirando
+/// la app en ese instante exacto.
+final class RestNotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
+    static let shared = RestNotificationDelegate()
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.banner, .sound])
+    }
+}
+
 enum RestNotificationScheduler {
     private static let identifier = "rest-finished"
 
