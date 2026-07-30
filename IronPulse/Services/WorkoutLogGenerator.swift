@@ -31,7 +31,7 @@ enum WorkoutLogGenerator {
                     exerciseId: routineExercise.exercise.id,
                     setIndex: setIndex,
                     weightKg: 0,
-                    repsCompleted: 0,
+                    repsCompleted: routineExercise.targetRepsMin,
                     restSeconds: routineExercise.restSeconds,
                     targetRepsMin: routineExercise.targetRepsMin,
                     targetRepsMax: routineExercise.targetRepsMax

@@ -211,6 +211,7 @@ struct GuidedWorkoutView: View {
                     startSet()
                 }
                 .buttonStyle(PrimarySportButtonStyle())
+                .disabled(!GuidedSessionFlow.canCompleteSet(weightKg: set.weightKg, repsCompleted: set.repsCompleted))
             }
         case .runningSet:
             VStack(spacing: 8) {
@@ -345,7 +346,7 @@ struct GuidedWorkoutView: View {
             exerciseId: exerciseId,
             setIndex: (log.completedSets.map(\.setIndex).max() ?? 0) + 1,
             weightKg: 0,
-            repsCompleted: 0,
+            repsCompleted: template.targetRepsMin,
             restSeconds: template.restSeconds,
             targetRepsMin: template.targetRepsMin,
             targetRepsMax: template.targetRepsMax

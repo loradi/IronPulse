@@ -98,13 +98,15 @@ extension View {
 }
 
 struct PrimarySportButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) private var isEnabled
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.wwHeadline)
             .foregroundStyle(Color.ironBackground)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 14)
-            .background(Color.ironAccent.opacity(configuration.isPressed ? 0.72 : 1))
+            .background(Color.ironAccent.opacity(isEnabled ? (configuration.isPressed ? 0.72 : 1) : 0.35))
             .clipShape(RoundedRectangle(cornerRadius: CornerRadius.button, style: .continuous))
     }
 }

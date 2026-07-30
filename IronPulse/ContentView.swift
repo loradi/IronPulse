@@ -7,51 +7,68 @@ struct ContentView: View {
 
     private let healthImporter = HealthKitProfileImporter()
 
+    @State private var selectedProfile: UserProfile?
+
     var body: some View {
-        NavigationStack {
-            List {
-                Section("Perfiles") {
-                    if profiles.isEmpty {
-                        ContentUnavailableView(
-                            "Sin perfiles",
-                            systemImage: "person.crop.circle.badge.plus",
-                            description: Text("Crea un perfil para generar rutinas y registrar progreso.")
-                        )
-                        .listRowBackground(Color.clear)
-                    } else {
-                        ForEach(profiles) { profile in
-                            NavigationLink {
-                                MainTabView(profile: profile, healthImporter: healthImporter)
-                            } label: {
-                                ProfileRow(profile: profile)
+        // MainTabView aloja su propio NavigationStack por tab: si se empuja
+        // como destino DENTRO de otro NavigationStack (el de esta lista),
+        // quedan anidados y el boton "atras" de cualquier pantalla interna
+        // siempre vuelve a esta lista en vez de a la pantalla anterior. Por
+        // eso se intercambia la raiz completa en vez de usar NavigationLink.
+        if let selectedProfile, profiles.contains(where: { $0.id == selectedProfile.id }) {
+            MainTabView(
+                profile: selectedProfile,
+                healthImporter: healthImporter,
+                onSwitchProfile: { self.selectedProfile = nil }
+            )
+            .tint(Color.ironAccent)
+        } else {
+            NavigationStack {
+                List {
+                    Section("Perfiles") {
+                        if profiles.isEmpty {
+                            ContentUnavailableView(
+                                "Sin perfiles",
+                                systemImage: "person.crop.circle.badge.plus",
+                                description: Text("Crea un perfil para generar rutinas y registrar progreso.")
+                            )
+                            .listRowBackground(Color.clear)
+                        } else {
+                            ForEach(profiles) { profile in
+                                Button {
+                                    selectedProfile = profile
+                                } label: {
+                                    ProfileRow(profile: profile)
+                                }
+                                .buttonStyle(.plain)
+                                .listRowBackground(Color.ironCard)
                             }
-                            .listRowBackground(Color.ironCard)
+                            .onDelete(perform: deleteProfiles)
                         }
-                        .onDelete(perform: deleteProfiles)
+                    }
+                }
+                .scrollContentBackground(.hidden)
+                .background(Color.ironBackground)
+                .navigationTitle("Watt + Weight")
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button(action: addProfile) {
+                            Label("Nuevo perfil", systemImage: "plus")
+                        }
                     }
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(Color.ironBackground)
-            .navigationTitle("Watt + Weight")
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button(action: addProfile) {
-                        Label("Nuevo perfil", systemImage: "plus")
-                    }
-                }
-            }
+            .tint(Color.ironAccent)
         }
-        .tint(Color.ironAccent)
     }
 
     private func addProfile() {
         withAnimation {
             let profile = UserProfile(
                 name: "Perfil \(profiles.count + 1)",
-                age: 30,
-                weightKg: 70,
-                heightCm: 170
+                age: 0,
+                weightKg: 0,
+                heightCm: 0
             )
 
             modelContext.insert(profile)
@@ -87,6 +104,7 @@ struct ProfileDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var profile: UserProfile
     let healthImporter: HealthKitProfileImporter
+    var onSwitchProfile: (() -> Void)? = nil
 
     @State private var isImportingHealthData = false
     @State private var healthImportMessage: String?
@@ -182,6 +200,12 @@ struct ProfileDetailView: View {
                     }
                 }
             }
+
+            if let onSwitchProfile {
+                Section {
+                    Button(switchProfileLabel, action: onSwitchProfile)
+                }
+            }
         }
         .navigationTitle(profile.name)
 #if os(iOS)
@@ -230,6 +254,10 @@ struct ProfileDetailView: View {
 
     private var unitSystemLabel: String {
         String(localized: "profile.unit_system_label", defaultValue: "Sistema de unidades", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var switchProfileLabel: String {
+        String(localized: "profile.switch_profile", defaultValue: "Cambiar de perfil", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 
     private func clampedHeight(_ cm: Double) -> Double { min(max(cm, 100), 250) }

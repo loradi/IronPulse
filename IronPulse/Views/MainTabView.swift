@@ -3,6 +3,7 @@ import SwiftUI
 struct MainTabView: View {
     @Bindable var profile: UserProfile
     let healthImporter: HealthKitProfileImporter
+    var onSwitchProfile: () -> Void
 
     var body: some View {
         TabView {
@@ -22,7 +23,7 @@ struct MainTabView: View {
             .tabItem { Label("Ejercicios", systemImage: "figure.strengthtraining.traditional") }
 
             NavigationStack {
-                ProfileDetailView(profile: profile, healthImporter: healthImporter)
+                ProfileDetailView(profile: profile, healthImporter: healthImporter, onSwitchProfile: onSwitchProfile)
             }
             .tabItem { Label("Perfil", systemImage: "gearshape") }
         }

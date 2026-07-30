@@ -74,8 +74,13 @@ struct WorkoutLogGeneratorTests {
         #expect(log.dayTitle == "Torso")
     }
 
-    @Test func losSetsArrancanSinCompletarYEnCero() {
+    @Test func losSetsArrancanSinCompletarYSinPeso() {
         let log = WorkoutLogGenerator.generate(for: makeDay(), routineName: "Rutina de prueba", profile: makeProfile())
-        #expect(log.completedSets.allSatisfy { !$0.isCompleted && $0.weightKg == 0 && $0.repsCompleted == 0 })
+        #expect(log.completedSets.allSatisfy { !$0.isCompleted && $0.weightKg == 0 })
+    }
+
+    @Test func losSetsArrancanConLasRepsMinimasDeLaRutina() {
+        let log = WorkoutLogGenerator.generate(for: makeDay(), routineName: "Rutina de prueba", profile: makeProfile())
+        #expect(log.completedSets.allSatisfy { $0.repsCompleted == $0.targetRepsMin })
     }
 }

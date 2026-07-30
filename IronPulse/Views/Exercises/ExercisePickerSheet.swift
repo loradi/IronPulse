@@ -8,13 +8,20 @@ struct ExercisePickerSheet: View {
 
     /// Ids ya agregados al dia: se muestran deshabilitados para no duplicar.
     let excludedIDs: Set<String>
+    /// nil = sin restriccion. Cuando el dia pertenece a un split especifico
+    /// (ej. Torso/Pierna), solo deben poder agregarse ejercicios de los
+    /// grupos musculares de ESE dia.
+    var allowedMuscleGroups: Set<MuscleGroup>? = nil
     let onSelect: (Exercise) -> Void
 
     private var filtered: [Exercise] {
         let sorted = exercises.sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
-        guard !searchText.trimmingCharacters(in: .whitespaces).isEmpty else { return sorted }
+        let byMuscleGroup = allowedMuscleGroups.map { allowed in
+            sorted.filter { allowed.contains($0.muscleGroup) }
+        } ?? sorted
+        guard !searchText.trimmingCharacters(in: .whitespaces).isEmpty else { return byMuscleGroup }
         let term = searchText.lowercased()
-        return sorted.filter { $0.name.lowercased().contains(term) }
+        return byMuscleGroup.filter { $0.name.lowercased().contains(term) }
     }
 
     var body: some View {

@@ -57,6 +57,56 @@ enum SplitType: String, Codable, CaseIterable, Identifiable {
     }
 }
 
+/// Identifica el "slot" de un dia dentro de un split (ej. el dia de Torso
+/// de un split Torso/Pierna), independiente del idioma. `RoutineDay.title`
+/// guarda el texto ya resuelto (localizado al idioma activo al momento de
+/// generar la rutina), pero el generador y el armador manual usan este
+/// enum para saber que titulo y que grupos musculares le corresponden.
+enum DaySlot: String, Codable, CaseIterable, Identifiable {
+    case fullBody
+    case upper
+    case lower
+    case push
+    case pull
+    case legs
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .fullBody:
+            return String(localized: "day_slot.full_body", defaultValue: "Cuerpo completo", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .upper:
+            return String(localized: "day_slot.upper", defaultValue: "Torso", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .lower:
+            return String(localized: "day_slot.lower", defaultValue: "Pierna", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .push:
+            return String(localized: "day_slot.push", defaultValue: "Empuje", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .pull:
+            return String(localized: "day_slot.pull", defaultValue: "Tiron", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        case .legs:
+            return String(localized: "day_slot.legs", defaultValue: "Piernas", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+        }
+    }
+
+    var muscleGroups: [MuscleGroup] {
+        switch self {
+        case .fullBody:
+            return [.chest, .back, .legs, .shoulders, .biceps, .triceps, .core]
+        case .upper:
+            return [.chest, .back, .shoulders, .biceps, .triceps]
+        case .lower:
+            return [.legs, .glutes, .core]
+        case .push:
+            return [.chest, .shoulders, .triceps]
+        case .pull:
+            return [.back, .biceps]
+        case .legs:
+            return [.legs, .glutes, .core]
+        }
+    }
+}
+
 enum BiologicalSex: String, Codable, CaseIterable, Identifiable {
     case notSet
     case female

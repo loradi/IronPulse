@@ -6,6 +6,13 @@ struct RoutineTabView: View {
     @Query private var catalog: [Exercise]
     @Bindable var profile: UserProfile
     @State private var activeLog: WorkoutLog?
+    @State private var pendingAction: PendingRoutineAction?
+    @State private var isShowingManualBuilder = false
+
+    private enum PendingRoutineAction {
+        case smart
+        case manual
+    }
 
     private var todaysCompletedLog: WorkoutLog? {
         WorkoutStatsService.todaysCompletedLog(logs: profile.workoutLogs)
@@ -25,11 +32,11 @@ struct RoutineTabView: View {
                 }
 
                 VStack(spacing: 12) {
-                    Button("Rutina inteligente", action: generateRoutine)
+                    Button("Rutina inteligente") { requestNewRoutine(.smart) }
                         .buttonStyle(PrimarySportButtonStyle())
 
-                    NavigationLink {
-                        RoutineBuilderView(profile: profile)
+                    Button {
+                        requestNewRoutine(.manual)
                     } label: {
                         Text("Crear rutina manual")
                             .font(.wwHeadline)
@@ -54,12 +61,71 @@ struct RoutineTabView: View {
         .navigationDestination(item: $activeLog) { log in
             ActiveWorkoutView(log: log)
         }
+        .navigationDestination(isPresented: $isShowingManualBuilder) {
+            RoutineBuilderView(profile: profile)
+        }
+        .confirmationDialog(
+            replaceRoutineTitle,
+            isPresented: Binding(
+                get: { pendingAction != nil },
+                set: { if !$0 { pendingAction = nil } }
+            ),
+            titleVisibility: .visible
+        ) {
+            Button(replaceRoutineConfirm, role: .destructive) {
+                confirmPendingAction()
+            }
+            Button(cancelLabel, role: .cancel) {
+                pendingAction = nil
+            }
+        } message: {
+            Text(replaceRoutineMessage)
+        }
+    }
+
+    private func requestNewRoutine(_ action: PendingRoutineAction) {
+        guard profile.activeRoutine != nil else {
+            perform(action)
+            return
+        }
+        pendingAction = action
+    }
+
+    private func confirmPendingAction() {
+        guard let pendingAction else { return }
+        perform(pendingAction)
+        self.pendingAction = nil
+    }
+
+    private func perform(_ action: PendingRoutineAction) {
+        switch action {
+        case .smart:
+            generateRoutine()
+        case .manual:
+            isShowingManualBuilder = true
+        }
     }
 
     private func generateRoutine() {
         guard !catalog.isEmpty else { return }
         let routine = WorkoutGeneratorService.generateRoutine(for: profile, catalog: catalog)
         profile.activate(routine, in: modelContext)
+    }
+
+    private var replaceRoutineTitle: String {
+        String(localized: "routine_tab.replace_title", defaultValue: "Reemplazar tu rutina actual?", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var replaceRoutineMessage: String {
+        String(localized: "routine_tab.replace_message", defaultValue: "Ya tienes una rutina activa. Si continuas, se reemplazara por la nueva.", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var replaceRoutineConfirm: String {
+        String(localized: "routine_tab.replace_confirm", defaultValue: "Reemplazar", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var cancelLabel: String {
+        String(localized: "routine_tab.cancel", defaultValue: "Cancelar", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 
     private func startWorkout(_ day: RoutineDay) {
