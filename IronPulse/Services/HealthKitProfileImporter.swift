@@ -71,15 +71,15 @@ final class HealthKitProfileImporter {
         async let workoutMinutes = workoutMinutes(daysBack: 7)
 
         let snapshot = HealthSnapshot(
-            bodyMassKg: try await bodyMass,
-            leanBodyMassKg: try await leanBodyMass,
-            heightCm: try await height,
+            bodyMassKg: await bodyMass,
+            leanBodyMassKg: await leanBodyMass,
+            heightCm: await height,
             biologicalSex: readBiologicalSex(),
             dateOfBirth: readDateOfBirth(),
-            stepCount: try await steps,
-            activeEnergyKcal: try await activeEnergy,
-            restingHeartRateBPM: try await restingHeartRate,
-            workoutMinutes: try await workoutMinutes,
+            stepCount: await steps,
+            activeEnergyKcal: await activeEnergy,
+            restingHeartRateBPM: await restingHeartRate,
+            workoutMinutes: await workoutMinutes,
             profile: profile
         )
 
@@ -137,17 +137,21 @@ final class HealthKitProfileImporter {
         }
     }
 
-    private func latestQuantity(_ identifier: HKQuantityTypeIdentifier, unit: HKUnit) async throws -> Double? {
+    private func latestQuantity(_ identifier: HKQuantityTypeIdentifier, unit: HKUnit) async -> Double? {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: identifier) else {
             return nil
         }
 
         let sort = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
 
-        return try await withCheckedThrowingContinuation { continuation in
+        return await withCheckedContinuation { continuation in
             let query = HKSampleQuery(sampleType: quantityType, predicate: nil, limit: 1, sortDescriptors: [sort]) { _, samples, error in
-                if let error {
-                    continuation.resume(throwing: error)
+                // Cualquier error de esta consulta (incluido "sin dato") se
+                // trata como que este dato en particular no esta disponible,
+                // no como un fallo que deba abortar el resto de la
+                // importacion - ver el mismo razonamiento en cumulativeQuantity.
+                guard error == nil else {
+                    continuation.resume(returning: nil)
                     return
                 }
 
@@ -159,7 +163,7 @@ final class HealthKitProfileImporter {
         }
     }
 
-    private func cumulativeQuantity(_ identifier: HKQuantityTypeIdentifier, unit: HKUnit, daysBack: Int) async throws -> Double? {
+    private func cumulativeQuantity(_ identifier: HKQuantityTypeIdentifier, unit: HKUnit, daysBack: Int) async -> Double? {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: identifier) else {
             return nil
         }
@@ -167,10 +171,15 @@ final class HealthKitProfileImporter {
         let startDate = Calendar.current.date(byAdding: .day, value: -daysBack, to: Date()) ?? Date()
         let predicate = HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: .strictStartDate)
 
-        return try await withCheckedThrowingContinuation { continuation in
+        return await withCheckedContinuation { continuation in
             let query = HKStatisticsQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, statistics, error in
-                if let error {
-                    continuation.resume(throwing: error)
+                // HKStatisticsQuery, a diferencia de HKSampleQuery, reporta un
+                // error (no un resultado vacio) cuando no hay NINGUNA muestra
+                // en el rango pedido - algo totalmente normal (ej. sin datos
+                // de pasos esta semana) y no un fallo real. Se trata como
+                // "sin dato" en vez de abortar toda la importacion.
+                guard error == nil else {
+                    continuation.resume(returning: nil)
                     return
                 }
 
@@ -182,15 +191,15 @@ final class HealthKitProfileImporter {
         }
     }
 
-    private func workoutMinutes(daysBack: Int) async throws -> Double? {
+    private func workoutMinutes(daysBack: Int) async -> Double? {
         let startDate = Calendar.current.date(byAdding: .day, value: -daysBack, to: Date()) ?? Date()
         let predicate = HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: .strictStartDate)
         let sort = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
 
-        return try await withCheckedThrowingContinuation { continuation in
+        return await withCheckedContinuation { continuation in
             let query = HKSampleQuery(sampleType: HKObjectType.workoutType(), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sort]) { _, samples, error in
-                if let error {
-                    continuation.resume(throwing: error)
+                guard error == nil else {
+                    continuation.resume(returning: nil)
                     return
                 }
 
