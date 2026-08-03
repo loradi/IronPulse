@@ -10,8 +10,15 @@ struct GuidedWorkoutView: View {
     @State private var currentExerciseIndex: Int = 0
     @State private var activeSetID: SetLog.ID?
     @State private var setPhase: SetPhase = .idle
-    @State private var elapsedSetSeconds: Int = 0
-    @State private var restRemaining: Int = 0
+    // Anchor dates for the two running-timer displays below, rather than
+    // per-second Int state - see `startSet`/`startRest` for why: writing
+    // a new value into @State every second forces this whole view's body
+    // (and everything attached to it, including the Smart Assistant's
+    // fullScreenCover content closure) to re-evaluate every second while
+    // a set or rest period is active. TimelineView ticks its own content
+    // closure independently instead, without touching this view's state.
+    @State private var setStartedAt: Date?
+    @State private var restEndsAt: Date?
     @State private var timerTask: Task<(), Never>? = nil
     @State private var isShowingExerciseInfo = false
     @State private var isShowingSmartAssistant = false
@@ -228,7 +235,12 @@ struct GuidedWorkoutView: View {
             }
         case .runningSet:
             VStack(spacing: 8) {
-                Text(elapsedLabel(elapsedSetSeconds)).font(.wwHeadline).foregroundStyle(Color.ironAccent)
+                if let setStartedAt {
+                    TimelineView(.periodic(from: setStartedAt, by: 1)) { _ in
+                        Text(elapsedLabel(GuidedSessionFlow.elapsedSeconds(since: setStartedAt)))
+                            .font(.wwHeadline).foregroundStyle(Color.ironAccent)
+                    }
+                }
 
                 if currentExercise.flatMap({ MovementProfileCatalog.profile(forExerciseID: $0.id) }) != nil {
                     Button {
@@ -248,7 +260,12 @@ struct GuidedWorkoutView: View {
             }
         case .resting:
             HStack(spacing: 12) {
-                Text(restLabel(restRemaining)).font(.wwHeadline).foregroundStyle(Color.ironAccent)
+                if let restEndsAt {
+                    TimelineView(.periodic(from: Date(), by: 1)) { _ in
+                        Text(restLabel(max(0, GuidedSessionFlow.remainingSeconds(until: restEndsAt))))
+                            .font(.wwHeadline).foregroundStyle(Color.ironAccent)
+                    }
+                }
                 Spacer()
                 Button(isLastSetInGroup(set) ? nextExerciseLabel : startSetLabel) {
                     startNextSet()
@@ -277,16 +294,9 @@ struct GuidedWorkoutView: View {
     }
 
     private func startSet() {
-        setPhase = .runningSet
-        elapsedSetSeconds = 0
-        let startedAt = Date()
         timerTask?.cancel()
-        timerTask = Task { @MainActor in
-            while !Task.isCancelled {
-                elapsedSetSeconds = GuidedSessionFlow.elapsedSeconds(since: startedAt)
-                try? await Task.sleep(nanoseconds: 1_000_000_000)
-            }
-        }
+        setPhase = .runningSet
+        setStartedAt = Date()
     }
 
     private func finishSet(_ set: SetLog) {
@@ -304,13 +314,12 @@ struct GuidedWorkoutView: View {
     private func startRest(seconds: Int) {
         timerTask?.cancel()
         setPhase = .resting
-        restRemaining = seconds
         let endsAt = Date().addingTimeInterval(TimeInterval(seconds))
+        restEndsAt = endsAt
 
         timerTask = Task { @MainActor in
             while !Task.isCancelled {
                 let remaining = GuidedSessionFlow.remainingSeconds(until: endsAt)
-                restRemaining = remaining
                 guard remaining > 0 else { break }
                 try? await Task.sleep(nanoseconds: 1_000_000_000)
             }
@@ -413,8 +422,8 @@ struct GuidedWorkoutView: View {
     private func selectFirstIncompleteSet() {
         stopTimers()
         setPhase = .idle
-        elapsedSetSeconds = 0
-        restRemaining = 0
+        setStartedAt = nil
+        restEndsAt = nil
         guard let currentGroup else { return }
         activeSetID = currentGroup.sets.first { !$0.isCompleted }?.id ?? currentGroup.sets.last?.id
     }
