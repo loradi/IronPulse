@@ -12,6 +12,7 @@ import Foundation
 @MainActor
 final class SmartAssistantModel {
     let cameraController = CameraSessionController()
+    let audioAnnouncer = SmartAssistantAudioAnnouncer()
     let targetReps: Int
 
     private(set) var repCount = 0
@@ -104,7 +105,10 @@ final class SmartAssistantModel {
         guard let feedback = engine.update(angle: angle) else { return }
 
         repCount = engine.repCount
-        feedbackMessage = Self.message(for: feedback)
+        let language = AppLanguage.current
+        let phrase = FeedbackPhraseBank.randomPhrase(for: feedback, language: language)
+        feedbackMessage = phrase
+        audioAnnouncer.speak(phrase, language: language)
 
         if repCount >= targetReps {
             finish()
@@ -117,16 +121,5 @@ final class SmartAssistantModel {
               let vertex = joints[spec.vertex],
               let distal = joints[spec.distal] else { return nil }
         return AngleCalculator.angle(at: vertex, from: proximal, to: distal)
-    }
-
-    private static func message(for feedback: FormFeedback) -> String {
-        switch feedback {
-        case .goodRep:
-            return String(localized: "smart_assistant.feedback.good_rep", defaultValue: "Buena repeticion", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
-        case .notDeepEnough:
-            return String(localized: "smart_assistant.feedback.not_deep_enough", defaultValue: "No llegaste al rango completo", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
-        case .tooFast:
-            return String(localized: "smart_assistant.feedback.too_fast", defaultValue: "Baja el ritmo", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
-        }
     }
 }

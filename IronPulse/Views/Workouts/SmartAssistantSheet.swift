@@ -48,6 +48,13 @@ struct SmartAssistantSheet: View {
                         .foregroundStyle(.white)
                     Spacer()
                     Button {
+                        model.audioAnnouncer.toggleMute()
+                    } label: {
+                        Image(systemName: model.audioAnnouncer.isMuted ? "speaker.slash.fill" : "speaker.wave.2.fill")
+                            .foregroundStyle(.white)
+                    }
+                    .accessibilityLabel(toggleAudioLabel)
+                    Button {
                         model.cameraController.toggleCamera()
                     } label: {
                         Image(systemName: "arrow.triangle.2.circlepath.camera")
@@ -60,14 +67,14 @@ struct SmartAssistantSheet: View {
 
                 if !model.personVisible {
                     Text(noPersonLabel)
-                        .font(.wwCaption)
+                        .font(.wwHeadline)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
                         .background(Color.red.opacity(0.3), in: Capsule())
                         .foregroundStyle(.white)
                 } else if let feedbackMessage = model.feedbackMessage {
                     Text(feedbackMessage)
-                        .font(.wwCaption)
+                        .font(.wwHeadline)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
                         .background(Color.ironAccent.opacity(0.2), in: Capsule())
@@ -139,5 +146,9 @@ struct SmartAssistantSheet: View {
 
     private var toggleCameraLabel: String {
         String(localized: "smart_assistant.toggle_camera", defaultValue: "Cambiar camara", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var toggleAudioLabel: String {
+        String(localized: "smart_assistant.toggle_audio", defaultValue: "Cambiar audio", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 }

@@ -3266,71 +3266,25 @@
         }
       }
     },
-    "smart_assistant.feedback.good_rep": {
+    "smart_assistant.toggle_audio": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Good rep"
+            "value": "Toggle audio"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Buena repetición"
+            "value": "Cambiar audio"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bonne répétition"
-          }
-        }
-      }
-    },
-    "smart_assistant.feedback.not_deep_enough": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not a full range of motion"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No llegaste al rango completo"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Amplitude de mouvement incomplète"
-          }
-        }
-      }
-    },
-    "smart_assistant.feedback.too_fast": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Slow down"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bajá el ritmo"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ralentis le rythme"
+            "value": "Changer l'audio"
           }
         }
       }
