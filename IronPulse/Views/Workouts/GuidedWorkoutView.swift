@@ -14,6 +14,7 @@ struct GuidedWorkoutView: View {
     @State private var restRemaining: Int = 0
     @State private var timerTask: Task<(), Never>? = nil
     @State private var isShowingExerciseInfo = false
+    @State private var isShowingSmartAssistant = false
     @FocusState private var focusedWeightSetID: SetLog.ID?
 
     private var groups: [(exerciseId: String, sets: [SetLog])] {
@@ -118,6 +119,18 @@ struct GuidedWorkoutView: View {
                 }
             }
         }
+        .fullScreenCover(isPresented: $isShowingSmartAssistant) {
+            if let set = activeSet, let exercise = currentExercise {
+                SmartAssistantSheet(
+                    exerciseID: exercise.id,
+                    exerciseName: exercise.name,
+                    targetReps: set.targetRepsMax,
+                    onFinish: { count in
+                        handleSmartAssistantFinish(set: set, repCount: count)
+                    }
+                )
+            }
+        }
         .task {
             await RestNotificationScheduler.requestAuthorizationIfNeeded()
         }
@@ -216,6 +229,17 @@ struct GuidedWorkoutView: View {
         case .runningSet:
             VStack(spacing: 8) {
                 Text(elapsedLabel(elapsedSetSeconds)).font(.wwHeadline).foregroundStyle(Color.ironAccent)
+
+                if currentExercise.flatMap({ MovementProfileCatalog.profile(forExerciseID: $0.id) }) != nil {
+                    Button {
+                        isShowingSmartAssistant = true
+                    } label: {
+                        Label(smartAssistantLabel, systemImage: "camera.viewfinder")
+                    }
+                    .buttonStyle(.bordered)
+                    .tint(Color.ironAccent)
+                }
+
                 Button(finishSetLabel) {
                     finishSet(set)
                 }
@@ -377,6 +401,15 @@ struct GuidedWorkoutView: View {
         RestNotificationScheduler.cancelPending()
     }
 
+    private func handleSmartAssistantFinish(set: SetLog, repCount: Int) {
+        guard repCount > 0 else { return }
+        set.repsCompleted = repCount
+        try? modelContext.save()
+        if GuidedSessionFlow.canCompleteSet(weightKg: set.weightKg, repsCompleted: set.repsCompleted) {
+            finishSet(set)
+        }
+    }
+
     private func selectFirstIncompleteSet() {
         stopTimers()
         setPhase = .idle
@@ -428,6 +461,10 @@ struct GuidedWorkoutView: View {
 
     private var doneLabel: String {
         String(localized: "guided_session.done", defaultValue: "Listo", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var smartAssistantLabel: String {
+        String(localized: "guided_session.smart_assistant", defaultValue: "Asistente inteligente", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 }
 

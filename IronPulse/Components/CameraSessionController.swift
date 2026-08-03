@@ -1,0 +1,155 @@
+import AVFoundation
+import Foundation
+
+/// Owns the AVCaptureSession for the Smart Assistant's live camera
+/// feed. Frames reach `onFrame` and are never written to disk, cached,
+/// or kept beyond the caller's own processing of that single call —
+/// see the design spec's "no video/frame storage" constraint.
+@Observable
+final class CameraSessionController: NSObject {
+    enum AuthorizationState {
+        case notDetermined
+        case authorized
+        case denied
+    }
+
+    enum CameraPosition {
+        case front
+        case back
+    }
+
+    private(set) var authorizationState: AuthorizationState = .notDetermined
+    private(set) var cameraPosition: CameraPosition = .back
+
+    let session = AVCaptureSession()
+    @ObservationIgnored
+    var onFrame: ((CVPixelBuffer) -> Void)?
+
+    private let sessionQueue = DispatchQueue(label: "com.BERNU.WattWeight.camera-session")
+    private var currentInput: AVCaptureDeviceInput?
+    private var videoOutput: AVCaptureVideoDataOutput?
+
+    deinit {
+        // `stop()`'s `[weak self]` hop onto `sessionQueue` cannot fire
+        // once we're already inside `deinit` (self is being torn down),
+        // so it cannot be relied on here. Call directly on `session`
+        // (not through `self`) as a belt-and-braces safety net in case
+        // some dismissal path skipped `stop()`.
+        session.stopRunning()
+    }
+
+    func requestAuthorizationIfNeeded() async {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            authorizationState = .authorized
+        case .notDetermined:
+            let granted = await AVCaptureDevice.requestAccess(for: .video)
+            authorizationState = granted ? .authorized : .denied
+        default:
+            authorizationState = .denied
+        }
+    }
+
+    func start() {
+        guard authorizationState == .authorized else { return }
+        let position = cameraPosition
+        sessionQueue.async { [weak self] in
+            self?.configureSessionIfNeeded(position: position)
+            self?.session.startRunning()
+        }
+    }
+
+    func stop() {
+        sessionQueue.async { [weak self] in
+            self?.session.stopRunning()
+        }
+    }
+
+    func toggleCamera() {
+        let newPosition: CameraPosition = cameraPosition == .back ? .front : .back
+        cameraPosition = newPosition
+        sessionQueue.async { [weak self] in
+            self?.reconfigureInput(position: newPosition)
+        }
+    }
+
+    // `position` is passed in rather than read from `cameraPosition` because this
+    // runs on `sessionQueue` while `cameraPosition` is only ever written on the
+    // main actor (from `toggleCamera()`) — reading the shared property here would
+    // be an unsynchronized cross-thread data race.
+    private func configureSessionIfNeeded(position: CameraPosition) {
+        guard session.inputs.isEmpty else { return }
+        session.beginConfiguration()
+        session.sessionPreset = .medium
+        reconfigureInput(position: position)
+
+        let output = AVCaptureVideoDataOutput()
+        output.setSampleBufferDelegate(self, queue: sessionQueue)
+        if session.canAddOutput(output) {
+            session.addOutput(output)
+            videoOutput = output
+        }
+        session.commitConfiguration()
+        updateVideoConnection(position: position)
+    }
+
+    private func reconfigureInput(position: CameraPosition) {
+        session.beginConfiguration()
+        if let currentInput {
+            session.removeInput(currentInput)
+        }
+
+        let avPosition: AVCaptureDevice.Position = position == .back ? .back : .front
+        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: avPosition),
+              let input = try? AVCaptureDeviceInput(device: device),
+              session.canAddInput(input) else {
+            session.commitConfiguration()
+            return
+        }
+
+        session.addInput(input)
+        currentInput = input
+        session.commitConfiguration()
+        updateVideoConnection(position: position)
+    }
+
+    // `AVCaptureVideoDataOutput` delivers buffers in the sensor's native
+    // (unrotated) orientation — unlike `AVCaptureVideoPreviewLayer`, it
+    // does NOT auto-rotate for you. This feature's primary use case is
+    // the phone propped up in portrait, so we lock the connection's
+    // rotation to portrait (90 degrees, the standard "upright portrait"
+    // angle in the iOS 17+ `videoRotationAngle` API) so the buffers
+    // `PoseDetectorService` receives are already upright — see the `.up`
+    // comment in `PoseDetectorService.detectJoints` for the other half
+    // of this. Mirroring is set separately: the front camera's image is
+    // naturally mirrored, which would flip left/right joint labeling for
+    // Vision if left uncorrected.
+    //
+    // This hardcodes portrait rather than using
+    // `AVCaptureDevice.RotationCoordinator` to track live device
+    // orientation, since the assistant UI itself doesn't rotate — if a
+    // future version supports landscape use, this needs revisiting.
+    // Called after every input change (`reconfigureInput`, including the
+    // front/back toggle) since mirroring depends on camera position.
+    private func updateVideoConnection(position: CameraPosition) {
+        guard let connection = videoOutput?.connection(with: .video) else { return }
+        if connection.isVideoRotationAngleSupported(90) {
+            connection.videoRotationAngle = 90
+        }
+        if connection.isVideoMirroringSupported {
+            connection.automaticallyAdjustsVideoMirroring = false
+            connection.isVideoMirrored = position == .front
+        }
+    }
+}
+
+extension CameraSessionController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(
+        _ output: AVCaptureOutput,
+        didOutput sampleBuffer: CMSampleBuffer,
+        from connection: AVCaptureConnection
+    ) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        onFrame?(pixelBuffer)
+    }
+}
