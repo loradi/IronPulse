@@ -24,6 +24,14 @@ enum AppLanguage: String, CaseIterable, Identifiable {
         }
     }
 
+    var speechLanguageCode: String {
+        switch self {
+        case .spanish: return "es-ES"
+        case .english: return "en-US"
+        case .french: return "fr-FR"
+        }
+    }
+
     static func resolve(storedRawValue: String?, preferredLanguages: [String] = Locale.preferredLanguages) -> AppLanguage {
         if let storedRawValue, let stored = AppLanguage(rawValue: storedRawValue) {
             return stored

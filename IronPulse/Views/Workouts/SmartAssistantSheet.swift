@@ -48,10 +48,20 @@ struct SmartAssistantSheet: View {
                         .foregroundStyle(.white)
                     Spacer()
                     Button {
+                        model.audioAnnouncer.toggleMute()
+                    } label: {
+                        Image(systemName: model.audioAnnouncer.isMuted ? "speaker.slash.fill" : "speaker.wave.2.fill")
+                            .foregroundStyle(.white)
+                            .frame(minWidth: 44, minHeight: 44)
+                    }
+                    .accessibilityLabel(toggleAudioLabel)
+                    .accessibilityAddTraits(model.audioAnnouncer.isMuted ? .isSelected : [])
+                    Button {
                         model.cameraController.toggleCamera()
                     } label: {
                         Image(systemName: "arrow.triangle.2.circlepath.camera")
                             .foregroundStyle(.white)
+                            .frame(minWidth: 44, minHeight: 44)
                     }
                     .accessibilityLabel(toggleCameraLabel)
                 }
@@ -60,18 +70,24 @@ struct SmartAssistantSheet: View {
 
                 if !model.personVisible {
                     Text(noPersonLabel)
-                        .font(.wwCaption)
+                        .font(.wwHeadline)
+                        .multilineTextAlignment(.center)
+                        .minimumScaleFactor(0.7)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                        .background(Color.red.opacity(0.3), in: Capsule())
+                        .background(Color.red.opacity(0.3), in: RoundedRectangle(cornerRadius: 20))
                         .foregroundStyle(.white)
+                        .padding(.horizontal)
                 } else if let feedbackMessage = model.feedbackMessage {
                     Text(feedbackMessage)
-                        .font(.wwCaption)
+                        .font(.wwHeadline)
+                        .multilineTextAlignment(.center)
+                        .minimumScaleFactor(0.7)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                        .background(Color.ironAccent.opacity(0.2), in: Capsule())
+                        .background(Color.ironAccent.opacity(0.2), in: RoundedRectangle(cornerRadius: 20))
                         .foregroundStyle(Color.ironAccent)
+                        .padding(.horizontal)
                 }
 
                 Spacer()
@@ -98,10 +114,19 @@ struct SmartAssistantSheet: View {
             }
         }
         .onChange(of: model.didFinish) { _, done in
-            if done { dismiss() }
+            guard done else { return }
+            // Give the just-spoken completion phrase time to finish
+            // playing before the sheet (and its AVSpeechSynthesizer)
+            // gets torn down. A pragmatic fixed delay, not a real
+            // completion callback.
+            Task {
+                try? await Task.sleep(for: .seconds(1.5))
+                dismiss()
+            }
         }
         .onDisappear {
             model.cameraController.stop()
+            model.audioAnnouncer.stop()
         }
     }
 
@@ -139,5 +164,9 @@ struct SmartAssistantSheet: View {
 
     private var toggleCameraLabel: String {
         String(localized: "smart_assistant.toggle_camera", defaultValue: "Cambiar camara", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
+    }
+
+    private var toggleAudioLabel: String {
+        String(localized: "smart_assistant.toggle_audio", defaultValue: "Cambiar audio", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 }
