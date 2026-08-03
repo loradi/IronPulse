@@ -1,3 +1,4 @@
+import AVFoundation
 import Foundation
 import Testing
 @testable import IronPulse
@@ -21,5 +22,40 @@ struct SmartAssistantAudioAnnouncerTests {
 
         let second = SmartAssistantAudioAnnouncer(userDefaults: defaults)
         #expect(second.isMuted == true)
+    }
+
+    private struct FakeVoiceCandidate: SpeechVoiceCandidate {
+        let language: String
+        let quality: AVSpeechSynthesisVoiceQuality
+    }
+
+    @Test func bestVoicePicksThePremiumVoiceOverEnhancedAndDefault() {
+        let candidates = [
+            FakeVoiceCandidate(language: "es-ES", quality: .default),
+            FakeVoiceCandidate(language: "es-ES", quality: .premium),
+            FakeVoiceCandidate(language: "es-ES", quality: .enhanced),
+            FakeVoiceCandidate(language: "en-US", quality: .premium),
+        ]
+        let best = SmartAssistantAudioAnnouncer.bestVoice(among: candidates, language: "es-ES")
+        #expect(best?.quality == .premium)
+    }
+
+    @Test func bestVoiceIgnoresCandidatesForOtherLanguages() {
+        let candidates = [FakeVoiceCandidate(language: "fr-FR", quality: .premium)]
+        let best = SmartAssistantAudioAnnouncer.bestVoice(among: candidates, language: "es-ES")
+        #expect(best == nil)
+    }
+
+    @Test func makeUtteranceUsesTheTunedRateAndPitch() {
+        let utterance = SmartAssistantAudioAnnouncer.makeUtterance("hola", voice: nil)
+        #expect(utterance.rate == 0.47)
+        #expect(utterance.pitchMultiplier == 0.92)
+    }
+
+    @Test func resolvedVoiceCachesTheSameInstanceForRepeatedCallsWithTheSameLanguage() {
+        let announcer = SmartAssistantAudioAnnouncer(userDefaults: makeIsolatedDefaults())
+        let first = announcer.resolvedVoice(for: .spanish)
+        let second = announcer.resolvedVoice(for: .spanish)
+        #expect(first === second)
     }
 }
