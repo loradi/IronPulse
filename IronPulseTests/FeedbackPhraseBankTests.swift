@@ -15,6 +15,10 @@ struct FeedbackPhraseBankTests {
         #expect(FeedbackPhraseBank.tooFastPhrases.count == 8)
     }
 
+    @Test func badFormBankHasExactlySixteenPhrases() {
+        #expect(FeedbackPhraseBank.badFormPhrases.count == 16)
+    }
+
     @Test func randomPhraseAlwaysComesFromTheMatchingBank() {
         for _ in 0..<50 {
             let phrase = FeedbackPhraseBank.randomPhrase(for: .goodRep, language: .spanish)
@@ -26,6 +30,7 @@ struct FeedbackPhraseBankTests {
         let allPhrases = FeedbackPhraseBank.goodRepPhrases
             + FeedbackPhraseBank.notDeepEnoughPhrases
             + FeedbackPhraseBank.tooFastPhrases
+            + FeedbackPhraseBank.badFormPhrases
         for phrase in allPhrases {
             for language in AppLanguage.allCases {
                 #expect(!phrase.text(for: language).isEmpty)
