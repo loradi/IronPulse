@@ -122,6 +122,7 @@ struct GuidedWorkoutView: View {
         .fullScreenCover(isPresented: $isShowingSmartAssistant) {
             if let set = activeSet, let exercise = currentExercise {
                 SmartAssistantSheet(
+                    exerciseID: exercise.id,
                     exerciseName: exercise.name,
                     targetReps: set.targetRepsMax,
                     onFinish: { count in

@@ -3771,6 +3771,29 @@
           }
         }
       }
+    },
+    "smart_assistant.no_person_detected": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We can't see you clearly, adjust the framing"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No te vemos bien, ajustá el encuadre"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On ne vous voit pas bien, ajustez le cadrage"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

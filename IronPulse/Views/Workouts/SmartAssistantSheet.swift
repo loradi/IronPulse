@@ -1,29 +1,38 @@
 import SwiftUI
 
-/// Stage-2 UI for the Smart Exercise Assistant: the full overlay
-/// (exercise name, rep counter, feedback banner, Finish Set button)
-/// now composited on top of a live camera preview, with camera
-/// permission handling and a front/back toggle. The rep-counting
-/// logic itself is still a mock, self-incrementing counter — a later
-/// task swaps this mock timer for real Vision-based tracking; this
-/// view's `onFinish` contract does not change across that swap.
+/// UI for the Smart Exercise Assistant: the full overlay (exercise
+/// name, rep counter, feedback banner, Finish Set button) composited
+/// on top of a live camera preview, with camera permission handling
+/// and a front/back toggle. Rep counting is driven by
+/// `SmartAssistantModel`, which runs real Vision-based pose detection
+/// on the live camera feed.
 struct SmartAssistantSheet: View {
     @Environment(\.dismiss) private var dismiss
 
+    let exerciseID: String
     let exerciseName: String
     let targetReps: Int
     let onFinish: (Int) -> Void
 
-    @State private var repCount = 0
-    @State private var feedbackMessage: String?
-    @State private var mockCountingTask: Task<Void, Never>?
-    @State private var cameraController = CameraSessionController()
+    @State private var model: SmartAssistantModel
+
+    init(exerciseID: String, exerciseName: String, targetReps: Int, onFinish: @escaping (Int) -> Void) {
+        self.exerciseID = exerciseID
+        self.exerciseName = exerciseName
+        self.targetReps = targetReps
+        self.onFinish = onFinish
+        _model = State(initialValue: SmartAssistantModel(
+            exerciseID: exerciseID,
+            targetReps: targetReps,
+            onComplete: onFinish
+        ))
+    }
 
     var body: some View {
         ZStack {
-            switch cameraController.authorizationState {
+            switch model.cameraController.authorizationState {
             case .authorized:
-                CameraPreviewView(session: cameraController.session)
+                CameraPreviewView(session: model.cameraController.session)
                     .ignoresSafeArea()
             case .denied:
                 Color.black.ignoresSafeArea()
@@ -39,7 +48,7 @@ struct SmartAssistantSheet: View {
                         .foregroundStyle(.white)
                     Spacer()
                     Button {
-                        cameraController.toggleCamera()
+                        model.cameraController.toggleCamera()
                     } label: {
                         Image(systemName: "arrow.triangle.2.circlepath.camera")
                             .foregroundStyle(.white)
@@ -49,7 +58,14 @@ struct SmartAssistantSheet: View {
                 .padding(.top, 60)
                 .padding(.horizontal)
 
-                if let feedbackMessage {
+                if !model.personVisible {
+                    Text(noPersonLabel)
+                        .font(.wwCaption)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(Color.red.opacity(0.3), in: Capsule())
+                        .foregroundStyle(.white)
+                } else if let feedbackMessage = model.feedbackMessage {
                     Text(feedbackMessage)
                         .font(.wwCaption)
                         .padding(.horizontal, 16)
@@ -60,28 +76,26 @@ struct SmartAssistantSheet: View {
 
                 Spacer()
 
-                Text("\(repCount) / \(targetReps)")
+                Text("\(model.repCount) / \(targetReps)")
                     .font(.wwDisplay)
                     .foregroundStyle(Color.ironAccent)
 
                 Spacer()
 
-                Button(finishSetLabel, action: finish)
-                    .buttonStyle(PrimarySportButtonStyle())
-                    .padding(.horizontal)
-                    .padding(.bottom, 40)
+                Button(finishSetLabel) {
+                    model.finish()
+                    dismiss()
+                }
+                .buttonStyle(PrimarySportButtonStyle())
+                .padding(.horizontal)
+                .padding(.bottom, 40)
             }
         }
         .task {
-            await cameraController.requestAuthorizationIfNeeded()
-            if cameraController.authorizationState == .authorized {
-                cameraController.start()
+            await model.cameraController.requestAuthorizationIfNeeded()
+            if model.cameraController.authorizationState == .authorized {
+                model.start()
             }
-        }
-        .onAppear(perform: startMockCounting)
-        .onDisappear {
-            mockCountingTask?.cancel()
-            cameraController.stop()
         }
     }
 
@@ -101,32 +115,12 @@ struct SmartAssistantSheet: View {
         }
     }
 
-    private func startMockCounting() {
-        mockCountingTask = Task { @MainActor in
-            while !Task.isCancelled, repCount < targetReps {
-                try? await Task.sleep(nanoseconds: 2_000_000_000)
-                guard !Task.isCancelled else { return }
-                repCount += 1
-                feedbackMessage = goodRepLabel
-                if repCount >= targetReps {
-                    finish()
-                }
-            }
-        }
-    }
-
-    private func finish() {
-        mockCountingTask?.cancel()
-        onFinish(repCount)
-        dismiss()
+    private var noPersonLabel: String {
+        String(localized: "smart_assistant.no_person_detected", defaultValue: "No te vemos bien, ajusta el encuadre", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 
     private var finishSetLabel: String {
         String(localized: "smart_assistant.finish_set", defaultValue: "Finalizar set", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
-    }
-
-    private var goodRepLabel: String {
-        String(localized: "smart_assistant.feedback.good_rep", defaultValue: "Buena repeticion", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale)
     }
 
     private var permissionDeniedLabel: String {
