@@ -10,6 +10,16 @@ import Vision
 enum PoseDetectorService {
     static func detectJoints(in pixelBuffer: CVPixelBuffer) -> [BodyJoint: CGPoint] {
         let request = VNDetectHumanBodyPoseRequest()
+        // `.up` is correct here ONLY because `CameraSessionController`
+        // sets the capture connection's `videoRotationAngle` to portrait
+        // (90 degrees) before buffers ever reach us — see
+        // `CameraSessionController.updateVideoConnection`. Camera buffers
+        // are otherwise delivered in the sensor's native, unrotated
+        // orientation (unlike the preview layer, which auto-rotates), so
+        // without that connection-level fix a portrait-held phone would
+        // hand Vision a sideways buffer and pose detection would fail.
+        // Do not change this back to `.up` "for simplicity" without also
+        // checking that rotation is still being applied upstream.
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up, options: [:])
 
         do {

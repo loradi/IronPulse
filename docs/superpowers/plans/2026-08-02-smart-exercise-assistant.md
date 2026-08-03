@@ -135,16 +135,10 @@ struct MovementProfileCatalogTests {
             "ex_098_curl_barra_recta",
             "ex_078_press_militar_barra",
             "ex_031_peso_muerto_convencional",
-            "ex_053_zancadas_caminando_con_mancuernas",
         ]
         for id in curatedIDs {
             #expect(MovementProfileCatalog.profile(forExerciseID: id) != nil, "Missing profile for \(id)")
         }
-    }
-
-    @Test func lungeProfileTracksPerLimb() {
-        let profile = MovementProfileCatalog.profile(forExerciseID: "ex_053_zancadas_caminando_con_mancuernas")
-        #expect(profile?.tracksPerLimb == true)
     }
 
     @Test func squatAndCurlProfilesHaveNonOverlappingDownAndUpRanges() {
@@ -200,23 +194,10 @@ struct MovementProfile: Equatable {
     let primaryAngle: JointAngle
     let downRange: ClosedRange<Double>
     let upRange: ClosedRange<Double>
-    let tracksPerLimb: Bool
-
-    init(
-        primaryAngle: JointAngle,
-        downRange: ClosedRange<Double>,
-        upRange: ClosedRange<Double>,
-        tracksPerLimb: Bool = false
-    ) {
-        self.primaryAngle = primaryAngle
-        self.downRange = downRange
-        self.upRange = upRange
-        self.tracksPerLimb = tracksPerLimb
-    }
 }
 
 /// The curated set of exercises the Smart Assistant supports (see the
-/// design spec for why these nine and not the full 146-exercise
+/// design spec for why these eight and not the full 146-exercise
 /// catalog). Angle thresholds below are a reasonable starting point
 /// based on standard range-of-motion references for each movement —
 /// expect to retune them against real Vision output on a physical
@@ -235,7 +216,6 @@ enum MovementProfileCatalog {
         "ex_098_curl_barra_recta": curl,
         "ex_078_press_militar_barra": overheadPress,
         "ex_031_peso_muerto_convencional": hinge,
-        "ex_053_zancadas_caminando_con_mancuernas": lunge,
     ]
 
     // Knee angle (hip-knee-ankle): ~85 degrees at the bottom of a
@@ -277,17 +257,17 @@ enum MovementProfileCatalog {
         downRange: 60...100,
         upRange: 160...180
     )
-
-    // Same knee-angle geometry as a squat, but tracked per leg since
-    // a walking lunge alternates which leg is doing the work.
-    private static let lunge = MovementProfile(
-        primaryAngle: JointAngle(proximal: .leftHip, vertex: .leftKnee, distal: .leftAnkle),
-        downRange: 70...100,
-        upRange: 160...180,
-        tracksPerLimb: true
-    )
 }
 ```
+
+Note (final cross-task review, 2026-08-02): a tenth/lunge profile
+(`ex_053_zancadas_caminando_con_mancuernas`, walking lunge, per-limb
+tracking) was originally planned here but cut before shipping — it was
+set up in the catalog and asserted by a test, but per-limb tracking was
+never actually implemented anywhere in `RepCounterEngine` or
+`SmartAssistantModel`, so it would have silently miscounted reps. Removed
+rather than shipped broken; may return later as real per-limb tracking
+work.
 
 - [ ] **Step 8: Run tests to verify they pass**
 
@@ -719,7 +699,7 @@ private var smartAssistantLabel: String {
 Run: `xcodebuild build -project IronPulse.xcodeproj -scheme IronPulse -destination 'platform=iOS Simulator,name=iPhone 17e' 2>&1 | grep -E "error:|BUILD SUCCEEDED|BUILD FAILED"`
 Expected: `** BUILD SUCCEEDED **`
 
-Install and launch on the simulator, start a session, tap "Start set" on one of the nine curated exercises (e.g. any squat variant), confirm the "Asistente inteligente" button appears and does NOT appear for an unsupported exercise (e.g. any cable/machine exercise). Open it, confirm the mock counter increments every 2 seconds up to the target and auto-closes, confirm the manual "Finalizar set" button also works and returns the count reached so far.
+Install and launch on the simulator, start a session, tap "Start set" on one of the eight curated exercises (e.g. any squat variant), confirm the "Asistente inteligente" button appears and does NOT appear for an unsupported exercise (e.g. any cable/machine exercise). Open it, confirm the mock counter increments every 2 seconds up to the target and auto-closes, confirm the manual "Finalizar set" button also works and returns the count reached so far.
 
 - [ ] **Step 5: Run the full existing suite to confirm no regressions**
 

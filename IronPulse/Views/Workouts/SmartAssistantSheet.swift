@@ -97,6 +97,12 @@ struct SmartAssistantSheet: View {
                 model.start()
             }
         }
+        .onChange(of: model.didFinish) { _, done in
+            if done { dismiss() }
+        }
+        .onDisappear {
+            model.cameraController.stop()
+        }
     }
 
     private var permissionDeniedOverlay: some View {

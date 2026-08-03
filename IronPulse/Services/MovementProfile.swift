@@ -35,23 +35,10 @@ struct MovementProfile: Equatable {
     let primaryAngle: JointAngle
     let downRange: ClosedRange<Double>
     let upRange: ClosedRange<Double>
-    let tracksPerLimb: Bool
-
-    init(
-        primaryAngle: JointAngle,
-        downRange: ClosedRange<Double>,
-        upRange: ClosedRange<Double>,
-        tracksPerLimb: Bool = false
-    ) {
-        self.primaryAngle = primaryAngle
-        self.downRange = downRange
-        self.upRange = upRange
-        self.tracksPerLimb = tracksPerLimb
-    }
 }
 
 /// The curated set of exercises the Smart Assistant supports (see the
-/// design spec for why these nine and not the full 146-exercise
+/// design spec for why these eight and not the full 146-exercise
 /// catalog). Angle thresholds below are a reasonable starting point
 /// based on standard range-of-motion references for each movement —
 /// expect to retune them against real Vision output on a physical
@@ -70,7 +57,6 @@ enum MovementProfileCatalog {
         "ex_098_curl_barra_recta": curl,
         "ex_078_press_militar_barra": overheadPress,
         "ex_031_peso_muerto_convencional": hinge,
-        "ex_053_zancadas_caminando_con_mancuernas": lunge,
     ]
 
     // Knee angle (hip-knee-ankle): ~85 degrees at the bottom of a
@@ -111,14 +97,5 @@ enum MovementProfileCatalog {
         primaryAngle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
         downRange: 60...100,
         upRange: 160...180
-    )
-
-    // Same knee-angle geometry as a squat, but tracked per leg since
-    // a walking lunge alternates which leg is doing the work.
-    private static let lunge = MovementProfile(
-        primaryAngle: JointAngle(proximal: .leftHip, vertex: .leftKnee, distal: .leftAnkle),
-        downRange: 70...100,
-        upRange: 160...180,
-        tracksPerLimb: true
     )
 }

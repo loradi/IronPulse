@@ -22,10 +22,21 @@ final class CameraSessionController: NSObject {
     private(set) var cameraPosition: CameraPosition = .back
 
     let session = AVCaptureSession()
+    @ObservationIgnored
     var onFrame: ((CVPixelBuffer) -> Void)?
 
     private let sessionQueue = DispatchQueue(label: "com.BERNU.WattWeight.camera-session")
     private var currentInput: AVCaptureDeviceInput?
+    private var videoOutput: AVCaptureVideoDataOutput?
+
+    deinit {
+        // `stop()`'s `[weak self]` hop onto `sessionQueue` cannot fire
+        // once we're already inside `deinit` (self is being torn down),
+        // so it cannot be relied on here. Call directly on `session`
+        // (not through `self`) as a belt-and-braces safety net in case
+        // some dismissal path skipped `stop()`.
+        session.stopRunning()
+    }
 
     func requestAuthorizationIfNeeded() async {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -76,8 +87,10 @@ final class CameraSessionController: NSObject {
         output.setSampleBufferDelegate(self, queue: sessionQueue)
         if session.canAddOutput(output) {
             session.addOutput(output)
+            videoOutput = output
         }
         session.commitConfiguration()
+        updateVideoConnection(position: position)
     }
 
     private func reconfigureInput(position: CameraPosition) {
@@ -97,6 +110,36 @@ final class CameraSessionController: NSObject {
         session.addInput(input)
         currentInput = input
         session.commitConfiguration()
+        updateVideoConnection(position: position)
+    }
+
+    // `AVCaptureVideoDataOutput` delivers buffers in the sensor's native
+    // (unrotated) orientation — unlike `AVCaptureVideoPreviewLayer`, it
+    // does NOT auto-rotate for you. This feature's primary use case is
+    // the phone propped up in portrait, so we lock the connection's
+    // rotation to portrait (90 degrees, the standard "upright portrait"
+    // angle in the iOS 17+ `videoRotationAngle` API) so the buffers
+    // `PoseDetectorService` receives are already upright — see the `.up`
+    // comment in `PoseDetectorService.detectJoints` for the other half
+    // of this. Mirroring is set separately: the front camera's image is
+    // naturally mirrored, which would flip left/right joint labeling for
+    // Vision if left uncorrected.
+    //
+    // This hardcodes portrait rather than using
+    // `AVCaptureDevice.RotationCoordinator` to track live device
+    // orientation, since the assistant UI itself doesn't rotate — if a
+    // future version supports landscape use, this needs revisiting.
+    // Called after every input change (`reconfigureInput`, including the
+    // front/back toggle) since mirroring depends on camera position.
+    private func updateVideoConnection(position: CameraPosition) {
+        guard let connection = videoOutput?.connection(with: .video) else { return }
+        if connection.isVideoRotationAngleSupported(90) {
+            connection.videoRotationAngle = 90
+        }
+        if connection.isVideoMirroringSupported {
+            connection.automaticallyAdjustsVideoMirroring = false
+            connection.isVideoMirrored = position == .front
+        }
     }
 }
 

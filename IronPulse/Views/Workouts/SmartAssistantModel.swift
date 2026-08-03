@@ -20,7 +20,7 @@ final class SmartAssistantModel {
 
     private let engine: RepCounterEngine?
     private let movementProfile: MovementProfile?
-    private var didFinish = false
+    private(set) var didFinish = false
     private let onComplete: (Int) -> Void
 
     // Touched only from `processFrame`, which `CameraSessionController`
@@ -31,11 +31,21 @@ final class SmartAssistantModel {
     // unsynchronized `nonisolated(unsafe)` Int safe here; it is not
     // shared cross-thread the way `CameraSessionController.cameraPosition`
     // was.
+    @ObservationIgnored
     nonisolated(unsafe) private var frameCounter = 0
 
     /// Process only every Nth frame — Vision inference is too
     /// expensive to run at full camera frame rate.
     private let frameSkip = 3
+
+    // Consecutive frames with no detected primary-angle joints. Only
+    // flips `personVisible` to false after several misses in a row so a
+    // single bad frame doesn't strobe the "adjust your framing" banner
+    // on and off — at the current throttle rate (every 3rd camera
+    // frame, ~10 processed frames/sec off a ~30fps feed) this threshold
+    // is roughly 1 second of sustained misses.
+    private var missedDetectionCount = 0
+    private let missedDetectionThreshold = 10
 
     init(exerciseID: String, targetReps: Int, onComplete: @escaping (Int) -> Void) {
         self.targetReps = targetReps
@@ -82,9 +92,13 @@ final class SmartAssistantModel {
         guard let profile = movementProfile, let engine else { return }
 
         guard let angle = Self.primaryAngle(joints: joints, profile: profile) else {
-            personVisible = false
+            missedDetectionCount += 1
+            if missedDetectionCount >= missedDetectionThreshold {
+                personVisible = false
+            }
             return
         }
+        missedDetectionCount = 0
         personVisible = true
 
         guard let feedback = engine.update(angle: angle) else { return }

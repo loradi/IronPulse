@@ -103,7 +103,6 @@ pidio el usuario:
       let secondaryJoint: JointAngle?
       let downRange: ClosedRange<Double>
       let upRange: ClosedRange<Double>
-      let tracksPerLimb: Bool
   }
   ```
 
@@ -181,7 +180,10 @@ definen durante la implementacion de la Etapa 3, no en este spec:
 - Curl de biceps con barra recta (`ex_098_curl_barra_recta`)
 - Press militar con barra (`ex_078_press_militar_barra`)
 - Peso muerto convencional (`ex_031_peso_muerto_convencional`)
-- Zancadas caminando con mancuernas (`ex_053_zancadas_caminando_con_mancuernas`)
+
+Zancadas caminando con mancuernas (`ex_053_zancadas_caminando_con_mancuernas`)
+se evaluo pero se descarto de esta v1: requiere tracking per-limb (alternar
+pierna izquierda/derecha) que no esta implementado — ver "Fuera de alcance".
 
 Lista ampliable despues de esta primera version; no requiere cambios
 de arquitectura, solo agregar entradas al diccionario
@@ -196,7 +198,7 @@ de arquitectura, solo agregar entradas al diccionario
    `NSCameraUsageDescription` actualizado para reflejar el nuevo uso
    (ya no es solo "foto de perfil"), toggle frontal/trasera.
 3. **Etapa 3 — Vision y conteo real:** `VNDetectHumanBodyPoseRequest`,
-   `RepCounterEngine`, los `MovementProfile` de los 9 ejercicios
+   `RepCounterEngine`, los `MovementProfile` de los 8 ejercicios
    curados, banner de feedback real.
 
 Cada etapa es su propia tarea/PR revisable de forma independiente,
@@ -204,8 +206,12 @@ segun el patron ya usado en este proyecto (subagent-driven-development).
 
 ## Fuera de alcance
 
-- Los 146 ejercicios del catalogo — solo los 9 curados en esta v1.
+- Los 146 ejercicios del catalogo — solo los 8 curados en esta v1.
 - Ejercicios isometricos (plancha, hollow hold, plancha lateral).
+- Zancadas caminando con mancuernas — requiere tracking per-limb
+  (alternar pierna izquierda/derecha) que no esta implementado; se
+  descarto en la revision final en vez de contar mal las repeticiones
+  en silencio.
 - Grabar o guardar cualquier video/imagen de la sesion de camara.
 - Stat de "Force (Watt)" u otra metrica de fuerza/potencia no
   derivable honestamente de deteccion de postura.

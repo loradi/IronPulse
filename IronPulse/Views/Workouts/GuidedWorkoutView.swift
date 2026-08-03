@@ -402,6 +402,7 @@ struct GuidedWorkoutView: View {
     }
 
     private func handleSmartAssistantFinish(set: SetLog, repCount: Int) {
+        guard repCount > 0 else { return }
         set.repsCompleted = repCount
         try? modelContext.save()
         if GuidedSessionFlow.canCompleteSet(weightKg: set.weightKg, repsCompleted: set.repsCompleted) {
