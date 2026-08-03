@@ -52,11 +52,27 @@ enum MovementProfileCatalog {
         "ex_048_sentadilla_trasera_con_barra": squat,
         "ex_060_sentadilla_goblet_con_mancuerna": squat,
         "ex_057_sentadilla_bulgara_con_mancuernas": squat,
+        "ex_049_sentadilla_frontal_con_barra": squat,
+        "ex_062_sentadilla_hack_en_maquina": squat,
+        "ex_063_sentadilla_en_maquina_smith": squat,
         "ex_021_flexiones_pecho": pushUp,
         "ex_020_fondos_banco": pushUp,
+        "ex_019_fondos_paralelas": pushUp,
+        "ex_022_flexiones_inclinadas": pushUp,
         "ex_098_curl_barra_recta": curl,
+        "ex_100_curl_alterno_mancuernas": curl,
+        "ex_101_curl_martillo_mancuernas": curl,
+        "ex_104_curl_concentrado": curl,
         "ex_078_press_militar_barra": overheadPress,
+        "ex_079_press_militar_sentado_barra": overheadPress,
+        "ex_080_press_hombros_mancuernas": overheadPress,
+        "ex_081_press_arnold": overheadPress,
         "ex_031_peso_muerto_convencional": hinge,
+        "ex_051_peso_muerto_rumano_con_barra": hinge,
+        "ex_052_peso_muerto_rumano_con_mancuernas": hinge,
+        "ex_027_remo_sentado_polea": row,
+        "ex_028_jalon_pecho_agarre_ancho": row,
+        "ex_117_pushdown_polea_cuerda": tricepsExtension,
     ]
 
     // Knee angle (hip-knee-ankle): ~85 degrees at the bottom of a
@@ -96,6 +112,26 @@ enum MovementProfileCatalog {
     private static let hinge = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
         downRange: 60...100,
+        upRange: 160...180
+    )
+
+    // Elbow angle (shoulder-elbow-wrist): ~170 degrees extended
+    // reaching for the weight (the row's "down"), ~60-85 degrees
+    // pulled to the torso (the row's "up") — the opposite direction
+    // from pushUp's elbow angle on the same joint triangle.
+    private static let row = MovementProfile(
+        primaryAngle: JointAngle(proximal: .leftShoulder, vertex: .leftElbow, distal: .leftWrist),
+        downRange: 155...180,
+        upRange: 60...85
+    )
+
+    // Elbow angle (shoulder-elbow-wrist): ~70-95 degrees at the rack
+    // position (the extension's "down"), ~160-180 degrees at full
+    // lockout (the extension's "up") — the same joint triangle as
+    // curl, opposite direction.
+    private static let tricepsExtension = MovementProfile(
+        primaryAngle: JointAngle(proximal: .leftShoulder, vertex: .leftElbow, distal: .leftWrist),
+        downRange: 70...95,
         upRange: 160...180
     )
 }
