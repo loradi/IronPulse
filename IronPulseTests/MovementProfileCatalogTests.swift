@@ -56,4 +56,13 @@ struct MovementProfileCatalogTests {
         #expect(tricepsExtension.primaryAngle == sharedTriangle)
         #expect(row.downRange != tricepsExtension.downRange)
     }
+
+    @Test func everyCuratedIDExistsInTheRealExerciseCatalog() throws {
+        let url = try #require(Bundle.main.url(forResource: "ExercisesSeed", withExtension: "json"))
+        let data = try Data(contentsOf: url)
+        let realIDs = Set(try JSONDecoder().decode([ExerciseSeedDTO].self, from: data).map(\.id))
+        for id in Self.curatedIDs {
+            #expect(realIDs.contains(id), "\(id) is not a real exercise ID in ExercisesSeed.json")
+        }
+    }
 }

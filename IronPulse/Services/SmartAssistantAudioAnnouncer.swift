@@ -11,17 +11,20 @@ final class SmartAssistantAudioAnnouncer {
 
     private let synthesizer = AVSpeechSynthesizer()
     private let userDefaults: UserDefaults
+    private var hasConfiguredAudioSession = false
 
     var isMuted: Bool {
         didSet {
             userDefaults.set(isMuted, forKey: Self.mutedDefaultsKey)
+            if isMuted {
+                stop()
+            }
         }
     }
 
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
         isMuted = userDefaults.bool(forKey: Self.mutedDefaultsKey)
-        try? AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
     }
 
     /// Cancels any utterance still being spoken before starting the
@@ -30,10 +33,19 @@ final class SmartAssistantAudioAnnouncer {
     /// sentence takes to say).
     func speak(_ text: String, language: AppLanguage) {
         guard !isMuted else { return }
+        if !hasConfiguredAudioSession {
+            hasConfiguredAudioSession = true
+            try? AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
+        }
         synthesizer.stopSpeaking(at: .immediate)
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: language.speechLanguageCode)
         synthesizer.speak(utterance)
+    }
+
+    /// Immediately silences any utterance currently being spoken.
+    func stop() {
+        synthesizer.stopSpeaking(at: .immediate)
     }
 
     func toggleMute() {

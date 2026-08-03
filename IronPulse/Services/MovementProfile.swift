@@ -38,11 +38,11 @@ struct MovementProfile: Equatable {
 }
 
 /// The curated set of exercises the Smart Assistant supports (see the
-/// design spec for why these eight and not the full 146-exercise
+/// design spec for why these 24 and not the full 146-exercise
 /// catalog). Angle thresholds below are a reasonable starting point
 /// based on standard range-of-motion references for each movement —
 /// expect to retune them against real Vision output on a physical
-/// device during Task 4's verification, per the design spec.
+/// device during verification, per the design spec.
 enum MovementProfileCatalog {
     static func profile(forExerciseID id: String) -> MovementProfile? {
         profiles[id]

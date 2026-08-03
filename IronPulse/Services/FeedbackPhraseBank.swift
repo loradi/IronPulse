@@ -21,7 +21,7 @@ extension LocalizedString {
 enum FeedbackPhraseBank {
     static func randomPhrase(for feedback: FormFeedback, language: AppLanguage) -> String {
         let bank = phrases(for: feedback)
-        let phrase = bank.randomElement() ?? bank[0]
+        let phrase = bank.randomElement() ?? LocalizedString(es: "", en: "", fr: "")
         return phrase.text(for: language)
     }
 
@@ -58,21 +58,21 @@ enum FeedbackPhraseBank {
 
     static let notDeepEnoughPhrases: [LocalizedString] = [
         LocalizedString(es: "No completaste el rango de movimiento", en: "You didn't complete the full range of motion", fr: "Tu n'as pas fait toute l'amplitude"),
-        LocalizedString(es: "Baja un poco más", en: "Go a little lower", fr: "Descends un peu plus"),
-        LocalizedString(es: "Estira el brazo por completo", en: "Fully extend your arm", fr: "Étends complètement le bras"),
+        LocalizedString(es: "Lleva el movimiento un poco más lejos", en: "Take the movement a little further", fr: "Va un peu plus loin dans le mouvement"),
+        LocalizedString(es: "Completa el movimiento en su totalidad", en: "Complete the movement in full", fr: "Effectue le mouvement en entier"),
         LocalizedString(es: "No llegaste al ángulo correcto", en: "You didn't reach the right angle", fr: "Tu n'as pas atteint le bon angle"),
         LocalizedString(es: "Completa el movimiento hasta el final", en: "Finish the movement all the way", fr: "Termine le mouvement jusqu'au bout"),
-        LocalizedString(es: "Un poco más de profundidad", en: "A bit more depth", fr: "Un peu plus de profondeur"),
+        LocalizedString(es: "Un poco más de alcance", en: "A bit more range", fr: "Un peu plus d'étendue"),
         LocalizedString(es: "Casi, pero falta rango", en: "Almost, but you need more range", fr: "Presque, mais il manque de l'amplitude"),
         LocalizedString(es: "Extiende completamente la articulación", en: "Fully extend the joint", fr: "Étends complètement l'articulation"),
         LocalizedString(es: "No te quedes a medio camino", en: "Don't stop halfway", fr: "Ne t'arrête pas à mi-chemin"),
-        LocalizedString(es: "Baja más para activar el músculo", en: "Go lower to fully engage the muscle", fr: "Descends plus bas pour bien engager le muscle"),
+        LocalizedString(es: "Completa más el movimiento para activar el músculo", en: "Complete more of the movement to fully engage the muscle", fr: "Termine davantage le mouvement pour bien engager le muscle"),
         LocalizedString(es: "Tu postura necesita más rango", en: "Your posture needs more range", fr: "Ta posture a besoin de plus d'amplitude"),
         LocalizedString(es: "Repite con mayor amplitud", en: "Repeat with more amplitude", fr: "Répète avec plus d'amplitude"),
         LocalizedString(es: "No se ve el rango completo", en: "I can't see the full range", fr: "Je ne vois pas toute l'amplitude"),
-        LocalizedString(es: "Ajusta el ángulo del brazo", en: "Adjust your arm angle", fr: "Ajuste l'angle de ton bras"),
+        LocalizedString(es: "Ajusta el ángulo del movimiento", en: "Adjust the angle of the movement", fr: "Ajuste l'angle du mouvement"),
         LocalizedString(es: "Falta llegar al punto final", en: "You need to reach the end point", fr: "Il manque d'atteindre le point final"),
-        LocalizedString(es: "Profundiza más el movimiento", en: "Go deeper into the movement", fr: "Approfondis davantage le mouvement"),
+        LocalizedString(es: "Lleva el movimiento más al límite", en: "Push the movement further", fr: "Pousse le mouvement plus loin"),
         LocalizedString(es: "Tu rango de movimiento es corto", en: "Your range of motion is short", fr: "Ton amplitude de mouvement est courte"),
         LocalizedString(es: "Lleva la articulación al límite", en: "Take the joint to its limit", fr: "Amène l'articulation à sa limite"),
         LocalizedString(es: "Necesitas más extensión", en: "You need more extension", fr: "Tu as besoin de plus d'extension"),
