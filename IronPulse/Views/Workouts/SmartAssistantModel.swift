@@ -20,9 +20,18 @@ final class SmartAssistantModel {
 
     private let engine: RepCounterEngine?
     private let movementProfile: MovementProfile?
-    private var frameCounter = 0
     private var didFinish = false
     private let onComplete: (Int) -> Void
+
+    // Touched only from `processFrame`, which `CameraSessionController`
+    // always invokes serially on its single `sessionQueue` (the sample
+    // buffer delegate is registered on that one serial queue) — never
+    // read or written from `handleDetectedJoints` or any other
+    // main-actor code. That single-queue confinement is what makes an
+    // unsynchronized `nonisolated(unsafe)` Int safe here; it is not
+    // shared cross-thread the way `CameraSessionController.cameraPosition`
+    // was.
+    nonisolated(unsafe) private var frameCounter = 0
 
     /// Process only every Nth frame — Vision inference is too
     /// expensive to run at full camera frame rate.
@@ -53,9 +62,14 @@ final class SmartAssistantModel {
 
     // Called from CameraSessionController's background session queue —
     // deliberately not main-actor-isolated so it can run there without
-    // hopping first. Vision inference itself happens on that queue;
-    // only the final state update jumps to the main actor.
+    // hopping first. The frame-skip gate is checked here, before Vision
+    // inference runs, so skipped frames never pay for `detectJoints` —
+    // not just after the fact. Only the final state update jumps to
+    // the main actor.
     nonisolated private func processFrame(_ pixelBuffer: CVPixelBuffer) {
+        frameCounter += 1
+        guard frameCounter % frameSkip == 0 else { return }
+
         let joints = PoseDetectorService.detectJoints(in: pixelBuffer)
         Task { @MainActor in
             self.handleDetectedJoints(joints)
@@ -64,9 +78,6 @@ final class SmartAssistantModel {
 
     private func handleDetectedJoints(_ joints: [BodyJoint: CGPoint]) {
         guard !didFinish else { return }
-
-        frameCounter += 1
-        guard frameCounter % frameSkip == 0 else { return }
 
         guard let profile = movementProfile, let engine else { return }
 
