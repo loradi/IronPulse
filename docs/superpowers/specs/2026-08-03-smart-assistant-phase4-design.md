@@ -33,10 +33,10 @@ Los triángulos reutilizados son los mismos 4 que ya existen: hombro-codo-muñec
 | Perfil | Chequeo | Ángulo | Qué detecta |
 |---|---|---|---|
 | `squat` | Rango: 50°...180° | hombro-cadera-rodilla | El torso se colapsa demasiado hacia adelante (redondear la espalda) |
-| `pushUp` | Rango: 150°...180° | hombro-cadera-rodilla | La cadera se cae (perder la línea recta del cuerpo) |
+| `pushUp` | Estabilidad: ±15° | hombro-cadera-rodilla | La cadera se cae (perder la línea recta del cuerpo) |
 | `curl` | Estabilidad: ±15° | cadera-hombro-codo | El hombro se balancea para dar impulso |
-| `overheadPress` | Rango: 150°...180° | hombro-cadera-rodilla | Empujar con las piernas/espalda en vez del hombro |
-| `hinge` | Rango: 150°...180° | cadera-rodilla-tobillo | La rodilla se dobla de más (se convierte en sentadilla) |
+| `overheadPress` | Estabilidad: ±15° | hombro-cadera-rodilla | Empujar con las piernas/espalda en vez del hombro |
+| `hinge` | Rango: 100°...180° | cadera-rodilla-tobillo | La rodilla se dobla de más (se convierte en sentadilla) |
 | `row` | Estabilidad: ±15° | hombro-cadera-rodilla | El torso se balancea hacia atrás para ayudar a jalar |
 | `tricepsExtension` | Estabilidad: ±15° | cadera-hombro-codo | El hombro se balancea para dar impulso |
 | `lateralRaise` | Estabilidad: ±15° | hombro-cadera-rodilla | El torso se balancea para ayudar a levantar el brazo |
@@ -44,6 +44,8 @@ Los triángulos reutilizados son los mismos 4 que ya existen: hombro-codo-muñec
 | `legCurl` | Estabilidad: ±15° | hombro-cadera-rodilla | El torso se mueve para ayudarse |
 
 Todos los valores (tolerancias y rangos) son estimaciones de partida, igual que los ángulos primarios de fases anteriores — se afinan contra Vision real en dispositivo físico.
+
+Nota de transparencia (revisión post-review): `pushUp`, `overheadPress` y `hinge` se corrigieron después de una revisión final de toda la rama. Los tres asumían una sola postura corporal por perfil, pero varios ejercicios que comparten esos perfiles son variantes sentadas o con rodilla flexionada (`ex_079_press_militar_sentado_barra`, `ex_082_press_hombros_sentado_mancuernas`, `ex_083_press_hombros_maquina`, `ex_015_press_pecho_maquina`, `ex_020_fondos_banco`, `ex_019_fondos_paralelas`, `ex_124_fondos_maquina`) o con más flexión de rodilla por diseño (`ex_031_peso_muerto_convencional`, `ex_043_peso_muerto_sumo`, `ex_064_peso_muerto_sumo_con_barra`). Un rango absoluto único (`.bounded`) no puede cubrir una postura sentada y una de pie a la vez — para `pushUp` y `overheadPress` se cambió a `.stability` (se mide la deriva desde el ángulo inicial de esa repetición, que funciona sin importar la postura); para `hinge` se amplió el rango de `150...180` a `100...180` para no rechazar la flexión de rodilla normal de un peso muerto convencional/sumo.
 
 ### Nota de honestidad técnica
 

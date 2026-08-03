@@ -30,6 +30,7 @@ enum FeedbackPhraseBank {
         case .goodRep: return goodRepPhrases
         case .notDeepEnough: return notDeepEnoughPhrases
         case .tooFast: return tooFastPhrases
+        case .badForm: return badFormPhrases
         }
     }
 
@@ -88,5 +89,24 @@ enum FeedbackPhraseBank {
         LocalizedString(es: "Menos velocidad, más técnica", en: "Less speed, more technique", fr: "Moins de vitesse, plus de technique"),
         LocalizedString(es: "Frena un poco el movimiento", en: "Slow the movement down a bit", fr: "Ralentis un peu le mouvement"),
         LocalizedString(es: "Tómate tu tiempo en cada repetición", en: "Take your time on each rep", fr: "Prends ton temps sur chaque répétition"),
+    ]
+
+    static let badFormPhrases: [LocalizedString] = [
+        LocalizedString(es: "No uses impulso, controla el movimiento", en: "Don't use momentum, control the movement", fr: "N'utilise pas l'élan, contrôle le mouvement"),
+        LocalizedString(es: "Mantén el cuerpo quieto", en: "Keep your body still", fr: "Garde le corps immobile"),
+        LocalizedString(es: "Evita balancear el peso", en: "Avoid swinging the weight", fr: "Évite de balancer le poids"),
+        LocalizedString(es: "Aísla el músculo, no balancees el cuerpo", en: "Isolate the muscle, don't swing your body", fr: "Isole le muscle, ne balance pas ton corps"),
+        LocalizedString(es: "Controla el movimiento sin ayudarte con el cuerpo", en: "Control the movement without using body momentum", fr: "Contrôle le mouvement sans utiliser l'élan du corps"),
+        LocalizedString(es: "Menos impulso, más control", en: "Less momentum, more control", fr: "Moins d'élan, plus de contrôle"),
+        LocalizedString(es: "Esa repetición no cuenta, usaste impulso", en: "That rep doesn't count, you used momentum", fr: "Cette répétition ne compte pas, tu as utilisé l'élan"),
+        LocalizedString(es: "Mantén la postura estable", en: "Keep your posture stable", fr: "Garde une posture stable"),
+        LocalizedString(es: "No balancees el torso", en: "Don't sway your torso", fr: "Ne balance pas ton torse"),
+        LocalizedString(es: "Concéntrate en el músculo, no en el impulso", en: "Focus on the muscle, not the momentum", fr: "Concentre-toi sur le muscle, pas sur l'élan"),
+        LocalizedString(es: "Evita ayudarte con el cuerpo", en: "Avoid using your body to help", fr: "Évite de t'aider avec le corps"),
+        LocalizedString(es: "Controla mejor la forma", en: "Control your form better", fr: "Contrôle mieux ta forme"),
+        LocalizedString(es: "El cuerpo debe quedarse quieto en este movimiento", en: "Your body should stay still during this movement", fr: "Ton corps doit rester immobile pendant ce mouvement"),
+        LocalizedString(es: "Repite sin balancear", en: "Repeat without swinging", fr: "Répète sans balancer"),
+        LocalizedString(es: "Mantén el control durante toda la repetición", en: "Keep control throughout the whole rep", fr: "Garde le contrôle pendant toute la répétition"),
+        LocalizedString(es: "Reduce el balanceo para que cuente", en: "Reduce the swinging so it counts", fr: "Réduis le balancement pour qu'elle compte"),
     ]
 }

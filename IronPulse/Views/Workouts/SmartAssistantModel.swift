@@ -62,6 +62,7 @@ final class SmartAssistantModel {
 
     func start() {
         cameraController.start()
+        _ = audioAnnouncer.resolvedVoice(for: .current)
     }
 
     func finish() {
@@ -102,13 +103,16 @@ final class SmartAssistantModel {
         missedDetectionCount = 0
         personVisible = true
 
-        guard let feedback = engine.update(angle: angle) else { return }
+        let secondaryAngle = Self.secondaryAngle(joints: joints, profile: profile)
+        guard let feedback = engine.update(angle: angle, secondaryAngle: secondaryAngle) else { return }
 
         repCount = engine.repCount
         let language = AppLanguage.current
         let phrase = FeedbackPhraseBank.randomPhrase(for: feedback, language: language)
         feedbackMessage = phrase
-        audioAnnouncer.speak(phrase, language: language)
+        if Self.shouldSpeak(for: feedback, repCount: repCount, targetReps: targetReps) {
+            audioAnnouncer.speak(phrase, language: language)
+        }
 
         if repCount >= targetReps {
             finish()
@@ -116,10 +120,30 @@ final class SmartAssistantModel {
     }
 
     nonisolated static func primaryAngle(joints: [BodyJoint: CGPoint], profile: MovementProfile) -> Double? {
-        let spec = profile.primaryAngle
-        guard let proximal = joints[spec.proximal],
-              let vertex = joints[spec.vertex],
-              let distal = joints[spec.distal] else { return nil }
+        angle(for: profile.primaryAngle, joints: joints)
+    }
+
+    nonisolated static func secondaryAngle(joints: [BodyJoint: CGPoint], profile: MovementProfile) -> Double? {
+        guard let secondaryCheck = profile.secondaryCheck else { return nil }
+        return angle(for: secondaryCheck.angle, joints: joints)
+    }
+
+    nonisolated private static func angle(for jointAngle: JointAngle, joints: [BodyJoint: CGPoint]) -> Double? {
+        guard let proximal = joints[jointAngle.proximal],
+              let vertex = joints[jointAngle.vertex],
+              let distal = joints[jointAngle.distal] else { return nil }
         return AngleCalculator.angle(at: vertex, from: proximal, to: distal)
+    }
+
+    /// `.goodRep` is only spoken on the first, middle, and last rep of
+    /// the set - the rest still update the on-screen banner, just not
+    /// the audio, so a long set doesn't narrate every single rep.
+    /// Corrective feedback (`.notDeepEnough`/`.tooFast`/`.badForm`)
+    /// always speaks: those matter most exactly when they happen, not
+    /// on a milestone schedule.
+    nonisolated static func shouldSpeak(for feedback: FormFeedback, repCount: Int, targetReps: Int) -> Bool {
+        guard feedback == .goodRep else { return true }
+        let midpoint = max(1, targetReps / 2)
+        return repCount == 1 || repCount == midpoint || repCount == targetReps
     }
 }

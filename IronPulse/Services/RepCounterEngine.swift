@@ -6,6 +6,7 @@ enum FormFeedback: Equatable {
     case goodRep
     case notDeepEnough
     case tooFast
+    case badForm
 }
 
 /// Counts repetitions from a stream of joint angles using a
@@ -40,26 +41,46 @@ final class RepCounterEngine {
     /// being ignored as noise near the resting position.
     private let nearMissToleranceDegrees: Double = 15
 
+    // Captured when a "down" phase attempt begins - only meaningful
+    // for `.stability` secondary checks, which measure drift from
+    // wherever the joint happened to be at the start of THIS attempt,
+    // not a fixed absolute angle.
+    private var secondaryBaseline: Double?
+    // Set the moment the secondary check is violated during a "down"
+    // attempt, checked (and reset) only at the down->up completion
+    // point - mirrors how `reportedNearMissThisAttempt` is scoped to
+    // one attempt.
+    private var secondaryViolatedThisAttempt = false
+
     init(profile: MovementProfile) {
         self.profile = profile
     }
 
     @discardableResult
-    func update(angle: Double, now: Date = Date()) -> FormFeedback? {
+    func update(angle: Double, secondaryAngle: Double? = nil, now: Date = Date()) -> FormFeedback? {
         let isDown = profile.downRange.contains(angle)
         let isUp = profile.upRange.contains(angle)
 
         switch phase {
         case .unknown:
             if isDown {
-                enterDown(now: now)
+                enterDown(now: now, secondaryAngle: secondaryAngle)
             } else if isUp {
                 enterUp(now: now)
             }
             return nil
 
         case .down:
+            trackSecondary(secondaryAngle)
             guard isUp else { return nil }
+            // Checked before the speed/completion feedback below: a
+            // `.badForm` rep never counts, so if we returned `.tooFast`
+            // instead it would incorrectly imply the rep counted.
+            // `.badForm` always takes priority when both apply.
+            if secondaryViolatedThisAttempt {
+                enterUp(now: now)
+                return .badForm
+            }
             let feedback = repCompletionFeedback(now: now)
             repCount += 1
             enterUp(now: now)
@@ -67,18 +88,24 @@ final class RepCounterEngine {
 
         case .up:
             if isDown {
-                enterDown(now: now)
+                enterDown(now: now, secondaryAngle: secondaryAngle)
                 return nil
             }
             return checkNearMiss(angle: angle)
         }
     }
 
-    private func enterDown(now: Date) {
+    private func enterDown(now: Date, secondaryAngle: Double?) {
         phase = .down
         phaseEnteredAt = now
         previousDistanceToDown = nil
         reportedNearMissThisAttempt = false
+        secondaryBaseline = secondaryAngle
+        secondaryViolatedThisAttempt = false
+        // A `.bounded` check must also validate this very first frame's
+        // absolute angle (unlike `.stability`, where this frame only
+        // establishes the baseline and can't yet have drifted from it).
+        trackSecondary(secondaryAngle)
     }
 
     private func enterUp(now: Date) {
@@ -86,6 +113,41 @@ final class RepCounterEngine {
         phaseEnteredAt = now
         previousDistanceToDown = nil
         reportedNearMissThisAttempt = false
+    }
+
+    /// Called on every `update()` while in the "down" phase, before
+    /// the down->up completion check - so a violation anywhere during
+    /// the attempt (not just at the final frame) gets caught. This is
+    /// intentionally only evaluated during the "down" phase (from the
+    /// bottom of the rep through completion), never during the
+    /// descent toward the bottom while still in the "up" phase - the
+    /// bottom is the worst-case frame for these checks, so that's
+    /// where checking starts. Not an oversight.
+    private func trackSecondary(_ secondaryAngle: Double?) {
+        guard let secondaryAngle, let check = profile.secondaryCheck else { return }
+        switch check {
+        case .stability(_, let toleranceDegrees):
+            // The baseline is normally captured in `enterDown`. If
+            // `secondaryAngle` was nil on that exact frame (the joint
+            // was briefly occluded/below Vision's confidence floor),
+            // capture it here instead, on the first later frame where
+            // it's available - rather than leaving the check
+            // permanently disabled for the rest of this rep attempt.
+            // The frame that captures the baseline can't itself have
+            // drifted from it, so this frame never counts as a
+            // violation.
+            guard let baseline = secondaryBaseline else {
+                secondaryBaseline = secondaryAngle
+                return
+            }
+            if abs(secondaryAngle - baseline) > toleranceDegrees {
+                secondaryViolatedThisAttempt = true
+            }
+        case .bounded(_, let allowedRange):
+            if !allowedRange.contains(secondaryAngle) {
+                secondaryViolatedThisAttempt = true
+            }
+        }
     }
 
     private func repCompletionFeedback(now: Date) -> FormFeedback {

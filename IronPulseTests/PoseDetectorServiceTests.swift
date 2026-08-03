@@ -33,4 +33,27 @@ struct PoseDetectorServiceTests {
         #expect(angle != nil)
         #expect(abs(angle! - 90) < 0.001)
     }
+
+    @Test func shouldSpeakAlwaysReturnsTrueForCorrectiveFeedback() {
+        #expect(SmartAssistantModel.shouldSpeak(for: .notDeepEnough, repCount: 3, targetReps: 10))
+        #expect(SmartAssistantModel.shouldSpeak(for: .tooFast, repCount: 7, targetReps: 10))
+        #expect(SmartAssistantModel.shouldSpeak(for: .badForm, repCount: 5, targetReps: 10))
+    }
+
+    @Test func shouldSpeakForGoodRepOnlyOnFirstMiddleAndLastRep() {
+        let targetReps = 10
+        for repCount in 1...targetReps {
+            let expected = (repCount == 1 || repCount == 5 || repCount == targetReps)
+            #expect(
+                SmartAssistantModel.shouldSpeak(for: .goodRep, repCount: repCount, targetReps: targetReps) == expected,
+                "repCount \(repCount)"
+            )
+        }
+    }
+
+    @Test func shouldSpeakHandlesSmallTargetsWithoutCrashing() {
+        #expect(SmartAssistantModel.shouldSpeak(for: .goodRep, repCount: 1, targetReps: 1))
+        #expect(SmartAssistantModel.shouldSpeak(for: .goodRep, repCount: 1, targetReps: 2))
+        #expect(SmartAssistantModel.shouldSpeak(for: .goodRep, repCount: 2, targetReps: 2))
+    }
 }
