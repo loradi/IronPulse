@@ -142,4 +142,84 @@ struct MovementProfileCatalogTests {
         // Both ranges represent "leg bent" as the opposite end of their own motion.
         #expect(legExtension.downRange.overlaps(legCurl.upRange))
     }
+
+    @Test func squatHasABoundedTorsoCheck() {
+        let profile = MovementProfileCatalog.profile(forExerciseID: "ex_048_sentadilla_trasera_con_barra")!
+        #expect(profile.secondaryCheck == .bounded(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            allowedRange: 50...180
+        ))
+    }
+
+    @Test func pushUpHasABoundedTorsoCheck() {
+        let profile = MovementProfileCatalog.profile(forExerciseID: "ex_021_flexiones_pecho")!
+        #expect(profile.secondaryCheck == .bounded(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            allowedRange: 150...180
+        ))
+    }
+
+    @Test func curlHasAShoulderStabilityCheck() {
+        let profile = MovementProfileCatalog.profile(forExerciseID: "ex_098_curl_barra_recta")!
+        #expect(profile.secondaryCheck == .stability(
+            angle: JointAngle(proximal: .leftHip, vertex: .leftShoulder, distal: .leftElbow),
+            toleranceDegrees: 15
+        ))
+    }
+
+    @Test func overheadPressHasABoundedTorsoCheck() {
+        let profile = MovementProfileCatalog.profile(forExerciseID: "ex_078_press_militar_barra")!
+        #expect(profile.secondaryCheck == .bounded(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            allowedRange: 150...180
+        ))
+    }
+
+    @Test func hingeHasABoundedKneeCheck() {
+        let profile = MovementProfileCatalog.profile(forExerciseID: "ex_031_peso_muerto_convencional")!
+        #expect(profile.secondaryCheck == .bounded(
+            angle: JointAngle(proximal: .leftHip, vertex: .leftKnee, distal: .leftAnkle),
+            allowedRange: 150...180
+        ))
+    }
+
+    @Test func rowHasATorsoStabilityCheck() {
+        let profile = MovementProfileCatalog.profile(forExerciseID: "ex_027_remo_sentado_polea")!
+        #expect(profile.secondaryCheck == .stability(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            toleranceDegrees: 15
+        ))
+    }
+
+    @Test func tricepsExtensionHasAShoulderStabilityCheck() {
+        let profile = MovementProfileCatalog.profile(forExerciseID: "ex_117_pushdown_polea_cuerda")!
+        #expect(profile.secondaryCheck == .stability(
+            angle: JointAngle(proximal: .leftHip, vertex: .leftShoulder, distal: .leftElbow),
+            toleranceDegrees: 15
+        ))
+    }
+
+    @Test func lateralRaiseHasATorsoStabilityCheck() {
+        let profile = MovementProfileCatalog.profile(forExerciseID: "ex_085_elevaciones_laterales_mancuernas")!
+        #expect(profile.secondaryCheck == .stability(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            toleranceDegrees: 15
+        ))
+    }
+
+    @Test func legExtensionHasATorsoStabilityCheck() {
+        let profile = MovementProfileCatalog.profile(forExerciseID: "ex_054_extension_de_piernas_en_maquina")!
+        #expect(profile.secondaryCheck == .stability(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            toleranceDegrees: 15
+        ))
+    }
+
+    @Test func legCurlHasATorsoStabilityCheck() {
+        let profile = MovementProfileCatalog.profile(forExerciseID: "ex_056_curl_femoral_sentado")!
+        #expect(profile.secondaryCheck == .stability(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            toleranceDegrees: 15
+        ))
+    }
 }

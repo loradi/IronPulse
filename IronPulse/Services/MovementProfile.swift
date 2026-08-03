@@ -23,6 +23,34 @@ struct JointAngle: Equatable {
     let distal: BodyJoint
 }
 
+/// A secondary constraint checked alongside `MovementProfile.primaryAngle`,
+/// to catch the most common form problem: using body momentum/swing
+/// instead of isolating the working joint. Two shapes cover the two
+/// broad categories of exercise:
+///
+/// - `.stability`: for isolation exercises, where a joint (typically
+///   the shoulder or torso) should stay put while only the primary
+///   joint moves. Measured relative to wherever that joint happened to
+///   be when the rep attempt started (there's no single "correct"
+///   absolute angle here — only "however you started, don't drift far
+///   from it").
+/// - `.bounded`: for compound exercises, where that same joint is
+///   *supposed* to move as a natural part of correct form (a squat's
+///   torso leans forward, a hinge's torso tips over) — so instead of a
+///   per-rep baseline, it's checked against one fixed absolute range
+///   for the whole rep attempt.
+enum SecondaryCheck: Equatable {
+    case stability(angle: JointAngle, toleranceDegrees: Double)
+    case bounded(angle: JointAngle, allowedRange: ClosedRange<Double>)
+
+    var angle: JointAngle {
+        switch self {
+        case .stability(let angle, _): return angle
+        case .bounded(let angle, _): return angle
+        }
+    }
+}
+
 /// Per-exercise configuration for the rep counter: which angle to
 /// track and which ranges count as the two extremes of one
 /// repetition. Every exercise gets its own independent profile —
@@ -35,6 +63,19 @@ struct MovementProfile: Equatable {
     let primaryAngle: JointAngle
     let downRange: ClosedRange<Double>
     let upRange: ClosedRange<Double>
+    let secondaryCheck: SecondaryCheck?
+
+    init(
+        primaryAngle: JointAngle,
+        downRange: ClosedRange<Double>,
+        upRange: ClosedRange<Double>,
+        secondaryCheck: SecondaryCheck? = nil
+    ) {
+        self.primaryAngle = primaryAngle
+        self.downRange = downRange
+        self.upRange = upRange
+        self.secondaryCheck = secondaryCheck
+    }
 }
 
 /// The curated set of exercises the Smart Assistant supports (see the
@@ -116,63 +157,109 @@ enum MovementProfileCatalog {
     ]
 
     // Knee angle (hip-knee-ankle): ~85 degrees at the bottom of a
-    // working-depth squat, ~170 degrees standing tall.
+    // working-depth squat, ~170 degrees standing tall. Secondary
+    // check: torso (shoulder-hip-knee) shouldn't collapse forward past
+    // ~50 degrees — a squat's torso naturally leans forward some, more
+    // than the other `.bounded` checks below allow, so this one gets a
+    // wider range.
     private static let squat = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftHip, vertex: .leftKnee, distal: .leftAnkle),
         downRange: 70...100,
-        upRange: 160...180
+        upRange: 160...180,
+        secondaryCheck: .bounded(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            allowedRange: 50...180
+        )
     )
 
     // Elbow angle (shoulder-elbow-wrist): ~85 degrees at the bottom
-    // of a push-up, ~170 degrees at full lockout.
+    // of a push-up, ~170 degrees at full lockout. Secondary check:
+    // torso (shoulder-hip-knee) stays close to a straight line -
+    // sagging hips would drop this well below 150.
     private static let pushUp = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftShoulder, vertex: .leftElbow, distal: .leftWrist),
         downRange: 70...100,
-        upRange: 155...180
+        upRange: 155...180,
+        secondaryCheck: .bounded(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            allowedRange: 150...180
+        )
     )
 
     // Elbow angle: ~165 degrees hanging extended (the curl's "down"),
-    // ~45 degrees at peak contraction (the curl's "up").
+    // ~45 degrees at peak contraction (the curl's "up"). Secondary
+    // check: shoulder (hip-shoulder-elbow) should stay near wherever
+    // it started the rep - swinging it to help curl the weight is the
+    // most common curl cheat.
     private static let curl = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftShoulder, vertex: .leftElbow, distal: .leftWrist),
         downRange: 150...180,
-        upRange: 30...60
+        upRange: 30...60,
+        secondaryCheck: .stability(
+            angle: JointAngle(proximal: .leftHip, vertex: .leftShoulder, distal: .leftElbow),
+            toleranceDegrees: 15
+        )
     )
 
     // Shoulder angle (hip-shoulder-elbow): ~35 degrees racked at the
     // shoulder, ~165 degrees with the arm locked out overhead.
+    // Secondary check: torso (shoulder-hip-knee) stays upright -
+    // leaning back to "push press" with the legs/back would drop this
+    // below 150.
     private static let overheadPress = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftHip, vertex: .leftShoulder, distal: .leftElbow),
         downRange: 20...50,
-        upRange: 150...180
+        upRange: 150...180,
+        secondaryCheck: .bounded(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            allowedRange: 150...180
+        )
     )
 
     // Hip angle (shoulder-hip-knee): ~80 degrees bent over at the
     // bottom of a deadlift, ~170 degrees standing tall at lockout.
+    // Secondary check: knee (hip-knee-ankle) stays relatively straight
+    // - bending it too much turns the hinge into a squat.
     private static let hinge = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
         downRange: 60...100,
-        upRange: 160...180
+        upRange: 160...180,
+        secondaryCheck: .bounded(
+            angle: JointAngle(proximal: .leftHip, vertex: .leftKnee, distal: .leftAnkle),
+            allowedRange: 150...180
+        )
     )
 
     // Elbow angle (shoulder-elbow-wrist): ~170 degrees extended
     // reaching for the weight (the row's "down"), ~60-85 degrees
     // pulled to the torso (the row's "up") — the opposite direction
-    // from pushUp's elbow angle on the same joint triangle.
+    // from pushUp's elbow angle on the same joint triangle. Secondary
+    // check: torso (shoulder-hip-knee) stays near wherever it started
+    // - rocking back to heave the weight is the most common row cheat.
     private static let row = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftShoulder, vertex: .leftElbow, distal: .leftWrist),
         downRange: 155...180,
-        upRange: 60...85
+        upRange: 60...85,
+        secondaryCheck: .stability(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            toleranceDegrees: 15
+        )
     )
 
     // Elbow angle (shoulder-elbow-wrist): ~70-95 degrees at the rack
     // position (the extension's "down"), ~160-180 degrees at full
     // lockout (the extension's "up") — the same joint triangle as
-    // curl, opposite direction.
+    // curl, opposite direction. Secondary check: shoulder
+    // (hip-shoulder-elbow) stays near wherever it started, same
+    // swing-for-momentum concern as curl.
     private static let tricepsExtension = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftShoulder, vertex: .leftElbow, distal: .leftWrist),
         downRange: 70...95,
-        upRange: 160...180
+        upRange: 160...180,
+        secondaryCheck: .stability(
+            angle: JointAngle(proximal: .leftHip, vertex: .leftShoulder, distal: .leftElbow),
+            toleranceDegrees: 15
+        )
     )
 
     // Shoulder angle (hip-shoulder-elbow) - same triangle as
@@ -185,30 +272,47 @@ enum MovementProfileCatalog {
     // two produce a very similar change in this angle even though the
     // arm moves in a different plane (out to the side vs. forward) -
     // the tracked angle doesn't distinguish which plane, so one
-    // profile serves both.
+    // profile serves both. Secondary check: torso (shoulder-hip-knee)
+    // stays near wherever it started - swaying to help lift the arm is
+    // the most common raise cheat.
     private static let lateralRaise = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftHip, vertex: .leftShoulder, distal: .leftElbow),
         downRange: 0...25,
-        upRange: 75...95
+        upRange: 75...95,
+        secondaryCheck: .stability(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            toleranceDegrees: 15
+        )
     )
 
     // Knee angle (hip-knee-ankle) - same triangle as squat, seated
     // machine motion: ~80-100 degrees with the leg bent under the seat
     // (the extension's "down"), ~160-180 degrees with the leg extended
-    // straight out (the extension's "up").
+    // straight out (the extension's "up"). Secondary check: torso
+    // (shoulder-hip-knee) stays near wherever it started - it should
+    // stay put in a seated machine.
     private static let legExtension = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftHip, vertex: .leftKnee, distal: .leftAnkle),
         downRange: 80...100,
-        upRange: 160...180
+        upRange: 160...180,
+        secondaryCheck: .stability(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            toleranceDegrees: 15
+        )
     )
 
     // Knee angle (hip-knee-ankle) - same triangle as legExtension,
     // opposite direction: ~160-180 degrees with the leg extended (the
     // curl's "down"), ~70-90 degrees curled under the seat (the
-    // curl's "up").
+    // curl's "up"). Secondary check: same torso-stability concern as
+    // legExtension.
     private static let legCurl = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftHip, vertex: .leftKnee, distal: .leftAnkle),
         downRange: 160...180,
-        upRange: 70...90
+        upRange: 70...90,
+        secondaryCheck: .stability(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            toleranceDegrees: 15
+        )
     )
 }

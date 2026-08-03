@@ -30,6 +30,7 @@ enum FeedbackPhraseBank {
         case .goodRep: return goodRepPhrases
         case .notDeepEnough: return notDeepEnoughPhrases
         case .tooFast: return tooFastPhrases
+        case .badForm: return [] // ponytail: no copy yet, added in a later task; falls back to the empty-string phrase below
         }
     }
 
