@@ -38,7 +38,7 @@ struct MovementProfile: Equatable {
 }
 
 /// The curated set of exercises the Smart Assistant supports (see the
-/// phase 3 design spec for why these 73 and not the full 146-exercise
+/// phase 3 design spec for why these 64 and not the full 146-exercise
 /// catalog). Angle thresholds below are a reasonable starting point
 /// based on standard range-of-motion references for each movement —
 /// expect to retune them against real Vision output on a physical
@@ -62,7 +62,6 @@ enum MovementProfileCatalog {
         "ex_019_fondos_paralelas": pushUp,
         "ex_022_flexiones_inclinadas": pushUp,
         "ex_015_press_pecho_maquina": pushUp,
-        "ex_016_press_pecho_polea_de_pie": pushUp,
         "ex_123_flexiones_diamante": pushUp,
         "ex_124_fondos_maquina": pushUp,
         "ex_098_curl_barra_recta": curl,
@@ -74,7 +73,6 @@ enum MovementProfileCatalog {
         "ex_103_curl_predicador_maquina": curl,
         "ex_105_curl_polea_baja": curl,
         "ex_106_curl_inclinado_mancuernas": curl,
-        "ex_107_curl_arana": curl,
         "ex_108_curl_drag": curl,
         "ex_109_curl_martillo_cuerda_polea": curl,
         "ex_110_curl_agarre_cerrado": curl,
@@ -82,7 +80,6 @@ enum MovementProfileCatalog {
         "ex_112_curl_polea_alta": curl,
         "ex_113_curl_inverso_barra": curl,
         "ex_114_curl_maquina": curl,
-        "ex_115_curl_cruzado_martillo": curl,
         "ex_078_press_militar_barra": overheadPress,
         "ex_079_press_militar_sentado_barra": overheadPress,
         "ex_080_press_hombros_mancuernas": overheadPress,
@@ -103,7 +100,6 @@ enum MovementProfileCatalog {
         "ex_025_dominadas_asistidas_banda": row,
         "ex_029_jalon_pecho_agarre_cerrado": row,
         "ex_033_remo_posterior_polea_cuerda": row,
-        "ex_044_remo_alto_maquina_palanca": row,
         "ex_045_face_pull_polea": row,
         "ex_046_remo_arrodillado_polea_alta": row,
         "ex_093_remo_menton_barra": row,
@@ -111,15 +107,10 @@ enum MovementProfileCatalog {
         "ex_117_pushdown_polea_cuerda": tricepsExtension,
         "ex_118_pushdown_polea_barra_recta": tricepsExtension,
         "ex_120_extension_mancuernas_dos_manos_sobre_cabeza": tricepsExtension,
-        "ex_125_extension_polea_una_mano": tricepsExtension,
-        "ex_126_press_frances_mancuernas": tricepsExtension,
-        "ex_127_extension_mancuerna_una_mano_sobre_cabeza": tricepsExtension,
         "ex_128_extension_polea_cuerda_tras_nuca": tricepsExtension,
         "ex_133_extension_triceps_maquina": tricepsExtension,
         "ex_085_elevaciones_laterales_mancuernas": lateralRaise,
-        "ex_086_elevaciones_laterales_polea": lateralRaise,
         "ex_087_elevaciones_frontales_mancuernas": lateralRaise,
-        "ex_088_elevaciones_frontales_polea": lateralRaise,
         "ex_054_extension_de_piernas_en_maquina": legExtension,
         "ex_056_curl_femoral_sentado": legCurl,
     ]
@@ -185,17 +176,19 @@ enum MovementProfileCatalog {
     )
 
     // Shoulder angle (hip-shoulder-elbow) - same triangle as
-    // overheadPress, with a shorter range: ~10-25 degrees with the arm
-    // at the side (the raise's "down"), ~75-95 degrees at shoulder
-    // height (the raise's "up") - stops well short of overheadPress's
-    // overhead lockout. Covers both lateral and front raises: from a
-    // front-facing camera the two produce a very similar change in
-    // this angle even though the arm moves in a different plane (out
-    // to the side vs. forward) - the tracked angle doesn't distinguish
-    // which plane, so one profile serves both.
+    // overheadPress, with a shorter range: ~0-25 degrees with the arm
+    // at the side (the raise's "down" — the floor is 0, not ~10, since
+    // the arm hanging naturally at rest can sit flush against the
+    // torso), ~75-95 degrees at shoulder height (the raise's "up") -
+    // stops well short of overheadPress's overhead lockout. Covers
+    // both lateral and front raises: from a front-facing camera the
+    // two produce a very similar change in this angle even though the
+    // arm moves in a different plane (out to the side vs. forward) -
+    // the tracked angle doesn't distinguish which plane, so one
+    // profile serves both.
     private static let lateralRaise = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftHip, vertex: .leftShoulder, distal: .leftElbow),
-        downRange: 10...25,
+        downRange: 0...25,
         upRange: 75...95
     )
 

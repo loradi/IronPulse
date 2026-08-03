@@ -115,12 +115,17 @@ struct SmartAssistantSheet: View {
         }
         .onChange(of: model.didFinish) { _, done in
             guard done else { return }
-            // Give the just-spoken completion phrase time to finish
-            // playing before the sheet (and its AVSpeechSynthesizer)
-            // gets torn down. A pragmatic fixed delay, not a real
-            // completion callback.
+            // Wait for the just-spoken completion phrase to actually
+            // finish playing before the sheet (and its
+            // AVSpeechSynthesizer) gets torn down, instead of guessing
+            // a fixed delay that goes stale every time the phrase bank
+            // or the speech rate changes. Capped so a stuck/very long
+            // utterance can't block dismissal forever.
             Task {
-                try? await Task.sleep(for: .seconds(1.5))
+                let deadline = Date().addingTimeInterval(4)
+                while model.audioAnnouncer.isSpeaking, Date() < deadline {
+                    try? await Task.sleep(for: .milliseconds(100))
+                }
                 dismiss()
             }
         }

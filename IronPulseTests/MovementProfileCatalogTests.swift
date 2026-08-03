@@ -13,16 +13,15 @@ struct MovementProfileCatalogTests {
         "ex_063_sentadilla_en_maquina_smith",
         "ex_058_sentadilla_sissy",
         "ex_076_sentadilla_sumo_con_mancuerna",
-        // pushUp (8)
+        // pushUp (7)
         "ex_021_flexiones_pecho",
         "ex_020_fondos_banco",
         "ex_019_fondos_paralelas",
         "ex_022_flexiones_inclinadas",
         "ex_015_press_pecho_maquina",
-        "ex_016_press_pecho_polea_de_pie",
         "ex_123_flexiones_diamante",
         "ex_124_fondos_maquina",
-        // curl (18)
+        // curl (16)
         "ex_098_curl_barra_recta",
         "ex_100_curl_alterno_mancuernas",
         "ex_101_curl_martillo_mancuernas",
@@ -32,7 +31,6 @@ struct MovementProfileCatalogTests {
         "ex_103_curl_predicador_maquina",
         "ex_105_curl_polea_baja",
         "ex_106_curl_inclinado_mancuernas",
-        "ex_107_curl_arana",
         "ex_108_curl_drag",
         "ex_109_curl_martillo_cuerda_polea",
         "ex_110_curl_agarre_cerrado",
@@ -40,7 +38,6 @@ struct MovementProfileCatalogTests {
         "ex_112_curl_polea_alta",
         "ex_113_curl_inverso_barra",
         "ex_114_curl_maquina",
-        "ex_115_curl_cruzado_martillo",
         // overheadPress (7)
         "ex_078_press_militar_barra",
         "ex_079_press_militar_sentado_barra",
@@ -56,7 +53,7 @@ struct MovementProfileCatalogTests {
         "ex_032_peso_muerto_rumano",
         "ex_043_peso_muerto_sumo",
         "ex_064_peso_muerto_sumo_con_barra",
-        // row (12)
+        // row (11)
         "ex_027_remo_sentado_polea",
         "ex_028_jalon_pecho_agarre_ancho",
         "ex_023_dominadas_pronadas",
@@ -64,25 +61,19 @@ struct MovementProfileCatalogTests {
         "ex_025_dominadas_asistidas_banda",
         "ex_029_jalon_pecho_agarre_cerrado",
         "ex_033_remo_posterior_polea_cuerda",
-        "ex_044_remo_alto_maquina_palanca",
         "ex_045_face_pull_polea",
         "ex_046_remo_arrodillado_polea_alta",
         "ex_093_remo_menton_barra",
         "ex_094_remo_menton_mancuernas",
-        // tricepsExtension (8)
+        // tricepsExtension (5)
         "ex_117_pushdown_polea_cuerda",
         "ex_118_pushdown_polea_barra_recta",
         "ex_120_extension_mancuernas_dos_manos_sobre_cabeza",
-        "ex_125_extension_polea_una_mano",
-        "ex_126_press_frances_mancuernas",
-        "ex_127_extension_mancuerna_una_mano_sobre_cabeza",
         "ex_128_extension_polea_cuerda_tras_nuca",
         "ex_133_extension_triceps_maquina",
-        // lateralRaise (4, new profile)
+        // lateralRaise (2, new profile)
         "ex_085_elevaciones_laterales_mancuernas",
-        "ex_086_elevaciones_laterales_polea",
         "ex_087_elevaciones_frontales_mancuernas",
-        "ex_088_elevaciones_frontales_polea",
         // legExtension (1, new profile)
         "ex_054_extension_de_piernas_en_maquina",
         // legCurl (1, new profile)
@@ -99,8 +90,8 @@ struct MovementProfileCatalogTests {
         }
     }
 
-    @Test func curatedListHasExactlySeventyThreeExercises() {
-        #expect(Self.curatedIDs.count == 73)
+    @Test func curatedListHasExactlySixtyFourExercises() {
+        #expect(Self.curatedIDs.count == 64)
     }
 
     @Test func everyCuratedProfileHasNonOverlappingDownAndUpRanges() {

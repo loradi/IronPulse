@@ -14,7 +14,7 @@ Sobre el punto 1: no es técnicamente posible cubrir el 100%. El motor de conteo
 - Movimientos que necesitan vista lateral o dependen de una sola extremidad (remo a un brazo, zancadas, estocadas, patadas de glúteo/tríceps, peso muerto a una pierna) — la misma razón por la que las zancadas ya se habían excluido en la fase 1.
 - Movimientos que son traslación (encogimientos/trapecio, elevación de talón) o rotación/plano horizontal (aperturas de pecho, abducción/aducción de cadera) en vez de un ángulo de flexión — el sistema actual no tiene una forma de rastrear esto sin agregar un tipo de `MovementProfile` completamente nuevo (distancia entre puntos o traslación vertical), lo cual queda fuera de esta fase.
 
-Con esas exclusiones, la cobertura máxima realista sube de **24 a 72 ejercicios** (de 146) — la fase se enfoca en eso, aprovechando al máximo los 7 perfiles ya construidos y agregando solo 3 perfiles nuevos, todos reutilizando los triángulos de articulación que ya existen.
+Con esas exclusiones, la cobertura máxima realista sube de **24 a 64 ejercicios** (de 146) — la fase se enfoca en eso, aprovechando al máximo los 7 perfiles ya construidos y agregando solo 3 perfiles nuevos, todos reutilizando los triángulos de articulación que ya existen.
 
 Nota de transparencia: este mapeo se hizo a partir del nombre y el equipo de cada ejercicio en `ExercisesSeed.json`, no de las imágenes/GIFs — algunas decisiones de "¿esto se hace de pie o acostado?" son juicio razonable, no certeza absoluta. Si alguno queda mal clasificado, se corrige puntualmente sin rehacer el resto.
 
@@ -22,7 +22,7 @@ Nota de transparencia: este mapeo se hizo a partir del nombre y el equipo de cad
 
 Los tres reutilizan un triángulo de articulación ya existente — cero cambios en `AngleCalculator.swift` o `PoseDetectorService.swift`.
 
-- **`lateralRaise`**: mismo triángulo que `overheadPress` (`JointAngle(proximal: .leftHip, vertex: .leftShoulder, distal: .leftElbow)`), con un rango más corto: `downRange: 10...25` (brazo pegado al cuerpo) a `upRange: 75...95` (brazo a la altura del hombro) — a diferencia de `overheadPress`, que sigue hasta ~180° por encima de la cabeza. Cubre tanto elevaciones laterales como frontales: desde una cámara de frente, ambas producen un cambio de ángulo hombro-codo muy similar en magnitud aunque el plano de movimiento sea distinto (lateral vs. frontal) — el sistema no distingue el plano, solo el ángulo, así que un solo perfil sirve para ambas.
+- **`lateralRaise`**: mismo triángulo que `overheadPress` (`JointAngle(proximal: .leftHip, vertex: .leftShoulder, distal: .leftElbow)`), con un rango más corto: `downRange: 0...25` (brazo pegado al cuerpo — el piso es 0, no ~10, porque con el brazo colgando de forma natural en reposo el ángulo puede llegar a estar prácticamente en 0) a `upRange: 75...95` (brazo a la altura del hombro) — a diferencia de `overheadPress`, que sigue hasta ~180° por encima de la cabeza. Cubre tanto elevaciones laterales como frontales: desde una cámara de frente, ambas producen un cambio de ángulo hombro-codo muy similar en magnitud aunque el plano de movimiento sea distinto (lateral vs. frontal) — el sistema no distingue el plano, solo el ángulo, así que un solo perfil sirve para ambas.
 - **`legExtension`**: mismo triángulo que `squat`/`hinge` para la pierna (`JointAngle(proximal: .leftHip, vertex: .leftKnee, distal: .leftAnkle)`), sentado en máquina: `downRange: 80...100` (pierna doblada) a `upRange: 160...180` (pierna extendida).
 - **`legCurl`** (variante sentada únicamente — la variante acostada boca abajo queda excluida): mismo triángulo que `legExtension`, dirección invertida: `downRange: 160...180` (pierna extendida) a `upRange: 70...90` (pierna flexionada bajo el asiento).
 
@@ -37,21 +37,21 @@ Los tres reutilizan un triángulo de articulación ya existente — cero cambios
 
 **`squat`** (+2, total 8): `ex_058_sentadilla_sissy`, `ex_076_sentadilla_sumo_con_mancuerna`
 
-**`pushUp`** (+4, total 8): `ex_015_press_pecho_maquina`, `ex_016_press_pecho_polea_de_pie`, `ex_123_flexiones_diamante`, `ex_124_fondos_maquina`
+**`pushUp`** (+3, total 7): `ex_015_press_pecho_maquina`, `ex_123_flexiones_diamante`, `ex_124_fondos_maquina`
 
-**`curl`** (+14, total 18): `ex_099_curl_barra_z`, `ex_102_curl_predicador_barra_z`, `ex_103_curl_predicador_maquina`, `ex_105_curl_polea_baja`, `ex_106_curl_inclinado_mancuernas`, `ex_107_curl_arana`, `ex_108_curl_drag`, `ex_109_curl_martillo_cuerda_polea`, `ex_110_curl_agarre_cerrado`, `ex_111_curl_zottman`, `ex_112_curl_polea_alta`, `ex_113_curl_inverso_barra`, `ex_114_curl_maquina`, `ex_115_curl_cruzado_martillo`
+**`curl`** (+12, total 16): `ex_099_curl_barra_z`, `ex_102_curl_predicador_barra_z`, `ex_103_curl_predicador_maquina`, `ex_105_curl_polea_baja`, `ex_106_curl_inclinado_mancuernas`, `ex_108_curl_drag`, `ex_109_curl_martillo_cuerda_polea`, `ex_110_curl_agarre_cerrado`, `ex_111_curl_zottman`, `ex_112_curl_polea_alta`, `ex_113_curl_inverso_barra`, `ex_114_curl_maquina`
 
 **`overheadPress`** (+3, total 7): `ex_082_press_hombros_sentado_mancuernas`, `ex_083_press_hombros_maquina`, `ex_084_press_hombros_polea`
 
 **`hinge`** (+3, total 6): `ex_032_peso_muerto_rumano`, `ex_043_peso_muerto_sumo`, `ex_064_peso_muerto_sumo_con_barra`
 
-**`row`** (+10, total 12): `ex_023_dominadas_pronadas`, `ex_024_dominadas_supinadas`, `ex_025_dominadas_asistidas_banda`, `ex_029_jalon_pecho_agarre_cerrado`, `ex_033_remo_posterior_polea_cuerda`, `ex_044_remo_alto_maquina_palanca`, `ex_045_face_pull_polea`, `ex_046_remo_arrodillado_polea_alta`, `ex_093_remo_menton_barra`, `ex_094_remo_menton_mancuernas`
+**`row`** (+9, total 11): `ex_023_dominadas_pronadas`, `ex_024_dominadas_supinadas`, `ex_025_dominadas_asistidas_banda`, `ex_029_jalon_pecho_agarre_cerrado`, `ex_033_remo_posterior_polea_cuerda`, `ex_045_face_pull_polea`, `ex_046_remo_arrodillado_polea_alta`, `ex_093_remo_menton_barra`, `ex_094_remo_menton_mancuernas`
 
-**`tricepsExtension`** (+7, total 8): `ex_118_pushdown_polea_barra_recta`, `ex_120_extension_mancuernas_dos_manos_sobre_cabeza`, `ex_125_extension_polea_una_mano`, `ex_126_press_frances_mancuernas`, `ex_127_extension_mancuerna_una_mano_sobre_cabeza`, `ex_128_extension_polea_cuerda_tras_nuca`, `ex_133_extension_triceps_maquina`
+**`tricepsExtension`** (+4, total 5): `ex_118_pushdown_polea_barra_recta`, `ex_120_extension_mancuernas_dos_manos_sobre_cabeza`, `ex_128_extension_polea_cuerda_tras_nuca`, `ex_133_extension_triceps_maquina`
 
 ### Perfiles nuevos
 
-**`lateralRaise`** (4): `ex_085_elevaciones_laterales_mancuernas`, `ex_086_elevaciones_laterales_polea`, `ex_087_elevaciones_frontales_mancuernas`, `ex_088_elevaciones_frontales_polea`
+**`lateralRaise`** (2): `ex_085_elevaciones_laterales_mancuernas`, `ex_087_elevaciones_frontales_mancuernas`
 
 **`legExtension`** (1): `ex_054_extension_de_piernas_en_maquina`
 
@@ -59,7 +59,9 @@ Los tres reutilizan un triángulo de articulación ya existente — cero cambios
 
 ### Total
 
-24 (fase 2) + 49 nuevos (2+4+14+3+3+10+7+4+1+1) = **73 ejercicios**, de 146 en el catálogo (50%).
+24 (fase 2) + 40 nuevos (2+3+12+3+3+9+4+2+1+1) = **64 ejercicios**, de 146 en el catálogo (44%).
+
+Nota de transparencia (revisión post-implementación): una revisión final de toda la rama encontró 9 IDs que habían quedado mapeados pero que en realidad violan los criterios de exclusión que este mismo documento establece (una sola extremidad/alternado, acostado, o apoyado-en-el-pecho con orientación ambigua respecto a la cámara) — el pase original de mapeo los pasó por alto. Se removieron del catálogo: `ex_016_press_pecho_polea_de_pie` (una mano), `ex_044_remo_alto_maquina_palanca` (pecho apoyado, orientación ambigua), `ex_086_elevaciones_laterales_polea` (un brazo), `ex_088_elevaciones_frontales_polea` (un brazo), `ex_107_curl_arana` (pecho apoyado sobre banco inclinado), `ex_115_curl_cruzado_martillo` (alterna brazos), `ex_125_extension_polea_una_mano` (una mano), `ex_126_press_frances_mancuernas` (acostado — la misma razón por la que `ex_116_press_frances_barra_ez` ya estaba excluido), y `ex_127_extension_mancuerna_una_mano_sobre_cabeza` (una mano). El total bajó de 73 a los 64 reflejados arriba.
 
 ## Fuera de alcance (con razón técnica)
 

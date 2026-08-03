@@ -62,6 +62,7 @@ final class SmartAssistantModel {
 
     func start() {
         cameraController.start()
+        _ = audioAnnouncer.resolvedVoice(for: .current)
     }
 
     func finish() {

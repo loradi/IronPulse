@@ -42,6 +42,12 @@ final class SmartAssistantAudioAnnouncer {
         }
     }
 
+    /// Whether the synthesizer is currently speaking an utterance —
+    /// lets callers (e.g. the dismiss-timing logic in
+    /// `SmartAssistantSheet`) wait for real speech completion instead
+    /// of guessing a fixed delay.
+    var isSpeaking: Bool { synthesizer.isSpeaking }
+
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
         isMuted = userDefaults.bool(forKey: Self.mutedDefaultsKey)
