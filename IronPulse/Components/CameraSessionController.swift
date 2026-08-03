@@ -41,8 +41,9 @@ final class CameraSessionController: NSObject {
 
     func start() {
         guard authorizationState == .authorized else { return }
+        let position = cameraPosition
         sessionQueue.async { [weak self] in
-            self?.configureSessionIfNeeded()
+            self?.configureSessionIfNeeded(position: position)
             self?.session.startRunning()
         }
     }
@@ -54,17 +55,22 @@ final class CameraSessionController: NSObject {
     }
 
     func toggleCamera() {
-        cameraPosition = cameraPosition == .back ? .front : .back
+        let newPosition: CameraPosition = cameraPosition == .back ? .front : .back
+        cameraPosition = newPosition
         sessionQueue.async { [weak self] in
-            self?.reconfigureInput()
+            self?.reconfigureInput(position: newPosition)
         }
     }
 
-    private func configureSessionIfNeeded() {
+    // `position` is passed in rather than read from `cameraPosition` because this
+    // runs on `sessionQueue` while `cameraPosition` is only ever written on the
+    // main actor (from `toggleCamera()`) — reading the shared property here would
+    // be an unsynchronized cross-thread data race.
+    private func configureSessionIfNeeded(position: CameraPosition) {
         guard session.inputs.isEmpty else { return }
         session.beginConfiguration()
         session.sessionPreset = .medium
-        reconfigureInput()
+        reconfigureInput(position: position)
 
         let output = AVCaptureVideoDataOutput()
         output.setSampleBufferDelegate(self, queue: sessionQueue)
@@ -74,14 +80,14 @@ final class CameraSessionController: NSObject {
         session.commitConfiguration()
     }
 
-    private func reconfigureInput() {
+    private func reconfigureInput(position: CameraPosition) {
         session.beginConfiguration()
         if let currentInput {
             session.removeInput(currentInput)
         }
 
-        let position: AVCaptureDevice.Position = cameraPosition == .back ? .back : .front
-        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: position),
+        let avPosition: AVCaptureDevice.Position = position == .back ? .back : .front
+        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: avPosition),
               let input = try? AVCaptureDeviceInput(device: device),
               session.canAddInput(input) else {
             session.commitConfiguration()
