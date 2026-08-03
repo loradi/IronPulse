@@ -73,6 +73,10 @@ final class RepCounterEngine {
         case .down:
             trackSecondary(secondaryAngle)
             guard isUp else { return nil }
+            // Checked before the speed/completion feedback below: a
+            // `.badForm` rep never counts, so if we returned `.tooFast`
+            // instead it would incorrectly imply the rep counted.
+            // `.badForm` always takes priority when both apply.
             if secondaryViolatedThisAttempt {
                 enterUp(now: now)
                 return .badForm
@@ -113,12 +117,29 @@ final class RepCounterEngine {
 
     /// Called on every `update()` while in the "down" phase, before
     /// the down->up completion check - so a violation anywhere during
-    /// the attempt (not just at the final frame) gets caught.
+    /// the attempt (not just at the final frame) gets caught. This is
+    /// intentionally only evaluated during the "down" phase (from the
+    /// bottom of the rep through completion), never during the
+    /// descent toward the bottom while still in the "up" phase - the
+    /// bottom is the worst-case frame for these checks, so that's
+    /// where checking starts. Not an oversight.
     private func trackSecondary(_ secondaryAngle: Double?) {
         guard let secondaryAngle, let check = profile.secondaryCheck else { return }
         switch check {
         case .stability(_, let toleranceDegrees):
-            guard let baseline = secondaryBaseline else { return }
+            // The baseline is normally captured in `enterDown`. If
+            // `secondaryAngle` was nil on that exact frame (the joint
+            // was briefly occluded/below Vision's confidence floor),
+            // capture it here instead, on the first later frame where
+            // it's available - rather than leaving the check
+            // permanently disabled for the rest of this rep attempt.
+            // The frame that captures the baseline can't itself have
+            // drifted from it, so this frame never counts as a
+            // violation.
+            guard let baseline = secondaryBaseline else {
+                secondaryBaseline = secondaryAngle
+                return
+            }
             if abs(secondaryAngle - baseline) > toleranceDegrees {
                 secondaryViolatedThisAttempt = true
             }

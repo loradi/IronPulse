@@ -174,15 +174,21 @@ enum MovementProfileCatalog {
 
     // Elbow angle (shoulder-elbow-wrist): ~85 degrees at the bottom
     // of a push-up, ~170 degrees at full lockout. Secondary check:
-    // torso (shoulder-hip-knee) stays close to a straight line -
-    // sagging hips would drop this well below 150.
+    // torso (shoulder-hip-knee) shouldn't drift from wherever it
+    // started the rep - sagging hips would drift it well away from a
+    // straight line. `.stability` (not `.bounded`) because this
+    // profile also covers seated/bent-knee variants
+    // (ex_015_press_pecho_maquina, ex_020_fondos_banco,
+    // ex_019_fondos_paralelas, ex_124_fondos_maquina) whose resting
+    // torso angle has no overlap with a standing push-up's - there's
+    // no single absolute range that works for both.
     private static let pushUp = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftShoulder, vertex: .leftElbow, distal: .leftWrist),
         downRange: 70...100,
         upRange: 155...180,
-        secondaryCheck: .bounded(
+        secondaryCheck: .stability(
             angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
-            allowedRange: 150...180
+            toleranceDegrees: 15
         )
     )
 
@@ -203,30 +209,43 @@ enum MovementProfileCatalog {
 
     // Shoulder angle (hip-shoulder-elbow): ~35 degrees racked at the
     // shoulder, ~165 degrees with the arm locked out overhead.
-    // Secondary check: torso (shoulder-hip-knee) stays upright -
-    // leaning back to "push press" with the legs/back would drop this
-    // below 150.
+    // Secondary check: torso (shoulder-hip-knee) shouldn't drift from
+    // wherever it started the rep - leaning back to "push press" with
+    // the legs/back would drift it well away from upright.
+    // `.stability` (not `.bounded`) because this profile also covers
+    // seated variants (ex_079_press_militar_sentado_barra,
+    // ex_082_press_hombros_sentado_mancuernas,
+    // ex_083_press_hombros_maquina) whose torso angle has no overlap
+    // with a standing press's - there's no single absolute range that
+    // works for both.
     private static let overheadPress = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftHip, vertex: .leftShoulder, distal: .leftElbow),
         downRange: 20...50,
         upRange: 150...180,
-        secondaryCheck: .bounded(
+        secondaryCheck: .stability(
             angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
-            allowedRange: 150...180
+            toleranceDegrees: 15
         )
     )
 
     // Hip angle (shoulder-hip-knee): ~80 degrees bent over at the
     // bottom of a deadlift, ~170 degrees standing tall at lockout.
     // Secondary check: knee (hip-knee-ankle) stays relatively straight
-    // - bending it too much turns the hinge into a squat.
+    // - bending it too much turns the hinge into a squat. Range
+    // widened to 100...180 (rather than 150...180) because
+    // conventional/sumo deadlifts (ex_031_peso_muerto_convencional,
+    // ex_043_peso_muerto_sumo, ex_064_peso_muerto_sumo_con_barra) have
+    // ~110-135 degrees of knee flexion by design - 150...180 was only
+    // correct for the stiff-leg/RDL variants sharing this profile.
+    // 100...180 still catches the hinge collapsing into a squat
+    // (knee bending well past deadlift depth).
     private static let hinge = MovementProfile(
         primaryAngle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
         downRange: 60...100,
         upRange: 160...180,
         secondaryCheck: .bounded(
             angle: JointAngle(proximal: .leftHip, vertex: .leftKnee, distal: .leftAnkle),
-            allowedRange: 150...180
+            allowedRange: 100...180
         )
     )
 

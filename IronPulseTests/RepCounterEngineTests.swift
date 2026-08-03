@@ -151,4 +151,54 @@ struct RepCounterEngineTests {
         #expect(engine.repCount == 1)
         #expect(feedback == .goodRep)
     }
+
+    @Test func badFormTakesPriorityOverTooFastWhenBothApply() {
+        let engine = RepCounterEngine(profile: stabilityProfile)
+        let base = Date()
+        _ = engine.update(angle: 170, secondaryAngle: 40, now: base) // enters down, baseline = 40
+        // Drift of 25 exceeds the 15 tolerance AND the rep completes
+        // in 0.1s, under `minimumRepDuration` (0.4s) - both conditions
+        // apply, and `.badForm` must win: reporting `.tooFast` instead
+        // would incorrectly imply the rep counted.
+        let feedback = engine.update(angle: 45, secondaryAngle: 65, now: base.addingTimeInterval(0.1))
+        #expect(feedback == .badForm)
+        #expect(engine.repCount == 0)
+    }
+
+    @Test func badFormRepDoesNotLeakStateIntoASubsequentCleanRep() {
+        let engine = RepCounterEngine(profile: stabilityProfile)
+        let base = Date()
+        _ = engine.update(angle: 170, secondaryAngle: 40, now: base) // enters down, baseline = 40
+        let badFormFeedback = engine.update(angle: 45, secondaryAngle: 65, now: base.addingTimeInterval(0.5)) // drift of 25, violates
+        #expect(badFormFeedback == .badForm)
+        #expect(engine.repCount == 0)
+
+        // Immediately followed by a clean down->up cycle on the same
+        // engine instance - `enterDown` must reset the secondary-check
+        // state, since it's only otherwise reset on `enterUp`.
+        _ = engine.update(angle: 170, secondaryAngle: 40, now: base.addingTimeInterval(1)) // re-enters down, new baseline = 40
+        let goodFeedback = engine.update(angle: 45, secondaryAngle: 42, now: base.addingTimeInterval(1.5)) // drift of 2, within tolerance
+        #expect(goodFeedback == .goodRep)
+        #expect(engine.repCount == 1)
+    }
+
+    @Test func nilSecondaryAngleMidRepOnAProfileWithACheckDoesNotForceAViolationOrResetTheBaseline() {
+        let engine = RepCounterEngine(profile: stabilityProfile)
+        let base = Date()
+        _ = engine.update(angle: 170, secondaryAngle: 40, now: base) // enters down, baseline = 40
+        _ = engine.update(angle: 155, secondaryAngle: nil, now: base.addingTimeInterval(0.2)) // joint briefly occluded mid-rep
+        let feedback = engine.update(angle: 45, secondaryAngle: 42, now: base.addingTimeInterval(0.5)) // drift of 2 from the original baseline, within tolerance
+        #expect(engine.repCount == 1)
+        #expect(feedback == .goodRep)
+    }
+
+    @Test func stabilityBaselineIsCapturedOnTheFirstFrameWhereSecondaryAngleIsAvailableAfterOcclusionOnEntry() {
+        let engine = RepCounterEngine(profile: stabilityProfile)
+        let base = Date()
+        _ = engine.update(angle: 170, secondaryAngle: nil, now: base) // enters down, but the joint is occluded on this exact frame
+        _ = engine.update(angle: 155, secondaryAngle: 40, now: base.addingTimeInterval(0.2)) // joint visible now - baseline captured here as 40
+        let feedback = engine.update(angle: 45, secondaryAngle: 42, now: base.addingTimeInterval(0.5)) // drift of 2 from the captured baseline, within tolerance
+        #expect(engine.repCount == 1)
+        #expect(feedback == .goodRep)
+    }
 }

@@ -151,11 +151,11 @@ struct MovementProfileCatalogTests {
         ))
     }
 
-    @Test func pushUpHasABoundedTorsoCheck() {
+    @Test func pushUpHasATorsoStabilityCheck() {
         let profile = MovementProfileCatalog.profile(forExerciseID: "ex_021_flexiones_pecho")!
-        #expect(profile.secondaryCheck == .bounded(
+        #expect(profile.secondaryCheck == .stability(
             angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
-            allowedRange: 150...180
+            toleranceDegrees: 15
         ))
     }
 
@@ -167,11 +167,11 @@ struct MovementProfileCatalogTests {
         ))
     }
 
-    @Test func overheadPressHasABoundedTorsoCheck() {
+    @Test func overheadPressHasATorsoStabilityCheck() {
         let profile = MovementProfileCatalog.profile(forExerciseID: "ex_078_press_militar_barra")!
-        #expect(profile.secondaryCheck == .bounded(
+        #expect(profile.secondaryCheck == .stability(
             angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
-            allowedRange: 150...180
+            toleranceDegrees: 15
         ))
     }
 
@@ -179,7 +179,7 @@ struct MovementProfileCatalogTests {
         let profile = MovementProfileCatalog.profile(forExerciseID: "ex_031_peso_muerto_convencional")!
         #expect(profile.secondaryCheck == .bounded(
             angle: JointAngle(proximal: .leftHip, vertex: .leftKnee, distal: .leftAnkle),
-            allowedRange: 150...180
+            allowedRange: 100...180
         ))
     }
 
@@ -221,5 +221,28 @@ struct MovementProfileCatalogTests {
             angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
             toleranceDegrees: 15
         ))
+    }
+
+    /// Loops over one representative exercise ID per distinct movement
+    /// profile (unlike the individual tests above, each hardcoded to a
+    /// single profile) so that an 11th profile ever added without a
+    /// secondary check fails this loop, instead of silently passing.
+    @Test func everyMovementProfileHasANonNilSecondaryCheck() {
+        let representativeIDByProfile: [String: String] = [
+            "squat": "ex_048_sentadilla_trasera_con_barra",
+            "pushUp": "ex_021_flexiones_pecho",
+            "curl": "ex_098_curl_barra_recta",
+            "overheadPress": "ex_078_press_militar_barra",
+            "hinge": "ex_031_peso_muerto_convencional",
+            "row": "ex_027_remo_sentado_polea",
+            "tricepsExtension": "ex_117_pushdown_polea_cuerda",
+            "lateralRaise": "ex_085_elevaciones_laterales_mancuernas",
+            "legExtension": "ex_054_extension_de_piernas_en_maquina",
+            "legCurl": "ex_056_curl_femoral_sentado",
+        ]
+        for (profileName, id) in representativeIDByProfile {
+            let profile = MovementProfileCatalog.profile(forExerciseID: id)!
+            #expect(profile.secondaryCheck != nil, "\(profileName) (via \(id)) has no secondary check")
+        }
     }
 }
