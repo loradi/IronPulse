@@ -131,7 +131,13 @@ struct GuidedWorkoutView: View {
                 SmartAssistantSheet(
                     exerciseID: exercise.id,
                     exerciseName: exercise.name,
-                    targetReps: set.targetRepsMax,
+                    // repsCompleted, not targetRepsMax: targetRepsMax is
+                    // the profile-wide prescription ceiling (e.g. every
+                    // hypertrophy-goal exercise gets 8-12 regardless of
+                    // which exercise it is), not what the user just set
+                    // in this set's stepper. The assistant should count
+                    // toward what the user configured for THIS set.
+                    targetReps: set.repsCompleted,
                     onFinish: { count in
                         handleSmartAssistantFinish(set: set, repCount: count)
                     }
