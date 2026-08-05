@@ -122,4 +122,54 @@ struct GuidedSessionFlowTests {
         let end = now.addingTimeInterval(10.2)
         #expect(GuidedSessionFlow.remainingSeconds(until: end, now: now) == 11)
     }
+
+    @Test func fillEmptyWeightsRellenaLosSetsEnCeroDelMismoEjercicio() {
+        let editado = makeSet(0)
+        let vacio1 = makeSet(1)
+        let vacio2 = makeSet(2)
+        let sets = [editado, vacio1, vacio2]
+        GuidedSessionFlow.fillEmptyWeights(40, in: sets, editedSetID: editado.id)
+        #expect(vacio1.weightKg == 40)
+        #expect(vacio2.weightKg == 40)
+    }
+
+    @Test func fillEmptyWeightsNoSobreescribeUnSetConValorPropio() {
+        let editado = makeSet(0)
+        let dropSet = makeSet(1)
+        dropSet.weightKg = 25
+        let sets = [editado, dropSet]
+        GuidedSessionFlow.fillEmptyWeights(40, in: sets, editedSetID: editado.id)
+        #expect(dropSet.weightKg == 25)
+    }
+
+    @Test func fillEmptyWeightsNoTocaElSetEditado() {
+        let editado = makeSet(0)
+        editado.weightKg = 40
+        GuidedSessionFlow.fillEmptyWeights(999, in: [editado], editedSetID: editado.id)
+        #expect(editado.weightKg == 40)
+    }
+
+    @Test func commonWeightDevuelveElValorSiTodosCoinciden() {
+        let a = makeSet(0)
+        a.weightKg = 40
+        let b = makeSet(1)
+        b.weightKg = 40
+        #expect(GuidedSessionFlow.commonWeight(of: [a, b]) == 40)
+    }
+
+    @Test func commonWeightEsNilSiNoTodosCoinciden() {
+        let a = makeSet(0)
+        a.weightKg = 40
+        let b = makeSet(1)
+        b.weightKg = 35
+        #expect(GuidedSessionFlow.commonWeight(of: [a, b]) == nil)
+    }
+
+    @Test func commonWeightEsNilSiNingunoTienePeso() {
+        #expect(GuidedSessionFlow.commonWeight(of: [makeSet(0), makeSet(1)]) == nil)
+    }
+
+    @Test func commonWeightEsNilConListaVacia() {
+        #expect(GuidedSessionFlow.commonWeight(of: []) == nil)
+    }
 }

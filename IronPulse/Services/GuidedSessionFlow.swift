@@ -47,4 +47,26 @@ enum GuidedSessionFlow {
     static func remainingSeconds(until end: Date, now: Date = Date()) -> Int {
         max(0, Int(ceil(end.timeIntervalSince(now))))
     }
+
+    /// Sets que deben adoptar `weightKg` por ser hermanos vacíos
+    /// (`<= 0`) del set que el usuario acaba de editar — mismo
+    /// ejercicio, sin contar el set editado. Un set que ya tiene un
+    /// valor propio (drop set, pirámide) se deja intacto: solo se
+    /// rellenan los que de verdad están vacíos.
+    static func fillEmptyWeights(_ weightKg: Double, in sets: [SetLog], editedSetID: SetLog.ID) {
+        for set in sets where set.id != editedSetID && set.weightKg <= 0 {
+            set.weightKg = weightKg
+        }
+    }
+
+    /// El peso en el que están de acuerdo todos los sets de `sets`,
+    /// si lo hay — usado para que un set nuevo herede ese peso en vez
+    /// de arrancar en blanco al lado de sets ya llenos. `nil` si los
+    /// sets no coinciden (ej. un drop set en curso) o ninguno tiene
+    /// peso todavía.
+    static func commonWeight(of sets: [SetLog]) -> Double? {
+        guard let first = sets.first?.weightKg, first > 0,
+              sets.allSatisfy({ $0.weightKg == first }) else { return nil }
+        return first
+    }
 }

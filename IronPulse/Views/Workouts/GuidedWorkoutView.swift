@@ -290,7 +290,11 @@ struct GuidedWorkoutView: View {
         Binding(
             get: { UnitSystem.current == .metric ? set.weightKg : UnitSystem.kgToLbs(set.weightKg) },
             set: { newValue in
-                set.weightKg = UnitSystem.current == .metric ? newValue : UnitSystem.lbsToKg(newValue)
+                let weightKg = UnitSystem.current == .metric ? newValue : UnitSystem.lbsToKg(newValue)
+                set.weightKg = weightKg
+                if let currentGroup {
+                    GuidedSessionFlow.fillEmptyWeights(weightKg, in: currentGroup.sets, editedSetID: set.id)
+                }
             }
         )
     }
@@ -384,7 +388,7 @@ struct GuidedWorkoutView: View {
         let newSet = SetLog(
             exerciseId: exerciseId,
             setIndex: (log.completedSets.map(\.setIndex).max() ?? 0) + 1,
-            weightKg: 0,
+            weightKg: GuidedSessionFlow.commonWeight(of: exerciseSets) ?? 0,
             repsCompleted: template.targetRepsMin,
             restSeconds: template.restSeconds,
             targetRepsMin: template.targetRepsMin,
