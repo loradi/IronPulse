@@ -32,9 +32,9 @@ Fuera de la fase "abajo" (fase "arriba", entre repeticiones, donde `trackSeconda
 - Pierna izquierda: cadera-rodilla, rodilla-tobillo
 - Pierna derecha: cadera-rodilla, rodilla-tobillo
 
-(11 segmentos en total, más un punto/círculo pequeño en cada articulación detectada.)
+(12 segmentos en total, más un punto/círculo pequeño en cada articulación detectada.)
 
-**Color:** por defecto (`isFormOK == true`), TODO el esqueleto se pinta del color de acento de la app (`Color.ironAccent`, el mismo tono ya usado en el resto del Smart Assistant). Cuando `isFormOK == false`, solo los DOS segmentos que forman el triángulo del chequeo secundario de este perfil (`profile.secondaryCheck?.angle` — ya definido por perfil desde la fase 4) se pintan de rojo; el resto del esqueleto se queda en `ironAccent`. Como el triángulo siempre usa el lado izquierdo (`JointAngle` de cada perfil ya usa joints `.left*` exclusivamente, igual que el ángulo primario), esto siempre corresponde a exactamente 2 de los 11 segmentos ya listados arriba — no hace falta ningún segmento nuevo:
+**Color:** por defecto (`isFormOK == true`), TODO el esqueleto se pinta del color de acento de la app (`Color.ironAccent`, el mismo tono ya usado en el resto del Smart Assistant). Cuando `isFormOK == false`, solo los DOS segmentos que forman el triángulo del chequeo secundario de este perfil (`profile.secondaryCheck?.angle` — ya definido por perfil desde la fase 4) se pintan de rojo; el resto del esqueleto se queda en `ironAccent`. Como el triángulo siempre usa el lado izquierdo (`JointAngle` de cada perfil ya usa joints `.left*` exclusivamente, igual que el ángulo primario), esto siempre corresponde a exactamente 2 de los 12 segmentos ya listados arriba — no hace falta ningún segmento nuevo:
 
 | Triángulo del chequeo secundario | Segmentos que se ponen rojos |
 |---|---|
