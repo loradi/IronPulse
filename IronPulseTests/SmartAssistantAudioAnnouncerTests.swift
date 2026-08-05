@@ -59,9 +59,16 @@ struct SmartAssistantAudioAnnouncerTests {
         #expect(first === second)
     }
 
-    @Test func audioURLIsNilWhenPhraseIDIsEmpty() {
+    @Test func audioFileNameIsNilWhenPhraseIDIsEmpty() {
         let phrase = LocalizedString(es: "x", en: "x", fr: "x")
-        #expect(SmartAssistantAudioAnnouncer.audioURL(for: phrase, language: .spanish) == nil)
+        #expect(SmartAssistantAudioAnnouncer.audioFileName(for: phrase, language: .spanish) == nil)
+    }
+
+    @Test func audioFileNameCombinesIDAndLanguageCode() {
+        let phrase = LocalizedString(es: "x", en: "x", fr: "x", id: "goodRep_01")
+        #expect(SmartAssistantAudioAnnouncer.audioFileName(for: phrase, language: .spanish) == "goodRep_01_es")
+        #expect(SmartAssistantAudioAnnouncer.audioFileName(for: phrase, language: .english) == "goodRep_01_en")
+        #expect(SmartAssistantAudioAnnouncer.audioFileName(for: phrase, language: .french) == "goodRep_01_fr")
     }
 
     @Test func audioURLIsNilWhenNoBundledClipMatchesTheID() {

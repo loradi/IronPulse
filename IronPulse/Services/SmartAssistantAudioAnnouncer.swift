@@ -90,12 +90,22 @@ final class SmartAssistantAudioAnnouncer {
         isMuted.toggle()
     }
 
+    /// The expected bundled filename (without extension) for `phrase`'s
+    /// pre-recorded clip in `language` — `nil` if `phrase.id` is empty.
+    /// Pulled out of `audioURL` so the `<id>_<language>` naming
+    /// convention itself is directly testable, independent of whether
+    /// any file matching it actually exists in the bundle.
+    static func audioFileName(for phrase: LocalizedString, language: AppLanguage) -> String? {
+        guard !phrase.id.isEmpty else { return nil }
+        return "\(phrase.id)_\(language.rawValue)"
+    }
+
     /// The bundled URL for `phrase`'s pre-recorded clip in `language`,
     /// or `nil` if `phrase.id` is empty or no matching `.mp3` is
     /// bundled — either case triggers the live-TTS fallback in `speak`.
     static func audioURL(for phrase: LocalizedString, language: AppLanguage, bundle: Bundle = .main) -> URL? {
-        guard !phrase.id.isEmpty else { return nil }
-        return bundle.url(forResource: "\(phrase.id)_\(language.rawValue)", withExtension: "mp3")
+        guard let fileName = audioFileName(for: phrase, language: language) else { return nil }
+        return bundle.url(forResource: fileName, withExtension: "mp3")
     }
 
     /// Picks the best-quality installed voice for `language`, caching

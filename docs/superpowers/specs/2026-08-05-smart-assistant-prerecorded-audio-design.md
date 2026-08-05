@@ -33,10 +33,10 @@ Cada frase gana un `id` estable — es lo que conecta una frase con su archivo d
 Un script en Python (`scripts/generate_smart_assistant_audio.py`) que:
 1. Lee `IronPulse/Resources/FeedbackPhrases.json`.
 2. Consulta el endpoint `/v1/voices` de ElevenLabs para listar voces pre-hechas disponibles y elige una voz masculina por idioma (es/en/fr) — se imprime en consola cuál se eligió, para que quede documentado, pero no requiere aprobación interactiva.
-3. Por cada frase × idioma, llama a la API de generación de ElevenLabs (modelo `eleven_multilingual_v2`) y guarda el resultado como `IronPulse/Resources/SmartAssistantAudio/<id>_<idioma>.m4a` (ej. `goodRep_01_es.m4a`).
+3. Por cada frase × idioma, llama a la API de generación de ElevenLabs (modelo `eleven_multilingual_v2`) y guarda el resultado como `IronPulse/Resources/SmartAssistantAudio/<id>_<idioma>.mp3` (ej. `goodRep_01_es.mp3`).
 4. Lee la API key desde la variable de entorno `ELEVENLABS_API_KEY` — nunca hardcodeada ni pasada por argumento de línea de comandos.
 
-Se corre una vez ahora (192 llamadas) y de nuevo solo si se agregan/cambian frases en el futuro — no es parte del pipeline de build de Xcode, los `.m4a` resultantes se agregan al repo y al target de la app como cualquier otro recurso bundled.
+Se corre una vez ahora (192 llamadas) y de nuevo solo si se agregan/cambian frases en el futuro — no es parte del pipeline de build de Xcode, los `.mp3` resultantes se agregan al repo y al target de la app como cualquier otro recurso bundled.
 
 ## 3. Reproducción: `SmartAssistantAudioAnnouncer` gana una ruta de audio pre-grabado
 
@@ -44,17 +44,17 @@ Hoy `speak(_ text: String, language:)` recibe el TEXTO ya elegido (vía `Feedbac
 
 - `FeedbackPhraseBank.randomPhrase(for feedback: FormFeedback, language:) -> String` cambia a `randomPhrase(for feedback: FormFeedback) -> LocalizedString` — devuelve la frase completa (con su `id` y los 3 idiomas) en vez de resolver ya el texto de un idioma. El único call site en producción (`SmartAssistantModel.swift:111`) y los tests existentes se actualizan a la nueva firma; el parámetro `language` deja de tener sentido en esta función porque ya no decide qué texto devolver, eso lo hace el caller.
 - `SmartAssistantAudioAnnouncer.speak(_:language:)` cambia su primer parámetro de `String` a `LocalizedString`. Internamente:
-  1. Busca `<phrase.id>_<language>.m4a` en el bundle.
+  1. Busca `<phrase.id>_<language>.mp3` en el bundle.
   2. Si existe: lo reproduce con `AVAudioPlayer` (mismo `AVAudioSession` con `.mixWithOthers` ya configurado).
   3. Si NO existe (frase nueva sin audio generado todavía, id vacío, archivo corrupto): cae automáticamente al mecanismo actual de `AVSpeechSynthesizer` con el texto (`phrase.text(for: language)`) — cero riesgo de quedarse sin audio.
-- `SmartAssistantModel.swift:109-115` — hoy asigna `feedbackMessage = phrase` (el `String` ya resuelto) y llama `audioAnnouncer.speak(phrase, language: language)` con ese mismo `String`. Con el cambio, `phrase` es un `LocalizedString`: `feedbackMessage = phrase.text(for: language)` (el banner en pantalla no cambia, solo de dónde saca el texto) y `audioAnnouncer.speak(phrase, language: language)` ahora pasa el `LocalizedString` completo (para que el announcer pueda armar `<phrase.id>_<language>.m4a`).
+- `SmartAssistantModel.swift:109-115` — hoy asigna `feedbackMessage = phrase` (el `String` ya resuelto) y llama `audioAnnouncer.speak(phrase, language: language)` con ese mismo `String`. Con el cambio, `phrase` es un `LocalizedString`: `feedbackMessage = phrase.text(for: language)` (el banner en pantalla no cambia, solo de dónde saca el texto) y `audioAnnouncer.speak(phrase, language: language)` ahora pasa el `LocalizedString` completo (para que el announcer pueda armar `<phrase.id>_<language>.mp3`).
 
 Todo lo demás no cambia: `isMuted`, el ritmo de habla (primero/mitad/último para `.goodRep`, siempre para las correctivas — `shouldSpeak` de la fase 4), `stop()`, `toggleMute()`. La selección de mejor-voz-instalada (`bestVoice`/`resolvedVoice`) y el rate/pitch tuneado (0.47/0.92) del código actual se mantienen intactos como parte del camino de respaldo (TTS en vivo), no se eliminan.
 
 ## Testing
 
 - `FeedbackPhraseBank`: los tests existentes (conteos, no-vacío en los 3 idiomas) se mantienen y pasan igual cargando desde JSON. Se agrega un test de que cada frase tiene un `id` no vacío y único dentro de su categoría.
-- `SmartAssistantAudioAnnouncer`: se agrega una función pura testeable para resolver el nombre de archivo esperado dado un `id` e idioma, y un test de que el fallback a TTS se activa cuando el archivo no existe (usando un `id` inventado que no tiene `.m4a`).
+- `SmartAssistantAudioAnnouncer`: se agrega una función pura testeable para resolver el nombre de archivo esperado dado un `id` e idioma, y un test de que el fallback a TTS se activa cuando el archivo no existe (usando un `id` inventado que no tiene `.mp3`).
 - El propio audio (si suena bien, si el volumen es consistente entre frases) no es testeable automáticamente — se verifica manualmente en dispositivo, igual que el resto del pipeline de audio de fases anteriores.
 
 ## Fuera de alcance
