@@ -100,7 +100,13 @@ final class CameraSessionController: NSObject {
         }
 
         let avPosition: AVCaptureDevice.Position = position == .back ? .back : .front
-        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: avPosition),
+        // Ultra-wide first so the phone doesn't need to be propped far
+        // away to fit a whole body in frame; falls back to the
+        // standard wide lens on devices/positions without one (most
+        // front cameras, older/cheaper iPhones).
+        let device = AVCaptureDevice.default(.builtInUltraWideCamera, for: .video, position: avPosition)
+            ?? AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: avPosition)
+        guard let device,
               let input = try? AVCaptureDeviceInput(device: device),
               session.canAddInput(input) else {
             session.commitConfiguration()
