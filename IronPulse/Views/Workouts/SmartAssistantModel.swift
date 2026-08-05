@@ -111,7 +111,7 @@ final class SmartAssistantModel {
         let phrase = FeedbackPhraseBank.randomPhrase(for: feedback)
         feedbackMessage = phrase.text(for: language)
         if Self.shouldSpeak(for: feedback, repCount: repCount, targetReps: targetReps) {
-            audioAnnouncer.speak(phrase.text(for: language), language: language)
+            audioAnnouncer.speak(phrase, language: language)
         }
 
         if repCount >= targetReps {

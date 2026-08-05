@@ -58,4 +58,14 @@ struct SmartAssistantAudioAnnouncerTests {
         let second = announcer.resolvedVoice(for: .spanish)
         #expect(first === second)
     }
+
+    @Test func audioURLIsNilWhenPhraseIDIsEmpty() {
+        let phrase = LocalizedString(es: "x", en: "x", fr: "x")
+        #expect(SmartAssistantAudioAnnouncer.audioURL(for: phrase, language: .spanish) == nil)
+    }
+
+    @Test func audioURLIsNilWhenNoBundledClipMatchesTheID() {
+        let phrase = LocalizedString(es: "x", en: "x", fr: "x", id: "does_not_exist_yet")
+        #expect(SmartAssistantAudioAnnouncer.audioURL(for: phrase, language: .spanish) == nil)
+    }
 }
