@@ -32,8 +32,13 @@ struct SmartAssistantSheet: View {
         ZStack {
             switch model.cameraController.authorizationState {
             case .authorized:
-                CameraPreviewView(session: model.cameraController.session)
-                    .ignoresSafeArea()
+                CameraPreviewView(
+                    session: model.cameraController.session,
+                    joints: model.latestJoints,
+                    secondaryCheckAngle: model.secondaryCheckAngle,
+                    isFormOK: model.isFormOK
+                )
+                .ignoresSafeArea()
             case .denied:
                 Color.black.ignoresSafeArea()
                 permissionDeniedOverlay

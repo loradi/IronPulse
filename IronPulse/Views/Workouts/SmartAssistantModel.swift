@@ -18,11 +18,23 @@ final class SmartAssistantModel {
     private(set) var repCount = 0
     private(set) var feedbackMessage: String?
     private(set) var personVisible = true
+    private(set) var latestJoints: [BodyJoint: CGPoint] = [:]
 
     private let engine: RepCounterEngine?
     private let movementProfile: MovementProfile?
     private(set) var didFinish = false
     private let onComplete: (Int) -> Void
+
+    /// Whether the current profile's secondary form check (fase 4) is
+    /// passing on the most recently processed frame — drives the
+    /// virtual skeleton's color. Defaults to `true` when there's no
+    /// engine yet or the profile has no secondary check.
+    var isFormOK: Bool { engine?.isSecondaryCheckOK ?? true }
+
+    /// The joint triangle the current profile's secondary check
+    /// watches, if any — `CameraPreviewView` uses this to know which
+    /// two skeleton segments to highlight when `isFormOK` is false.
+    var secondaryCheckAngle: JointAngle? { movementProfile?.secondaryCheck?.angle }
 
     // Touched only from `processFrame`, which `CameraSessionController`
     // always invokes serially on its single `sessionQueue` (the sample
@@ -90,6 +102,8 @@ final class SmartAssistantModel {
 
     private func handleDetectedJoints(_ joints: [BodyJoint: CGPoint]) {
         guard !didFinish else { return }
+
+        latestJoints = joints
 
         guard let profile = movementProfile, let engine else { return }
 
