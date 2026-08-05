@@ -28,6 +28,12 @@ final class RepCounterEngine {
 
     let profile: MovementProfile
     private(set) var repCount: Int = 0
+    /// Whether the current profile's secondary check is passing on the
+    /// most recently processed frame — unlike `secondaryViolatedThisAttempt`
+    /// (sticky for the whole attempt, used for counting), this reflects
+    /// only the instant snapshot, for live UI like a virtual skeleton
+    /// that should recover the moment the user corrects their form.
+    private(set) var isSecondaryCheckOK: Bool = true
 
     private var phase: Phase = .unknown
     private var phaseEnteredAt: Date?
@@ -113,6 +119,7 @@ final class RepCounterEngine {
         phaseEnteredAt = now
         previousDistanceToDown = nil
         reportedNearMissThisAttempt = false
+        isSecondaryCheckOK = true
     }
 
     /// Called on every `update()` while in the "down" phase, before
@@ -124,7 +131,10 @@ final class RepCounterEngine {
     /// bottom is the worst-case frame for these checks, so that's
     /// where checking starts. Not an oversight.
     private func trackSecondary(_ secondaryAngle: Double?) {
-        guard let secondaryAngle, let check = profile.secondaryCheck else { return }
+        guard let secondaryAngle, let check = profile.secondaryCheck else {
+            isSecondaryCheckOK = true
+            return
+        }
         switch check {
         case .stability(_, let toleranceDegrees):
             // The baseline is normally captured in `enterDown`. If
@@ -138,13 +148,18 @@ final class RepCounterEngine {
             // violation.
             guard let baseline = secondaryBaseline else {
                 secondaryBaseline = secondaryAngle
+                isSecondaryCheckOK = true
                 return
             }
-            if abs(secondaryAngle - baseline) > toleranceDegrees {
+            let violated = abs(secondaryAngle - baseline) > toleranceDegrees
+            isSecondaryCheckOK = !violated
+            if violated {
                 secondaryViolatedThisAttempt = true
             }
         case .bounded(_, let allowedRange):
-            if !allowedRange.contains(secondaryAngle) {
+            let violated = !allowedRange.contains(secondaryAngle)
+            isSecondaryCheckOK = !violated
+            if violated {
                 secondaryViolatedThisAttempt = true
             }
         }

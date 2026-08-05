@@ -201,4 +201,67 @@ struct RepCounterEngineTests {
         #expect(engine.repCount == 1)
         #expect(feedback == .goodRep)
     }
+
+    @Test func isSecondaryCheckOKDefaultsToTrueBeforeAnyUpdate() {
+        let engine = RepCounterEngine(profile: stabilityProfile)
+        #expect(engine.isSecondaryCheckOK == true)
+    }
+
+    @Test func isSecondaryCheckOKStaysTrueWhileWithinTolerance() {
+        let engine = RepCounterEngine(profile: stabilityProfile)
+        let base = Date()
+        _ = engine.update(angle: 170, secondaryAngle: 40, now: base) // enters down, baseline = 40
+        #expect(engine.isSecondaryCheckOK == true)
+        _ = engine.update(angle: 155, secondaryAngle: 45, now: base.addingTimeInterval(0.2)) // drift of 5, within 15
+        #expect(engine.isSecondaryCheckOK == true)
+    }
+
+    @Test func isSecondaryCheckOKTurnsFalseTheExactFrameToleranceIsExceeded() {
+        let engine = RepCounterEngine(profile: stabilityProfile)
+        let base = Date()
+        _ = engine.update(angle: 170, secondaryAngle: 40, now: base) // enters down, baseline = 40
+        #expect(engine.isSecondaryCheckOK == true)
+        _ = engine.update(angle: 155, secondaryAngle: 65, now: base.addingTimeInterval(0.2)) // drift of 25, exceeds 15
+        #expect(engine.isSecondaryCheckOK == false)
+    }
+
+    @Test func isSecondaryCheckOKTurnsFalseForABoundedViolation() {
+        let engine = RepCounterEngine(profile: boundedProfile)
+        let base = Date()
+        _ = engine.update(angle: 170, secondaryAngle: 175, now: base)
+        #expect(engine.isSecondaryCheckOK == true)
+        _ = engine.update(angle: 85, secondaryAngle: 120, now: base.addingTimeInterval(1)) // torso collapses below 150
+        #expect(engine.isSecondaryCheckOK == false)
+    }
+
+    @Test func isSecondaryCheckOKReturnsTrueAfterSelfCorrectionEvenThoughTheAttemptStillResolvesAsBadForm() {
+        let engine = RepCounterEngine(profile: stabilityProfile)
+        let base = Date()
+        _ = engine.update(angle: 170, secondaryAngle: 40, now: base) // enters down, baseline = 40
+        _ = engine.update(angle: 155, secondaryAngle: 65, now: base.addingTimeInterval(0.2)) // drift of 25, violates
+        #expect(engine.isSecondaryCheckOK == false)
+        _ = engine.update(angle: 150, secondaryAngle: 42, now: base.addingTimeInterval(0.3)) // corrects back within tolerance
+        #expect(engine.isSecondaryCheckOK == true) // the live signal reflects THIS frame only
+        let feedback = engine.update(angle: 45, secondaryAngle: 41, now: base.addingTimeInterval(0.5))
+        #expect(feedback == .badForm) // the sticky per-attempt flag still remembers the earlier violation
+    }
+
+    @Test func isSecondaryCheckOKResetsToTrueOnEnteringUpPhase() {
+        let engine = RepCounterEngine(profile: stabilityProfile)
+        let base = Date()
+        _ = engine.update(angle: 170, secondaryAngle: 40, now: base) // enters down, baseline = 40
+        _ = engine.update(angle: 155, secondaryAngle: 65, now: base.addingTimeInterval(0.2)) // drift of 25, violates
+        #expect(engine.isSecondaryCheckOK == false)
+        _ = engine.update(angle: 45, secondaryAngle: 65, now: base.addingTimeInterval(0.5)) // completes into "up" phase (badForm)
+        #expect(engine.isSecondaryCheckOK == true) // nothing actively checked between reps
+    }
+
+    @Test func isSecondaryCheckOKStaysTrueForProfilesWithoutASecondaryCheck() {
+        let engine = RepCounterEngine(profile: squatLikeProfile)
+        let base = Date()
+        _ = engine.update(angle: 170, secondaryAngle: 999, now: base)
+        #expect(engine.isSecondaryCheckOK == true)
+        _ = engine.update(angle: 85, secondaryAngle: -500, now: base.addingTimeInterval(1))
+        #expect(engine.isSecondaryCheckOK == true)
+    }
 }
