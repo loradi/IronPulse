@@ -59,6 +59,25 @@ struct CameraPreviewView: UIViewRepresentable {
             badFormLayer.frame = bounds
         }
 
+        /// Converts a Vision-space joint point (normalized, origin
+        /// bottom-left, y-up — relative to the already-portrait-rotated
+        /// buffer `PoseDetectorService` runs Vision on, see that file's
+        /// `.up` orientation comment) into this layer's own point space.
+        /// Deliberately NOT `layerPointConverted(fromCaptureDevicePoint:)`
+        /// — that method's input space is AVCaptureDevice's raw,
+        /// un-rotated sensor frame (used for focus/exposure points of
+        /// interest), a different space than what Vision returns here.
+        /// `layerRectConverted(fromMetadataOutputRect:)` is the correct
+        /// counterpart: its input space DOES track the capture
+        /// connection's own rotation/mirroring setting and automatically
+        /// accounts for `.resizeAspectFill`'s crop, so only the Y-axis
+        /// flip (Vision's bottom-left/y-up vs. CoreGraphics' top-left/
+        /// y-down) is needed before handing it off.
+        private func viewPoint(for visionPoint: CGPoint) -> CGPoint {
+            let metadataPoint = CGPoint(x: visionPoint.x, y: 1 - visionPoint.y)
+            return videoPreviewLayer.layerRectConverted(fromMetadataOutputRect: CGRect(origin: metadataPoint, size: .zero)).origin
+        }
+
         /// Rebuilds both shape layers' paths from scratch every call —
         /// cheap at ~10 processed frames/sec (see `SmartAssistantModel`'s
         /// frame-skip), and far simpler than diffing the previous
@@ -70,20 +89,29 @@ struct CameraPreviewView: UIViewRepresentable {
 
             for segment in SkeletonOverlay.bones {
                 guard let pointA = joints[segment.a], let pointB = joints[segment.b] else { continue }
-                let viewA = videoPreviewLayer.layerPointConverted(fromCaptureDevicePoint: pointA)
-                let viewB = videoPreviewLayer.layerPointConverted(fromCaptureDevicePoint: pointB)
                 let path = failingSegments.contains(segment) ? badFormPath : accentPath
-                path.move(to: viewA)
-                path.addLine(to: viewB)
+                path.move(to: viewPoint(for: pointA))
+                path.addLine(to: viewPoint(for: pointB))
             }
 
             for point in joints.values {
-                let viewPoint = videoPreviewLayer.layerPointConverted(fromCaptureDevicePoint: point)
-                accentPath.addEllipse(in: CGRect(x: viewPoint.x - 3, y: viewPoint.y - 3, width: 6, height: 6))
+                let dot = viewPoint(for: point)
+                accentPath.addEllipse(in: CGRect(x: dot.x - 3, y: dot.y - 3, width: 6, height: 6))
             }
 
+            // CAShapeLayer has no delegate here, so implicit `path`
+            // actions are enabled by default (unlike a UIView's own
+            // backing layer). Without disabling them, every frame's path
+            // change animates in over CoreAnimation's default 0.25s,
+            // and — since the frame rate here (~10fps) is faster than
+            // that — successive animations overlap, making the skeleton
+            // visibly lag/smear behind the real body instead of tracking
+            // it live.
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
             accentLayer.path = accentPath
             badFormLayer.path = badFormPath
+            CATransaction.commit()
         }
     }
 }
