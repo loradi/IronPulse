@@ -123,30 +123,63 @@ struct GuidedSessionFlowTests {
         #expect(GuidedSessionFlow.remainingSeconds(until: end, now: now) == 11)
     }
 
-    @Test func fillEmptyWeightsRellenaLosSetsEnCeroDelMismoEjercicio() {
+    @Test func fillMatchingWeightsRellenaLosSetsEnCeroDelMismoEjercicio() {
         let editado = makeSet(0)
         let vacio1 = makeSet(1)
         let vacio2 = makeSet(2)
         let sets = [editado, vacio1, vacio2]
-        GuidedSessionFlow.fillEmptyWeights(40, in: sets, editedSetID: editado.id)
+        GuidedSessionFlow.fillMatchingWeights(40, previousValue: 0, in: sets, editedSetID: editado.id)
         #expect(vacio1.weightKg == 40)
         #expect(vacio2.weightKg == 40)
     }
 
-    @Test func fillEmptyWeightsNoSobreescribeUnSetConValorPropio() {
+    @Test func fillMatchingWeightsNoSobreescribeUnSetConValorPropio() {
         let editado = makeSet(0)
         let dropSet = makeSet(1)
         dropSet.weightKg = 25
         let sets = [editado, dropSet]
-        GuidedSessionFlow.fillEmptyWeights(40, in: sets, editedSetID: editado.id)
+        GuidedSessionFlow.fillMatchingWeights(40, previousValue: 0, in: sets, editedSetID: editado.id)
         #expect(dropSet.weightKg == 25)
     }
 
-    @Test func fillEmptyWeightsNoTocaElSetEditado() {
+    @Test func fillMatchingWeightsNoTocaElSetEditado() {
+        let editado = makeSet(0)
+        editado.weightKg = 999
+        GuidedSessionFlow.fillMatchingWeights(999, previousValue: 999, in: [editado], editedSetID: editado.id)
+        #expect(editado.weightKg == 999)
+    }
+
+    @Test func fillMatchingWeightsRellenaSetsQueCompartianElPesoAnterior() {
+        // Simula una sesion precargada con historial: los 3 sets ya
+        // arrancan en 40 (no en 0). El usuario sube el set 1 a 45; los
+        // sets 2 y 3, que seguian en 40 (el peso anterior del set
+        // editado), deben subir tambien.
         let editado = makeSet(0)
         editado.weightKg = 40
-        GuidedSessionFlow.fillEmptyWeights(999, in: [editado], editedSetID: editado.id)
-        #expect(editado.weightKg == 40)
+        let hermano1 = makeSet(1)
+        hermano1.weightKg = 40
+        let hermano2 = makeSet(2)
+        hermano2.weightKg = 40
+        let sets = [editado, hermano1, hermano2]
+        GuidedSessionFlow.fillMatchingWeights(45, previousValue: 40, in: sets, editedSetID: editado.id)
+        #expect(hermano1.weightKg == 45)
+        #expect(hermano2.weightKg == 45)
+    }
+
+    @Test func fillMatchingWeightsNoTocaUnDropSetQueYaEraDistintoDelPesoAnterior() {
+        // El set 3 ya fue bajado a 30 (drop set) antes de este cambio -
+        // no coincide con el peso anterior (40) del set editado, asi
+        // que debe quedarse en 30.
+        let editado = makeSet(0)
+        editado.weightKg = 40
+        let hermano = makeSet(1)
+        hermano.weightKg = 40
+        let dropSet = makeSet(2)
+        dropSet.weightKg = 30
+        let sets = [editado, hermano, dropSet]
+        GuidedSessionFlow.fillMatchingWeights(45, previousValue: 40, in: sets, editedSetID: editado.id)
+        #expect(hermano.weightKg == 45)
+        #expect(dropSet.weightKg == 30)
     }
 
     @Test func commonWeightDevuelveElValorSiTodosCoinciden() {

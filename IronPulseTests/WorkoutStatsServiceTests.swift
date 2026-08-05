@@ -261,4 +261,20 @@ struct WorkoutStatsServiceTests {
         let logs = [makeLog(start: day(2026, 7, 1), finished: true, sets: sets)]
         #expect(WorkoutStatsService.mostRecentWeights(in: logs)["e1"] == 45)
     }
+
+    @Test func mostRecentWeightsEsIndependientePorEjercicioAunqueLaSesionMasRecienteNoLosTengaATodos() {
+        let logs = [
+            makeLog(start: day(2026, 7, 1), finished: true, sets: [
+                makeSet(exerciseId: "e1", weightKg: 40, reps: 8),
+                makeSet(exerciseId: "e2", weightKg: 20, reps: 10)
+            ]),
+            makeLog(start: day(2026, 7, 8), finished: true, sets: [
+                makeSet(exerciseId: "e1", weightKg: 45, reps: 8)
+                // e2 no aparece en esta sesion mas reciente
+            ])
+        ]
+        let result = WorkoutStatsService.mostRecentWeights(in: logs)
+        #expect(result["e1"] == 45)
+        #expect(result["e2"] == 20)
+    }
 }

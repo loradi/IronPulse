@@ -23,6 +23,7 @@ struct GuidedWorkoutView: View {
     @State private var isShowingExerciseInfo = false
     @State private var isShowingSmartAssistant = false
     @FocusState private var focusedWeightSetID: SetLog.ID?
+    @State private var weightBeforeEdit: Double?
 
     private var groups: [(exerciseId: String, sets: [SetLog])] {
         GuidedSessionFlow.groupedSets(log.completedSets)
@@ -152,6 +153,18 @@ struct GuidedWorkoutView: View {
         }
         .onDisappear {
             stopTimers()
+        }
+        .onChange(of: focusedWeightSetID) { previous, new in
+            if let previous, let editedSet = log.completedSets.first(where: { $0.id == previous }), editedSet.weightKg > 0 {
+                let sameExercise = log.completedSets.filter { $0.exerciseId == editedSet.exerciseId }
+                GuidedSessionFlow.fillMatchingWeights(
+                    editedSet.weightKg,
+                    previousValue: weightBeforeEdit ?? 0,
+                    in: sameExercise,
+                    editedSetID: editedSet.id
+                )
+            }
+            weightBeforeEdit = new.flatMap { id in log.completedSets.first { $0.id == id }?.weightKg }
         }
     }
 
@@ -290,11 +303,7 @@ struct GuidedWorkoutView: View {
         Binding(
             get: { UnitSystem.current == .metric ? set.weightKg : UnitSystem.kgToLbs(set.weightKg) },
             set: { newValue in
-                let weightKg = UnitSystem.current == .metric ? newValue : UnitSystem.lbsToKg(newValue)
-                set.weightKg = weightKg
-                if let currentGroup {
-                    GuidedSessionFlow.fillEmptyWeights(weightKg, in: currentGroup.sets, editedSetID: set.id)
-                }
+                set.weightKg = UnitSystem.current == .metric ? newValue : UnitSystem.lbsToKg(newValue)
             }
         )
     }
@@ -518,6 +527,11 @@ private struct WeightTextField: View {
                 let normalized = newValue.replacingOccurrences(of: ",", with: ".")
                 guard let parsed = Double(normalized) else { return }
                 value = parsed
+            }
+            .onChange(of: value) { _, newValue in
+                if focus.wrappedValue != setID {
+                    text = Self.format(newValue)
+                }
             }
     }
 

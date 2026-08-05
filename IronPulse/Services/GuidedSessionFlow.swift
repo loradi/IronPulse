@@ -48,13 +48,19 @@ enum GuidedSessionFlow {
         max(0, Int(ceil(end.timeIntervalSince(now))))
     }
 
-    /// Sets que deben adoptar `weightKg` por ser hermanos vacíos
-    /// (`<= 0`) del set que el usuario acaba de editar — mismo
-    /// ejercicio, sin contar el set editado. Un set que ya tiene un
-    /// valor propio (drop set, pirámide) se deja intacto: solo se
-    /// rellenan los que de verdad están vacíos.
-    static func fillEmptyWeights(_ weightKg: Double, in sets: [SetLog], editedSetID: SetLog.ID) {
-        for set in sets where set.id != editedSetID && set.weightKg <= 0 {
+    /// Sets que deben adoptar `weightKg` por ser hermanos del set que
+    /// el usuario acaba de editar (mismo ejercicio, sin contar el set
+    /// editado) que o bien están vacíos (`<= 0`) o bien tenían el
+    /// mismo peso que el set editado ANTES de este cambio
+    /// (`previousValue`) — esto último permite que subir de peso se
+    /// propague incluso cuando la sesión ya arrancó precargada con el
+    /// peso de la sesión anterior (todos los sets ya en un valor
+    /// no-cero compartido, así que "vacío" ya no aplica). Un set que
+    /// el usuario ya cambió a un valor genuinamente distinto (drop
+    /// set, pirámide) no coincide con `previousValue` y se deja
+    /// intacto.
+    static func fillMatchingWeights(_ weightKg: Double, previousValue: Double, in sets: [SetLog], editedSetID: SetLog.ID) {
+        for set in sets where set.id != editedSetID && (set.weightKg <= 0 || set.weightKg == previousValue) {
             set.weightKg = weightKg
         }
     }
