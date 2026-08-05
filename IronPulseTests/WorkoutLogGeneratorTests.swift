@@ -83,4 +83,17 @@ struct WorkoutLogGeneratorTests {
         let log = WorkoutLogGenerator.generate(for: makeDay(), routineName: "Rutina de prueba", profile: makeProfile())
         #expect(log.completedSets.allSatisfy { $0.repsCompleted == $0.targetRepsMin })
     }
+
+    @Test func precargaElPesoDeLaUltimaSesionSiHayHistorial() {
+        let log = WorkoutLogGenerator.generate(
+            for: makeDay(),
+            routineName: "Rutina de prueba",
+            profile: makeProfile(),
+            previousWeights: ["e1": 42.5]
+        )
+        let setsE1 = log.completedSets.filter { $0.exerciseId == "e1" }
+        #expect(setsE1.allSatisfy { $0.weightKg == 42.5 })
+        let setsE2 = log.completedSets.filter { $0.exerciseId == "e2" }
+        #expect(setsE2.allSatisfy { $0.weightKg == 0 })
+    }
 }

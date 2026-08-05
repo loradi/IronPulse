@@ -11,13 +11,19 @@ enum WorkoutLogGenerator {
         profile: UserProfile,
         in context: ModelContext
     ) -> WorkoutLog {
-        let log = generate(for: day, routineName: routineName, profile: profile)
+        let previousWeights = WorkoutStatsService.mostRecentWeights(in: profile.workoutLogs)
+        let log = generate(for: day, routineName: routineName, profile: profile, previousWeights: previousWeights)
         context.insert(log)
         try? context.save()
         return log
     }
 
-    static func generate(for day: RoutineDay, routineName: String, profile: UserProfile) -> WorkoutLog {
+    static func generate(
+        for day: RoutineDay,
+        routineName: String,
+        profile: UserProfile,
+        previousWeights: [String: Double] = [:]
+    ) -> WorkoutLog {
         let log = WorkoutLog(
             routineName: routineName,
             dayTitle: day.title,
@@ -30,7 +36,7 @@ enum WorkoutLogGenerator {
                 let setLog = SetLog(
                     exerciseId: routineExercise.exercise.id,
                     setIndex: setIndex,
-                    weightKg: 0,
+                    weightKg: previousWeights[routineExercise.exercise.id] ?? 0,
                     repsCompleted: routineExercise.targetRepsMin,
                     restSeconds: routineExercise.restSeconds,
                     targetRepsMin: routineExercise.targetRepsMin,

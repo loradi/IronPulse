@@ -71,6 +71,25 @@ enum WorkoutStatsService {
             .sorted { $0.date < $1.date }
     }
 
+    /// El peso más reciente completado por ejercicio, tomado de `logs`
+    /// sin importar en qué rutina o día se hizo — usado para precargar
+    /// una sesión nueva con lo que el usuario levantó la última vez.
+    /// Solo cuentan sesiones terminadas y sets completados con peso; un
+    /// ejercicio sin historial que cumpla eso simplemente no aparece en
+    /// el resultado.
+    static func mostRecentWeights(in logs: [WorkoutLog]) -> [String: Double] {
+        var result: [String: Double] = [:]
+        for log in finishedLogs(logs).sorted(by: { $0.startDate > $1.startDate }) {
+            let orderedSets = log.completedSets.sorted { $0.setIndex < $1.setIndex }
+            for set in orderedSets where set.isCompleted && set.weightKg > 0 {
+                if result[set.exerciseId] == nil {
+                    result[set.exerciseId] = set.weightKg
+                }
+            }
+        }
+        return result
+    }
+
     enum WeekdayStatus: Equatable {
         case notScheduled
         case pending

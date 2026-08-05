@@ -218,4 +218,47 @@ struct WorkoutStatsServiceTests {
         let log = WorkoutLog(startDate: yesterday, endDate: yesterday, routineName: "R", dayTitle: "D")
         #expect(WorkoutStatsService.todaysCompletedLog(logs: [log], today: today, calendar: calendar) == nil)
     }
+
+    // MARK: - mostRecentWeights
+
+    @Test func mostRecentWeightsTomaElPesoDeLaSesionMasReciente() {
+        let logs = [
+            makeLog(start: day(2026, 7, 1), finished: true, sets: [makeSet(exerciseId: "e1", weightKg: 40, reps: 8)]),
+            makeLog(start: day(2026, 7, 8), finished: true, sets: [makeSet(exerciseId: "e1", weightKg: 45, reps: 8)])
+        ]
+        #expect(WorkoutStatsService.mostRecentWeights(in: logs)["e1"] == 45)
+    }
+
+    @Test func mostRecentWeightsIgnoraSesionesNoTerminadas() {
+        let logs = [
+            makeLog(start: day(2026, 7, 1), finished: true, sets: [makeSet(exerciseId: "e1", weightKg: 40, reps: 8)]),
+            makeLog(start: day(2026, 7, 8), finished: false, sets: [makeSet(exerciseId: "e1", weightKg: 999, reps: 8)])
+        ]
+        #expect(WorkoutStatsService.mostRecentWeights(in: logs)["e1"] == 40)
+    }
+
+    @Test func mostRecentWeightsIgnoraSetsNoCompletadosOEnCero() {
+        let logs = [
+            makeLog(start: day(2026, 7, 1), finished: true, sets: [
+                makeSet(exerciseId: "e1", weightKg: 999, reps: 8, completed: false),
+                makeSet(exerciseId: "e1", weightKg: 0, reps: 8)
+            ])
+        ]
+        #expect(WorkoutStatsService.mostRecentWeights(in: logs)["e1"] == nil)
+    }
+
+    @Test func mostRecentWeightsSinHistorialQuedaVacio() {
+        #expect(WorkoutStatsService.mostRecentWeights(in: []).isEmpty)
+    }
+
+    @Test func mostRecentWeightsUsaElPrimerSetPorSetIndexDeLaSesionMasReciente() {
+        let sets = [
+            makeSet(exerciseId: "e1", weightKg: 50, reps: 6),
+            makeSet(exerciseId: "e1", weightKg: 45, reps: 8)
+        ]
+        sets[0].setIndex = 1
+        sets[1].setIndex = 0
+        let logs = [makeLog(start: day(2026, 7, 1), finished: true, sets: sets)]
+        #expect(WorkoutStatsService.mostRecentWeights(in: logs)["e1"] == 45)
+    }
 }
