@@ -5,6 +5,31 @@ struct LocalizedString: Codable {
     let es: String
     let en: String
     let fr: String
+    /// Identificador estable usado para buscar el clip de audio
+    /// pre-grabado de esta frase (`<id>_<idioma>.mp3`) en
+    /// `SmartAssistantAudioAnnouncer`. Vacío para los `LocalizedString`
+    /// que no lo necesitan (nombres/instrucciones de ejercicios en
+    /// `ExercisesSeed.json`, que es anterior a este campo y nunca lo trae).
+    let id: String
+
+    init(es: String, en: String, fr: String, id: String = "") {
+        self.es = es
+        self.en = en
+        self.fr = fr
+        self.id = id
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case es, en, fr, id
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        es = try container.decode(String.self, forKey: .es)
+        en = try container.decode(String.self, forKey: .en)
+        fr = try container.decode(String.self, forKey: .fr)
+        id = try container.decodeIfPresent(String.self, forKey: .id) ?? ""
+    }
 }
 
 struct LocalizedStringArray: Codable {

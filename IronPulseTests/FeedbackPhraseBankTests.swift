@@ -21,8 +21,8 @@ struct FeedbackPhraseBankTests {
 
     @Test func randomPhraseAlwaysComesFromTheMatchingBank() {
         for _ in 0..<50 {
-            let phrase = FeedbackPhraseBank.randomPhrase(for: .goodRep, language: .spanish)
-            #expect(FeedbackPhraseBank.goodRepPhrases.contains { $0.es == phrase })
+            let phrase = FeedbackPhraseBank.randomPhrase(for: .goodRep)
+            #expect(FeedbackPhraseBank.goodRepPhrases.contains { $0.id == phrase.id })
         }
     }
 
@@ -35,6 +35,20 @@ struct FeedbackPhraseBankTests {
             for language in AppLanguage.allCases {
                 #expect(!phrase.text(for: language).isEmpty)
             }
+        }
+    }
+
+    @Test func everyPhraseHasANonEmptyUniqueIDWithinItsBank() {
+        let banks = [
+            FeedbackPhraseBank.goodRepPhrases,
+            FeedbackPhraseBank.notDeepEnoughPhrases,
+            FeedbackPhraseBank.tooFastPhrases,
+            FeedbackPhraseBank.badFormPhrases,
+        ]
+        for bank in banks {
+            let ids = bank.map(\.id)
+            #expect(ids.allSatisfy { !$0.isEmpty })
+            #expect(Set(ids).count == ids.count)
         }
     }
 }
