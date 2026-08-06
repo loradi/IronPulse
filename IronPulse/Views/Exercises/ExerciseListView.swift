@@ -47,6 +47,9 @@ struct ExerciseListView: View {
                         HStack(spacing: 8) {
                             Text(exercise.name).font(.wwTitle3).lineLimit(2)
                             Spacer()
+                            if MovementProfileCatalog.profile(forExerciseID: exercise.id) != nil {
+                                SmartAssistantBadge()
+                            }
                             if exercise.isCompound {
                                 TagBadge(text: String(localized: "exercise.compound_badge", defaultValue: "Compound", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale))
                             }
@@ -149,8 +152,13 @@ struct ExerciseDetailView: View {
                 .frame(height: 220)
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
 
-                if exercise.isCompound {
-                    TagBadge(text: String(localized: "exercise.compound_badge", defaultValue: "Compound", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale))
+                HStack(spacing: 8) {
+                    if MovementProfileCatalog.profile(forExerciseID: exercise.id) != nil {
+                        SmartAssistantBadge()
+                    }
+                    if exercise.isCompound {
+                        TagBadge(text: String(localized: "exercise.compound_badge", defaultValue: "Compound", bundle: AppLanguage.current.bundle, locale: AppLanguage.current.locale))
+                    }
                 }
 
                 MuscleDiagramView(primary: exercise.muscleGroup, secondary: exercise.secondaryMuscles)

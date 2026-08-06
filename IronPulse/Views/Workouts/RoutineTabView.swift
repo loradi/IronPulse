@@ -167,6 +167,9 @@ private struct RoutineCard: View {
                         } label: {
                             HStack {
                                 Text(ex.exercise.name).font(.wwCaption)
+                                if MovementProfileCatalog.profile(forExerciseID: ex.exercise.id) != nil {
+                                    SmartAssistantBadge()
+                                }
                                 Spacer()
                                 Text("\(ex.targetSets)x\(ex.targetRepsMin)-\(ex.targetRepsMax)")
                                     .font(.wwCaption)
