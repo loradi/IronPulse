@@ -2,6 +2,28 @@ import AVFoundation
 import QuartzCore
 import SwiftUI
 
+/// Undoes the 90° clockwise rotation `CameraSessionController` applies
+/// to camera buffers (`connection.videoRotationAngle = 90`) before
+/// Vision ever sees them, converting a Vision-space point (normalized,
+/// origin bottom-left, y-up, relative to that already-portrait-rotated
+/// buffer) into AVFoundation's "unrotated picture" coordinate space
+/// (normalized, origin top-left). That unrotated space is what
+/// `AVCaptureVideoPreviewLayer`'s point/rect conversion APIs always
+/// expect on their input side — Apple's own header comment on
+/// `metadataOutputRectOfInterestForRect:` says so explicitly ("on an
+/// unrotated picture"), regardless of any connection's current rotation
+/// angle. The rear camera's native/unrotated sensor image needs a 90°
+/// clockwise rotation to appear portrait-upright (the same relationship
+/// `UIImage.Orientation.right` encodes for unrotated rear-camera
+/// photos), so undoing that to recover the unrotated frame is the
+/// inverse: 90° counterclockwise. Pure geometry, no AVFoundation/UIKit
+/// dependency, so it's unit-testable without a camera — unlike the
+/// `layerRectConverted` call itself.
+func unrotatedPoint(fromPortraitVisionPoint visionPoint: CGPoint) -> CGPoint {
+    let portraitPoint = CGPoint(x: visionPoint.x, y: 1 - visionPoint.y)
+    return CGPoint(x: portraitPoint.y, y: 1 - portraitPoint.x)
+}
+
 /// Thin UIKit bridge for the live camera preview layer, plus the
 /// virtual skeleton overlay drawn on top of it. All AVFoundation
 /// coordinate-space handling (converting Vision's normalized joint
@@ -59,22 +81,14 @@ struct CameraPreviewView: UIViewRepresentable {
             badFormLayer.frame = bounds
         }
 
-        /// Converts a Vision-space joint point (normalized, origin
-        /// bottom-left, y-up — relative to the already-portrait-rotated
-        /// buffer `PoseDetectorService` runs Vision on, see that file's
-        /// `.up` orientation comment) into this layer's own point space.
-        /// Deliberately NOT `layerPointConverted(fromCaptureDevicePoint:)`
-        /// — that method's input space is AVCaptureDevice's raw,
-        /// un-rotated sensor frame (used for focus/exposure points of
-        /// interest), a different space than what Vision returns here.
-        /// `layerRectConverted(fromMetadataOutputRect:)` is the correct
-        /// counterpart: its input space DOES track the capture
-        /// connection's own rotation/mirroring setting and automatically
-        /// accounts for `.resizeAspectFill`'s crop, so only the Y-axis
-        /// flip (Vision's bottom-left/y-up vs. CoreGraphics' top-left/
-        /// y-down) is needed before handing it off.
+        /// Converts a Vision-space joint point into this layer's own
+        /// point space: first undo the buffer rotation (see
+        /// `unrotatedPoint(fromPortraitVisionPoint:)`), then hand the
+        /// result to `layerRectConverted(fromMetadataOutputRect:)`,
+        /// which accounts for mirroring, the preview's current display
+        /// rotation, and `.resizeAspectFill`'s crop.
         private func viewPoint(for visionPoint: CGPoint) -> CGPoint {
-            let metadataPoint = CGPoint(x: visionPoint.x, y: 1 - visionPoint.y)
+            let metadataPoint = unrotatedPoint(fromPortraitVisionPoint: visionPoint)
             return videoPreviewLayer.layerRectConverted(fromMetadataOutputRect: CGRect(origin: metadataPoint, size: .zero)).origin
         }
 
