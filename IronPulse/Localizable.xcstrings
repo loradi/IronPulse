@@ -1933,6 +1933,29 @@
         }
       }
     },
+    "exercise.smart_assistant_badge": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart assistant available"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Asistente inteligente disponible"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assistant intelligent disponible"
+          }
+        }
+      }
+    },
     "exercise_filter.all": {
       "extractionState": "manual",
       "localizations": {
