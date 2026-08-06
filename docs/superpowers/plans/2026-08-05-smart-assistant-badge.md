@@ -27,85 +27,85 @@
 
 - [ ] **Step 1: Agregar la clave localizada**
 
-En `IronPulse/Localizable.xcstrings`, encontrar:
+En `IronPulse/Localizable.xcstrings`, encontrar (nota: sin espacio antes de `:` — es el formato real y compacto en que está guardado el archivo, no el que produce el reformateo automático de Xcode al abrir el proyecto; si tu copia del archivo ya fue reabierta/reformateada por Xcode, ajustá el espaciado del bloque de búsqueda para que coincida antes de reemplazar):
 
 ```json
-    "exercise.compound_badge" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compound"
+    "exercise.compound_badge": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compound"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compuesto"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compuesto"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Composé"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Composé"
           }
         }
       }
     },
-    "experience_level.advanced" : {
+    "exercise_filter.all": {
 ```
 
 Reemplazar con:
 
 ```json
-    "exercise.compound_badge" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compound"
+    "exercise.compound_badge": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compound"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compuesto"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compuesto"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Composé"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Composé"
           }
         }
       }
     },
-    "exercise.smart_assistant_badge" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Smart assistant available"
+    "exercise.smart_assistant_badge": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart assistant available"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Asistente inteligente disponible"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Asistente inteligente disponible"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Assistant intelligent disponible"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assistant intelligent disponible"
           }
         }
       }
     },
-    "experience_level.advanced" : {
+    "exercise_filter.all": {
 ```
 
 - [ ] **Step 2: Crear `SmartAssistantBadge.swift`**
