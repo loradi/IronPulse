@@ -122,9 +122,14 @@ struct DashboardView: View {
             VStack(alignment: .leading, spacing: 12) {
                 Text("Hoy: \(day.title)").font(.wwHeadline)
                 ForEach(day.exercises.sorted { $0.orderIndex < $1.orderIndex }) { ex in
-                    Text(ex.exercise.name)
-                        .font(.wwBody)
-                        .foregroundStyle(Color.ironTextSecondary)
+                    HStack(spacing: 6) {
+                        Text(ex.exercise.name)
+                            .font(.wwBody)
+                            .foregroundStyle(Color.ironTextSecondary)
+                        if MovementProfileCatalog.profile(forExerciseID: ex.exercise.id) != nil {
+                            SmartAssistantBadge()
+                        }
+                    }
                 }
                 if let completedLog = WorkoutStatsService.todaysCompletedLog(logs: profile.workoutLogs) {
                     Text(completedTodayLabel)
