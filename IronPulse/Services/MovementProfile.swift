@@ -154,6 +154,42 @@ enum MovementProfileCatalog {
         "ex_087_elevaciones_frontales_mancuernas": lateralRaise,
         "ex_054_extension_de_piernas_en_maquina": legExtension,
         "ex_056_curl_femoral_sentado": legCurl,
+
+        // Grupo 1 — reusan un perfil existente (ver spec del
+        // 2026-08-05 "smart-assistant-catalog-expansion-design" para
+        // el razonamiento de cada mapeo).
+        "ex_016_press_pecho_polea_de_pie": pushUp,
+        "ex_026_remo_barra_inclinado": row,
+        // Single-arm exercise - only counts correctly if the user
+        // works with their LEFT arm toward the camera, since every
+        // profile tracks left-side joints exclusively.
+        "ex_030_remo_mancuerna_un_brazo": row,
+        "ex_036_remo_t_manija": row,
+        // Single-arm exercise - same left-side-only caveat as ex_030.
+        "ex_041_remo_kettlebell_un_brazo": row,
+        "ex_044_remo_alto_maquina_palanca": row,
+        "ex_047_jalon_tras_nuca_agarre_ancho": row,
+        "ex_059_zancada_con_barra": squat,
+        "ex_077_peso_muerto_a_una_pierna_con_mancuerna": hinge,
+        "ex_086_elevaciones_laterales_polea": lateralRaise,
+        "ex_088_elevaciones_frontales_polea": lateralRaise,
+        "ex_089_aperturas_posteriores_mancuernas": lateralRaise,
+        "ex_090_aperturas_posteriores_polea": lateralRaise,
+        "ex_091_aperturas_posteriores_maquina": lateralRaise,
+        "ex_115_curl_cruzado_martillo": curl,
+        // Lowest-confidence mapping in this batch: the forearm swings
+        // backward from a bent-over torso, some of the same
+        // depth-from-camera concern that excluded glute kickback -
+        // included since the arc is mostly vertical, not pure depth,
+        // but flag for extra attention during on-device verification.
+        "ex_121_patada_triceps_mancuerna": tricepsExtension,
+        "ex_125_extension_polea_una_mano": tricepsExtension,
+        // Single-arm exercise - same left-side-only caveat as ex_030.
+        "ex_127_extension_mancuerna_una_mano_sobre_cabeza": tricepsExtension,
+
+        // Grupo 2 — perfiles nuevos, definidos más abajo.
+        "ex_040_jalon_brazos_rectos_polea": straightArmPulldown,
+        "ex_135_elevacion_piernas_colgado": hangingLegRaise,
     ]
 
     // Knee angle (hip-knee-ankle): ~85 degrees at the bottom of a
@@ -333,5 +369,42 @@ enum MovementProfileCatalog {
             angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
             toleranceDegrees: 15
         )
+    )
+
+    // Shoulder angle (hip-shoulder-elbow) - same triangle as
+    // overheadPress, passing through the SAME "arm extended overhead"
+    // position but as opposite phase labels: ~150-180 degrees with the
+    // arm extended up toward the high pulley (the pulldown's "down" -
+    // the rest position before pulling; numerically identical to
+    // overheadPress's own "up"/lockout range, since it's the same arm
+    // position), ~0-30 degrees with the arm pulled down to the side
+    // (the pulldown's "up" - peak contraction, close to lateralRaise's
+    // "arm at side" range). Secondary check: torso (shoulder-hip-knee)
+    // stays near wherever it started - leaning back to help pull down
+    // is the most common cheat, same concern as overheadPress.
+    private static let straightArmPulldown = MovementProfile(
+        primaryAngle: JointAngle(proximal: .leftHip, vertex: .leftShoulder, distal: .leftElbow),
+        downRange: 150...180,
+        upRange: 0...30,
+        secondaryCheck: .stability(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            toleranceDegrees: 15
+        )
+    )
+
+    // Hip angle (shoulder-hip-knee) - same triangle as squat/hinge's
+    // secondary check, but here it's the PRIMARY signal: hanging from
+    // a bar, ~160-180 degrees with legs straight down (the raise's
+    // "down" - rest position), ~60-110 degrees with the legs lifted
+    // (the raise's "up" - the wide range covers both straight-leg and
+    // bent-knee technique without forcing one). No secondary check:
+    // unlike every other profile, there's no comparable "should stay
+    // put" reference joint when the torso itself is hanging from a
+    // fixed grip.
+    private static let hangingLegRaise = MovementProfile(
+        primaryAngle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+        downRange: 160...180,
+        upRange: 60...110,
+        secondaryCheck: nil
     )
 }

@@ -78,6 +78,28 @@ struct MovementProfileCatalogTests {
         "ex_054_extension_de_piernas_en_maquina",
         // legCurl (1, new profile)
         "ex_056_curl_femoral_sentado",
+        // Grupo 1 — reusan un perfil existente (18)
+        "ex_016_press_pecho_polea_de_pie",
+        "ex_026_remo_barra_inclinado",
+        "ex_030_remo_mancuerna_un_brazo",
+        "ex_036_remo_t_manija",
+        "ex_041_remo_kettlebell_un_brazo",
+        "ex_044_remo_alto_maquina_palanca",
+        "ex_047_jalon_tras_nuca_agarre_ancho",
+        "ex_059_zancada_con_barra",
+        "ex_077_peso_muerto_a_una_pierna_con_mancuerna",
+        "ex_086_elevaciones_laterales_polea",
+        "ex_088_elevaciones_frontales_polea",
+        "ex_089_aperturas_posteriores_mancuernas",
+        "ex_090_aperturas_posteriores_polea",
+        "ex_091_aperturas_posteriores_maquina",
+        "ex_115_curl_cruzado_martillo",
+        "ex_121_patada_triceps_mancuerna",
+        "ex_125_extension_polea_una_mano",
+        "ex_127_extension_mancuerna_una_mano_sobre_cabeza",
+        // Grupo 2 — perfiles nuevos (2)
+        "ex_040_jalon_brazos_rectos_polea",
+        "ex_135_elevacion_piernas_colgado",
     ]
 
     @Test func unknownExerciseHasNoProfile() {
@@ -90,8 +112,8 @@ struct MovementProfileCatalogTests {
         }
     }
 
-    @Test func curatedListHasExactlySixtyFourExercises() {
-        #expect(Self.curatedIDs.count == 64)
+    @Test func curatedListHasExactlyEightyFourExercises() {
+        #expect(Self.curatedIDs.count == 84)
     }
 
     @Test func everyCuratedProfileHasNonOverlappingDownAndUpRanges() {
@@ -223,11 +245,42 @@ struct MovementProfileCatalogTests {
         ))
     }
 
+    @Test func straightArmPulldownSharesOverheadPressJointTriangleWithRolesReversed() {
+        let straightArmPulldown = MovementProfileCatalog.profile(forExerciseID: "ex_040_jalon_brazos_rectos_polea")!
+        let overheadPress = MovementProfileCatalog.profile(forExerciseID: "ex_078_press_militar_barra")!
+        let sharedTriangle = JointAngle(proximal: .leftHip, vertex: .leftShoulder, distal: .leftElbow)
+
+        #expect(straightArmPulldown.primaryAngle == sharedTriangle)
+        #expect(overheadPress.primaryAngle == sharedTriangle)
+        // Both exercises pass through the same "arm extended overhead"
+        // position - it's straightArmPulldown's starting rest ("down")
+        // and overheadPress's completed lockout ("up").
+        #expect(straightArmPulldown.downRange == overheadPress.upRange)
+    }
+
+    @Test func straightArmPulldownHasATorsoStabilityCheck() {
+        let profile = MovementProfileCatalog.profile(forExerciseID: "ex_040_jalon_brazos_rectos_polea")!
+        #expect(profile.secondaryCheck == .stability(
+            angle: JointAngle(proximal: .leftShoulder, vertex: .leftHip, distal: .leftKnee),
+            toleranceDegrees: 15
+        ))
+    }
+
+    @Test func hangingLegRaiseUsesSquatAndHingesSecondaryCheckTriangleAsItsOwnPrimaryAngle() {
+        let hangingLegRaise = MovementProfileCatalog.profile(forExerciseID: "ex_135_elevacion_piernas_colgado")!
+        let squat = MovementProfileCatalog.profile(forExerciseID: "ex_048_sentadilla_trasera_con_barra")!
+
+        #expect(hangingLegRaise.primaryAngle == squat.secondaryCheck?.angle)
+    }
+
     /// Loops over one representative exercise ID per distinct movement
-    /// profile (unlike the individual tests above, each hardcoded to a
-    /// single profile) so that an 11th profile ever added without a
-    /// secondary check fails this loop, instead of silently passing.
-    @Test func everyMovementProfileHasANonNilSecondaryCheck() {
+    /// profile that HAS a secondary check (unlike the individual tests
+    /// above, each hardcoded to a single profile) so that a 12th
+    /// profile ever added without a secondary check, that isn't the
+    /// documented `hangingLegRaise` exception, fails this loop instead
+    /// of silently passing. `hangingLegRaise` is excluded here and
+    /// covered separately by `hangingLegRaiseHasNoSecondaryCheck`.
+    @Test func everyMovementProfileWithASecondaryCheckHasANonNilCheck() {
         let representativeIDByProfile: [String: String] = [
             "squat": "ex_048_sentadilla_trasera_con_barra",
             "pushUp": "ex_021_flexiones_pecho",
@@ -239,10 +292,20 @@ struct MovementProfileCatalogTests {
             "lateralRaise": "ex_085_elevaciones_laterales_mancuernas",
             "legExtension": "ex_054_extension_de_piernas_en_maquina",
             "legCurl": "ex_056_curl_femoral_sentado",
+            "straightArmPulldown": "ex_040_jalon_brazos_rectos_polea",
         ]
         for (profileName, id) in representativeIDByProfile {
             let profile = MovementProfileCatalog.profile(forExerciseID: id)!
             #expect(profile.secondaryCheck != nil, "\(profileName) (via \(id)) has no secondary check")
         }
+    }
+
+    /// `hangingLegRaise` is the sole documented exception: there's no
+    /// "should stay put" reference joint comparable to the other
+    /// profiles' torso/shoulder stability checks when the body is
+    /// hanging from a fixed grip.
+    @Test func hangingLegRaiseHasNoSecondaryCheck() {
+        let profile = MovementProfileCatalog.profile(forExerciseID: "ex_135_elevacion_piernas_colgado")!
+        #expect(profile.secondaryCheck == nil)
     }
 }
