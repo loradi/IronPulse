@@ -127,16 +127,29 @@ final class CameraSessionController: NSObject {
     // angle in the iOS 17+ `videoRotationAngle` API) so the buffers
     // `PoseDetectorService` receives are already upright — see the `.up`
     // comment in `PoseDetectorService.detectJoints` for the other half
-    // of this. Mirroring is set separately: the front camera's image is
-    // naturally mirrored, which would flip left/right joint labeling for
-    // Vision if left uncorrected.
+    // of this.
+    //
+    // Mirroring is deliberately forced OFF here, on every camera
+    // position, and left untouched on the preview layer's own
+    // (separate) connection. `AVCaptureVideoPreviewLayer` mirrors the
+    // front camera automatically by default — that's what gives the
+    // expected "selfie mirror" preview. If this data-output connection
+    // also mirrored the buffer Vision sees, `CameraPreviewView`'s
+    // `layerRectConverted(fromMetadataOutputRect:)` would end up
+    // compensating for the preview's mirroring on top of a point that
+    // was already computed from a mirrored buffer — two mirrors
+    // canceling out, leaving the drawn skeleton geometrically
+    // unmirrored while the video underneath it is mirrored, so the
+    // skeleton visibly moves opposite to the user's real movement on
+    // front camera. Keeping Vision's buffer in its natural, unmirrored
+    // state avoids this, and keeps Vision's own left/right joint
+    // labeling anatomically correct too (its body-pose model expects a
+    // natural, not artificially mirrored, image).
     //
     // This hardcodes portrait rather than using
     // `AVCaptureDevice.RotationCoordinator` to track live device
     // orientation, since the assistant UI itself doesn't rotate — if a
     // future version supports landscape use, this needs revisiting.
-    // Called after every input change (`reconfigureInput`, including the
-    // front/back toggle) since mirroring depends on camera position.
     private func updateVideoConnection(position: CameraPosition) {
         guard let connection = videoOutput?.connection(with: .video) else { return }
         if connection.isVideoRotationAngleSupported(90) {
@@ -144,7 +157,7 @@ final class CameraSessionController: NSObject {
         }
         if connection.isVideoMirroringSupported {
             connection.automaticallyAdjustsVideoMirroring = false
-            connection.isVideoMirrored = position == .front
+            connection.isVideoMirrored = false
         }
     }
 }
